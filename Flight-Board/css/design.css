@@ -94,12 +94,11 @@
   font-weight: 600;
 }
 
-/* 線はすべて細く。囲うより「区切る」*/
+/* アプリのしるし。囲いは外して形だけで見せます。
+   ヘッダーは明暗どちらでも暗い地なので、色は明るいほうの金で固定します
+   （--accent は明るいときに濃い金へ変わるため、ここでは使えません）。 */
 .app-title__mark {
-  background: transparent;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  border-radius: 50%;
+  color: #c9a227;
   transform: rotate(-20deg);
 }
 
@@ -170,24 +169,51 @@
 
 
 
-/* ヘッダー左上の「玄関へ戻る」ボタン。
+/* ヘッダー左上の「旅の道具箱に戻る」ボタン。
    Travel Box（この2つのアプリの入れ物）へ戻るためのものです。
-   明暗切替ボタンと同じ作りにして、押せる場所だと分かるようにしています。 */
+   前は ◀ の1文字でしたが、薄くて小さく、戻る先も伝わりませんでした。
+   家の形と塗りを入れて、押せる場所だとひと目で分かるようにしています。
+   Trip Board 側と同じ寸法・同じ色にそろえてあります。 */
 .home-link {
+  position: relative;
   flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
-  margin-right: 2px;
+  width: 32px;
+  height: 32px;
+  /* このヘッダーは gap を持たないので、すき間はここで作ります。
+     8px 空けるのは、下の当たり判定（44px）が右隣のタイトルに
+     食い込まないようにするためです。Trip Board 側と同じ間隔です。 */
+  margin-right: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 10px;
   text-decoration: none;
-  font-size: 12px;
-  color: rgba(255, 255, 255, .75);
-  border: 1px solid rgba(255, 255, 255, .22);
+  color: rgba(255, 255, 255, .92);
+  background: rgba(255, 255, 255, .14);
+  border: 1px solid rgba(255, 255, 255, .34);
 }
-.home-link:active { background: rgba(255, 255, 255, .1); }
+/* 見た目は32pxのまま、指の当たり判定だけ44pxに広げます。
+   見た目を44pxにするとヘッダーが窮屈になるためです。 */
+.home-link::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+.home-link__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.home-link:active { background: rgba(255, 255, 255, .26); }
 
 /* ヘッダー右上の明暗切替ボタン */
 .head-btn {
@@ -223,3 +249,30 @@
   flex-wrap: wrap;
 }
 .badge--sm { font-size: 10px; padding: 1px 7px; }
+
+/* ===== 特別な座席・設備 =====
+   クラスの札は「上のクラスほど濃い」を守ります。
+   ファーストだけを金にすると、この画面では金が多すぎて印にならないので、
+   濃さの段で表しています。 */
+.prod__cabin--F { background: var(--gold);      color: #17161a; }
+.prod__cabin--J { background: var(--tile-bg);   color: var(--tile-fg); }
+.prod__cabin--W { background: var(--line-2);    color: var(--text-sub); }
+.prod__cabin--Y { background: var(--line-2);    color: var(--text-sub); }
+
+/* 「2人で使えるか」。1人用は目立たせません。
+   同行者がいる人にとってはここが決め手になるので、
+   ダブルベッドと4人用だけ色を付けます。 */
+.prod__pair--double,
+.prod__pair--quad {
+  background: var(--tile-bg);
+  color: var(--tile-fg);
+  font-weight: 600;
+}
+.prod__pair--open { background: var(--line-2); color: var(--text-sub); }
+.prod__pair--solo { background: transparent; color: var(--text-weak); padding-left: 0; }
+
+.prod__name { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
+.prod-group { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
+
+/* 入口の丸。ここだけ金にして、会社の一覧の中で目に留まるようにします */
+.code--special { background: var(--gold); color: #17161a; }

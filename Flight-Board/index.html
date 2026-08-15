@@ -30,19 +30,104 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/style.css?v=20260815a">
+<link rel="stylesheet" href="css/style.css?v=20260815e">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260815a">
+<link rel="stylesheet" href="css/design.css?v=20260815e">
 </head>
 <body>
+
+<!-- ===== しるしのもと =====
+     形をここに1回だけ書いて、下から <use href="#i-○○"> で呼び出します。
+     大きさと色は呼び出す側で決めます（線は currentColor）。
+
+     ★ i-plane は Travel Box（玄関）のカードと同じ形です。
+       玄関でこのアプリを表しているしるしなので、片方だけ変えないでください。 -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-plane" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 2.4c1.05 0 1.75 1.35 1.75 3v3.05l7.15 4.2v2.1
+      l-7.15-2.2v4.05l2.2 1.6v1.6L12 18.7l-3.95 1.1v-1.6l2.2-1.6v-4.05L3.1 14.75v-2.1
+      l7.15-4.2V5.4c0-1.65.7-3 1.75-3z"/>
+  </symbol>
+
+  <!-- 読み込み中に回す点線の輪 -->
+  <symbol id="i-orbit" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10.8" fill="none" stroke="currentColor"
+            stroke-width="1.3" stroke-linecap="round" stroke-dasharray="2.4 4.6"/>
+  </symbol>
+
+  <symbol id="i-home" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.9"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.2 11.3 12 4.2l8.8 7.1"/>
+      <path d="M5.6 10.1v9.7h12.8v-9.7"/>
+      <path d="M9.7 19.8v-5.2h4.6v5.2"/>
+    </g>
+  </symbol>
+
+  <!-- ---- タブのしるし ---- -->
+  <symbol id="i-route" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6.2 17.6C8.4 12.4 12.2 8.6 17.6 6.4" stroke-dasharray="2.2 3"/>
+      <circle cx="4.7" cy="19.3" r="1.9"/>
+      <circle cx="19.3" cy="4.7" r="1.9"/>
+    </g>
+  </symbol>
+  <symbol id="i-airport" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9.4 20.6V10.4h5.2v10.2"/>
+      <path d="m8 10.4 4-3.8 4 3.8M12 6.6V3.4"/>
+      <path d="M6.2 20.6h11.6"/>
+    </g>
+  </symbol>
+  <!-- 航空会社は尾翼。会社の色や印が入るのが尾翼なので、
+       この業界ではそのまま「航空会社」を表す形として通っています。
+       胴体の線を足さないと、ただの三角形に見えてしまいます。 -->
+  <symbol id="i-airline" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.6"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8.8 19.4c.3-5.4 2.7-10.6 6.6-14.4h2.2c1 4.7 1.2 9.6.8 14.4z"/>
+      <path d="M4.2 19.4h15.6"/>
+    </g>
+  </symbol>
+  <!-- 機材は機体そのもの。ヘッダーのしるしと同じ形ですが、
+       あちらは塗り、こちらは線にして役割を分けています。 -->
+  <symbol id="i-aircraft" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"
+          d="M12 2.9c1 0 1.7 1.3 1.7 2.9v3l6.9 4.1v1.9l-6.9-2.1v3.9l2.1 1.5v1.5L12 18.7
+             l-3.8.9v-1.5l2.1-1.5v-3.9l-6.9 2.1v-1.9l6.9-4.1v-3c0-1.6.7-2.9 1.7-2.9z"/>
+  </symbol>
+  <symbol id="i-award" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linejoin="round"
+          d="m12 3.8 2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8z"/>
+  </symbol>
+  <!-- アライアンスは組み合った3つの輪。小さく描くと潰れるので、
+       輪を大きめにして線を細くし、重なりが見えるようにしています。 -->
+  <symbol id="i-alliance" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.4">
+      <circle cx="8.3" cy="9.1" r="5.3"/>
+      <circle cx="15.7" cy="9.1" r="5.3"/>
+      <circle cx="12" cy="15.5" r="5.3"/>
+    </g>
+  </symbol>
+</svg>
 
 <!-- ===== ヘッダー ===== -->
 <header class="app-header">
   <div class="app-header__inner">
-    <!-- Travel Box（玄関）へ戻る。玄関を経由せず直接開いたときも押せます -->
-    <a class="home-link" href="../" title="玄関に戻る">◀</a>
+    <!-- 旅の道具箱（玄関）へ戻る。玄関を通さず直接開いたときも押せます。
+         家の形にしているのは、戻る先がこのアプリの最初の画面ではなく
+         入れ物のほうだと、記号だけで分かるようにするためです。 -->
+    <a class="home-link" href="../"
+       title="旅の道具箱に戻る" aria-label="旅の道具箱に戻る">
+      <svg class="home-link__icon" aria-hidden="true"><use href="#i-home"/></svg>
+    </a>
     <button type="button" class="app-title" id="homeBtn" title="最初の画面に戻る">
-      <span class="app-title__mark" aria-hidden="true">✈</span>
+      <span class="app-title__mark" aria-hidden="true">
+        <svg class="app-title__glyph"><use href="#i-plane"/></svg>
+      </span>
       <span class="app-title__text">
         <span class="app-title__main" id="appTitle">Flight Board</span>
         <span class="app-title__sub" id="appSub">空港・航空会社・アライアンス</span>
@@ -54,14 +139,23 @@
     </div>
   </div>
 
-  <!-- 画面の切り替えタブ -->
+  <!-- 画面の切り替えタブ。
+       しるしを文字の上に積んでいます。6つ並ぶので横に置く余地がなく、
+       積めば「アライアンス」の文字幅を変えずにしるしを足せます。
+       （タブが4つの Trip Board は横に並べています） -->
   <nav class="tabs" id="tabs" aria-label="表示切替">
-    <button type="button" class="tabs__btn is-active" data-tab="routes">路線</button>
-    <button type="button" class="tabs__btn" data-tab="airports">空港</button>
-    <button type="button" class="tabs__btn" data-tab="airlines">航空会社</button>
-    <button type="button" class="tabs__btn" data-tab="aircraft">機材</button>
-    <button type="button" class="tabs__btn" data-tab="awards">特典</button>
-    <button type="button" class="tabs__btn" data-tab="alliances">アライアンス</button>
+    <button type="button" class="tabs__btn is-active" data-tab="routes">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-route"/></svg>路線</button>
+    <button type="button" class="tabs__btn" data-tab="airports">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-airport"/></svg>空港</button>
+    <button type="button" class="tabs__btn" data-tab="airlines">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-airline"/></svg>航空会社</button>
+    <button type="button" class="tabs__btn" data-tab="aircraft">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-aircraft"/></svg>機材</button>
+    <button type="button" class="tabs__btn" data-tab="awards">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-award"/></svg>特典</button>
+    <button type="button" class="tabs__btn" data-tab="alliances">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-alliance"/></svg>アライアンス</button>
   </nav>
 </header>
 
@@ -69,6 +163,10 @@
 
   <!-- ===== 読み込み中／読み込み失敗 ===== -->
   <section class="notice" id="loading">
+    <span class="loader" aria-hidden="true">
+      <svg class="loader__ring"><use href="#i-orbit"/></svg>
+      <svg class="loader__mark"><use href="#i-plane"/></svg>
+    </span>
     <p class="notice__text">データを読み込んでいます…</p>
   </section>
   <section class="notice notice--error is-hidden" id="loadError">
@@ -240,10 +338,13 @@
     <p class="hint" id="awardIntro"></p>
     <div class="chips" id="awardFilters">
       <button type="button" class="chip is-active" data-alliance="">すべて</button>
+      <button type="button" class="chip" data-alliance="jp">日本の会社</button>
       <button type="button" class="chip" data-alliance="star">スターアライアンス</button>
       <button type="button" class="chip" data-alliance="oneworld">ワンワールド</button>
       <button type="button" class="chip" data-alliance="skyteam">スカイチーム</button>
+      <button type="button" class="chip" data-alliance="none">アライアンス外</button>
     </div>
+    <p class="result-count" id="awardCount"></p>
     <div id="awardList"></div>
   </section>
 
@@ -265,9 +366,9 @@
   <div class="sheet__body" id="sheetBody"></div>
 </aside>
 
-<script src="js/config.js?v=20260815a"></script>
-<script src="js/data.js?v=20260815a"></script>
-<script src="js/map.js?v=20260815a"></script>
-<script src="js/app.js?v=20260815a"></script>
+<script src="js/config.js?v=20260815e"></script>
+<script src="js/data.js?v=20260815e"></script>
+<script src="js/map.js?v=20260815e"></script>
+<script src="js/app.js?v=20260815e"></script>
 </body>
 </html>

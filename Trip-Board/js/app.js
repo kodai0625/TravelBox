@@ -7,6 +7,12 @@ const esc = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;');
 
+/** 詳細パネルの見出し。その項目のしるしを左に添えます。
+ *  しるしの形は index.html の <symbol id="i-○○"> にあります。 */
+const sec = (icon, text) =>
+  `<h3 class="sec"><svg class="sec__i" aria-hidden="true">
+     <use href="#i-${icon}"/></svg>${text}</h3>`;
+
 const MONTHS = ['1月', '2月', '3月', '4月', '5月', '6月',
                 '7月', '8月', '9月', '10月', '11月', '12月'];
 
@@ -379,7 +385,7 @@ function renderSearch() {
 
   if (!list.length) {
     $('searchList').innerHTML =
-      '<li class="empty">条件に当てはまる国がありません。絞り込みを緩めてみてください。</li>';
+      '<li class="empty"><svg class="empty__i" aria-hidden="true"><use href="#i-search"/></svg>条件に当てはまる国がありません。絞り込みを緩めてみてください。</li>';
     return;
   }
 
@@ -394,7 +400,9 @@ function renderSearch() {
   DB.regions.forEach((region) => {
     const inRegion = list.filter((c) => c.region === region);
     if (!inRegion.length) return;
-    html.push(`<li class="list__group">${esc(region)}
+    html.push(`<li class="list__group">
+      <svg class="list__group-i" aria-hidden="true"><use href="#i-pin"/></svg>
+      ${esc(region)}
       <span class="list__group-n">${inRegion.length}</span></li>`);
     inRegion.forEach((c) => html.push(searchRow(c, now)));
   });
@@ -733,7 +741,7 @@ function renderClock() {
   };
 
   if (!rows.length) {
-    $('clockList').innerHTML = '<li class="empty">見つかりませんでした。</li>';
+    $('clockList').innerHTML = '<li class="empty"><svg class="empty__i" aria-hidden="true"><use href="#i-search"/></svg>見つかりませんでした。</li>';
     return;
   }
 
@@ -750,7 +758,9 @@ function renderClock() {
   DB.regions.forEach((region) => {
     const inRegion = rows.filter((x) => x.c.region === region);
     if (!inRegion.length) return;
-    html.push(`<li class="list__group">${esc(region)}
+    html.push(`<li class="list__group">
+      <svg class="list__group-i" aria-hidden="true"><use href="#i-pin"/></svg>
+      ${esc(region)}
       <span class="list__group-n">${inRegion.length}</span></li>`);
     inRegion.forEach((x) => html.push(row(x)));
   });
@@ -804,7 +814,7 @@ function sheetHTML(c, ci) {
   }
 
   // ---- 季節 ----
-  out.push('<h3 class="sec">いつ行くか</h3>');
+  out.push(sec('sun', 'いつ行くか'));
   if (m && s) {
     out.push(M
       ? `<p class="strip__caption">選んでいる月　<b>${MONTHS[M - 1]}</b>
@@ -880,7 +890,7 @@ function sheetHTML(c, ci) {
   }
 
   // ---- 物価 ----
-  out.push('<h3 class="sec">物価</h3>');
+  out.push(sec('coin', '物価'));
   const p = DB.prices[c.code];
   const cats = DB.meta.prices.categories || [];
   if (p && cats.some((x) => typeof p[x.key] === 'number')) {
@@ -917,7 +927,7 @@ function sheetHTML(c, ci) {
   }
 
   // ---- 治安 ----
-  out.push('<h3 class="sec">治安（外務省の危険情報）</h3>');
+  out.push(sec('shield', '治安（外務省の危険情報）'));
   const sf = safetyOf(c.code);
   if (sf) {
     out.push(`<p class="lv lv--${sf.max}">
@@ -937,7 +947,7 @@ function sheetHTML(c, ci) {
   }
 
   // ---- 時差 ----
-  out.push('<h3 class="sec">時差</h3>');
+  out.push(sec('clock', '時差'));
   out.push('<dl class="kv">');
   // 同じタイムゾーンの都市はまとめます（ベトナムのように国内が1つの国が多いため）
   const zones = new Map();
@@ -962,7 +972,7 @@ function sheetHTML(c, ci) {
     サマータイムの切り替えも自動で反映されます。</p>`);
 
   // ---- 行事 ----
-  out.push('<h3 class="sec">季節の行事</h3>');
+  out.push(sec('flag', '季節の行事'));
   if (g && g.events.length) {
     out.push('<ul class="events">' + g.events.map((e) => {
       const hit = M && e.months.includes(M);
@@ -979,7 +989,7 @@ function sheetHTML(c, ci) {
   }
 
   // ---- ルール ----
-  out.push('<h3 class="sec">この国独自のルール</h3>');
+  out.push(sec('book', 'この国独自のルール'));
   if (g && g.rules.length) {
     out.push('<ul class="rules">' + g.rules.map((r) =>
       `<li class="rule"><b>${esc(r.title)}</b><br>${esc(r.text)}</li>`).join('') + '</ul>');

@@ -759,6 +759,95 @@ function favGroup(key, rows) {
   </section>`;
 }
 
+/* ------------------------------------------------------------
+ *  特別な座席・設備
+ *
+ *  ここだけは向きが逆です。ほかは「機材を選ぶ→座席が分かる」ですが、
+ *  ここは「座席を知っている→どの機材か調べる」。
+ *  THE Room に乗りたい人は、機種名ではなく製品名から入るためです。
+ * ---------------------------------------------------------- */
+
+const DOOR_JA = { yes: 'あり', no: 'なし', part: '一部の席' };
+
+/** 寸法を「198cm」「69〜105cm」のように書く。無ければ「—」 */
+function sizeText(v) {
+  if (v == null) return '—';
+  if (Array.isArray(v)) {
+    const [lo, hi] = v;
+    if (lo == null) return `最大 ${hi}cm`;
+    if (hi == null) return `${lo}cm〜`;
+    return `${lo}〜${hi}cm`;
+  }
+  return `${v}cm`;
+}
+
+function productCard(p) {
+  const al = FB.airlineByIata[p.airline];
+  const acs = p.ac.map((c) => {
+    const a = FB.aircraftByIcao[c];
+    return `<button type="button" class="prod__ac" data-aircraft="${esc(c)}">${
+      esc(a ? a.model : c)}</button>`;
+  }).join('');
+
+  // 寸法は確かめられたものだけ入れています。空欄は「無い」ではなく
+  // 「確かめられなかった」なので、—— を出して数字を作りません。
+  const specs = [
+    ['扉', DOOR_JA[p.door] || '—'],
+    ['配列', p.abreast],
+    ['ベッド長', sizeText(p.bedL)],
+    ['幅', sizeText(p.bedW)],
+  ].map(([k, v]) => `<li class="prod__spec"><b>${k}</b>${esc(v)}</li>`).join('');
+
+  const pair = (FB.productMeta.pairs || {})[p.pair] || p.pair;
+  const cabinJa = (FB.productMeta.cabins || {})[p.cabin] || p.cabin;
+
+  return `<li class="prod">
+    <p class="prod__head">
+      <span class="prod__cabin prod__cabin--${p.cabin}">${esc(cabinJa)}</span>
+      <span class="prod__name">${esc(p.name)}</span>
+    </p>
+    <p class="prod__air">${esc(al ? al.name : p.airline)}${acs}${
+      p.partial ? '<span class="prod__part">一部の機体だけ</span>' : ''}</p>
+    <ul class="prod__specs">${specs}</ul>
+    <p class="prod__pair prod__pair--${p.pair}">${esc(pair)}</p>
+    <p class="prod__routes">${esc(p.routes)}</p>
+    <p class="prod__note">${esc(p.note).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')}</p>
+  </li>`;
+}
+
+/** 特別な座席の一覧。日本から乗れるものを先に出します。 */
+function renderSpecial(q) {
+  const box = $('aircraftList');
+  const order = { F: 0, J: 1, W: 2, Y: 3 };
+  let list = FB.products.slice();
+  if (q) list = list.filter((p) => p.q.includes(normalizeQuery(q)));
+
+  const groups = [
+    ['日本から乗れる', (p) => p.jp && p.status === 'now'],
+    ['乗り継げば乗れる', (p) => !p.jp && p.status === 'now'],
+    ['これから', (p) => p.status === 'soon'],
+  ];
+
+  $('aircraftCount').textContent = list.length
+    ? `特別な座席・設備　${list.length} 件`
+    : '見つかりませんでした';
+
+  box.innerHTML = groups.map(([label, test]) => {
+    // クラスの上から順に、同じクラスなら日本の会社を先に出します。
+    // 五十音でも英字順でもエールフランスが先頭に来てしまい、
+    // 日本から乗る人がいちばん見たいものが下に沈むためです。
+    const jpAir = { NH: 0, JL: 1, ZG: 2 };
+    const rows = list.filter(test).sort((a, b) =>
+      (order[a.cabin] - order[b.cabin])
+      || ((jpAir[a.airline] ?? 9) - (jpAir[b.airline] ?? 9))
+      || a.airline.localeCompare(b.airline));
+    if (!rows.length) return '';
+    return `<p class="prod-group">${label}<span class="prod-group__n">${
+      rows.length}</span></p>
+      <ul class="prod-list">${rows.map(productCard).join('')}</ul>`;
+  }).join('') + `<p class="prod-note">${esc(FB.productMeta.note || '')}</p>`;
+}
+
 function renderAircraft() {
   const box = $('aircraftList');
   const code = state.aircraftAirline;
@@ -766,6 +855,14 @@ function renderAircraft() {
   const back = $('aircraftBack');
 
   $('aircraftClear').classList.toggle('is-hidden', !state.aircraftQuery);
+
+  // ---- 特別な座席・設備 ----
+  if (code === '__special') {
+    back.classList.remove('is-hidden');
+    $('aircraftSearch').placeholder = '製品名・会社・機種（例：Qsuite、ANA、A380）';
+    renderSpecial(state.aircraftQuery);
+    return;
+  }
 
   // ---- お気に入りだけを見るとき ----
   if (code === '__fav') {
@@ -883,7 +980,37 @@ function renderAircraft() {
       <span class="list__arrow" aria-hidden="true">›</span>
     </li>`;
 
-  box.innerHTML = `<ul class="list">${favEntry}${codes.map(fleetOwnerRow).join('')}${allEntry}</ul>`;
+  // 「THE Room に乗りたい」から入る人のための入口。
+  // 会社の一覧の上に置きます。機種名を知らなくてもたどり着けるように。
+  const nJp = FB.products.filter((p) => p.jp && p.status === 'now').length;
+  const specialEntry = (q || !FB.products.length) ? '' :
+    `<li class="list__item list__item--all list__item--special" data-fleet="__special">
+      <span class="code code--airline code--special" aria-hidden="true">
+        <svg class="code__i"><use href="#i-award"/></svg>
+      </span>
+      <span class="list__main">
+        <span class="list__name">特別な座席・設備</span>
+        <span class="list__sub">THE Room・Qsuite など ${FB.products.length} 件。うち日本から乗れる ${nJp} 件</span>
+      </span>
+      <span class="list__arrow" aria-hidden="true">›</span>
+    </li>`;
+
+  box.innerHTML = `<ul class="list">${specialEntry}${favEntry}${
+    codes.map(fleetOwnerRow).join('')}${allEntry}</ul>`;
+}
+
+/** 機材の詳細に「この機材で乗れる特別な座席」を出す。
+ *  会社ごとの座席仕様（何席あるか）の上に置きます。
+ *  数字より先に「THE Room がある」と分かるほうが、選ぶ役に立つためです。 */
+function specialBlock(icao) {
+  const list = FB.productsByAircraft[icao] || [];
+  if (!list.length) return '';
+  const order = { F: 0, J: 1, W: 2, Y: 3 };
+  const rows = list.slice().sort((a, b) => order[a.cabin] - order[b.cabin]);
+  return `<div class="routes-block">
+    <p class="routes-block__title">この機材で乗れる特別な座席</p>
+    <ul class="prod-list">${rows.map(productCard).join('')}</ul>
+  </div>`;
 }
 
 function openAircraft(icao) {
@@ -916,6 +1043,7 @@ function openAircraft(icao) {
     <div class="links">
       <a class="link-btn" href="${esc(wiki)}" target="_blank" rel="noopener">Wikipedia</a>
     </div>
+    ${specialBlock(a.icao)}
     ${operatorsBlock(a.icao)}
     <p class="fineprint">座席数と航続距離は代表値です。座席は航空会社の仕様で大きく変わり、
       航続距離も搭載条件で変わります。座席配列は胴体の太さで決まるのでほぼ動きませんが、
@@ -961,13 +1089,29 @@ function awardCard(prog) {
   </section>`;
 }
 
+/** そのプログラムがどのまとまりに入るか。
+ *  日本の会社はアライアンスより先に見たいので、いちばん上に分けます。 */
+function awardGroupOf(p) {
+  const al = FB.airlineByIata[p.airline];
+  if (al && al.country === 'JP') return 'jp';
+  return p.alliance || 'none';
+}
+
+const AWARD_GROUPS = [
+  ['jp', '日本の会社'],
+  ['star', 'スターアライアンス'],
+  ['oneworld', 'ワンワールド'],
+  ['skyteam', 'スカイチーム'],
+  ['none', 'アライアンス外'],
+];
+
 function renderAwards() {
   $('awardIntro').textContent = FB.awardMeta.warning || '';
   const f = state.awardFilter.alliance;
   const q = (state.awardQuery || '').trim().toLowerCase();
 
   const list = FB.awardPrograms.filter((p) => {
-    if (f && p.alliance !== f) return false;
+    if (f && awardGroupOf(p) !== f) return false;
     if (!q) return true;
     // プログラム名・航空会社コード・日本語社名・英語社名のどれでも当たるようにする
     const al = FB.airlineByIata[p.airline];
@@ -977,9 +1121,28 @@ function renderAwards() {
   });
 
   $('awardClear').classList.toggle('is-hidden', !state.awardQuery);
-  $('awardList').innerHTML = list.length
-    ? list.map(awardCard).join('')
-    : '<p class="hint">該当するプログラムがありません。</p>';
+  $('awardCount').textContent = list.length
+    ? `${list.length} プログラム`
+    : '';
+
+  if (!list.length) {
+    $('awardList').innerHTML = '<p class="hint">該当するプログラムがありません。</p>';
+    return;
+  }
+
+  // 絞り込んでいるときは見出しを出しません。1つのまとまりしか残らないので、
+  // 見出しがあると同じ言葉が2回出るだけになります。
+  if (f || q) {
+    $('awardList').innerHTML = list.map(awardCard).join('');
+    return;
+  }
+
+  $('awardList').innerHTML = AWARD_GROUPS.map(([key, label]) => {
+    const rows = list.filter((p) => awardGroupOf(p) === key);
+    if (!rows.length) return '';
+    return `<p class="prod-group">${label}<span class="prod-group__n">${
+      rows.length}</span></p>${rows.map(awardCard).join('')}`;
+  }).join('');
 }
 
 /* 航空会社の詳細に出す、その社のマイレージプログラムへのリンク */

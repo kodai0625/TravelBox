@@ -67,13 +67,14 @@ function toObjects(fields, rows) {
 }
 
 FB.load = async function load() {
-  const [ap, apJa, al, ac, cb, aw] = await Promise.all([
+  const [ap, apJa, al, ac, cb, aw, pr] = await Promise.all([
     fetchJson(DATA_FILES.airports),
     fetchJson(DATA_FILES.airportsJa, true), // 無くても動くので optional
     fetchJson(DATA_FILES.airlines),
     fetchJson(DATA_FILES.aircraft),
     fetchJson(DATA_FILES.cabins, true),     // 無くても動くので optional
     fetchJson(DATA_FILES.awards, true),     // 無くても動くので optional
+    fetchJson(DATA_FILES.products, true),   // 無くても動くので optional
   ]);
 
   // ---- 空港 ----
@@ -134,6 +135,26 @@ FB.load = async function load() {
     FB.cabinsByAircraft[icao].sort((a, b) => b.count - a.count);
   }
 
+  // ---- 特別な座席・設備 ----
+  // 「THE Room に乗りたい」から旅程を決める人のための表です。
+  // 座席仕様（何席あるか）とは別の層で、製品名と特徴を持っています。
+  FB.products = (pr && pr.products) || [];
+  FB.productMeta = (pr && pr.meta) || {};
+  FB.productsByAircraft = {};
+  FB.products.forEach((p) => {
+    p.airlineJa = () => (FB.airlineByIata[p.airline] || {}).name || p.airline;
+    p.q = normalizeQuery([p.name, p.airline, p.routes, p.note,
+      (FB.airlineByIata[p.airline] || {}).name,
+      (FB.airlineByIata[p.airline] || {}).nameEn,
+      ...p.ac.map((c) => {
+        const a = FB.aircraftByIcao[c];
+        return a ? `${c} ${a.maker} ${a.model}` : c;
+      })].filter(Boolean).join(' '));
+    p.ac.forEach((c) => {
+      (FB.productsByAircraft[c] || (FB.productsByAircraft[c] = [])).push(p);
+    });
+  });
+
   // ---- 特典航空券のリンク ----
   FB.awardPrograms = (aw && aw.programs) || [];
   FB.awardMeta = (aw && aw.meta) || {};
@@ -141,7 +162,8 @@ FB.load = async function load() {
   FB.awardPrograms.forEach((p) => { FB.awardByAirline[p.airline] = p; });
 
   FB.meta = { airports: ap.meta, airlines: al.meta, aircraft: ac.meta,
-              cabins: cb && cb.meta, awards: aw && aw.meta };
+              cabins: cb && cb.meta, awards: aw && aw.meta,
+              products: pr && pr.meta };
   return FB;
 };
 

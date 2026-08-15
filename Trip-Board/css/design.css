@@ -109,11 +109,7 @@
   letter-spacing: .06em;
 }
 
-.app-title__mark {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, .5);
-  color: rgba(255, 255, 255, .85);
-}
+.app-title__mark { color: rgba(255, 255, 255, .9); }
 
 /* ---- タブの下線 ---- */
 .tabs__btn.is-active { border-bottom-color: var(--accent); }

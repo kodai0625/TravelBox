@@ -1,234 +1,1101 @@
 {
-  "meta": {
-    "note": "特典航空券の検索ページへのショートカット。リンクは手で編集できます（生成スクリプトはありません）。",
-    "warning": "どのプログラムもログインが必要です。区間や日付を入れた状態で飛べるリンクは各社とも用意していないので、飛べるのは検索画面の入口までです。",
-    "howto": "リンクを足したら python3 tools/check_links.py で到達確認できます。",
-    "checked": "2026-08-10 時点で tools/check_links.py により到達確認。JAL・ユナイテッド・ターキッシュは自動アクセスを遮断しているため機械では確認できず、公式サイトの検索結果に出たURLをそのまま採用しています。"
-  },
-  "programs": [
+ "meta": {
+  "version": "2026-08-15",
+  "count": 72,
+  "links": 86,
+  "note": "特典航空券の検索ページへのショートカット。原本は tools/award_programs.py で、tools/build_awards.py が網羅ぐあいを検算しています。",
+  "warning": "どのプログラムもログインが必要です。区間や日付を入れた状態で飛べるリンクは各社とも用意していないので、飛べるのは検索画面の入口までです。",
+  "howto": "リンクを足したら python3 tools/check_links.py で到達確認できます。"
+ },
+ "programs": [
+  {
+   "id": "ana",
+   "airline": "NH",
+   "name": "ANAマイレージクラブ",
+   "alliance": "star",
+   "note": "スターアライアンス26社に加え、エティハドなど提携社でも発券できます。国際線特典は「シーズン」と「区間マイル」で必要マイルが決まります。",
+   "links": [
     {
-      "id": "ana",
-      "airline": "NH",
-      "name": "ANAマイレージクラブ",
-      "alliance": "star",
-      "note": "スターアライアンス26社に加え、エティハドなど提携社でも発券できます。国際線特典は「シーズン」と「区間マイル」で必要マイルが決まります。",
-      "links": [
-        {
-          "label": "特典航空券トップ",
-          "url": "https://www.ana.co.jp/ja/jp/guide/amc/award/",
-          "note": ""
-        },
-        {
-          "label": "国際線特典航空券",
-          "url": "https://www.ana.co.jp/ja/jp/guide/amc/award/international/application/",
-          "note": ""
-        },
-        {
-          "label": "国内線特典航空券",
-          "url": "https://www.ana.co.jp/ja/jp/guide/amc/award/domestic/usage/",
-          "note": ""
-        },
-        {
-          "label": "提携航空会社の特典",
-          "url": "https://www.ana.co.jp/ja/us/amc/partner-flight-awards/",
-          "note": "スターアライアンス各社の特典はここから"
-        },
-        {
-          "label": "マイル残高・口座",
-          "url": "https://www.ana.co.jp/ja/jp/amc/",
-          "note": ""
-        }
-      ]
+     "label": "特典航空券トップ",
+     "url": "https://www.ana.co.jp/ja/jp/guide/amc/award/",
+     "note": ""
     },
     {
-      "id": "jal",
-      "airline": "JL",
-      "name": "JALマイレージバンク",
-      "alliance": "oneworld",
-      "note": "国内線は「特典航空券PLUS」で必要マイルが変動します。行き先をおまかせにすると少ないマイルで飛べる「どこかにマイル」も。",
-      "links": [
-        {
-          "label": "特典航空券トップ",
-          "url": "https://www.jal.co.jp/jp/ja/jmb/use/jal/",
-          "note": ""
-        },
-        {
-          "label": "国際線特典航空券",
-          "url": "https://www.jal.co.jp/jp/ja/jmb/use/jal/inter/",
-          "note": ""
-        },
-        {
-          "label": "どこかにマイル",
-          "url": "https://www.jal.co.jp/jp/ja/dom/dokokani/",
-          "note": "6,000マイルで行き先おまかせの国内往復"
-        },
-        {
-          "label": "提携航空会社の特典",
-          "url": "https://www.jal.co.jp/jp/ja/jmb/use/partner/",
-          "note": "ワンワールド各社の特典はここから"
-        },
-        {
-          "label": "マイル残高・口座",
-          "url": "https://www.jal.co.jp/jp/ja/jmb/",
-          "note": ""
-        }
-      ]
+     "label": "国際線特典航空券",
+     "url": "https://www.ana.co.jp/ja/jp/guide/amc/award/international/application/",
+     "note": ""
     },
     {
-      "id": "united",
-      "airline": "UA",
-      "name": "ユナイテッド航空 MileagePlus",
-      "alliance": "star",
-      "note": "ANAと同じスターアライアンス。ANA便の特典を取るのに使われることが多く、必要マイル数が変動する代わりに空席が出やすい傾向があります。",
-      "links": [
-        {
-          "label": "マイルで特典航空券を予約",
-          "url": "https://www.united.com/en/us/book-flight/united-award-travel/",
-          "note": ""
-        },
-        {
-          "label": "マイルの使い方",
-          "url": "https://www.united.com/en/us/fly/mileageplus/use-miles.html",
-          "note": ""
-        }
-      ]
+     "label": "国内線特典航空券",
+     "url": "https://www.ana.co.jp/ja/jp/guide/amc/award/domestic/usage/",
+     "note": ""
     },
     {
-      "id": "aeroplan",
-      "airline": "AC",
-      "name": "エア・カナダ Aeroplan",
-      "alliance": "star",
-      "note": "スターアライアンス系。距離で必要マイルが決まる方式で、日本発の長距離が比較的取りやすいと言われます。",
-      "links": [
-        {
-          "label": "ポイントを使う",
-          "url": "https://www.aircanada.com/ca/en/aco/home/aeroplan/redeem.html",
-          "note": ""
-        },
-        {
-          "label": "Aeroplan トップ",
-          "url": "https://www.aircanada.com/ca/en/aco/home/aeroplan.html",
-          "note": ""
-        }
-      ]
+     "label": "提携航空会社の特典",
+     "url": "https://www.ana.co.jp/ja/us/amc/partner-flight-awards/",
+     "note": "スターアライアンス各社の特典はここから"
     },
     {
-      "id": "alaska",
-      "airline": "AS",
-      "name": "アラスカ航空 Atmos Rewards",
-      "alliance": "oneworld",
-      "note": "2021年にワンワールド加盟。JALやキャセイの特典を発券でき、途中降機に寛容なことで知られます。2025年にマイレージプランから Atmos Rewards へ改称しました。",
-      "links": [
-        {
-          "label": "ポイントを使う",
-          "url": "https://www.alaskaair.com/atmosrewards/content/use-points",
-          "note": ""
-        },
-        {
-          "label": "Atmos Rewards トップ",
-          "url": "https://www.alaskaair.com/atmosrewards",
-          "note": ""
-        }
-      ]
-    },
-    {
-      "id": "ba",
-      "airline": "BA",
-      "name": "ブリティッシュ・エアウェイズ Executive Club（Avios）",
-      "alliance": "oneworld",
-      "note": "ワンワールド系。区間ごとに必要マイルが決まるので、短距離を1区間だけ取るのに向きます。JALの国内線にも使えます。",
-      "links": [
-        {
-          "label": "Aviosで予約",
-          "url": "https://www.britishairways.com/en-gb/executive-club/spending-avios",
-          "note": ""
-        },
-        {
-          "label": "Executive Club トップ",
-          "url": "https://www.britishairways.com/en-gb/executive-club",
-          "note": ""
-        }
-      ]
-    },
-    {
-      "id": "krisflyer",
-      "airline": "SQ",
-      "name": "シンガポール航空 KrisFlyer",
-      "alliance": "star",
-      "note": "スターアライアンス系。シンガポール航空の上位クラスは自社マイルでしか取れない座席があります。",
-      "links": [
-        {
-          "label": "KrisFlyer トップ",
-          "url": "https://www.singaporeair.com/ja_JP/jp/ppsclub-krisflyer/",
-          "note": ""
-        }
-      ]
-    },
-    {
-      "id": "asiamiles",
-      "airline": "CX",
-      "name": "キャセイパシフィック Asia Miles",
-      "alliance": "oneworld",
-      "note": "ワンワールド系。香港経由の路線に強く、日本発着も取りやすい部類です。",
-      "links": [
-        {
-          "label": "特典航空券を予約",
-          "url": "https://www.cathaypacific.com/cx/ja_JP/book-a-trip/redeem-flights/login.html",
-          "note": "ログインしてから検索します"
-        },
-        {
-          "label": "必要マイル数の一覧",
-          "url": "https://flights.cathaypacific.com/ja_JP/redeem-flights/flight-award-chart.html",
-          "note": ""
-        },
-        {
-          "label": "Cathay トップ",
-          "url": "https://www.cathaypacific.com/cx/ja_JP.html",
-          "note": ""
-        }
-      ]
-    },
-    {
-      "id": "delta",
-      "airline": "DL",
-      "name": "デルタ航空 SkyMiles",
-      "alliance": "skyteam",
-      "note": "スカイチーム系。有効期限が無いのが特徴ですが、必要マイル数は変動制です。",
-      "links": [
-        {
-          "label": "SkyMiles トップ",
-          "url": "https://ja.delta.com/jp/ja/skymiles/overview",
-          "note": ""
-        }
-      ]
-    },
-    {
-      "id": "turkish",
-      "airline": "TK",
-      "name": "ターキッシュ エアラインズ Miles&Smiles",
-      "alliance": "star",
-      "note": "スターアライアンス系。ANA便の特典を少ないマイルで取れる場合があります。",
-      "links": [
-        {
-          "label": "Miles&Smiles トップ",
-          "url": "https://www.turkishairlines.com/ja-jp/miles-and-smiles",
-          "note": ""
-        }
-      ]
-    },
-    {
-      "id": "virginatlantic",
-      "airline": "VS",
-      "name": "ヴァージン アトランティック Flying Club",
-      "alliance": "skyteam",
-      "note": "2023年にスカイチーム加盟。ANAの提携ではないものの、デルタなどの特典発券に使われます。",
-      "links": [
-        {
-          "label": "Flying Club トップ",
-          "url": "https://www.virginatlantic.com/flying-club",
-          "note": ""
-        }
-      ]
+     "label": "マイル残高・口座",
+     "url": "https://www.ana.co.jp/ja/jp/amc/",
+     "note": ""
     }
-  ]
+   ]
+  },
+  {
+   "id": "jal",
+   "airline": "JL",
+   "name": "JALマイレージバンク",
+   "alliance": "oneworld",
+   "note": "ワンワールド各社のほか、エミレーツなどでも発券できます。国際線は距離ではなくゾーンで必要マイルが決まります。",
+   "links": [
+    {
+     "label": "特典航空券トップ",
+     "url": "https://www.jal.co.jp/jp/ja/jmb/use/award/",
+     "note": ""
+    },
+    {
+     "label": "国際線特典航空券",
+     "url": "https://www.jal.co.jp/jp/ja/inter/award/",
+     "note": ""
+    },
+    {
+     "label": "国内線特典航空券",
+     "url": "https://www.jal.co.jp/jp/ja/dom/award/",
+     "note": ""
+    },
+    {
+     "label": "提携航空会社の特典",
+     "url": "https://www.jal.co.jp/jp/ja/inter/award/partner/",
+     "note": "ワンワールド各社の特典はここから"
+    },
+    {
+     "label": "マイル残高・口座",
+     "url": "https://www.jal.co.jp/jp/ja/jmb/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "solaseed",
+   "airline": "6J",
+   "name": "ソラシドエア スマイルクラブ",
+   "alliance": "",
+   "note": "九州・沖縄が中心の路線網です。ANAとのコードシェア便ではANAのマイルも積算できます。",
+   "links": [
+    {
+     "label": "スマイルクラブ",
+     "url": "https://www.solaseedair.jp/smileclub/index.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "starflyer",
+   "airline": "7G",
+   "name": "スターフライヤー STAR LINK",
+   "alliance": "",
+   "note": "羽田・北九州・福岡などの路線。ANAとのコードシェア便が多く、その場合はANAのマイルも選べます。",
+   "links": [
+    {
+     "label": "公式サイト（STAR LINK は上部メニューから）",
+     "url": "https://www.starflyer.jp/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "airdo",
+   "airline": "HD",
+   "name": "AIRDO DOマイル",
+   "alliance": "",
+   "note": "北海道と本州を結ぶ路線。ANAとのコードシェア便が多くあります。",
+   "links": [
+    {
+     "label": "公式サイト（DOマイルは上部メニューから）",
+     "url": "https://www.airdo.jp/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "zipair",
+   "airline": "ZG",
+   "name": "ZIPAIR（JALマイレージバンク）",
+   "alliance": "",
+   "note": "自社のプログラムはなく、JALマイレージバンクのマイルがたまります。特典航空券もJAL側から手配します。",
+   "links": [
+    {
+     "label": "ZIPAIR のマイル",
+     "url": "https://www.zipair.net/ja/service/jmb",
+     "note": ""
+    }
+   ],
+   "runBy": "JL"
+  },
+  {
+   "id": "united",
+   "airline": "UA",
+   "name": "ユナイテッド航空 MileagePlus",
+   "alliance": "star",
+   "note": "マイルに有効期限がありません。スターアライアンス各社の特典を自社サイトからそのまま検索・発券できます。",
+   "links": [
+    {
+     "label": "特典航空券を探す",
+     "url": "https://www.united.com/ja/jp/",
+     "note": ""
+    },
+    {
+     "label": "MileagePlus",
+     "url": "https://www.united.com/ja/jp/fly/mileageplus.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "aeroplan",
+   "airline": "AC",
+   "name": "エア・カナダ Aeroplan",
+   "alliance": "star",
+   "note": "距離で必要マイルが決まるので、短い区間ほど得になります。乗り継ぎを含めた発券に強いプログラムです。",
+   "links": [
+    {
+     "label": "特典航空券を探す",
+     "url": "https://www.aircanada.com/jp/ja/aco/home.html",
+     "note": ""
+    },
+    {
+     "label": "Aeroplan",
+     "url": "https://www.aeroplan.com/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "krisflyer",
+   "airline": "SQ",
+   "name": "シンガポール航空 KrisFlyer",
+   "alliance": "star",
+   "note": "シンガポール航空のスイートやビジネスは、自社のマイルでないと取りにくい座席です。",
+   "links": [
+    {
+     "label": "KrisFlyer",
+     "url": "https://www.singaporeair.com/ja_JP/jp/ppsclub-krisflyer/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "miles-and-smiles",
+   "airline": "TK",
+   "name": "ターキッシュ Miles&Smiles",
+   "alliance": "star",
+   "note": "イスタンブール乗り継ぎで欧州・アフリカへ広く飛べます。",
+   "links": [
+    {
+     "label": "Miles&Smiles",
+     "url": "https://www.turkishairlines.com/ja-jp/miles-and-smiles/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "miles-and-more",
+   "airline": "LH",
+   "name": "ルフトハンザ Miles & More",
+   "alliance": "star",
+   "note": "ルフトハンザ・スイス・オーストリア・ブリュッセル・LOTが**同じひとつのプログラム**を使っています。どの会社のマイルもここにまとまります。",
+   "links": [
+    {
+     "label": "Miles & More",
+     "url": "https://www.miles-and-more.com/jp/ja.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "swiss",
+   "airline": "LX",
+   "name": "スイス（Miles & More）",
+   "alliance": "star",
+   "note": "ルフトハンザと同じプログラムです。",
+   "links": [
+    {
+     "label": "Miles & More",
+     "url": "https://www.miles-and-more.com/jp/ja.html",
+     "note": ""
+    }
+   ],
+   "runBy": "LH"
+  },
+  {
+   "id": "austrian",
+   "airline": "OS",
+   "name": "オーストリア航空（Miles & More）",
+   "alliance": "star",
+   "note": "ルフトハンザと同じプログラムです。",
+   "links": [
+    {
+     "label": "Miles & More",
+     "url": "https://www.miles-and-more.com/jp/ja.html",
+     "note": ""
+    }
+   ],
+   "runBy": "LH"
+  },
+  {
+   "id": "lifemiles",
+   "airline": "AV",
+   "name": "アビアンカ LifeMiles",
+   "alliance": "star",
+   "note": "**マイルを買い足せる**ので、足りないぶんを現金で埋めてスターアライアンスのビジネスを取る使い方が知られています。",
+   "links": [
+    {
+     "label": "LifeMiles",
+     "url": "https://www.lifemiles.com/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "asiana",
+   "airline": "OZ",
+   "name": "アシアナクラブ",
+   "alliance": "star",
+   "note": "大韓航空との統合が進んでいます。今後プログラムが一本化される見込みです。",
+   "links": [
+    {
+     "label": "アシアナクラブ",
+     "url": "https://flyasiana.com/C/JP/JA/contents/asianaclub",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "eva",
+   "airline": "BR",
+   "name": "エバー航空 Infinity MileageLands",
+   "alliance": "star",
+   "note": "台北乗り継ぎで北米・欧州へ。日本発着の路線が多い会社です。",
+   "links": [
+    {
+     "label": "Infinity MileageLands",
+     "url": "https://www.evaair.com/ja-jp/infinity-mileagelands/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "phoenixmiles",
+   "airline": "CA",
+   "name": "中国国際航空 フェニックスマイル",
+   "alliance": "star",
+   "note": "中国国内線の特典に強いプログラムです。",
+   "links": [
+    {
+     "label": "フェニックスマイル",
+     "url": "https://www.airchina.jp/JP/JP/phoenix-miles/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "rop",
+   "airline": "TG",
+   "name": "タイ国際航空 ロイヤルオーキッドプラス",
+   "alliance": "star",
+   "note": "バンコク乗り継ぎでアジア・欧州へ。",
+   "links": [
+    {
+     "label": "ロイヤルオーキッドプラス",
+     "url": "https://www.thaiairways.com/ja_JP/rop/index.page",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "airpoints",
+   "airline": "NZ",
+   "name": "ニュージーランド航空 Airpoints",
+   "alliance": "star",
+   "note": "マイルではなく「Airpointsドル」という現金に近い単位です。空席があればどの便でも交換できます。",
+   "links": [
+    {
+     "label": "Airpoints",
+     "url": "https://www.airnewzealand.jp/airpoints",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "aegean",
+   "airline": "A3",
+   "name": "エーゲ航空 Miles+Bonus",
+   "alliance": "star",
+   "note": "上級会員になるための条件がスターアライアンスの中で緩く、そのために選ぶ人がいるプログラムです。",
+   "links": [
+    {
+     "label": "Miles+Bonus",
+     "url": "https://en.aegeanair.com/miles-and-bonus/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "shebamiles",
+   "airline": "ET",
+   "name": "エチオピア航空 ShebaMiles",
+   "alliance": "star",
+   "note": "アディスアベバ乗り継ぎでアフリカ各地へ。",
+   "links": [
+    {
+     "label": "ShebaMiles",
+     "url": "https://www.ethiopianairlines.com/aa/fly-et/shebamiles",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "connectmiles",
+   "airline": "CM",
+   "name": "コパ航空 ConnectMiles",
+   "alliance": "star",
+   "note": "パナマ乗り継ぎで中南米へ広く飛べます。",
+   "links": [
+    {
+     "label": "公式サイト（ConnectMiles は上部メニューから）",
+     "url": "https://www.copaair.com/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "miles-and-go",
+   "airline": "TP",
+   "name": "TAPポルトガル Miles&Go",
+   "alliance": "star",
+   "note": "リスボン乗り継ぎで欧州・南米・アフリカへ。",
+   "links": [
+    {
+     "label": "Miles&Go",
+     "url": "https://www.flytap.com/en-us/miles-and-go",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "airindia",
+   "airline": "AI",
+   "name": "エア・インディア Maharaja Club",
+   "alliance": "star",
+   "note": "デリー乗り継ぎでインド国内・欧州へ。",
+   "links": [
+    {
+     "label": "Maharaja Club",
+     "url": "https://www.airindia.com/in/en/loyalty-program.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "shenzhen",
+   "airline": "ZH",
+   "name": "深圳航空（フェニックスマイル）",
+   "alliance": "star",
+   "note": "自社のプログラムはなく、中国国際航空のフェニックスマイルを使います。",
+   "links": [
+    {
+     "label": "フェニックスマイル",
+     "url": "https://www.airchina.jp/JP/JP/phoenix-miles/",
+     "note": ""
+    }
+   ],
+   "runBy": "CA"
+  },
+  {
+   "id": "voyager",
+   "airline": "SA",
+   "name": "南アフリカ航空 Voyager",
+   "alliance": "star",
+   "note": "ヨハネスブルグ発着。アフリカ南部の路線に使います。",
+   "links": [
+    {
+     "label": "Voyager",
+     "url": "https://www.flysaa.com/voyager",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "croatia",
+   "airline": "OU",
+   "name": "クロアチア航空（Miles & More）",
+   "alliance": "star",
+   "note": "ルフトハンザと同じプログラムです。",
+   "links": [
+    {
+     "label": "Miles & More",
+     "url": "https://www.miles-and-more.com/jp/ja.html",
+     "note": ""
+    }
+   ],
+   "runBy": "LH"
+  },
+  {
+   "id": "brussels",
+   "airline": "SN",
+   "name": "ブリュッセル航空（Miles & More）",
+   "alliance": "star",
+   "note": "ルフトハンザと同じプログラムです。",
+   "links": [
+    {
+     "label": "Miles & More",
+     "url": "https://www.miles-and-more.com/jp/ja.html",
+     "note": ""
+    }
+   ],
+   "runBy": "LH"
+  },
+  {
+   "id": "lot",
+   "airline": "LO",
+   "name": "LOTポーランド航空 Miles & More",
+   "alliance": "star",
+   "note": "ルフトハンザと同じプログラムです。ワルシャワ乗り継ぎで中欧へ。",
+   "links": [
+    {
+     "label": "Miles & More",
+     "url": "https://www.miles-and-more.com/jp/ja.html",
+     "note": ""
+    }
+   ],
+   "runBy": "LH"
+  },
+  {
+   "id": "egyptair-plus",
+   "airline": "MS",
+   "name": "エジプト航空 EgyptAir Plus",
+   "alliance": "star",
+   "note": "カイロ乗り継ぎで中東・アフリカへ。",
+   "links": [
+    {
+     "label": "EgyptAir Plus",
+     "url": "https://www.egyptair.com/en/fly/plus/Pages/default.aspx",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "volare",
+   "airline": "AZ",
+   "name": "ITAエアウェイズ Volare",
+   "alliance": "star",
+   "note": "ローマ乗り継ぎで欧州へ。2025年にスターアライアンスへ加盟しました。",
+   "links": [
+    {
+     "label": "Volare",
+     "url": "https://www.itaspa.com/ja_jp/fly-ita/volare.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "alaska",
+   "airline": "AS",
+   "name": "アラスカ航空 Atmos Rewards",
+   "alliance": "oneworld",
+   "note": "距離で必要マイルが決まり、途中降機を付けやすいプログラムです。2025年に Mileage Plan から名前が変わりました。",
+   "links": [
+    {
+     "label": "Atmos Rewards",
+     "url": "https://www.alaskaair.com/atmosrewards",
+     "note": ""
+    },
+    {
+     "label": "特典航空券を探す",
+     "url": "https://www.alaskaair.com/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "avios-ba",
+   "airline": "BA",
+   "name": "ブリティッシュ・エアウェイズ Executive Club（Avios）",
+   "alliance": "oneworld",
+   "note": "Avios はイベリア・アイルランド・カタールと**残高を移し替えられます**。短距離ほど少ないマイルで取れます。",
+   "links": [
+    {
+     "label": "Executive Club",
+     "url": "https://www.britishairways.com/travel/execclub/",
+     "note": ""
+    },
+    {
+     "label": "特典航空券を探す",
+     "url": "https://www.britishairways.com/travel/redeem/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "asiamiles",
+   "airline": "CX",
+   "name": "キャセイパシフィック Asia Miles",
+   "alliance": "oneworld",
+   "note": "アジア域内の短距離に強く、香港乗り継ぎの発券がしやすいです。",
+   "links": [
+    {
+     "label": "Asia Miles",
+     "url": "https://www.cathaypacific.com/cx/ja_JP/membership.html",
+     "note": ""
+    },
+    {
+     "label": "特典航空券を探す",
+     "url": "https://www.cathaypacific.com/cx/ja_JP.html",
+     "note": ""
+    },
+    {
+     "label": "マイル残高",
+     "url": "https://www.asiamiles.com/ja/home.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "aadvantage",
+   "airline": "AA",
+   "name": "アメリカン航空 AAdvantage",
+   "alliance": "oneworld",
+   "note": "ワンワールド最大のプログラム。JALやキャセイの特典もここから取れます。",
+   "links": [
+    {
+     "label": "AAdvantage",
+     "url": "https://www.aa.com/i18n/aadvantage-program/aadvantage-program.jsp",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "finnairplus",
+   "airline": "AY",
+   "name": "フィンエアー Finnair Plus",
+   "alliance": "oneworld",
+   "note": "ヘルシンキ乗り継ぎで欧州各地へ。日本の4都市から飛んでいます。",
+   "links": [
+    {
+     "label": "Finnair Plus",
+     "url": "https://www.finnair.com/jp-ja/finnair-plus",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "iberiaplus",
+   "airline": "IB",
+   "name": "イベリア航空 Iberia Plus（Avios）",
+   "alliance": "oneworld",
+   "note": "BAと同じ Avios を使います。同じ区間でもBAより少ないマイルで取れることがあります。",
+   "links": [
+    {
+     "label": "Iberia Plus",
+     "url": "https://www.iberia.com/jp/iberia-plus/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "qff",
+   "airline": "QF",
+   "name": "カンタス航空 Frequent Flyer",
+   "alliance": "oneworld",
+   "note": "オセアニア路線に強く、ジェットスターのマイルもここにたまります。",
+   "links": [
+    {
+     "label": "Frequent Flyer",
+     "url": "https://www.qantas.com/jp/ja/frequent-flyer.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "privilegeclub",
+   "airline": "QR",
+   "name": "カタール航空 Privilege Club（Avios）",
+   "alliance": "oneworld",
+   "note": "Qsuite を自社のマイルで取れます。Avios なのでBAやイベリアと残高を移し替えられます。",
+   "links": [
+    {
+     "label": "Privilege Club",
+     "url": "https://www.qatarairways.com/ja-jp/privilegeclub.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "enrich",
+   "airline": "MH",
+   "name": "マレーシア航空 Enrich",
+   "alliance": "oneworld",
+   "note": "クアラルンプール乗り継ぎで東南アジア・オセアニアへ。",
+   "links": [
+    {
+     "label": "Enrich",
+     "url": "https://www.malaysiaairlines.com/jp/ja/enrich.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "royalclub",
+   "airline": "RJ",
+   "name": "ロイヤルヨルダン航空 Royal Club",
+   "alliance": "oneworld",
+   "note": "アンマン乗り継ぎで中東・アフリカへ。",
+   "links": [
+    {
+     "label": "Royal Club",
+     "url": "https://www.rj.com/en/royal-club",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "flysmiles",
+   "airline": "UL",
+   "name": "スリランカ航空 FlySmiLes",
+   "alliance": "oneworld",
+   "note": "コロンボ乗り継ぎで南アジア・モルディブへ。",
+   "links": [
+    {
+     "label": "FlySmiLes",
+     "url": "https://www.srilankan.com/en_uk/flysmiles/about-flysmiles",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "safarflyer",
+   "airline": "AT",
+   "name": "ロイヤル エア モロッコ Safar Flyer",
+   "alliance": "oneworld",
+   "note": "カサブランカ乗り継ぎでアフリカ各地へ。",
+   "links": [
+    {
+     "label": "Safar Flyer",
+     "url": "https://www.royalairmaroc.com/int-en/safar-flyer",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "sindbad",
+   "airline": "WY",
+   "name": "オマーン航空 Sindbad",
+   "alliance": "oneworld",
+   "note": "マスカット乗り継ぎで中東・アフリカへ。2024年にワンワールドへ加盟しました。",
+   "links": [
+    {
+     "label": "Sindbad",
+     "url": "https://www.omanair.com/en/sindbad",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "tabua",
+   "airline": "FJ",
+   "name": "フィジー・エアウェイズ Tabua Club",
+   "alliance": "oneworld",
+   "note": "ナンディ乗り継ぎで南太平洋へ。ワンワールド・コネクトの一員です。",
+   "links": [
+    {
+     "label": "Tabua Club",
+     "url": "https://www.fijiairways.com/en-fj/tabua-club",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "skymiles",
+   "airline": "DL",
+   "name": "デルタ航空 SkyMiles",
+   "alliance": "skyteam",
+   "note": "マイルに有効期限がありません。必要マイルは需要で毎日変わります。",
+   "links": [
+    {
+     "label": "SkyMiles",
+     "url": "https://ja.delta.com/jp/ja/skymiles/how-to-use-miles/overview",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "flyingclub",
+   "airline": "VS",
+   "name": "ヴァージン アトランティック Flying Club",
+   "alliance": "skyteam",
+   "note": "ANAやデルタの特典を取れます。日本〜欧州の発券で使われます。",
+   "links": [
+    {
+     "label": "Flying Club",
+     "url": "https://www.virginatlantic.com/gb/en/flying-club",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "flyingblue",
+   "airline": "AF",
+   "name": "エールフランス／KLM Flying Blue",
+   "alliance": "skyteam",
+   "note": "**エールフランスとKLMは同じひとつのプログラム**です。月替わりで必要マイルが下がる「プロモアワード」があります。",
+   "links": [
+    {
+     "label": "Flying Blue",
+     "url": "https://www.flyingblue.com/ja",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "flyingblue-kl",
+   "airline": "KL",
+   "name": "KLM（Flying Blue）",
+   "alliance": "skyteam",
+   "note": "エールフランスと同じプログラムです。",
+   "links": [
+    {
+     "label": "Flying Blue",
+     "url": "https://www.flyingblue.com/ja",
+     "note": ""
+    }
+   ],
+   "runBy": "AF"
+  },
+  {
+   "id": "skypass",
+   "airline": "KE",
+   "name": "大韓航空 SKYPASS",
+   "alliance": "skyteam",
+   "note": "ソウル乗り継ぎで欧米へ。アシアナとの統合が進んでいます。",
+   "links": [
+    {
+     "label": "SKYPASS",
+     "url": "https://www.koreanair.com/jp/ja/traveling/skypass",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "dynasty",
+   "airline": "CI",
+   "name": "チャイナ エアライン ダイナスティフライヤー",
+   "alliance": "skyteam",
+   "note": "台北乗り継ぎでアジア・欧米へ。日本発着の路線が多い会社です。",
+   "links": [
+    {
+     "label": "ダイナスティフライヤー",
+     "url": "https://www.china-airlines.com/jp/ja/member/index",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "lotusmiles",
+   "airline": "VN",
+   "name": "ベトナム航空 Lotusmiles",
+   "alliance": "skyteam",
+   "note": "ハノイ・ホーチミン乗り継ぎで東南アジアへ。",
+   "links": [
+    {
+     "label": "Lotusmiles",
+     "url": "https://www.vietnamairlines.com/jp/ja/lotusmiles",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "garudamiles",
+   "airline": "GA",
+   "name": "ガルーダ・インドネシア GarudaMiles",
+   "alliance": "skyteam",
+   "note": "ジャカルタ・バリ島へ。",
+   "links": [
+    {
+     "label": "GarudaMiles",
+     "url": "https://www.garuda-indonesia.com/jp/ja/garudamiles/index",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "eastern-miles",
+   "airline": "MU",
+   "name": "中国東方航空 東方万里行",
+   "alliance": "skyteam",
+   "note": "上海乗り継ぎで中国国内へ。",
+   "links": [
+    {
+     "label": "東方万里行",
+     "url": "https://jp.ceair.com/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "skypearl",
+   "airline": "CZ",
+   "name": "中国南方航空 スカイパール",
+   "alliance": "",
+   "note": "広州乗り継ぎで中国国内・東南アジアへ。2019年にスカイチームを脱退しています。",
+   "links": [
+    {
+     "label": "スカイパール",
+     "url": "https://www.csair.com/jp/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "clubpremier",
+   "airline": "AM",
+   "name": "アエロメヒコ Club Premier",
+   "alliance": "skyteam",
+   "note": "メキシコシティ乗り継ぎで中南米へ。",
+   "links": [
+    {
+     "label": "Club Premier",
+     "url": "https://www.clubpremier.com/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "alfursan",
+   "airline": "SV",
+   "name": "サウディア Alfursan",
+   "alliance": "skyteam",
+   "note": "ジッダ・リヤド乗り継ぎで中東・アフリカへ。",
+   "links": [
+    {
+     "label": "Alfursan",
+     "url": "https://www.saudia.com/pages/loyalty/alfursan",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "eurobonus",
+   "airline": "SK",
+   "name": "SAS EuroBonus",
+   "alliance": "skyteam",
+   "note": "2024年にスターアライアンスからスカイチームへ移りました。コペンハーゲン乗り継ぎで北欧・欧州へ。",
+   "links": [
+    {
+     "label": "EuroBonus",
+     "url": "https://www.flysas.com/ja-jp/eurobonus/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "aerolineas-plus",
+   "airline": "AR",
+   "name": "アルゼンチン航空 Aerolineas Plus",
+   "alliance": "skyteam",
+   "note": "ブエノスアイレス乗り継ぎで南米へ。",
+   "links": [
+    {
+     "label": "公式サイト（Aerolineas Plus は上部メニューから）",
+     "url": "https://www.aerolineas.com.ar/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "suma",
+   "airline": "UX",
+   "name": "エア・エウロパ SUMA",
+   "alliance": "skyteam",
+   "note": "マドリード乗り継ぎで欧州・中南米へ。",
+   "links": [
+    {
+     "label": "SUMA",
+     "url": "https://www.aireuropa.com/jp/ja/aea/suma.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "asante",
+   "airline": "KQ",
+   "name": "ケニア航空 Asante Rewards",
+   "alliance": "skyteam",
+   "note": "ナイロビ乗り継ぎで東アフリカへ。",
+   "links": [
+    {
+     "label": "公式サイト（Asante Rewards は上部メニューから）",
+     "url": "https://www.kenya-airways.com/en/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "flyingblue-ro",
+   "airline": "RO",
+   "name": "タロム航空（Flying Blue）",
+   "alliance": "skyteam",
+   "note": "自社のプログラムはなく、エールフランス／KLM と同じ Flying Blue を使います。",
+   "links": [
+    {
+     "label": "Flying Blue",
+     "url": "https://www.flyingblue.com/ja",
+     "note": ""
+    }
+   ],
+   "runBy": "AF"
+  },
+  {
+   "id": "cedarmiles",
+   "airline": "ME",
+   "name": "ミドル・イースト航空 Cedar Miles",
+   "alliance": "skyteam",
+   "note": "ベイルート発着。中東の路線に使います。",
+   "links": [
+    {
+     "label": "Cedar Miles",
+     "url": "https://www.mea.com.lb/english/cedar-miles/about-cedar-miles",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "egret",
+   "airline": "MF",
+   "name": "廈門航空 白鷺（Egret）",
+   "alliance": "skyteam",
+   "note": "廈門・福州乗り継ぎで中国国内へ。",
+   "links": [
+    {
+     "label": "白鷺クラブ",
+     "url": "https://www.xiamenair.com/ja-jp/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "skywards",
+   "airline": "EK",
+   "name": "エミレーツ Skywards",
+   "alliance": "",
+   "note": "ドバイ乗り継ぎで欧州・アフリカへ。JALのマイルでもエミレーツの特典を取れます。",
+   "links": [
+    {
+     "label": "Skywards",
+     "url": "https://www.emirates.com/jp/japanese/skywards/",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "etihadguest",
+   "airline": "EY",
+   "name": "エティハド Etihad Guest",
+   "alliance": "",
+   "note": "アブダビ乗り継ぎ。ANAのマイルでもエティハドの特典を取れます。",
+   "links": [
+    {
+     "label": "Etihad Guest",
+     "url": "https://www.etihad.com/ja-jp/etihad-guest",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "cosmile",
+   "airline": "JX",
+   "name": "STARLUX COSMILE",
+   "alliance": "",
+   "note": "台北乗り継ぎ。日本の各地から飛んでいる新しい会社です。",
+   "links": [
+    {
+     "label": "COSMILE",
+     "url": "https://www.starlux-airlines.com/ja-JP/member",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "mabuhaymiles",
+   "airline": "PR",
+   "name": "フィリピン航空 Mabuhay Miles",
+   "alliance": "",
+   "note": "マニラ・セブへ。アライアンスには入っていません。",
+   "links": [
+    {
+     "label": "公式サイト（Mabuhay Miles は上部メニューから）",
+     "url": "https://www.philippineairlines.com/ph/en/home.html",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "hawaiianmiles",
+   "airline": "HA",
+   "name": "ハワイアン航空 HawaiianMiles",
+   "alliance": "oneworld",
+   "note": "アラスカ航空との統合が進み、マイルは相互に移せます。",
+   "links": [
+    {
+     "label": "HawaiianMiles",
+     "url": "https://www.hawaiianairlines.co.jp/hawaiianmiles",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "trueblue",
+   "airline": "B6",
+   "name": "JetBlue TrueBlue",
+   "alliance": "",
+   "note": "アメリカ国内と大西洋路線。日本には来ませんが、Mint に乗るためのマイルとして知られています。",
+   "links": [
+    {
+     "label": "TrueBlue",
+     "url": "https://www.jetblue.com/trueblue",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "scoot",
+   "airline": "TR",
+   "name": "スクート（KrisFlyer）",
+   "alliance": "",
+   "note": "自社のプログラムはなく、シンガポール航空の KrisFlyer がたまります。格安航空会社では珍しい仕組みです。",
+   "links": [
+    {
+     "label": "KrisFlyer",
+     "url": "https://www.flyscoot.com/ja/krisflyer",
+     "note": ""
+    }
+   ],
+   "runBy": "SQ"
+  },
+  {
+   "id": "jetstar-jp",
+   "airline": "GK",
+   "name": "ジェットスター・ジャパン（Qantas FF）",
+   "alliance": "",
+   "note": "自社のプログラムはなく、カンタスの Frequent Flyer がたまります（対象の運賃のみ）。",
+   "links": [
+    {
+     "label": "Qantas Frequent Flyer",
+     "url": "https://www.jetstar.com/jp/ja/qantas-frequent-flyer",
+     "note": ""
+    }
+   ],
+   "runBy": "QF"
+  }
+ ]
 }

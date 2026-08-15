@@ -34,6 +34,7 @@ const DATA_FILES = {
   airlines:   'data/airlines.json',    // 航空会社＋アライアンス（tools/build_airlines.py で生成）
   aircraft:   'data/aircraft.json',    // 機材（tools/build_aircraft.py で生成）
   cabins:     'data/aircraft-cabins.json', // 各社の座席仕様（tools/build_cabins.py で生成）
+  products:   'data/cabin-products.json',  // 特別な座席・設備（tools/build_cabin_products.py で生成）
   routes:     'data/routes.json',      // 就航路線（tools/build_routes.py で生成）
   awards:     'data/award-links.json', // 特典航空券のリンク（手で編集する）
   worldmap:   'data/worldmap.json',   // 世界地図の陸地（tools/build_map.py で生成）

@@ -29,18 +29,131 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/style.css?v=20260815u">
+<link rel="stylesheet" href="css/style.css?v=20260815w">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260815u">
+<link rel="stylesheet" href="css/design.css?v=20260815w">
 </head>
 <body>
+
+<!-- ===== しるしのもと =====
+     形をここに1回だけ書いて、下や js から <use href="#i-○○"> で呼び出します。
+     大きさと色は呼び出す側で決めます（線は currentColor）。
+
+     ★ i-globe は Travel Box（玄関）のカードと同じ形です。
+       玄関でこのアプリを表しているしるしなので、片方だけ変えないでください。 -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-globe" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <circle cx="12" cy="12" r="8.6"/>
+      <ellipse cx="12" cy="12" rx="3.9" ry="8.6"/>
+      <path d="M4 9.3h16M4 14.7h16M12 3.4v17.2"/>
+    </g>
+    <circle class="i-ac" cx="15.3" cy="8.2" r="1.5"/>
+  </symbol>
+
+  <!-- 読み込み中に回す点線の輪。地球のまわりを回る航路のつもりです -->
+  <symbol id="i-orbit" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10.8" fill="none" stroke="currentColor"
+            stroke-width="1.3" stroke-linecap="round" stroke-dasharray="2.4 4.6"/>
+  </symbol>
+
+  <symbol id="i-home" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.9"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.2 11.3 12 4.2l8.8 7.1"/>
+      <path d="M5.6 10.1v9.7h12.8v-9.7"/>
+      <path d="M9.7 19.8v-5.2h4.6v5.2"/>
+    </g>
+  </symbol>
+
+  <!-- ---- タブのしるし ---- -->
+  <symbol id="i-search" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+      <circle cx="10.6" cy="10.6" r="6.4"/>
+      <path d="m15.4 15.4 5 5"/>
+    </g>
+  </symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.6"
+       stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3.2" y="4.6" width="17.6" height="14.8" rx="2.2"/>
+      <path d="M3.2 9.6h17.6M9.4 9.6v9.8M15.2 9.6v9.8"/>
+    </g>
+  </symbol>
+  <symbol id="i-compare" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M4 20h16"/>
+      <path d="M7.6 20v-7.4M12 20V6.4M16.4 20v-4.8"/>
+    </g>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+      <circle cx="12" cy="12" r="8.6"/>
+      <path d="M12 6.8V12l3.6 2.2"/>
+    </g>
+  </symbol>
+
+  <!-- ---- エリアの見出し ---- -->
+  <symbol id="i-pin" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21.2c4.3-4.4 6.5-7.9 6.5-10.5a6.5 6.5 0 1 0-13 0c0 2.6 2.2 6.1 6.5 10.5z"/>
+      <circle cx="12" cy="10.5" r="2.4"/>
+    </g>
+  </symbol>
+
+  <!-- ---- 詳細の見出し ---- -->
+  <symbol id="i-sun" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+      <circle cx="12" cy="12" r="4.2"/>
+      <path d="M12 2.6V5M12 19v2.4M2.6 12H5M19 12h2.4
+               M5.3 5.3 7 7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/>
+    </g>
+  </symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <circle cx="12" cy="12" r="8.6"/>
+      <path d="M8.6 7.8 12 12.3l3.4-4.5M8.4 12.7h7.2M8.4 15.3h7.2M12 12.3v5"/>
+    </g>
+  </symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.6"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.1 19 5.7v5.2c0 4.2-2.8 7.9-7 9.5-4.2-1.6-7-5.3-7-9.5V5.7z"/>
+      <path d="m8.9 11.8 2.2 2.2 4-4.4"/>
+    </g>
+  </symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6.2 3.4v17.2"/>
+      <path d="M6.2 4.8h10.8l-2.3 3.3 2.3 3.3H6.2"/>
+    </g>
+  </symbol>
+  <symbol id="i-book" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.6"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 6.6C10.4 5.2 8.2 4.6 5 4.6v12.6c3.2 0 5.4.6 7 2
+               1.6-1.4 3.8-2 7-2V4.6c-3.2 0-5.4.6-7 2z"/>
+      <path d="M12 6.6v13.6"/>
+    </g>
+  </symbol>
+</svg>
 
 <!-- ===== ヘッダー ===== -->
 <header class="app-header">
   <div class="app-header__inner">
-    <a class="home-link" href="../" title="玄関に戻る">◀</a>
+    <!-- 旅の道具箱（玄関）へ戻る。玄関を通さず直接開いたときも押せます。
+         家の形にしているのは、戻る先がこのアプリの最初の画面ではなく
+         入れ物のほうだと、記号だけで分かるようにするためです。 -->
+    <a class="home-link" href="../"
+       title="旅の道具箱に戻る" aria-label="旅の道具箱に戻る">
+      <svg class="home-link__icon" aria-hidden="true"><use href="#i-home"/></svg>
+    </a>
     <button type="button" class="app-title" id="homeBtn" title="最初の画面に戻る">
-      <span class="app-title__mark" aria-hidden="true">◍</span>
+      <span class="app-title__mark" aria-hidden="true">
+        <svg class="app-title__glyph"><use href="#i-globe"/></svg>
+      </span>
       <span class="app-title__text">
         <span class="app-title__main">Trip Board</span>
         <span class="app-title__sub">季節・物価・治安・時差で比較</span>
@@ -51,17 +164,27 @@
     </div>
   </div>
 
+  <!-- タブのしるしは飾りではなく目印です。文字を読まなくても
+       「探す＝虫めがね」「時差＝時計」と形で当たりが付きます。 -->
   <nav class="tabs" id="tabs" aria-label="表示切替">
-    <button type="button" class="tabs__btn is-active" data-tab="search">探す</button>
-    <button type="button" class="tabs__btn" data-tab="table">一覧表</button>
-    <button type="button" class="tabs__btn" data-tab="compare">比較</button>
-    <button type="button" class="tabs__btn" data-tab="clock">時差</button>
+    <button type="button" class="tabs__btn is-active" data-tab="search">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-search"/></svg>探す</button>
+    <button type="button" class="tabs__btn" data-tab="table">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-grid"/></svg>一覧表</button>
+    <button type="button" class="tabs__btn" data-tab="compare">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-compare"/></svg>比較</button>
+    <button type="button" class="tabs__btn" data-tab="clock">
+      <svg class="tabs__i" aria-hidden="true"><use href="#i-clock"/></svg>時差</button>
   </nav>
 </header>
 
 <main class="page">
 
   <section class="notice" id="loading">
+    <span class="loader" aria-hidden="true">
+      <svg class="loader__ring"><use href="#i-orbit"/></svg>
+      <svg class="loader__mark"><use href="#i-globe"/></svg>
+    </span>
     <p class="notice__text">データを読み込んでいます…</p>
   </section>
   <section class="notice notice--error is-hidden" id="loadError">
@@ -190,9 +313,9 @@
   <div class="sheet__body" id="sheetBody"></div>
 </aside>
 
-<script src="js/config.js?v=20260815u"></script>
-<script src="js/data.js?v=20260815u"></script>
-<script src="js/chart.js?v=20260815u"></script>
-<script src="js/app.js?v=20260815u"></script>
+<script src="js/config.js?v=20260815w"></script>
+<script src="js/data.js?v=20260815w"></script>
+<script src="js/chart.js?v=20260815w"></script>
+<script src="js/app.js?v=20260815w"></script>
 </body>
 </html>

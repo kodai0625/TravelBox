@@ -41,6 +41,17 @@
 
 * { box-sizing: border-box; }
 
+/* ---------- しるし（アイコン） ----------
+   形は index.html の <symbol> にあります。ここでは置き方だけを決めます。
+   しるしのきまり：四角い枠で囲んだものは押せる、囲みのないものは飾りや目印。
+   囲みを足すときは、押せるかどうかを確かめてからにしてください。 */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -82,16 +93,17 @@ body.is-locked { overflow: hidden; }
   cursor: pointer;
   text-align: left;
 }
+/* アプリのしるし。玄関のカードに置いてある飛行機と同じ形です。
+   ここは囲みを付けません。左隣のホームボタンだけが囲みを持つので、
+   「囲みがあるほうが押す場所」という区別がヘッダーの中で保てます。 */
 .app-title__mark {
   display: grid;
   place-items: center;
-  width: 34px; height: 34px;
-  border-radius: 9px;
-  background: var(--accent);
-  font-size: 18px;
+  width: 30px; height: 30px;
   /* 機首を少し上げると離陸中に見えて、アプリの主題が一目で伝わる */
   transform: rotate(-20deg);
 }
+.app-title__glyph { width: 26px; height: 26px; display: block; }
 .app-title__text { display: flex; flex-direction: column; line-height: 1.25; }
 .app-title__main { font-size: 17px; font-weight: 700; letter-spacing: .02em; }
 .app-title__sub  { font-size: 11px; opacity: .65; }
@@ -105,12 +117,17 @@ body.is-locked { overflow: hidden; }
   -webkit-overflow-scrolling: touch;
 }
 .tabs__btn {
-  /* 5つのタブが iPhone の横幅に収まるようにする。
+  /* 6つのタブが iPhone の横幅に収まるようにする。
      等分（flex: 1 1 0）だと「アライアンス」だけ文字が溢れるので、
-     文字数に応じた幅を基準にして、余った幅を分け合わせる */
+     文字数に応じた幅を基準にして、余った幅を分け合わせる。
+     しるしは文字の上に積みます。横に並べると幅が足りません。 */
   flex: 1 1 auto;
   min-width: 0;
-  padding: 10px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 4px 7px;
   background: none;
   border: 0;
   border-bottom: 2px solid transparent;
@@ -120,6 +137,8 @@ body.is-locked { overflow: hidden; }
   cursor: pointer;
   white-space: nowrap;
 }
+.tabs__i { flex: 0 0 auto; width: 16px; height: 16px; opacity: .8; }
+.tabs__btn.is-active .tabs__i { opacity: 1; }
 .tabs__btn.is-active {
   color: #fff;
   font-weight: 700;
@@ -140,6 +159,36 @@ body.is-locked { overflow: hidden; }
 }
 .notice--error { color: #d64545; }
 .notice__text { margin: 0; white-space: pre-wrap; }
+
+/* 読み込み中のしるし。飛行機のまわりを点線の航路が回ります。
+   ただの丸を回すより、このアプリが何を扱っているかが待ち時間に伝わります。 */
+.loader {
+  position: relative;
+  display: block;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 14px;
+  color: var(--text-weak);
+}
+.loader__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: orbit 2.6s linear infinite;
+}
+.loader__mark {
+  position: absolute;
+  inset: 15px;
+  width: 24px;
+  height: 24px;
+  transform: rotate(-20deg);
+}
+@keyframes orbit { to { transform: rotate(360deg); } }
+/* 動きを減らす設定の端末では回しません */
+@media (prefers-reduced-motion: reduce) {
+  .loader__ring { animation: none; }
+}
 
 /* ===== 検索 ===== */
 .search { position: relative; margin-bottom: 10px; }
@@ -1194,3 +1243,123 @@ body.is-locked { overflow: hidden; }
 .favgroup__ac { font-size: 11px; color: var(--text-weak); }
 /* まとまりの中は同じ機材の仕様違いなので、機材名は繰り返さない */
 .favgroup .list__item--route { align-items: center; }
+
+/* ===== 特別な座席・設備 =====
+   ほかの一覧は「1行1件」ですが、ここは1件あたりの情報が多いので
+   カードにしています。扉・配列・寸法を並べて比べるためです。 */
+.prod-group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 22px 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+.prod-group:first-child { margin-top: 4px; }
+.prod-group__n {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-weak);
+  letter-spacing: 0;
+}
+
+.prod-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+
+.prod {
+  padding: 14px 14px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.prod__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+  flex-wrap: wrap;
+}
+.prod__name { font-size: 15.5px; font-weight: 700; }
+
+/* クラスの札。色は design.css で決めます */
+.prod__cabin {
+  flex: 0 0 auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.prod__air {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 9px;
+  font-size: 12.5px;
+  color: var(--text-sub);
+}
+/* 機種は押すと詳細が開きます。押せることが分かるよう枠を付けます */
+.prod__ac {
+  padding: 1px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: inherit;
+  font: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+.prod__ac:active { background: var(--line-2); }
+.prod__part {
+  font-size: 10.5px;
+  color: var(--text-weak);
+}
+
+/* 扉・配列・寸法。4つを2列に並べます */
+.prod__specs {
+  list-style: none;
+  margin: 0 0 9px;
+  padding: 9px 0;
+  border-top: 1px solid var(--line-2);
+  border-bottom: 1px solid var(--line-2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 12px;
+  font-size: 12.5px;
+}
+.prod__spec b {
+  display: inline-block;
+  min-width: 4.6em;
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-weak);
+}
+
+.prod__pair {
+  display: inline-block;
+  margin: 0 0 7px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+}
+
+.prod__routes { margin: 0 0 5px; font-size: 12.5px; }
+.prod__note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--text-sub);
+}
+
+.prod-note {
+  margin: 20px 0 0;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--text-weak);
+}
+
+/* 会社の一覧に置く入口の丸 */
+.code__i { width: 17px; height: 17px; display: block; }

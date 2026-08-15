@@ -30,11 +30,61 @@
   }
 })();
 </script>
-<link rel="stylesheet" href="css/entry.css">
+<!-- ★ ?v= は「読み込み直させるための版番号」です。
+     css を直したら、ここを1つ上げてください。 -->
+<link rel="stylesheet" href="css/entry.css?v=20260815b">
 </head>
 <body>
 
+<!-- ===== しるしのもと =====
+     形をここに1回だけ書いて、下から <use> で呼び出します。
+     同じ形を何度も書かずに済み、大きさと色は呼び出す側で決められます。
+     地球と飛行機は中の2つのアプリの目印でもあるので、
+     形を変えるときは Trip Board / Flight Board のヘッダーもそろえてください。 -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-globe" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <circle cx="12" cy="12" r="8.6"/>
+      <ellipse cx="12" cy="12" rx="3.9" ry="8.6"/>
+      <path d="M4 9.3h16M4 14.7h16M12 3.4v17.2"/>
+    </g>
+    <!-- 行き先の点。ひとつだけ色を差して、地球儀ではなく「旅の目的地」に見せます -->
+    <circle class="i-ac" cx="15.3" cy="8.2" r="1.5"/>
+  </symbol>
+
+  <symbol id="i-plane" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 2.4c1.05 0 1.75 1.35 1.75 3v3.05l7.15 4.2v2.1
+      l-7.15-2.2v4.05l2.2 1.6v1.6L12 18.7l-3.95 1.1v-1.6l2.2-1.6v-4.05L3.1 14.75v-2.1
+      l7.15-4.2V5.4c0-1.65.7-3 1.75-3z"/>
+  </symbol>
+
+  <symbol id="i-case" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.5"
+       stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2.8" y="7" width="18.4" height="13.2" rx="2.4"/>
+      <path d="M8.4 7V5.4a1.8 1.8 0 0 1 1.8-1.8h3.6a1.8 1.8 0 0 1 1.8 1.8V7"/>
+      <path d="M2.8 12.2h18.4"/>
+    </g>
+  </symbol>
+</svg>
+
 <header class="hero">
+  <!-- 上の帯の絵。地球とその周りを回る点線が、中の2つのアプリ
+       （行き先を選ぶ／飛び方を調べる）をそのまま表しています。
+       文字より薄くしてあるので、見出しの読みやすさは変わりません。 -->
+  <svg class="hero__art" viewBox="0 0 200 150" aria-hidden="true" focusable="false">
+    <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <circle cx="120" cy="76" r="46"/>
+      <ellipse cx="120" cy="76" rx="20" ry="46"/>
+      <path d="M74 76h92M82.5 53h75M82.5 99h75"/>
+      <ellipse cx="120" cy="76" rx="68" ry="27"
+               transform="rotate(-26 120 76)" stroke-dasharray="4 7"/>
+    </g>
+    <path fill="currentColor" transform="translate(179 45) rotate(58) scale(1.25)"
+          d="M0-9c.9 0 1.5 1.1 1.5 2.5v2.5l6.1 3.6v1.8L1.5 4.5V8l1.9 1.4v1.4L0 10l-3.4.8
+             v-1.4L-1.5 8V4.5l-6.1 1.9V4.6l6.1-3.6v-2.5C-1.5-7.9-.9-9 0-9z"/>
+  </svg>
+
   <div class="hero__inner">
     <p class="hero__kicker">TRAVEL BOX</p>
     <h1 class="hero__title">旅の道具箱</h1>
@@ -50,15 +100,7 @@
 
     <a class="app app--trip" href="Trip-Board/index.html">
       <span class="app__icon" aria-hidden="true">
-        <svg viewBox="0 0 100 100">
-          <g fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round">
-            <circle cx="50" cy="50" r="30"/>
-            <path d="M20 40 H80"/><path d="M20 60 H80"/>
-            <ellipse cx="50" cy="50" rx="13.5" ry="30"/>
-            <path d="M50 20 V80"/>
-          </g>
-          <circle cx="63" cy="36" r="5" fill="#e0a35c"/>
-        </svg>
+        <svg class="app__mark"><use href="#i-globe"/></svg>
       </span>
       <span class="app__body">
         <span class="app__name">Trip Board</span>
@@ -70,12 +112,7 @@
 
     <a class="app app--flight" href="Flight-Board/index.html">
       <span class="app__icon" aria-hidden="true">
-        <svg viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="30" fill="none"
-                  stroke="currentColor" stroke-width="4.5"/>
-          <text x="50" y="66" text-anchor="middle" font-size="42"
-                fill="currentColor" transform="rotate(-20 50 50)">✈</text>
-        </svg>
+        <svg class="app__mark app__mark--plane"><use href="#i-plane"/></svg>
       </span>
       <span class="app__body">
         <span class="app__name">Flight Board</span>
@@ -89,6 +126,7 @@
 
 
   <footer class="foot">
+    <svg class="foot__mark" aria-hidden="true"><use href="#i-case"/></svg>
     <p>ホーム画面にはこの1つだけを追加すれば、中の2つを行き来できます。</p>
   </footer>
 

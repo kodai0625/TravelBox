@@ -1,0 +1,790 @@
+{
+ "meta": {
+  "version": "2026-08-15",
+  "count": 41,
+  "source": "各社の公表資料と搭乗レポートをもとに手で整備。tools/build_cabin_products.py が形式と座席型との食い違いを検算しています",
+  "note": "寸法は測る場所で変わります。公表資料などで確認できたものだけ入れているので、空欄は「無い」ではなく「確かめられなかった」という意味です。載っている機材でも、機材変更で別の座席になることがあります。予約時に座席表で確かめてください。",
+  "cabins": {
+   "F": "ファースト",
+   "J": "ビジネス",
+   "W": "プレミアムエコノミー",
+   "Y": "エコノミー"
+  },
+  "pairs": {
+   "double": "2人でダブルベッド",
+   "quad": "4人で一部屋",
+   "open": "隣と仕切りを外せる",
+   "solo": "1人用"
+  },
+  "status": {
+   "now": "いま乗れる",
+   "soon": "これから"
+  }
+ },
+ "products": [
+  {
+   "id": "nh-the-suite",
+   "name": "THE Suite",
+   "airline": "NH",
+   "cabin": "F",
+   "ac": [
+    "B77W"
+   ],
+   "abreast": "1-2-1",
+   "pair": "open",
+   "jp": true,
+   "routes": "羽田・成田発の欧米線（777-300ERの4クラス機）",
+   "note": "扉を閉めると完全な個室。43インチの4Kモニターは、いまも旅客機で最大級です。",
+   "since": 2019,
+   "status": "now",
+   "door": "yes"
+  },
+  {
+   "id": "nh-the-room",
+   "name": "THE Room",
+   "airline": "NH",
+   "cabin": "J",
+   "ac": [
+    "B77W"
+   ],
+   "abreast": "1-2-1",
+   "pair": "open",
+   "jp": true,
+   "routes": "羽田・成田発の欧米線（777-300ERの4クラス機）",
+   "note": "幅97cmは、ビジネスクラスとしては世界でも最大級。前後の席が互い違いを向いていて、隣と目が合いません。",
+   "since": 2019,
+   "status": "now",
+   "door": "yes",
+   "bedW": 97
+  },
+  {
+   "id": "nh-the-room-fx",
+   "name": "THE Room FX",
+   "airline": "NH",
+   "cabin": "J",
+   "ac": [
+    "B789"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "787-9の一部。2026年8月に就航したばかりで、まだ機数が限られます",
+   "note": "椅子・ソファ・ベッドを手元の操作で切り替えられます。中型機なのに、いちばん広いところは105cmあります。",
+   "since": 2026,
+   "status": "now",
+   "partial": true,
+   "door": "yes",
+   "bedL": 194,
+   "bedW": [
+    69,
+    105
+   ]
+  },
+  {
+   "id": "nh-a380-first",
+   "name": "ANA A380 ファーストクラス",
+   "airline": "NH",
+   "cabin": "F",
+   "ac": [
+    "A388"
+   ],
+   "abreast": "1-2-1",
+   "pair": "open",
+   "jp": true,
+   "routes": "成田—ホノルルのみ（フライング・ホヌ）",
+   "note": "ANAで唯一、ハワイ路線にしかないファーストクラスです。",
+   "since": 2019,
+   "status": "now",
+   "door": "yes"
+  },
+  {
+   "id": "nh-couchii",
+   "name": "ANA COUCHii",
+   "airline": "NH",
+   "cabin": "Y",
+   "ac": [
+    "A388"
+   ],
+   "abreast": "3-4-3",
+   "pair": "double",
+   "jp": true,
+   "routes": "成田—ホノルルのみ（フライング・ホヌ）",
+   "note": "日本の航空会社で初のカウチシート。3〜4席ぶんの足置きを上げると、エコノミーの料金＋追加料金で親子が横になれます。",
+   "since": 2019,
+   "status": "now",
+   "door": "no"
+  },
+  {
+   "id": "jl-a35k-first",
+   "name": "JAL ファーストクラス（A350-1000）",
+   "airline": "JL",
+   "cabin": "F",
+   "ac": [
+    "A35K"
+   ],
+   "abreast": "1-1-1",
+   "pair": "double",
+   "jp": true,
+   "routes": "羽田—ニューヨーク・パリ・ロンドン・ダラスなど",
+   "note": "JAL初の扉付きファースト。壁の高さ157cm。ベッドと横の椅子を合わせるとダブルベッドの広さになります。",
+   "since": 2024,
+   "status": "now",
+   "door": "yes",
+   "bedL": 203,
+   "bedW": [
+    null,
+    123
+   ]
+  },
+  {
+   "id": "jl-a35k-business",
+   "name": "JAL ビジネスクラス（A350-1000）",
+   "airline": "JL",
+   "cabin": "J",
+   "ac": [
+    "A35K"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "羽田—ニューヨーク・パリ・ロンドン・ダラスなど",
+   "note": "壁の高さ132cm。立ち上がらずに個室の中だけで用が済む配置です。",
+   "since": 2024,
+   "status": "now",
+   "door": "yes",
+   "bedL": 198,
+   "bedW": 56
+  },
+  {
+   "id": "jl-suite",
+   "name": "JAL SUITE",
+   "airline": "JL",
+   "cabin": "F",
+   "ac": [
+    "B77W"
+   ],
+   "abreast": "1-2-1",
+   "pair": "open",
+   "jp": true,
+   "routes": "羽田・成田発の欧米線（777-300ERの4クラス機）",
+   "note": "A350-1000が入る前からのファースト。扉ではなく高い仕切りで囲む形です。",
+   "since": 2013,
+   "status": "now",
+   "door": "yes"
+  },
+  {
+   "id": "zg-fullflat",
+   "name": "ZIPAIR フルフラット",
+   "airline": "ZG",
+   "cabin": "J",
+   "ac": [
+    "B788"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "成田—ロサンゼルス・サンノゼ・ホノルル・バンコクなど",
+   "note": "**格安航空会社なのに平らになります。**食事も座席指定も別料金なので、寝床だけを安く買えます。",
+   "since": 2020,
+   "status": "now",
+   "door": "no"
+  },
+  {
+   "id": "sq-suites",
+   "name": "Suites（A380）",
+   "airline": "SQ",
+   "cabin": "F",
+   "ac": [
+    "A388"
+   ],
+   "abreast": "1-1-1",
+   "pair": "double",
+   "jp": true,
+   "routes": "成田—シンガポール（A380の日）",
+   "note": "椅子とベッドが別々にあります。中央の2室は壁を外すとダブルベッドになる、数少ない「2人で泊まれる部屋」です。",
+   "since": 2017,
+   "status": "now",
+   "door": "yes"
+  },
+  {
+   "id": "cx-aria",
+   "name": "The Aria Suite",
+   "airline": "CX",
+   "cabin": "J",
+   "ac": [
+    "B77W"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "香港発の長距離線。成田—香港にも入っていた時期があります",
+   "note": "キャセイ初の扉付き。個室の中の照明や画面をまとめて操作できます。",
+   "since": 2024,
+   "status": "now",
+   "partial": true,
+   "door": "yes",
+   "bedL": 201,
+   "bedW": [
+    53,
+    64
+   ]
+  },
+  {
+   "id": "jx-first",
+   "name": "STARLUX ファーストクラス",
+   "airline": "JX",
+   "cabin": "F",
+   "ac": [
+    "A359",
+    "A35K"
+   ],
+   "abreast": "1-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "台北発の長距離線。日本からは台北で乗り継ぎ",
+   "note": "1機に4席だけ。新しい会社なのにファーストを載せた、いまどき珍しい例です。",
+   "since": 2022,
+   "status": "now",
+   "door": "yes"
+  },
+  {
+   "id": "sq-a380-business",
+   "name": "シンガポール航空 ビジネス（A380）",
+   "airline": "SQ",
+   "cabin": "J",
+   "ac": [
+    "A388"
+   ],
+   "abreast": "1-2-1",
+   "pair": "double",
+   "jp": true,
+   "routes": "成田—シンガポール（A380の日）",
+   "note": "中央の2席は仕切りを外すとダブルベッドになります。ビジネスでこれができる会社は多くありません。",
+   "since": 2017,
+   "status": "now",
+   "door": "no"
+  },
+  {
+   "id": "cx-first",
+   "name": "キャセイ ファーストクラス",
+   "airline": "CX",
+   "cabin": "F",
+   "ac": [
+    "B77W"
+   ],
+   "abreast": "1-1-1",
+   "pair": "solo",
+   "jp": false,
+   "routes": "香港発の一部長距離線。日本線には入りません",
+   "note": "1機に6席だけ。扉はありませんが、1列3席の配置は今も世界でいちばんゆったりした部類です。",
+   "since": 2007,
+   "status": "now",
+   "door": "no"
+  },
+  {
+   "id": "ke-first",
+   "name": "大韓航空 ファーストクラス",
+   "airline": "KE",
+   "cabin": "F",
+   "ac": [
+    "A388",
+    "B748"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": false,
+   "routes": "ソウル発の一部長距離線。日本からはソウルで乗り継ぎ",
+   "note": "747-8の2階席は、上がった先が全部ビジネスという特別な空間です。",
+   "since": 2013,
+   "status": "now",
+   "door": "yes"
+  },
+  {
+   "id": "qr-qsuite",
+   "name": "Qsuite",
+   "airline": "QR",
+   "cabin": "J",
+   "ac": [
+    "B77W",
+    "A359",
+    "A35K"
+   ],
+   "abreast": "1-2-1",
+   "pair": "quad",
+   "jp": true,
+   "routes": "羽田・成田—ドーハ（どちらの便でも乗れます）",
+   "note": "中央2席はダブルベッドに、4席ぶんは仕切りを外して一部屋にできます。これができるのは今もカタールだけです。",
+   "since": 2017,
+   "status": "now",
+   "door": "yes",
+   "bedL": [
+    193,
+    198
+   ],
+   "bedW": 55
+  },
+  {
+   "id": "ek-a380-first",
+   "name": "エミレーツ ファーストクラス（A380）",
+   "airline": "EK",
+   "cabin": "F",
+   "ac": [
+    "A388"
+   ],
+   "abreast": "1-1-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "成田—ドバイのみ（日本でA380が来るのは成田だけ）",
+   "note": "機内にシャワーがあります。飛びながら浴びられる数少ない例です。",
+   "since": 2008,
+   "status": "now",
+   "door": "yes",
+   "bedW": 58
+  },
+  {
+   "id": "ek-a380-bar",
+   "name": "エミレーツ 機内ラウンジ",
+   "airline": "EK",
+   "cabin": "J",
+   "ac": [
+    "A388"
+   ],
+   "abreast": "—",
+   "pair": "open",
+   "jp": true,
+   "routes": "成田—ドバイのみ",
+   "note": "2階の後方がバーカウンターになっていて、客室乗務員がその場で作ってくれます。席を立って過ごせます。",
+   "since": 2008,
+   "status": "now",
+   "door": "no"
+  },
+  {
+   "id": "ek-77w-first",
+   "name": "エミレーツ ファーストクラス（777-300ER）",
+   "airline": "EK",
+   "cabin": "F",
+   "ac": [
+    "B77W"
+   ],
+   "abreast": "1-1-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "関西・成田—ドバイの一部",
+   "note": "天井まで塞がる完全な個室。窓のない中央席には、外の景色を映す「仮想の窓」が付いています。",
+   "since": 2017,
+   "status": "now",
+   "partial": true,
+   "door": "yes"
+  },
+  {
+   "id": "ek-premium",
+   "name": "エミレーツ プレミアムエコノミー",
+   "airline": "EK",
+   "cabin": "W",
+   "ac": [
+    "A388",
+    "B77W"
+   ],
+   "abreast": "2-4-2",
+   "pair": "solo",
+   "jp": true,
+   "routes": "成田・関西—ドバイ",
+   "note": "他社のプレミアムエコノミーより一段広く、「昔のビジネスクラス並み」と言われる座席です。",
+   "since": 2021,
+   "status": "now",
+   "partial": true,
+   "door": "no"
+  },
+  {
+   "id": "qr-a380-first",
+   "name": "カタール ファースト（A380）",
+   "airline": "QR",
+   "cabin": "F",
+   "ac": [
+    "A388"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": false,
+   "routes": "ドーハ発の一部。日本線はA350と777なので乗れません",
+   "note": "2階にバーラウンジがあります。ビジネスの人も使えるので、A380に当たったら寄る価値があります。",
+   "since": 2014,
+   "status": "now",
+   "door": "no"
+  },
+  {
+   "id": "ey-a35k-first",
+   "name": "エティハド ファースト（A350-1000）",
+   "airline": "EY",
+   "cabin": "F",
+   "ac": [
+    "A35K"
+   ],
+   "abreast": "1-1",
+   "pair": "solo",
+   "jp": false,
+   "routes": "アブダビ発の一部。成田線はA380です",
+   "note": "1機に4席。A380のアパートメントより新しい設計です。",
+   "since": 2022,
+   "status": "now",
+   "partial": true,
+   "door": "yes"
+  },
+  {
+   "id": "ey-residence",
+   "name": "The Residence",
+   "airline": "EY",
+   "cabin": "F",
+   "ac": [
+    "A388"
+   ],
+   "abreast": "1室",
+   "pair": "double",
+   "jp": true,
+   "routes": "成田—アブダビ（2026年6月就航）",
+   "note": "居間・寝室・シャワー室の3部屋に専属の客室乗務員が付きます。1機に1室だけ、世界でも2席しかない座席です。",
+   "since": 2014,
+   "status": "now",
+   "door": "yes"
+  },
+  {
+   "id": "ey-apartment",
+   "name": "First Apartment",
+   "airline": "EY",
+   "cabin": "F",
+   "ac": [
+    "A388"
+   ],
+   "abreast": "1-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "成田—アブダビ（2026年6月就航）",
+   "note": "椅子とベッドが別にあり、ベッド幅76cmはファーストの中でも最大級。",
+   "since": 2014,
+   "status": "now",
+   "door": "yes",
+   "bedL": 203,
+   "bedW": 76
+  },
+  {
+   "id": "ba-club-suite",
+   "name": "Club Suite",
+   "airline": "BA",
+   "cabin": "J",
+   "ac": [
+    "A35K",
+    "B789",
+    "B78X",
+    "B779"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "羽田—ロンドン。A380以外のほぼ全長距離線",
+   "note": "2-4-2で隣をまたぐ必要があった昔の座席から総入れ替えしました。",
+   "since": 2019,
+   "status": "now",
+   "door": "yes",
+   "bedL": 201,
+   "bedW": 56
+  },
+  {
+   "id": "lh-allegris-first",
+   "name": "Allegris Suite Plus",
+   "airline": "LH",
+   "cabin": "F",
+   "ac": [
+    "A35K",
+    "B748"
+   ],
+   "abreast": "1-1-1",
+   "pair": "double",
+   "jp": false,
+   "routes": "ミュンヘン・フランクフルト発の一部。日本線はまだ",
+   "note": "ダブルベッドになる部屋があります。天井まで壁がある「部屋」としては、いま欧州で最上位です。",
+   "since": 2024,
+   "status": "now",
+   "partial": true,
+   "door": "yes",
+   "bedL": 220
+  },
+  {
+   "id": "lh-allegris-business",
+   "name": "Allegris ビジネスクラス",
+   "airline": "LH",
+   "cabin": "J",
+   "ac": [
+    "A359",
+    "A35K"
+   ],
+   "abreast": "1-2-1",
+   "pair": "double",
+   "jp": true,
+   "routes": "羽田—ミュンヘン（2025年冬から）",
+   "note": "**同じビジネスの中に7種類の席**があり、扉付きは一部だけです。ベッドが2.2mの席や、2人用の席を追加料金で選べます。",
+   "since": 2024,
+   "status": "now",
+   "partial": true,
+   "door": "part",
+   "bedL": 208
+  },
+  {
+   "id": "af-la-premiere",
+   "name": "La Première",
+   "airline": "AF",
+   "cabin": "F",
+   "ac": [
+    "B77W"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "羽田—パリの一部（載っている機体が限られます）",
+   "note": "仕切りはカーテンで、扉ではありません。1機に4席だけで、乗るには上級会員か正規運賃が要ります。",
+   "since": 2014,
+   "status": "now",
+   "partial": true,
+   "door": "part"
+  },
+  {
+   "id": "af-opera",
+   "name": "ビジネスクラス（OPERA）",
+   "airline": "AF",
+   "cabin": "J",
+   "ac": [
+    "A359"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "羽田・関西—パリの一部",
+   "note": "扉付き。エールフランスの中でいちばん画面が大きい席です。",
+   "since": 2022,
+   "status": "now",
+   "partial": true,
+   "door": "yes"
+  },
+  {
+   "id": "lx-senses",
+   "name": "SWISS Senses",
+   "airline": "LX",
+   "cabin": "J",
+   "ac": [
+    "A339",
+    "B77W"
+   ],
+   "abreast": "1-2-1",
+   "pair": "double",
+   "jp": true,
+   "routes": "成田・関西—チューリッヒに順次",
+   "note": "ビジネスの中に、隣とつなげられる2人用の席があります。ファーストも同じ機体に載ります。",
+   "since": 2025,
+   "status": "now",
+   "partial": true,
+   "door": "yes"
+  },
+  {
+   "id": "vs-retreat",
+   "name": "Retreat Suite",
+   "airline": "VS",
+   "cabin": "J",
+   "ac": [
+    "A339"
+   ],
+   "abreast": "1-2-1",
+   "pair": "open",
+   "jp": false,
+   "routes": "ロンドン発の長距離線。日本線には入りません",
+   "note": "1機に2席だけの特別席。テーブルを広げると向かいの人と食事ができます。",
+   "since": 2022,
+   "status": "now",
+   "door": "yes"
+  },
+  {
+   "id": "ay-airlounge",
+   "name": "AirLounge",
+   "airline": "AY",
+   "cabin": "J",
+   "ac": [
+    "A35K",
+    "A333"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "羽田・成田・関西・中部—ヘルシンキ",
+   "note": "**倒れません。** 座面が広いソファ型で、クッションを動かして自分で寝る形を作ります。好き嫌いが分かれます。",
+   "since": 2022,
+   "status": "now",
+   "door": "no"
+  },
+  {
+   "id": "dl-one-suite",
+   "name": "Delta One Suite",
+   "airline": "DL",
+   "cabin": "J",
+   "ac": [
+    "A35K",
+    "A359",
+    "A339"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": true,
+   "routes": "羽田—アトランタ・デトロイト・ロサンゼルスなど",
+   "note": "アメリカの会社で初めて扉を付けたビジネスクラスです。",
+   "since": 2017,
+   "status": "now",
+   "door": "yes",
+   "bedL": [
+    196,
+    203
+   ],
+   "bedW": [
+    52,
+    57
+   ]
+  },
+  {
+   "id": "b6-mint-studio",
+   "name": "Mint Studio",
+   "airline": "B6",
+   "cabin": "J",
+   "ac": [
+    "A21N"
+   ],
+   "abreast": "1-1",
+   "pair": "open",
+   "jp": false,
+   "routes": "ニューヨーク—ロンドンなど。日本線はありません",
+   "note": "**小型機なのに個室。**1機に2席だけで、向かいに人を座らせて食事ができます。",
+   "since": 2021,
+   "status": "now",
+   "door": "yes"
+  },
+  {
+   "id": "ua-polaris-studio",
+   "name": "United Polaris Studio",
+   "airline": "UA",
+   "cabin": "J",
+   "ac": [
+    "B789"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": false,
+   "routes": "2026年から順次。日本線に入る時期は未定",
+   "note": "ポラリスの上位版。窓側の一部だけが広い個室になります。",
+   "since": 2026,
+   "status": "soon",
+   "partial": true,
+   "door": "yes"
+  },
+  {
+   "id": "aa-flagship-suite",
+   "name": "Flagship Suite",
+   "airline": "AA",
+   "cabin": "J",
+   "ac": [
+    "B789"
+   ],
+   "abreast": "1-2-1",
+   "pair": "solo",
+   "jp": false,
+   "routes": "アメリカ発の長距離線。日本線に入る時期は未定",
+   "note": "扉に加えて、頭の上まで囲いがあります。",
+   "since": 2025,
+   "status": "now",
+   "partial": true,
+   "door": "yes"
+  },
+  {
+   "id": "nz-skynest",
+   "name": "Skynest",
+   "airline": "NZ",
+   "cabin": "Y",
+   "ac": [
+    "B789"
+   ],
+   "abreast": "2段×3",
+   "pair": "solo",
+   "jp": false,
+   "routes": "2026年11月からオークランド—ニューヨーク",
+   "note": "**エコノミーの2段ベッド。**6つのベッドを4時間ずつ交代で使います。追加料金は495ニュージーランドドルから。",
+   "since": 2026,
+   "status": "soon",
+   "door": "no"
+  },
+  {
+   "id": "nz-skycouch",
+   "name": "Skycouch",
+   "airline": "NZ",
+   "cabin": "Y",
+   "ac": [
+    "B789",
+    "B77W"
+   ],
+   "abreast": "3-3-3",
+   "pair": "double",
+   "jp": true,
+   "routes": "成田・関西—オークランド",
+   "note": "3席ぶんの足置きを上げて平らにします。カウチシートの元祖で、ANAのCOUCHiiはこれを参考にしています。",
+   "since": 2011,
+   "status": "now",
+   "door": "no"
+  },
+  {
+   "id": "nz-luxe",
+   "name": "Business Premier Luxe",
+   "airline": "NZ",
+   "cabin": "J",
+   "ac": [
+    "B789"
+   ],
+   "abreast": "1-1-1",
+   "pair": "solo",
+   "jp": false,
+   "routes": "オークランド発の長距離線。日本線に入る時期は未定",
+   "note": "1機に4席だけの上位席。ビジネスの中に作った小さなファーストです。",
+   "since": 2024,
+   "status": "now",
+   "partial": true,
+   "door": "yes"
+  },
+  {
+   "id": "qf-sunrise-first",
+   "name": "カンタス ファーストスイート",
+   "airline": "QF",
+   "cabin": "F",
+   "ac": [
+    "A35K"
+   ],
+   "abreast": "1-1-1",
+   "pair": "solo",
+   "jp": false,
+   "routes": "2027年10月から シドニー—ロンドン（世界最長の直行便）",
+   "note": "ベッドと椅子が別にあります。同じ機体には世界初の「機内で体を動かす場所」も作られます。",
+   "since": 2027,
+   "status": "soon",
+   "door": "yes",
+   "bedL": 203
+  },
+  {
+   "id": "qf-wellbeing",
+   "name": "ウェルビーイング・ゾーン",
+   "airline": "QF",
+   "cabin": "Y",
+   "ac": [
+    "A35K"
+   ],
+   "abreast": "—",
+   "pair": "open",
+   "jp": false,
+   "routes": "2027年10月から シドニー—ロンドン・ニューヨーク",
+   "note": "プレミアムエコノミーとエコノミーの間に作る、立って体を伸ばすための空間。世界初の試みです。",
+   "since": 2027,
+   "status": "soon",
+   "door": "no"
+  }
+ ]
+}

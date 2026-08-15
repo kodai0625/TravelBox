@@ -27,6 +27,19 @@ body.is-locked { overflow: hidden; }
 
 a { color: inherit; }
 
+/* ---------- しるし（アイコン） ----------
+   形は index.html の <symbol> にあります。ここでは置き方だけを決めます。
+   しるしのきまり：四角い枠で囲んだものは押せる、囲みのないものは飾りや目印。
+   囲みを足すときは、押せるかどうかを確かめてからにしてください。 */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+/* しるしの中で1点だけ差す色。地球の「行き先の点」に使っています */
+.i-ac { fill: #d99a4e; stroke: none; }
+
 /* ---------- ヘッダー ---------- */
 .app-header {
   position: sticky;
@@ -43,20 +56,47 @@ a { color: inherit; }
   padding: 10px 14px 8px;
 }
 
+/* ヘッダー左上の「旅の道具箱に戻る」ボタン。
+   前は ◀ の1文字でしたが、薄くて小さく、戻る先も伝わりませんでした。
+   家の形と塗りを入れて、押せる場所だとひと目で分かるようにしています。
+   Flight Board 側と同じ寸法・同じ色にそろえてあります。 */
 .home-link {
+  position: relative;
   flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 10px;
   text-decoration: none;
-  font-size: 12px;
-  color: rgba(255, 255, 255, .75);
-  border: 1px solid rgba(255, 255, 255, .22);
+  color: rgba(255, 255, 255, .92);
+  background: rgba(255, 255, 255, .14);
+  border: 1px solid rgba(255, 255, 255, .34);
 }
-.home-link:active { background: rgba(255, 255, 255, .1); }
+/* 見た目は32pxのまま、指の当たり判定だけ44pxに広げます。
+   見た目を44pxにするとヘッダーが窮屈になるためです。
+   右隣のタイトルとは2px空くので、押し間違えは起きません。 */
+.home-link::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+.home-link__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.home-link:active { background: rgba(255, 255, 255, .26); }
 
 .app-title {
   display: flex;
@@ -72,16 +112,18 @@ a { color: inherit; }
   cursor: pointer;
 }
 
+/* アプリのしるし。玄関のカードに置いてある地球と同じ形です。
+   ここは囲みを付けません。左隣のホームボタンだけが囲みを持つので、
+   「囲みがあるほうが押す場所」という区別がヘッダーの中で保てます。 */
 .app-title__mark {
   flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  font-size: 15px;
 }
+.app-title__glyph { width: 26px; height: 26px; display: block; }
 
 .app-title__text {
   display: flex;
@@ -121,6 +163,10 @@ a { color: inherit; }
 
 .tabs__btn {
   flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   padding: 11px 16px;
   background: none;
   border: 0;
@@ -132,6 +178,9 @@ a { color: inherit; }
   cursor: pointer;
 }
 .tabs__btn.is-active { color: #fff; }
+/* しるしは文字より一段薄く。主役は文字のほうです */
+.tabs__i { flex: 0 0 auto; width: 15px; height: 15px; opacity: .78; }
+.tabs__btn.is-active .tabs__i { opacity: 1; }
 
 /* ---------- ページ ---------- */
 .page {
@@ -155,6 +204,30 @@ a { color: inherit; }
 .notice__text { color: var(--text-sub); font-size: 13px; }
 .notice--error .notice__text { color: var(--danger); }
 
+/* 読み込み中のしるし。地球のまわりを点線の航路が回ります。
+   ただの丸を回すより、このアプリが何を扱っているかが待ち時間に伝わります。 */
+.loader {
+  position: relative;
+  display: block;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 14px;
+  color: var(--text-weak);
+}
+.loader__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: orbit 2.6s linear infinite;
+}
+.loader__mark { position: absolute; inset: 13px; width: 28px; height: 28px; }
+@keyframes orbit { to { transform: rotate(360deg); } }
+/* 動きを減らす設定の端末では回しません */
+@media (prefers-reduced-motion: reduce) {
+  .loader__ring { animation: none; }
+}
+
 .hint { color: var(--text-weak); font-size: 12.5px; margin: 8px 0; }
 .empty {
   padding: 28px 12px;
@@ -162,6 +235,13 @@ a { color: inherit; }
   color: var(--text-weak);
   font-size: 13px;
   list-style: none;
+}
+.empty__i {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin: 0 auto 10px;
+  opacity: .45;
 }
 
 /* ---------- 検索欄 ---------- */
@@ -333,9 +413,11 @@ a { color: inherit; }
   top: var(--header-h, 0px);
   z-index: 5;
   display: flex;
-  align-items: baseline;
-  gap: 8px;
-  padding: 10px 10px 8px;
+  /* しるしを足したので、文字の下端そろえ（baseline）から中央そろえに変えました。
+     baseline のままだと、絵だけが一段下がって見えます。 */
+  align-items: center;
+  gap: 7px;
+  padding: 10px 10px 9px;
   margin-top: 6px;
   background: var(--surface-2);
   border: 1px solid var(--line);
@@ -347,6 +429,7 @@ a { color: inherit; }
 }
 .list__group-n { font-size: 11px; font-weight: 400; color: var(--text-weak);
                  letter-spacing: 0; }
+.list__group-i { flex: 0 0 auto; width: 14px; height: 14px; color: var(--accent); }
 
 .list__body { flex: 1 1 auto; min-width: 0; }
 .list__name {
@@ -809,12 +892,18 @@ a { color: inherit; }
 }
 
 .sec {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   margin: 26px 0 10px;
   font-size: 13px;
   letter-spacing: .08em;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--line-2);
 }
+/* 見出しのしるし。長い詳細をたどるとき、文字を読む前に
+   いまどの話をしているかが分かります。 */
+.sec__i { flex: 0 0 auto; width: 15px; height: 15px; color: var(--accent); }
 .sec:first-of-type { margin-top: 16px; }
 
 .kv { margin: 0 0 10px; }
