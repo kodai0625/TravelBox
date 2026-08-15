@@ -442,38 +442,54 @@ a { color: inherit; }
 
 .matrixwrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
-/* 表は画面幅に合わせて潰しません。潰すと1マスが11pxまで縮んで、
-   気温の帯が点にしか見えなくなります。入りきらないぶんは
-   .matrixwrap の横スクロールで見てもらいます。 */
+/* 12か月ぶんが必ず画面に収まるようにしています。
+   幅を決め打ちにすると、320pxの機種で55pxはみ出しました。
+   そこで割合で配り、どの幅でも横に流れないようにしています。
+     国名 37％ ／ 12か月ぶん 63％（1マスあたり 5.25％）
+   375pxの画面で 国名127px・マス18px、320pxなら 国名107px・マス15px。
+   狭い機種では長い国名だけ「…」で切れますが、
+   12か月を一度に見られることを優先しました。 */
 .matrix {
   border-collapse: separate;
   border-spacing: 0;
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
+  table-layout: fixed;
   font-size: 12px;
 }
 .matrix th, .matrix td { padding: 0; }
 
+/* 国名の欄。縦画面で横に流れないよう幅を決め打ちにし、
+   長い国名は「…」で切ります。全部を読ませるより、
+   12か月ぶんが一度に見えることを優先しました。 */
 .matrix__name {
   position: sticky;
   left: 0;
   z-index: 1;
   background: var(--bg);
   text-align: left;
-  padding: 5px 8px 5px 0 !important;
+  padding: 4px 6px 4px 0 !important;
   font-weight: 400;
-  font-size: 12.5px;
-  white-space: nowrap;
-  min-width: 116px;
+  width: 37%;
   border-bottom: 1px solid var(--line-2);
 }
-
-.matrix__best {
-  padding-left: 8px !important;
+.matrix__ja {
+  display: block;
+  font-size: 11.5px;
+  line-height: 1.35;
   white-space: nowrap;
-  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 天気が良い時期。もとは右端の列でしたが、幅が足りないので
+   国名の下に置いています。 */
+.matrix__best2 {
+  display: block;
+  font-size: 9.5px;
+  line-height: 1.35;
   color: var(--text-weak);
-  border-bottom: 1px solid var(--line-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 地域の区切り。ここに月の番号も出すので、表を下へたどっても
@@ -494,7 +510,7 @@ a { color: inherit; }
   color: var(--text);
 }
 .matrix__mnum {
-  width: 22px;
+  width: 5.25%;
   text-align: center;
   font-size: 10px;
   white-space: nowrap;   /* 10・11・12 が2行に割れないように */
@@ -504,8 +520,7 @@ a { color: inherit; }
 .matrix tbody tr:active .matrix__name { background: var(--surface-2); }
 
 .cell {
-  width: 24px;
-  min-width: 24px;
+  width: 5.25%;
   height: 26px;
   text-align: center;
   font-size: 11.5px;

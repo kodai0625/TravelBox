@@ -401,7 +401,7 @@ function renderTable() {
   const groupRow = (label) =>
     `<tr class="matrix__group"><th class="matrix__name">${esc(label)}</th>`
     + MONTHS.map((m, i) => `<td class="matrix__mnum">${i + 1}</td>`).join('')
-    + `<td class="matrix__best">天気が良い</td></tr>`;
+    + '</tr>';
 
   // 探すタブと同じで、エリアの並びは countries.json の順です。
   // 中身の並びだけが「探す」タブの選択に従います。
@@ -422,15 +422,17 @@ function renderTable() {
     }
     if (!s) {
       out += `<tr data-code="${c.code}"><th class="matrix__name">${c.flag} ${esc(c.ja)}</th>`
-           + `<td colspan="13" class="cell cell--na">気候データがありません</td></tr>`;
+           + `<td colspan="12" class="cell cell--na">気候データがありません</td></tr>`;
       return out;
     }
+    // 「天気が良い時期」は列をやめて国名の下に置きます。
+    // 縦画面で横に流れないよう、幅を12か月ぶんに使うためです。
+    const best = s.best_label === 'どの月も同じくらい雨' ? 'どの月も同程度' : s.best_label;
     out += `<tr data-code="${c.code}">`
-      + `<th class="matrix__name">${c.flag} ${esc(c.ja)}`
-      + (s.relative ? '<span class="relmark" title="年中雨が多い国なので、'
-        + 'この国の中での相対評価です">相対</span>' : '') + '</th>'
+      + `<th class="matrix__name"><span class="matrix__ja">${c.flag} ${esc(c.ja)}</span>`
+      + `<span class="matrix__best2">${esc(best)}</span></th>`
       + monthStrip(s, state.month)
-      + `<td class="matrix__best">${esc(s.best_label)}</td></tr>`;
+      + '</tr>';
     return out;
   }).join('');
 
