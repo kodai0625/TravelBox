@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Flight Board のアプリアイコン。
+       濃紺の背景に、離陸中の飛行機。ホーム画面で小さくなっても形が分かるよう、
+       細部を省いてシルエットだけにしています。 -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2b40"/>
+      <stop offset="1" stop-color="#0b1119"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="114" fill="url(#bg)"/>
+  <!-- 滑走路に見立てた地平線。機体の下に置いて「離陸」を表す -->
+  <rect x="104" y="418" width="304" height="12" rx="6" fill="#3d8bfd" opacity="0.3"/>
+  <!-- 機体。右上に向かって上昇する角度 -->
+  <g transform="translate(256 232) rotate(-22) scale(0.76) translate(-256 -232)">
+    <path fill="#3d8bfd" d="M256 96c14 0 25 16 25 36v92l122 72c6 4 10 11 10 18v22l-132-40v78l40 34v26l-65-19-65 19v-26l40-34v-78l-132 40v-22c0-7 4-14 10-18l122-72v-92c0-20 11-36 25-36z"/>
+  </g>
+</svg>

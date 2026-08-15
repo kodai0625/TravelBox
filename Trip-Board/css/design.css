@@ -1,0 +1,234 @@
+/* ============================================================
+ *  Trip Board — デザイン
+ *
+ *  色・書体はこのファイルが決めます。style.css より後ろで読むこと。
+ *
+ *  Flight Board と兄弟に見えるよう、明朝体の見出しと細い線という
+ *  作りは揃えています。違うのは主色で、あちらが金（航空）、
+ *  こちらが藍（地図と海）です。並べたときに取り違えないためです。
+ *
+ *  色の数値はコントラスト比を確かめたうえで決めています。
+ *  本文と背景で 4.5 : 1 以上、補助的な文字でも 4.5 : 1 を下回らない
+ *  ようにしています。評価の◎○△✕は色だけに頼らず記号も併記します
+ *  （色が見分けづらい人にも同じ情報が届くようにするため）。
+ * ============================================================ */
+
+/* ---- 明るいとき ---- */
+:root {
+  --bg:        #f2efe9;
+  --surface:   #ffffff;
+  --surface-2: #f7f4ee;
+  --line:      #dcd6ca;
+  --line-2:    #e6e1d6;
+  --text:      #1a1c22;
+  --text-sub:  #5f6470;   /* 5.9 : 1 */
+  --text-weak: #6e737e;   /* 4.8 : 1 */
+  --accent:    #2f5d7c;   /* 藍。5.9 : 1 */
+  --on-accent: #ffffff;
+  --header-bg: #12161f;
+  --danger:    #9c3320;
+
+  /* 気温の帯と台風の帯。マスの塗りより必ず濃くしています。
+     ✕の塗りが赤なので、暑さの帯はそれより深い赤にして重ならないようにしました。
+     寒さの帯も、◎○の青より深い紺です。台風だけは無彩色で、
+     位置（上）と合わせて三者が見分けられます。 */
+  --hot:   #a8391b;   /* 著しく暑い月の帯・気温の線（高い） */
+  --cool:  #14425c;   /* 著しく寒い月の帯・気温の線（低い） */
+  --rain:  #4d7fa8;   /* グラフの降水の棒 */
+  --storm: #9c3320;   /* 「避けたい」を示す言葉の色 */
+  --stormmark: #4a4f5a; /* 一覧表の台風の帯。無彩色にして気温の帯と分ける */
+  /* 選んでいる月の枠。塗り（青・黄・赤）にも帯（赤・紺・灰）にも
+     使っていない紫にしています。どの色の上に来ても浮くので、
+     一覧表のどこにいても選択中の列が目で追えます。 */
+  --pick:  #6a1b9a;
+
+  /* 天気の4段。◎○は青（濃さで差を付ける）、△は黄、✕は赤。
+     ✕を赤にしたのは、記号の見た目どおりの意味に揃えるためです。
+     文字はどれも4.5:1以上で読めます。 */
+  --g4-bg: #7fb2de; --g4-fg: #0c2436;
+  --g3-bg: #d6e8f7; --g3-fg: #123650;
+  --g2-bg: #f5e3a3; --g2-fg: #57420a;
+  --g1-bg: #f0bdb6; --g1-fg: #8a2617;
+
+  /* 危険情報の4段 */
+  --lv0-bg: #e2ece4; --lv0-fg: #245133;
+  --lv1-bg: #fbf0d8; --lv1-fg: #6b4d10;
+  --lv2-bg: #fbe2cd; --lv2-fg: #7a3f12;
+  --lv3-bg: #f7d5cd; --lv3-fg: #8a2c17;
+  --lv4-bg: #e7c4bd; --lv4-fg: #6d1d0d;
+
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(30, 28, 20, .05);
+}
+
+/* ---- 暗いとき ---- */
+:root[data-theme="dark"] {
+  --bg:        #0e1016;
+  --surface:   #171a22;
+  --surface-2: #1d2029;
+  --line:      #333846;
+  --line-2:    #2a2e3a;
+  --text:      #e9eaee;
+  --text-sub:  #a2a7b3;   /* 7.5 : 1 */
+  --text-weak: #8d929e;   /* 5.7 : 1 */
+  --accent:    #7fb3d5;   /* 暗い地の上なので明るい藍に反転。8.4 : 1 */
+  --on-accent: #10131a;
+  --header-bg: #090b11;
+  --danger:    #e0806c;
+
+  --hot:   #f2966d;
+  --cool:  #8fcbec;
+  --rain:  #5b8fb5;
+  --storm: #e0806c;
+  --stormmark: #ccd1db;
+  --pick:  #d9a8ff;
+
+  /* 暗いときは塗りを暗めに保ちます。気温の帯が明るい色なので、
+     塗りまで明るくすると帯が埋もれてしまうためです。 */
+  --g4-bg: #35719f; --g4-fg: #eaf4fc;
+  --g3-bg: #23445f; --g3-fg: #bcd8ec;
+  --g2-bg: #514621; --g2-fg: #f2e3ac;
+  --g1-bg: #6b332c; --g1-fg: #f8cbc2;
+
+  --lv0-bg: #1c3326; --lv0-fg: #a9d8b8;
+  --lv1-bg: #38310f; --lv1-fg: #e8d59a;
+  --lv2-bg: #42280f; --lv2-fg: #f0c396;
+  --lv3-bg: #472018; --lv3-fg: #f2b3a2;
+  --lv4-bg: #5a231a; --lv4-fg: #f7c7bb;
+
+  --shadow: none;
+}
+
+/* ---- 見出しは明朝体。Flight Board と揃えた家族の印 ---- */
+.app-title__main,
+.sheet__title,
+.sec,
+.now__time {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+.app-title__mark {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .5);
+  color: rgba(255, 255, 255, .85);
+}
+
+/* ---- タブの下線 ---- */
+.tabs__btn.is-active { border-bottom-color: var(--accent); }
+:root[data-theme="dark"] .tabs__btn.is-active { border-bottom-color: #7fb3d5; }
+
+/* ---- 選択中は藍で塗る。塗るのは「選択中」だけに絞ります ---- */
+.chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+/* ---- 余白。Flight Board と同じくゆったり取ります ---- */
+.list__item { padding: 13px 2px; }
+.filter-panel { padding: 16px; }
+.page { padding: 20px 16px 56px; }
+
+/* ---- 評価の4段 ---- */
+.mark--4, .cell--4 { background: var(--g4-bg); color: var(--g4-fg); }
+.mark--3, .cell--3 { background: var(--g3-bg); color: var(--g3-fg); }
+.mark--2, .cell--2 { background: var(--g2-bg); color: var(--g2-fg); }
+.mark--1, .cell--1 { background: var(--g1-bg); color: var(--g1-fg); }
+.mark--none {
+  background: var(--surface-2);
+  color: var(--text-sub);
+  border: 1px solid var(--line);
+}
+
+.sw--4 { background: var(--g4-bg); }
+.sw--3 { background: var(--g3-bg); }
+.sw--2 { background: var(--g2-bg); }
+.sw--1 { background: var(--g1-bg); }
+.sw--hot { background: var(--hot); }
+.sw--cold { background: var(--cool); }
+.sw--storm { background: var(--stormmark); width: 15px; height: 4px;
+             border: 0; border-radius: 2px; }
+
+/* 選んだ月の印。
+   はじめは藍（--accent）で囲んでいましたが、当時の◎の塗りが同じ藍で、
+   いちばん見たい月に限って枠線が消えていました。次にそのマスの文字色で
+   囲みましたが、今度は目立たなさすぎました。
+   いまは専用の紫（--pick）です。塗りにも帯にも使っていない色なので、
+   4通りのどの塗りの上でも浮きます（最も見分けにくい◎の上でも 4.2 : 1）。 */
+.cell.is-on {
+  outline: 2.5px solid var(--pick);
+  outline-offset: -3px;
+}
+
+/* 帯の下の月番号も同じ紫で塗ります。枠と番号が同じ色なら、
+   「この列を選んでいる」とひと目で結び付きます。 */
+.strip__labels td.is-on {
+  background: var(--pick);
+  color: #ffffff;
+}
+:root[data-theme="dark"] .strip__labels td.is-on { color: #1b0f26; }
+
+/* ---- 札 ---- */
+.tag--cheap  { border-color: var(--lv0-fg); color: var(--lv0-fg); }
+.tag--mid    { border-color: var(--line); color: var(--text-sub); }
+.tag--pricey { border-color: var(--storm); color: var(--storm); }
+.tag--safe   { border-color: var(--lv0-fg); color: var(--lv0-fg); }
+.tag--lv1 { background: var(--lv1-bg); color: var(--lv1-fg); border-color: transparent; }
+.tag--lv2 { background: var(--lv2-bg); color: var(--lv2-fg); border-color: transparent; }
+.tag--lv3 { background: var(--lv3-bg); color: var(--lv3-fg); border-color: transparent; }
+.tag--lv4 { background: var(--lv4-bg); color: var(--lv4-fg); border-color: transparent; }
+
+.badge--direct { border-color: var(--accent); color: var(--accent); }
+
+/* ---- 危険情報 ---- */
+.lv--0 { background: var(--lv0-bg); color: var(--lv0-fg); }
+.lv--1 { background: var(--lv1-bg); color: var(--lv1-fg); }
+.lv--2 { background: var(--lv2-bg); color: var(--lv2-fg); }
+.lv--3 { background: var(--lv3-bg); color: var(--lv3-fg); }
+.lv--4 { background: var(--lv4-bg); color: var(--lv4-fg); }
+.lvtag--1 { background: var(--lv1-bg); color: var(--lv1-fg); }
+.lvtag--2 { background: var(--lv2-bg); color: var(--lv2-fg); }
+.lvtag--3 { background: var(--lv3-bg); color: var(--lv3-fg); }
+.lvtag--4 { background: var(--lv4-bg); color: var(--lv4-fg); }
+
+/* ---- 行事 ---- */
+.event__mark--high { background: var(--lv2-bg); color: var(--lv2-fg); }
+.event__mark--see  { background: var(--g3-bg);  color: var(--g3-fg); }
+.event.is-hit { background: var(--surface-2); }
+
+/* ---- 気温グラフの凡例。線と棒の色をそのまま持ってきます ---- */
+.cl--hi  { background: var(--hot); }
+.cl--lo  { background: var(--cool); }
+.cl--bar { background: var(--rain); opacity: .55; }
+
+/* ---- 良し悪しの言葉 ---- */
+.good { color: var(--accent); }
+.bad, .warn { color: var(--storm); }
+.cool { color: var(--cool); }
+
+/* 節のすぐ下に置く、読み方の但し書き */
+.sec-note {
+  margin: -2px 0 12px;
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: var(--text-weak);
+}
+.sec-note .sw { vertical-align: 1px; margin: 0 2px; }
+
+/* ---- 注意書き ---- */
+.caution {
+  background: var(--lv1-bg);
+  color: var(--lv1-fg);
+}
+
+/* ---- ヘッダーのボタンが増えても折り返さないように ---- */
+.app-title { min-width: 0; }
+.app-title__text { min-width: 0; }
+.app-title__main,
+.app-title__sub {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

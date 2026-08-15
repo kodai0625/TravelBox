@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 上の帯が明るい色になったので、iPhone の時計や電池は黒で出す必要があります。
+     black-translucent のままだと白文字になって読めません。
+     ★これも追加した瞬間に焼き付く項目です。 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Travel Box">
+<meta name="theme-color" content="#d3e5f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14303f" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/app-icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/app-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/app-icon-512.png">
+<title>Travel Box</title>
+<script>
+/* 画面が描かれる前に明暗を決めます。中のアプリと同じ保存先を使わないよう、
+   玄関は玄関で自分の設定を持ちます。 */
+(function () {
+  try {
+    var pref = localStorage.getItem('travel-box-v1:theme') || 'auto';
+    var dark = pref === 'dark' ||
+               (pref === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  } catch (e) {
+    document.documentElement.dataset.theme = 'light';
+  }
+})();
+</script>
+<link rel="stylesheet" href="css/entry.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__inner">
+    <p class="hero__kicker">TRAVEL BOX</p>
+    <h1 class="hero__title">旅の道具箱</h1>
+    <p class="hero__sub" id="heroSub">読み込み中…</p>
+  </div>
+  <button type="button" class="theme-btn" id="themeBtn">自動</button>
+</header>
+
+<main class="page">
+
+  <!-- ===== アプリの一覧 ===== -->
+  <nav class="apps" aria-label="アプリ">
+
+    <a class="app app--trip" href="Trip-Board/index.html">
+      <span class="app__icon" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <g fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round">
+            <circle cx="50" cy="50" r="30"/>
+            <path d="M20 40 H80"/><path d="M20 60 H80"/>
+            <ellipse cx="50" cy="50" rx="13.5" ry="30"/>
+            <path d="M50 20 V80"/>
+          </g>
+          <circle cx="63" cy="36" r="5" fill="#e0a35c"/>
+        </svg>
+      </span>
+      <span class="app__body">
+        <span class="app__name">Trip Board</span>
+        <span class="app__desc">行き先を比較する</span>
+        <span class="app__detail">ベストシーズン・雨季・物価・治安・時差・行事・独自ルール</span>
+      </span>
+      <span class="app__chev" aria-hidden="true">›</span>
+    </a>
+
+    <a class="app app--flight" href="Flight-Board/index.html">
+      <span class="app__icon" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="30" fill="none"
+                  stroke="currentColor" stroke-width="4.5"/>
+          <text x="50" y="66" text-anchor="middle" font-size="42"
+                fill="currentColor" transform="rotate(-20 50 50)">✈</text>
+        </svg>
+      </span>
+      <span class="app__body">
+        <span class="app__name">Flight Board</span>
+        <span class="app__desc">飛び方を調べる</span>
+        <span class="app__detail">路線・空港・航空会社・機材・特典航空券・アライアンス</span>
+      </span>
+      <span class="app__chev" aria-hidden="true">›</span>
+    </a>
+
+  </nav>
+
+
+  <footer class="foot">
+    <p>ホーム画面にはこの1つだけを追加すれば、中の2つを行き来できます。</p>
+  </footer>
+
+</main>
+
+<script>
+/* 明暗の切り替え。中のアプリと同じ操作感に揃えています。 */
+(function () {
+  var btn = document.getElementById('themeBtn');
+  var key = 'travel-box-v1:theme';
+  var order = ['auto', 'light', 'dark'];
+  var label = { auto: '自動', light: '明', dark: '暗' };
+
+  function apply(pref) {
+    var dark = pref === 'dark' ||
+      (pref === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    btn.textContent = label[pref];
+  }
+
+  var pref = localStorage.getItem(key) || 'auto';
+  apply(pref);
+  btn.addEventListener('click', function () {
+    pref = order[(order.indexOf(pref) + 1) % order.length];
+    try { localStorage.setItem(key, pref); } catch (e) { /* 無視 */ }
+    apply(pref);
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+    apply(pref);
+  });
+})();
+
+/* 見出しの下に、いまの日本時刻と「来月のおすすめ」への入口を出します。
+   玄関に来た時点でひとつだけ判断の材料があると、次に押す場所が決まります。 */
+(function () {
+  var now = new Date();
+  var next = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  var m = next.getMonth() + 1;
+  var sub = document.getElementById('heroSub');
+  sub.innerHTML = '来月は' + m + '月です。' +
+    '<a href="Trip-Board/index.html">' + m + '月に行きやすい国を見る</a>';
+
+  /* Trip Board 側は選んだ月を保存して開くので、
+     ここで先に書き込んでおけば、開いた瞬間にその月で並びます。 */
+  try {
+    var key = 'trip-board-v1:state';
+    var s = JSON.parse(localStorage.getItem(key) || '{}');
+    var link = sub.querySelector('a');
+    link.addEventListener('click', function () {
+      s.month = m;
+      localStorage.setItem(key, JSON.stringify(s));
+    });
+  } catch (e) { /* 保存できなくてもリンクは働きます */ }
+})();
+</script>
+
+<script>
+/* 世話係の登録。これが無いと sw.js は働きません。
+   ★この行が入った版を上げた直後だけ、ホーム画面のアイコンを
+     いったん消して追加し直す必要があります（古いページには
+     登録が入っていないため）。以降は自動で新しくなります。 */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

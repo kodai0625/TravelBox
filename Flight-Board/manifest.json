@@ -1,0 +1,14 @@
+{
+  "name": "Flight Board",
+  "short_name": "Flight Board",
+  "description": "空港・航空会社・アライアンスを調べるアプリ",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f1620",
+  "theme_color": "#0f1620",
+  "lang": "ja",
+  "icons": [
+    { "src": "img/app-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/app-icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,178 @@
+/* ============================================================
+ *  Travel Box — 玄関のデザイン
+ *
+ *  上の帯はホーム画面のアイコンと同じ淡い藍にしています。
+ *  アイコンを押した先が同じ色で始まるので、つながって見えます。
+ *  それぞれのアプリの色（藍と金）はカードの中でだけ使います。
+ * ============================================================ */
+
+* { box-sizing: border-box; }
+
+:root {
+  --bg:        #f2efe9;
+  --surface:   #ffffff;
+  --surface-2: #f7f4ee;
+  --line:      #ddd7cb;
+  --text:      #1a1c22;
+  --text-sub:  #5f6470;
+  --text-weak: #6e737e;
+  /* 上の帯はアイコンの地と同じ色。ホーム画面のアイコンを押した先が
+     同じ色で始まるので、つながって見えます。 */
+  --hero-bg:   #d3e5f2;
+  --hero-fg:   #12303f;   /* 10.7 : 1 */
+  --hero-sub:  #3c5f75;   /*  5.3 : 1 */
+  --hero-line: rgba(30, 74, 104, .3);
+  --trip:      #2f5d7c;
+  --flight:    #8f7016;
+  --radius:    16px;
+  --shadow:    0 1px 3px rgba(30, 28, 20, .07);
+}
+
+:root[data-theme="dark"] {
+  --bg:        #0e1016;
+  --surface:   #171a22;
+  --surface-2: #1d2029;
+  --line:      #333846;
+  --text:      #e9eaee;
+  --text-sub:  #a2a7b3;
+  --text-weak: #8d929e;
+  --hero-bg:   #14303f;   /* 暗いときは同じ色味を深くした紺 */
+  --hero-fg:   #eaf3fa;
+  --hero-sub:  #9fbdd2;
+  --hero-line: rgba(200, 224, 240, .3);
+  --trip:      #7fb3d5;
+  --flight:    #c9a227;
+  --shadow:    none;
+}
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+               "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------- 見出し ---------- */
+.hero {
+  position: relative;
+  background: var(--hero-bg);
+  color: var(--hero-fg);
+  padding: calc(38px + env(safe-area-inset-top)) 22px 34px;
+}
+
+.hero__inner { max-width: 640px; margin: 0 auto; }
+
+.hero__kicker {
+  margin: 0;
+  font-size: 10.5px;
+  letter-spacing: .34em;
+  color: var(--hero-sub);
+}
+
+.hero__title {
+  margin: 6px 0 8px;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 600;
+  font-size: 27px;
+  letter-spacing: .1em;
+}
+
+.hero__sub {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--hero-sub);
+}
+.hero__sub a {
+  color: var(--hero-fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hero-line);
+  padding-bottom: 1px;
+  margin-left: 4px;
+}
+
+.theme-btn {
+  position: absolute;
+  top: calc(16px + env(safe-area-inset-top));
+  right: 18px;
+  padding: 5px 11px;
+  border: 1px solid var(--hero-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--hero-sub);
+  font: inherit;
+  font-size: 10.5px;
+  cursor: pointer;
+}
+.theme-btn:active { background: rgba(30, 74, 104, .12); }
+
+/* ---------- ページ ---------- */
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 26px 18px calc(48px + env(safe-area-inset-bottom));
+}
+
+/* ---------- アプリのカード ---------- */
+.apps { display: flex; flex-direction: column; gap: 14px; }
+
+.app {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+}
+.app:active { background: var(--surface-2); }
+
+.app__icon {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+.app__icon svg { width: 38px; height: 38px; display: block; }
+
+.app--trip .app__icon { color: var(--trip); }
+.app--flight .app__icon { color: var(--flight); }
+
+.app__body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+
+.app__name {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: .06em;
+  line-height: 1.4;
+}
+.app__desc { font-size: 13px; color: var(--text-sub); }
+.app__detail {
+  margin-top: 3px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-weak);
+}
+
+.app__chev { flex: 0 0 auto; font-size: 22px; color: var(--text-weak); }
+
+/* ---------- 足元 ---------- */
+.foot {
+  margin-top: 26px;
+  font-size: 11.5px;
+  color: var(--text-weak);
+  text-align: center;
+}
+.foot p { margin: 0; }

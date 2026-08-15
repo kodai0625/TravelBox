@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Trip Board のアイコン。藍の地に、経線と緯線だけの地球。
+       Flight Board（金の翼）と並べたとき、色と形の両方で見分けが付くようにしています。 -->
+  <rect width="512" height="512" rx="112" fill="#12161f"/>
+  <g fill="none" stroke="#7fb3d5" stroke-width="11" stroke-linecap="round">
+    <circle cx="256" cy="256" r="132"/>
+    <!-- 緯線 -->
+    <path d="M133 212 H379"/>
+    <path d="M133 300 H379"/>
+    <!-- 経線 -->
+    <ellipse cx="256" cy="256" rx="60" ry="132"/>
+    <path d="M256 124 V388"/>
+  </g>
+  <!-- 現在地の印。旅の起点を示す一点 -->
+  <circle cx="316" cy="196" r="19" fill="#e0a35c"/>
+  <circle cx="316" cy="196" r="19" fill="none" stroke="#12161f" stroke-width="7"/>
+</svg>

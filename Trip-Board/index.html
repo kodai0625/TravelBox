@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Trip Board">
+<meta name="theme-color" content="#12161f">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/app-icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/app-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/app-icon-512.png">
+<title>Trip Board</title>
+<script>
+/* 画面が描かれる前に明暗を決めます。
+   ここを後回しにすると、暗い設定の端末で一瞬だけ白い画面が出てしまいます。 */
+(function () {
+  try {
+    var pref = localStorage.getItem('trip-board-v1:theme') || 'auto';
+    var dark = pref === 'dark' ||
+               (pref === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  } catch (e) {
+    document.documentElement.dataset.theme = 'light';
+  }
+})();
+</script>
+<!-- ★ ?v= は「読み込み直させるための版番号」です。
+     css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
+     上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
+<link rel="stylesheet" href="css/style.css?v=20260815n">
+<!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
+<link rel="stylesheet" href="css/design.css?v=20260815n">
+</head>
+<body>
+
+<!-- ===== ヘッダー ===== -->
+<header class="app-header">
+  <div class="app-header__inner">
+    <a class="home-link" href="../" title="玄関に戻る">◀</a>
+    <button type="button" class="app-title" id="homeBtn" title="最初の画面に戻る">
+      <span class="app-title__mark" aria-hidden="true">◍</span>
+      <span class="app-title__text">
+        <span class="app-title__main">Trip Board</span>
+        <span class="app-title__sub">季節・物価・治安・時差で比較</span>
+      </span>
+    </button>
+    <div class="head-btns">
+      <button type="button" class="head-btn" id="themeBtn">自動</button>
+    </div>
+  </div>
+
+  <nav class="tabs" id="tabs" aria-label="表示切替">
+    <button type="button" class="tabs__btn is-active" data-tab="search">探す</button>
+    <button type="button" class="tabs__btn" data-tab="table">一覧表</button>
+    <button type="button" class="tabs__btn" data-tab="compare">比較</button>
+    <button type="button" class="tabs__btn" data-tab="clock">時差</button>
+  </nav>
+</header>
+
+<main class="page">
+
+  <section class="notice" id="loading">
+    <p class="notice__text">データを読み込んでいます…</p>
+  </section>
+  <section class="notice notice--error is-hidden" id="loadError">
+    <p class="notice__text" id="loadErrorText"></p>
+  </section>
+
+  <!-- ===== 探す ===== -->
+  <section class="view is-hidden" id="viewSearch">
+
+    <p class="filter-label">いつ行く</p>
+    <div class="chips chips--months" id="monthChips"></div>
+
+    <div class="search">
+      <input type="search" class="search__input" id="countrySearch"
+             placeholder="国名で探す（例：タイ、Thailand）"
+             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button type="button" class="search__clear is-hidden" id="countryClear" aria-label="消す">✕</button>
+    </div>
+
+    <div class="route-toolbar">
+      <button type="button" class="filter-btn" id="filterToggle" aria-expanded="false">
+        絞り込み<span class="filter-btn__count is-hidden" id="filterCount"></span>
+      </button>
+      <div class="sortwrap">
+        <label class="sortwrap__label" for="sortSel">並び</label>
+        <select class="sortsel" id="sortSel">
+          <option value="score">天気の良さ</option>
+          <option value="price">物価が安い順</option>
+          <option value="tz">時差が小さい順</option>
+          <option value="name">五十音順</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-panel is-hidden" id="filterPanel">
+      <p class="filter-panel__label">地域</p>
+      <div class="chips" id="regionChips"></div>
+
+      <p class="filter-panel__label">条件</p>
+      <div class="chips" id="condChips">
+        <button type="button" class="chip" data-cond="direct">日本から直行便</button>
+        <button type="button" class="chip" data-cond="cheap">物価が日本より安い</button>
+        <button type="button" class="chip" data-cond="safe">危険情報なし</button>
+        <button type="button" class="chip" data-cond="near">時差5時間以内</button>
+        <button type="button" class="chip" data-cond="nostorm">選んだ月が台風の季節でない</button>
+      </div>
+      <p class="filter-panel__note">
+        「危険情報なし」は外務省が特段の注意喚起をしていないという意味で、
+        安全のお墨付きではありません。<br>
+        台風の絞り込みは、国全体が対象の国だけを外します。
+        オーストラリア北部やアメリカ東海岸のように一部の地域だけの国は残り、
+        一覧に「一部で台風の季節」と出ます。
+      </p>
+    </div>
+
+    <p class="result-count" id="searchCount"></p>
+    <ul class="list" id="searchList"></ul>
+  </section>
+
+  <!-- ===== 一覧表 ===== -->
+  <section class="view is-hidden" id="viewTable">
+
+    <div class="chips" id="tableRegionChips"></div>
+
+    <div class="legend">
+      <span class="legend__label">天気</span>
+      <span class="legend__item"><i class="sw sw--4"></i>◎ 雨が少ない</span>
+      <span class="legend__item"><i class="sw sw--3"></i>○ わりと少ない</span>
+      <span class="legend__item"><i class="sw sw--2"></i>△ ときどき降る</span>
+      <span class="legend__item"><i class="sw sw--1"></i>✕ 雨が多い</span>
+    </div>
+    <div class="legend">
+      <span class="legend__label">そのほか</span>
+      <span class="legend__item"><i class="sw sw--hot"></i>著しく暑い</span>
+      <span class="legend__item"><i class="sw sw--cold"></i>著しく寒い</span>
+      <span class="legend__item"><i class="sw sw--storm"></i>台風・サイクロン</span>
+    </div>
+
+    <div class="matrixwrap">
+      <table class="matrix" id="matrix"></table>
+    </div>
+  </section>
+
+  <!-- ===== 比較 ===== -->
+  <section class="view is-hidden" id="viewCompare">
+    <div class="search">
+      <input type="search" class="search__input" id="compareSearch"
+             placeholder="国か都市を足す（例：タイ、ホーチミン）"
+             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button type="button" class="search__clear is-hidden" id="compareClear" aria-label="消す">✕</button>
+    </div>
+    <ul class="suggest is-hidden" id="compareSuggest"></ul>
+
+    <div class="picked" id="picked"></div>
+    <p class="compare-note is-hidden" id="compareNote"></p>
+    <p class="filter-label" id="compareMonthLabel">比較する月</p>
+    <div class="chips chips--months" id="compareMonthChips"></div>
+
+    <div class="comparewrap">
+      <table class="compare" id="compareTable"></table>
+    </div>
+  </section>
+
+  <!-- ===== 時差 ===== -->
+  <section class="view is-hidden" id="viewClock">
+    <div class="search">
+      <input type="search" class="search__input" id="clockSearch"
+             placeholder="国名・都市名で探す"
+             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button type="button" class="search__clear is-hidden" id="clockClear" aria-label="消す">✕</button>
+    </div>
+    <div class="now" id="nowJapan"></div>
+    <ul class="list" id="clockList"></ul>
+  </section>
+
+</main>
+
+<!-- ===== 詳細パネル ===== -->
+<div class="sheet-backdrop is-hidden" id="sheetBackdrop"></div>
+<aside class="sheet is-hidden" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet__grip"></div>
+  <div class="sheet__head">
+    <h2 class="sheet__title" id="sheetTitle"></h2>
+    <button type="button" class="sheet__close" id="sheetClose" aria-label="閉じる">✕</button>
+  </div>
+  <div class="sheet__body" id="sheetBody"></div>
+</aside>
+
+<script src="js/config.js?v=20260815n"></script>
+<script src="js/data.js?v=20260815n"></script>
+<script src="js/chart.js?v=20260815n"></script>
+<script src="js/app.js?v=20260815n"></script>
+</body>
+</html>

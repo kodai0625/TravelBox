@@ -1,0 +1,1196 @@
+/* ============================================================
+ *  Flight Board — スタイル
+ *  スマホ優先。ライト／ダークどちらでも見えるようにしています。
+ * ============================================================ */
+
+:root {
+  --bg:        #f4f5f7;
+  --surface:   #ffffff;
+  --surface-2: #fafbfc;
+  --line:      #e2e5ea;
+  --line-2:    #eef0f3;
+  --text:      #1c1f26;
+  --text-sub:  #6b7280;
+  --text-weak: #9aa1ac;
+  --accent:    #3d8bfd; /* config.js の APP.accent で上書きされます */
+  --header-bg: #0f1620;
+  --header-fg: #ffffff;
+  --radius:    12px;
+  --shadow:    0 1px 2px rgba(18, 22, 30, .06), 0 1px 8px rgba(18, 22, 30, .04);
+}
+
+/* ダーク配色。
+   端末の設定に追従しつつ、アプリ内でも切り替えられるようにするため、
+   メディアクエリではなく data-theme を見ています。
+   どちらを使うかは js/app.js が起動時に決めて <html> に付けます。 */
+/* 暗いとき。端末の設定とアプリ内の切替の両方に効くよう、
+   data-theme を見る形にしています（JS が起動時に決めます） */
+:root[data-theme="dark"] {
+  --bg:        #14161a;
+  --surface:   #1e2126;
+  --surface-2: #23272d;
+  --line:      #33383f;
+  --line-2:    #2a2e34;
+  --text:      #e7e9ec;
+  --text-sub:  #a3aab5;
+  --text-weak: #7b828d;
+  --header-bg: #0b0f15;
+  --shadow:    none;
+}
+
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+/* 詳細パネルを開いているあいだ、後ろのページが動かないようにする */
+body.is-locked { overflow: hidden; }
+
+.is-hidden { display: none !important; }
+
+/* ===== ヘッダー ===== */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--header-bg);
+  color: var(--header-fg);
+  padding-top: env(safe-area-inset-top);
+}
+.app-header__inner {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px 8px;
+}
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.app-title__mark {
+  display: grid;
+  place-items: center;
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: var(--accent);
+  font-size: 18px;
+  /* 機首を少し上げると離陸中に見えて、アプリの主題が一目で伝わる */
+  transform: rotate(-20deg);
+}
+.app-title__text { display: flex; flex-direction: column; line-height: 1.25; }
+.app-title__main { font-size: 17px; font-weight: 700; letter-spacing: .02em; }
+.app-title__sub  { font-size: 11px; opacity: .65; }
+
+/* ===== タブ ===== */
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 0 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.tabs__btn {
+  /* 5つのタブが iPhone の横幅に収まるようにする。
+     等分（flex: 1 1 0）だと「アライアンス」だけ文字が溢れるので、
+     文字数に応じた幅を基準にして、余った幅を分け合わせる */
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 4px;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: rgba(255, 255, 255, .6);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tabs__btn.is-active {
+  color: #fff;
+  font-weight: 700;
+  border-bottom-color: var(--accent);
+}
+
+/* ===== ページ ===== */
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 12px 12px calc(32px + env(safe-area-inset-bottom));
+}
+
+.notice {
+  padding: 28px 16px;
+  text-align: center;
+  color: var(--text-sub);
+}
+.notice--error { color: #d64545; }
+.notice__text { margin: 0; white-space: pre-wrap; }
+
+/* ===== 検索 ===== */
+.search { position: relative; margin-bottom: 10px; }
+.search__input {
+  width: 100%;
+  padding: 11px 38px 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  /* iOS で入力欄をタップしたときの自動ズームを防ぐには16px以上が必要 */
+  font-size: 16px;
+  font-family: inherit;
+  -webkit-appearance: none;
+}
+.search__input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.search__clear {
+  position: absolute;
+  top: 50%; right: 6px;
+  transform: translateY(-50%);
+  width: 28px; height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--line-2);
+  color: var(--text-sub);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ===== 絞り込みチップ ===== */
+.chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: 0 0 auto;
+  padding: 6px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.result-count {
+  margin: 0 2px 6px;
+  color: var(--text-weak);
+  font-size: 12px;
+}
+.result-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.result-toggle {
+  flex: none;
+  margin: 0 0 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ===== 一覧 ===== */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.list__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line-2);
+  cursor: pointer;
+}
+.list__item:last-child { border-bottom: 0; }
+.list__item:active { background: var(--surface-2); }
+
+/* IATAコードは等幅にすると縦に揃って一覧が読みやすい */
+.code {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  padding: 4px 0;
+  border-radius: 7px;
+  background: var(--line-2);
+  color: var(--text-sub);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.list__main { flex: 1 1 auto; min-width: 0; }
+.list__name {
+  display: block;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.list__sub {
+  display: block;
+  color: var(--text-weak);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.list__arrow { color: var(--text-weak); font-size: 18px; }
+
+.list-more {
+  margin: 10px 2px 0;
+  color: var(--text-weak);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* ===== 路線の入力 ===== */
+.picker { position: relative; margin-bottom: 4px; }
+.picker__label {
+  display: block;
+  margin: 0 2px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+.picker__hint { font-weight: 400; color: var(--text-weak); }
+
+.picker__swap-row { display: flex; justify-content: center; margin: 2px 0 6px; }
+.swap-btn {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* 候補。入力欄のすぐ下に重ねて出す */
+.suggest {
+  position: absolute;
+  z-index: 10;
+  left: 0; right: 0;
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+  max-height: 296px;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(10, 14, 20, .16);
+}
+.suggest__item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line-2);
+  cursor: pointer;
+}
+.suggest__item:last-child { border-bottom: 0; }
+.suggest__item:active { background: var(--surface-2); }
+.suggest__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.suggest__sub { flex: 0 0 auto; font-size: 11px; color: var(--text-weak); }
+
+/* ===== 一覧／地図の切替と絞り込み ===== */
+.route-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 8px;
+}
+.viewtoggle {
+  display: flex;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+.viewtoggle__btn {
+  padding: 5px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.viewtoggle__btn.is-active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.filter-btn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.filter-btn__count {
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.filter-panel {
+  margin-bottom: 10px;
+  padding: 12px 12px 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.filter-panel__label {
+  margin: 0 2px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-weak);
+}
+.filter-panel__note {
+  margin: 4px 2px 10px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-weak);
+}
+
+/* チップの中に出す件数や補足 */
+.chip__hint {
+  margin-left: 5px;
+  font-size: 10px;
+  opacity: .7;
+}
+
+/* ===== エリアごとのまとまり ===== */
+/* 就航先が多い空港だと縦にとても長くなるので、エリアごとに畳めるようにしています */
+.destgroup { margin-bottom: 8px; }
+.destgroup[open] { margin-bottom: 16px; }
+.destgroup__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+  cursor: pointer;
+  list-style: none;          /* Firefox の三角を消す */
+}
+.destgroup__head::-webkit-details-marker { display: none; }
+.destgroup[open] > .destgroup__head { margin-bottom: 8px; }
+/* 開閉の向きを示す山形。文字より先に目に入らないよう細く小さく */
+.destgroup__head::after {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin-left: auto;
+  border-right: 1.5px solid var(--text-weak);
+  border-bottom: 1.5px solid var(--text-weak);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform .15s ease;
+}
+.destgroup[open] > .destgroup__head::after {
+  transform: rotate(225deg) translate(-2px, -2px);
+}
+.destgroup__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+.destgroup__n {
+  font-size: 11px;
+  color: var(--text-weak);
+}
+.dist { color: var(--text-weak); }
+
+/* ===== 地図 ===== */
+:root {
+  --map-sea:    #dce6f2;
+  --map-land:   #f7f8fa;
+  --map-coast:  #b9c6d4;
+  --map-dot:    rgba(110, 128, 148, .45);
+  --map-origin: #e8590c;
+}
+/* 暗いとき。端末の設定とアプリ内の切替の両方に効くよう、
+   data-theme を見る形にしています（JS が起動時に決めます） */
+:root[data-theme="dark"] {
+  --map-sea:    #10161f;
+  --map-land:   #222932;
+  --map-coast:  #39434f;
+  --map-dot:    rgba(160, 175, 195, .38);
+  --map-origin: #ff922b;
+}
+
+
+.mapwrap {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--map-sea);
+}
+#routeMap {
+  display: block;
+  width: 100%;
+  /* 画面の高さに応じて伸ばす。スマホでも地図として意味のある高さを確保する */
+  height: min(62vh, 520px);
+  touch-action: none;   /* ブラウザ側のスクロールに取られないようにする */
+  cursor: grab;
+}
+#routeMap:active { cursor: grabbing; }
+
+.map-legend {
+  position: absolute;
+  left: 8px; bottom: 8px; right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  font-size: 10px;
+  color: var(--text-weak);
+  pointer-events: none;
+}
+.map-legend__item { display: flex; align-items: center; gap: 4px; }
+.map-legend__sep { flex: 1 1 auto; }
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot--origin { background: var(--map-origin); }
+.dot--dest { background: var(--accent); }
+
+/* 就航先をタップしたときに地図の下から出る情報パネル */
+.map-info {
+  position: absolute;
+  left: 8px; right: 8px; bottom: 8px;
+  max-height: 58%;
+  overflow-y: auto;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 -2px 16px rgba(10, 14, 20, .22);
+}
+.map-info__close {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 26px; height: 26px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--line-2);
+  color: var(--text-sub);
+  font-size: 12px;
+  cursor: pointer;
+}
+.map-info__route {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 0 30px 4px 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.map-info__code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--accent);
+}
+.map-info__name { font-weight: 600; }
+.map-info__meta {
+  margin: 0 0 8px;
+  font-size: 11px;
+  color: var(--text-weak);
+}
+.map-info__airlines {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+}
+.map-info__airline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--line-2);
+  font-size: 13px;
+}
+.map-info__airline:last-child { border-bottom: 0; }
+.map-info__al-code {
+  flex: 0 0 auto;
+  width: 2.6em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+.map-info__al-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 情報パネルが出ているときは凡例を隠す（重なって読めなくなるため） */
+.map-info:not(.is-hidden) ~ .map-legend,
+.mapwrap:has(.map-info:not(.is-hidden)) .map-legend { display: none; }
+
+.map-fit {
+  position: absolute;
+  top: 8px; right: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ===== 路線の結果 ===== */
+.hint {
+  margin: 14px 2px;
+  color: var(--text-weak);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.route-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 8px;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+}
+.route-head__ap { flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.route-head__arrow { flex: 0 0 auto; color: var(--accent); }
+
+.verdict {
+  margin-bottom: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+.verdict--yes {
+  border-color: var(--accent);
+  background: rgba(61, 139, 253, .08);
+}
+.verdict--no { background: var(--surface); }
+.verdict__title { margin: 0; font-size: 15px; font-weight: 700; }
+.verdict--yes .verdict__title { color: var(--accent); }
+.verdict__note {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--text-weak);
+  line-height: 1.7;
+}
+
+/* 就航先の行に出す航空会社のチップ */
+.chips-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+.airline-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  font-size: 11px;
+  color: var(--text-sub);
+}
+.airline-chip--more { color: var(--text-weak); border-style: dashed; }
+
+.tag {
+  /* 一覧の行に置いたとき、機種名が長くても札が2行に折れないようにする */
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 0 5px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--line-2);
+  color: var(--text-weak);
+}
+.tag--seasonal  { background: rgba(230, 160, 30, .18); color: #b57708; }
+.tag--charter   { background: rgba(140, 110, 200, .18); color: #6f52b8; }
+.tag--future    { background: rgba(47, 158, 68, .18); color: #2f9e44; }
+.tag--ending,
+.tag--suspended { background: rgba(214, 69, 69, .16); color: #d64545; }
+
+/* 暗いとき。端末の設定とアプリ内の切替の両方に効くよう、
+   data-theme を見る形にしています（JS が起動時に決めます） */
+:root[data-theme="dark"] .tag--seasonal { color: #e0a83a; }:root[data-theme="dark"] .tag--charter { color: #a892e0; }:root[data-theme="dark"] .tag--future { color: #64c97b; }:root[data-theme="dark"] .tag--ending,
+:root[data-theme="dark"] .tag--suspended { color: #e88; }
+
+
+/* 就航先の行は2段になるので、縦の中央そろえをやめる */
+.list__item--route { align-items: flex-start; }
+.list__item--route .code { margin-top: 2px; }
+.list__item.is-plain { cursor: default; }
+
+/* ===== 空港の詳細に出す就航先の要約 ===== */
+.routes-block {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+.routes-block__title {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+.mini-list { list-style: none; margin: 0; padding: 0; }
+.mini-list__item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--line-2);
+  cursor: pointer;
+}
+.mini-list__item:last-child { border-bottom: 0; }
+.mini-list__code {
+  flex: 0 0 auto;
+  width: 2.8em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.mini-list__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mini-list__n { flex: 0 0 auto; font-size: 11px; color: var(--text-weak); }
+.routes-block__more {
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: var(--text-weak);
+}
+
+/* ===== 機材 ===== */
+.code--ac { letter-spacing: .02em; }
+
+/* 暗いとき。端末の設定とアプリ内の切替の両方に効くよう、
+   data-theme を見る形にしています（JS が起動時に決めます） */
+
+
+/* ===== 座席仕様 ===== */
+.cabin-list { list-style: none; margin: 0; padding: 0; }
+.cabin-item {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line-2);
+  cursor: pointer;
+}
+.cabin-item:last-child { border-bottom: 0; }
+.cabin-item__head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.cabin-item__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cabin-item__n { flex: 0 0 auto; font-size: 11px; color: var(--text-weak); }
+.cabin-item__seats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+/* クラスごとに色を分ける。上位クラスほど濃くして、席の並びが直感的に分かるように */
+.cab {
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.cab--F { background: rgba(190, 150, 40, .22); color: #8a6a10; }
+.cab--J { background: rgba(61, 139, 253, .18); color: var(--accent); }
+.cab--W { background: rgba(140, 110, 200, .18); color: #6f52b8; }
+.cab--Y { background: var(--line-2); color: var(--text-sub); }
+
+/* 暗いとき。端末の設定とアプリ内の切替の両方に効くよう、
+   data-theme を見る形にしています（JS が起動時に決めます） */
+:root[data-theme="dark"] .cab--F { color: #d9b451; }:root[data-theme="dark"] .cab--W { color: #a892e0; }
+
+
+.ac-note {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-2);
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* データの但し書き。読み飛ばせるよう小さく、でも読める濃さで */
+.fineprint {
+  margin: 14px 0 0;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-weak);
+}
+
+/* ===== アライアンスのバッジ ===== */
+.badge {
+  flex: 0 0 auto;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--badge, var(--accent));
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge--none {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text-weak);
+}
+/* 資格停止中。色は残しつつ薄くして、加盟しているが今は使えないことを表す */
+.badge--suspended { opacity: .4; }
+.member.is-suspended { opacity: .55; }
+
+/* ===== 座席の当たり外れの印 ===== */
+.mark {
+  margin-left: 4px;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: .02em;
+  vertical-align: 1px;
+}
+/* 個室型は金、フルフラット直通通路は青、フラットにならないものは赤 */
+.mark--poor      { background: #d64545; color: #fff; }
+
+/* 暗いとき。端末の設定とアプリ内の切替の両方に効くよう、
+   data-theme を見る形にしています（JS が起動時に決めます） */
+
+
+.cabin-item__type {
+  display: block;
+  margin-top: 3px;
+  font-size: 10px;
+  color: var(--text-weak);
+}
+
+/* ===== 特典航空券 ===== */
+.award {
+  margin-bottom: 12px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--al, var(--accent));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.award__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.award__title { display: flex; flex-direction: column; min-width: 0; }
+.award__name { font-size: 15px; font-weight: 700; }
+.award__alliance { font-size: 11px; color: var(--text-weak); }
+.award__note {
+  margin: 0 0 12px;
+  font-size: 12px;
+  line-height: 1.75;
+  color: var(--text-sub);
+}
+.award__links { display: flex; flex-direction: column; gap: 6px; }
+
+/* リンクは外部サイトに飛ぶので、押せることがはっきり分かる見た目にする */
+.award__link {
+  display: flex;
+  flex-direction: column;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface-2);
+  text-decoration: none;
+}
+.award__link:active { border-color: var(--al, var(--accent)); }
+.award__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.award__label::after { content: ' ↗'; font-size: 11px; opacity: .7; }
+.award__sub { font-size: 11px; color: var(--text-weak); margin-top: 2px; }
+
+/* 主なリンク1本だけ出して、説明と残りのリンクは畳んでおく */
+.award__fold { margin-top: 8px; }
+.award__foldhead {
+  padding: 6px 2px;
+  color: var(--text-weak);
+  font-size: 12px;
+  cursor: pointer;
+  list-style: none;
+}
+.award__foldhead::-webkit-details-marker { display: none; }
+.award__foldhead::after { content: ' ▾'; }
+.award__fold[open] > .award__foldhead::after { content: ' ▴'; }
+.award__foldbody { padding-top: 6px; }
+.award__foldbody .award__note { margin-bottom: 8px; }
+
+.award__more {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ===== アライアンス画面 ===== */
+.alliance-wrap { display: flex; flex-direction: column; gap: 14px; }
+.alliance {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--al, var(--accent));
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+.alliance__head { margin-bottom: 12px; }
+.alliance__name {
+  margin: 0;
+  font-size: 17px;
+  color: var(--al, var(--text));
+}
+.alliance--none .alliance__name { color: var(--text); }
+.alliance__meta {
+  margin: 2px 0 0;
+  color: var(--text-weak);
+  font-size: 12px;
+}
+.alliance__note {
+  margin: 8px 0 0;
+  color: var(--text-sub);
+  font-size: 13px;
+}
+
+/* 加盟社は国名の五十音順に並べています。スマホでは1列にしないと
+   社名が「ユナイテ…」のように潰れてしまうので、幅に応じて列を増やします。 */
+.member-grid {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 6px;
+}
+.member {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: var(--surface-2);
+  cursor: pointer;
+  min-width: 0;
+}
+.member:active { border-color: var(--al); }
+.member__code {
+  flex: 0 0 auto;
+  width: 2.2em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--al, var(--accent));
+}
+.member__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 国名は折り返さない。折り返すとカードの高さがばらついて一覧が読みにくくなる */
+.member__country {
+  flex: 0 0 auto;
+  font-size: 11px;
+  color: var(--text-weak);
+  white-space: nowrap;
+}
+
+/* ===== リンクボタン ===== */
+.links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.link-btn {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.link-btn--wide {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* ===== 詳細パネル ===== */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(10, 14, 20, .45);
+}
+.sheet {
+  position: fixed;
+  z-index: 31;
+  left: 0; right: 0; bottom: 0;
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: 18px 18px 0 0;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -6px 30px rgba(10, 14, 20, .2);
+}
+.sheet__grip {
+  width: 36px; height: 4px;
+  margin: 8px auto 0;
+  border-radius: 2px;
+  background: var(--line);
+}
+.sheet__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line-2);
+}
+.sheet__title { flex: 1 1 auto; margin: 0; font-size: 16px; }
+.sheet__close {
+  flex: 0 0 auto;
+  width: 30px; height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--line-2);
+  color: var(--text-sub);
+  font-size: 13px;
+  cursor: pointer;
+}
+.sheet__body {
+  padding: 14px 16px 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 詳細の項目名／値。狭い画面では縦に積む */
+.spec {
+  display: grid;
+  grid-template-columns: 7.5em 1fr;
+  gap: 6px 12px;
+  margin: 0;
+}
+.spec dt { color: var(--text-weak); font-size: 12px; }
+.spec dd { margin: 0; font-size: 14px; word-break: break-word; }
+
+/* まだ作っていない部分の予告 */
+.todo {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+.todo__title {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+.todo__text {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-weak);
+}
+
+/* 画面が広いときは詳細を中央のカードにする（Macで見たとき用） */
+@media (min-width: 640px) {
+  .sheet {
+    left: 50%; bottom: auto; right: auto;
+    top: 50%;
+    width: min(560px, 92vw);
+    transform: translate(-50%, -50%);
+    border-radius: 16px;
+  }
+  .sheet__grip { display: none; }
+}
+
+/* ===== 機材タブの掘り下げ ===== */
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* 「すべての機材」への入口は、航空会社の行と区別が付くようにする */
+.list__item--all { background: var(--surface-2); }
+.list__item--all .code { background: transparent; font-size: 16px; }
+
+/* ===== お気に入りの星 ===== */
+.fav {
+  flex: 0 0 auto;
+  width: 34px; height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-weak);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  /* 一覧の行の中にあるので、指で押しやすい大きさを確保する */
+  display: grid;
+  place-items: center;
+}
+.fav.is-on { color: #e8a317; }
+.fav:active { background: var(--line-2); }
+.fav--big { width: 40px; height: 40px; font-size: 22px; }
+
+/* 座席仕様の行に置く星は、行の高さを増やさないよう小さめにする */
+.cabin-item__head .fav { width: 28px; height: 28px; font-size: 15px; margin: -4px -4px -4px 2px; }
+
+
+/* ===== お気に入りのまとまり ===== */
+.favgroup { margin-bottom: 14px; }
+.favgroup__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 2px 6px;
+}
+.favgroup__title { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+.favgroup__airline { font-size: 14px; font-weight: 700; }
+.favgroup__ac { font-size: 11px; color: var(--text-weak); }
+/* まとまりの中は同じ機材の仕様違いなので、機材名は繰り返さない */
+.favgroup .list__item--route { align-items: center; }

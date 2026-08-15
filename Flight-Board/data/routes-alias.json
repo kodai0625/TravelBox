@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "note": "Wikipedia の就航先リンクと、こちらの空港マスタを結び付けられなかったときの受け皿。ここに書けば次回の生成から解決できます。",
+    "format": "\"Wikipediaの記事名\": \"IATAコード\"",
+    "howto": "tools/build_routes.py を実行すると tools/unresolved.txt に「解決できなかった記事名」が出てくる回数の多い順に並びます。上のほうから拾ってここに足すと効果が大きいです。"
+  },
+  "aliases": {
+    "Simón Bolívar International Airport (Venezuela)": "CCS",
+    "Hazrat Shahjalal International Airport": "DAC",
+    "Shahjalal International Airport": "DAC",
+    "Lajes Airport": "TER",
+    "MidAmerica St. Louis Airport": "BLV",
+    "Presidente Carlos Ibáñez del Campo International Airport": "PUQ",
+    "Brive–Souillac Airport": "BVE"
+  }
+}

@@ -1,0 +1,1761 @@
+{
+ "meta": {
+  "version": "2026-08-15",
+  "count": 80,
+  "cities": 134,
+  "direct_source": "Flight-Board data/routes.json（日本発の定期便・季節便）",
+  "note": "tools/build_countries.py で再生成できます。"
+ },
+ "regions": [
+  "東アジア",
+  "東南アジア",
+  "南アジア",
+  "中央アジア",
+  "中東",
+  "ヨーロッパ",
+  "北米",
+  "中南米",
+  "アフリカ",
+  "オセアニア"
+ ],
+ "countries": [
+  {
+   "code": "KR",
+   "ja": "韓国",
+   "en": "South Korea",
+   "region": "東アジア",
+   "flag": "🇰🇷",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ソウル",
+     "en": "Seoul",
+     "lat": 37.5665,
+     "lon": 126.978,
+     "tz": "Asia/Seoul"
+    },
+    {
+     "ja": "釜山",
+     "en": "Busan",
+     "lat": 35.1796,
+     "lon": 129.0756,
+     "tz": "Asia/Seoul"
+    }
+   ]
+  },
+  {
+   "code": "TW",
+   "ja": "台湾",
+   "en": "Taiwan",
+   "region": "東アジア",
+   "flag": "🇹🇼",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "台北",
+     "en": "Taipei",
+     "lat": 25.033,
+     "lon": 121.5654,
+     "tz": "Asia/Taipei"
+    },
+    {
+     "ja": "高雄",
+     "en": "Kaohsiung",
+     "lat": 22.6273,
+     "lon": 120.3014,
+     "tz": "Asia/Taipei"
+    }
+   ]
+  },
+  {
+   "code": "CN",
+   "ja": "中国",
+   "en": "China",
+   "region": "東アジア",
+   "flag": "🇨🇳",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "北京",
+     "en": "Beijing",
+     "lat": 39.9042,
+     "lon": 116.4074,
+     "tz": "Asia/Shanghai"
+    },
+    {
+     "ja": "上海",
+     "en": "Shanghai",
+     "lat": 31.2304,
+     "lon": 121.4737,
+     "tz": "Asia/Shanghai"
+    },
+    {
+     "ja": "広州",
+     "en": "Guangzhou",
+     "lat": 23.1291,
+     "lon": 113.2644,
+     "tz": "Asia/Shanghai"
+    },
+    {
+     "ja": "西安",
+     "en": "Xi'an",
+     "lat": 34.3416,
+     "lon": 108.9398,
+     "tz": "Asia/Shanghai"
+    }
+   ]
+  },
+  {
+   "code": "HK",
+   "ja": "香港",
+   "en": "Hong Kong",
+   "region": "東アジア",
+   "flag": "🇭🇰",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "香港",
+     "en": "Hong Kong",
+     "lat": 22.3193,
+     "lon": 114.1694,
+     "tz": "Asia/Hong_Kong"
+    }
+   ]
+  },
+  {
+   "code": "MO",
+   "ja": "マカオ",
+   "en": "Macao",
+   "region": "東アジア",
+   "flag": "🇲🇴",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "マカオ",
+     "en": "Macao",
+     "lat": 22.1987,
+     "lon": 113.5439,
+     "tz": "Asia/Macau"
+    }
+   ]
+  },
+  {
+   "code": "MN",
+   "ja": "モンゴル",
+   "en": "Mongolia",
+   "region": "東アジア",
+   "flag": "🇲🇳",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ウランバートル",
+     "en": "Ulaanbaatar",
+     "lat": 47.8864,
+     "lon": 106.9057,
+     "tz": "Asia/Ulaanbaatar"
+    }
+   ]
+  },
+  {
+   "code": "TH",
+   "ja": "タイ",
+   "en": "Thailand",
+   "region": "東南アジア",
+   "flag": "🇹🇭",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "バンコク",
+     "en": "Bangkok",
+     "lat": 13.7563,
+     "lon": 100.5018,
+     "tz": "Asia/Bangkok"
+    },
+    {
+     "ja": "チェンマイ",
+     "en": "Chiang Mai",
+     "lat": 18.7883,
+     "lon": 98.9853,
+     "tz": "Asia/Bangkok"
+    },
+    {
+     "ja": "プーケット",
+     "en": "Phuket",
+     "lat": 7.8804,
+     "lon": 98.3923,
+     "tz": "Asia/Bangkok"
+    }
+   ]
+  },
+  {
+   "code": "VN",
+   "ja": "ベトナム",
+   "en": "Vietnam",
+   "region": "東南アジア",
+   "flag": "🇻🇳",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ハノイ",
+     "en": "Hanoi",
+     "lat": 21.0278,
+     "lon": 105.8342,
+     "tz": "Asia/Ho_Chi_Minh"
+    },
+    {
+     "ja": "ホーチミン",
+     "en": "Ho Chi Minh City",
+     "lat": 10.8231,
+     "lon": 106.6297,
+     "tz": "Asia/Ho_Chi_Minh"
+    },
+    {
+     "ja": "ダナン",
+     "en": "Da Nang",
+     "lat": 16.0544,
+     "lon": 108.2022,
+     "tz": "Asia/Ho_Chi_Minh"
+    }
+   ]
+  },
+  {
+   "code": "SG",
+   "ja": "シンガポール",
+   "en": "Singapore",
+   "region": "東南アジア",
+   "flag": "🇸🇬",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "シンガポール",
+     "en": "Singapore",
+     "lat": 1.3521,
+     "lon": 103.8198,
+     "tz": "Asia/Singapore"
+    }
+   ]
+  },
+  {
+   "code": "MY",
+   "ja": "マレーシア",
+   "en": "Malaysia",
+   "region": "東南アジア",
+   "flag": "🇲🇾",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "クアラルンプール",
+     "en": "Kuala Lumpur",
+     "lat": 3.139,
+     "lon": 101.6869,
+     "tz": "Asia/Kuala_Lumpur"
+    },
+    {
+     "ja": "コタキナバル",
+     "en": "Kota Kinabalu",
+     "lat": 5.9804,
+     "lon": 116.0735,
+     "tz": "Asia/Kuching"
+    }
+   ]
+  },
+  {
+   "code": "ID",
+   "ja": "インドネシア",
+   "en": "Indonesia",
+   "region": "東南アジア",
+   "flag": "🇮🇩",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ジャカルタ",
+     "en": "Jakarta",
+     "lat": -6.2088,
+     "lon": 106.8456,
+     "tz": "Asia/Jakarta"
+    },
+    {
+     "ja": "バリ島（デンパサール）",
+     "en": "Denpasar",
+     "lat": -8.65,
+     "lon": 115.2167,
+     "tz": "Asia/Makassar"
+    }
+   ]
+  },
+  {
+   "code": "PH",
+   "ja": "フィリピン",
+   "en": "Philippines",
+   "region": "東南アジア",
+   "flag": "🇵🇭",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "マニラ",
+     "en": "Manila",
+     "lat": 14.5995,
+     "lon": 120.9842,
+     "tz": "Asia/Manila"
+    },
+    {
+     "ja": "セブ",
+     "en": "Cebu",
+     "lat": 10.3157,
+     "lon": 123.8854,
+     "tz": "Asia/Manila"
+    }
+   ]
+  },
+  {
+   "code": "KH",
+   "ja": "カンボジア",
+   "en": "Cambodia",
+   "region": "東南アジア",
+   "flag": "🇰🇭",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "シェムリアップ",
+     "en": "Siem Reap",
+     "lat": 13.3671,
+     "lon": 103.8448,
+     "tz": "Asia/Phnom_Penh"
+    },
+    {
+     "ja": "プノンペン",
+     "en": "Phnom Penh",
+     "lat": 11.5564,
+     "lon": 104.9282,
+     "tz": "Asia/Phnom_Penh"
+    }
+   ]
+  },
+  {
+   "code": "BN",
+   "ja": "ブルネイ",
+   "en": "Brunei",
+   "region": "東南アジア",
+   "flag": "🇧🇳",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "バンダルスリブガワン",
+     "en": "Bandar Seri Begawan",
+     "lat": 4.9031,
+     "lon": 114.9398,
+     "tz": "Asia/Brunei"
+    }
+   ]
+  },
+  {
+   "code": "LA",
+   "ja": "ラオス",
+   "en": "Laos",
+   "region": "東南アジア",
+   "flag": "🇱🇦",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ルアンパバーン",
+     "en": "Luang Prabang",
+     "lat": 19.8834,
+     "lon": 102.1347,
+     "tz": "Asia/Vientiane"
+    },
+    {
+     "ja": "ビエンチャン",
+     "en": "Vientiane",
+     "lat": 17.9757,
+     "lon": 102.6331,
+     "tz": "Asia/Vientiane"
+    }
+   ]
+  },
+  {
+   "code": "MM",
+   "ja": "ミャンマー",
+   "en": "Myanmar",
+   "region": "東南アジア",
+   "flag": "🇲🇲",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ヤンゴン",
+     "en": "Yangon",
+     "lat": 16.8661,
+     "lon": 96.1951,
+     "tz": "Asia/Yangon"
+    }
+   ]
+  },
+  {
+   "code": "IN",
+   "ja": "インド",
+   "en": "India",
+   "region": "南アジア",
+   "flag": "🇮🇳",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "デリー",
+     "en": "Delhi",
+     "lat": 28.6139,
+     "lon": 77.209,
+     "tz": "Asia/Kolkata"
+    },
+    {
+     "ja": "ムンバイ",
+     "en": "Mumbai",
+     "lat": 19.076,
+     "lon": 72.8777,
+     "tz": "Asia/Kolkata"
+    },
+    {
+     "ja": "ベンガルール",
+     "en": "Bengaluru",
+     "lat": 12.9716,
+     "lon": 77.5946,
+     "tz": "Asia/Kolkata"
+    }
+   ]
+  },
+  {
+   "code": "NP",
+   "ja": "ネパール",
+   "en": "Nepal",
+   "region": "南アジア",
+   "flag": "🇳🇵",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "カトマンズ",
+     "en": "Kathmandu",
+     "lat": 27.7172,
+     "lon": 85.324,
+     "tz": "Asia/Kathmandu"
+    }
+   ]
+  },
+  {
+   "code": "BD",
+   "ja": "バングラデシュ",
+   "en": "Bangladesh",
+   "region": "南アジア",
+   "flag": "🇧🇩",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ダッカ",
+     "en": "Dhaka",
+     "lat": 23.8103,
+     "lon": 90.4125,
+     "tz": "Asia/Dhaka"
+    }
+   ]
+  },
+  {
+   "code": "LK",
+   "ja": "スリランカ",
+   "en": "Sri Lanka",
+   "region": "南アジア",
+   "flag": "🇱🇰",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "コロンボ",
+     "en": "Colombo",
+     "lat": 6.9271,
+     "lon": 79.8612,
+     "tz": "Asia/Colombo"
+    }
+   ]
+  },
+  {
+   "code": "MV",
+   "ja": "モルディブ",
+   "en": "Maldives",
+   "region": "南アジア",
+   "flag": "🇲🇻",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "マレ",
+     "en": "Malé",
+     "lat": 4.1755,
+     "lon": 73.5093,
+     "tz": "Indian/Maldives"
+    }
+   ]
+  },
+  {
+   "code": "UZ",
+   "ja": "ウズベキスタン",
+   "en": "Uzbekistan",
+   "region": "中央アジア",
+   "flag": "🇺🇿",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "サマルカンド",
+     "en": "Samarkand",
+     "lat": 39.627,
+     "lon": 66.975,
+     "tz": "Asia/Samarkand"
+    },
+    {
+     "ja": "タシケント",
+     "en": "Tashkent",
+     "lat": 41.2995,
+     "lon": 69.2401,
+     "tz": "Asia/Tashkent"
+    }
+   ]
+  },
+  {
+   "code": "AE",
+   "ja": "アラブ首長国連邦",
+   "en": "United Arab Emirates",
+   "region": "中東",
+   "flag": "🇦🇪",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ドバイ",
+     "en": "Dubai",
+     "lat": 25.2048,
+     "lon": 55.2708,
+     "tz": "Asia/Dubai"
+    },
+    {
+     "ja": "アブダビ",
+     "en": "Abu Dhabi",
+     "lat": 24.4539,
+     "lon": 54.3773,
+     "tz": "Asia/Dubai"
+    }
+   ]
+  },
+  {
+   "code": "QA",
+   "ja": "カタール",
+   "en": "Qatar",
+   "region": "中東",
+   "flag": "🇶🇦",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ドーハ",
+     "en": "Doha",
+     "lat": 25.2854,
+     "lon": 51.531,
+     "tz": "Asia/Qatar"
+    }
+   ]
+  },
+  {
+   "code": "IL",
+   "ja": "イスラエル",
+   "en": "Israel",
+   "region": "中東",
+   "flag": "🇮🇱",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "エルサレム",
+     "en": "Jerusalem",
+     "lat": 31.7683,
+     "lon": 35.2137,
+     "tz": "Asia/Jerusalem"
+    },
+    {
+     "ja": "テルアビブ",
+     "en": "Tel Aviv",
+     "lat": 32.0853,
+     "lon": 34.7818,
+     "tz": "Asia/Jerusalem"
+    }
+   ]
+  },
+  {
+   "code": "TR",
+   "ja": "トルコ",
+   "en": "Türkiye",
+   "region": "中東",
+   "flag": "🇹🇷",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "イスタンブール",
+     "en": "Istanbul",
+     "lat": 41.0082,
+     "lon": 28.9784,
+     "tz": "Europe/Istanbul"
+    },
+    {
+     "ja": "カッパドキア",
+     "en": "Cappadocia",
+     "lat": 38.6431,
+     "lon": 34.8286,
+     "tz": "Europe/Istanbul"
+    }
+   ]
+  },
+  {
+   "code": "JO",
+   "ja": "ヨルダン",
+   "en": "Jordan",
+   "region": "中東",
+   "flag": "🇯🇴",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "アンマン",
+     "en": "Amman",
+     "lat": 31.9454,
+     "lon": 35.9284,
+     "tz": "Asia/Amman"
+    },
+    {
+     "ja": "ペトラ",
+     "en": "Petra",
+     "lat": 30.3285,
+     "lon": 35.4444,
+     "tz": "Asia/Amman"
+    }
+   ]
+  },
+  {
+   "code": "SA",
+   "ja": "サウジアラビア",
+   "en": "Saudi Arabia",
+   "region": "中東",
+   "flag": "🇸🇦",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "リヤド",
+     "en": "Riyadh",
+     "lat": 24.7136,
+     "lon": 46.6753,
+     "tz": "Asia/Riyadh"
+    },
+    {
+     "ja": "ジッダ",
+     "en": "Jeddah",
+     "lat": 21.4858,
+     "lon": 39.1925,
+     "tz": "Asia/Riyadh"
+    }
+   ]
+  },
+  {
+   "code": "OM",
+   "ja": "オマーン",
+   "en": "Oman",
+   "region": "中東",
+   "flag": "🇴🇲",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "マスカット",
+     "en": "Muscat",
+     "lat": 23.588,
+     "lon": 58.3829,
+     "tz": "Asia/Muscat"
+    }
+   ]
+  },
+  {
+   "code": "GE",
+   "ja": "ジョージア",
+   "en": "Georgia",
+   "region": "中東",
+   "flag": "🇬🇪",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "トビリシ",
+     "en": "Tbilisi",
+     "lat": 41.7151,
+     "lon": 44.8271,
+     "tz": "Asia/Tbilisi"
+    }
+   ]
+  },
+  {
+   "code": "GB",
+   "ja": "イギリス",
+   "en": "United Kingdom",
+   "region": "ヨーロッパ",
+   "flag": "🇬🇧",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ロンドン",
+     "en": "London",
+     "lat": 51.5074,
+     "lon": -0.1278,
+     "tz": "Europe/London"
+    },
+    {
+     "ja": "エディンバラ",
+     "en": "Edinburgh",
+     "lat": 55.9533,
+     "lon": -3.1883,
+     "tz": "Europe/London"
+    }
+   ]
+  },
+  {
+   "code": "FR",
+   "ja": "フランス",
+   "en": "France",
+   "region": "ヨーロッパ",
+   "flag": "🇫🇷",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "パリ",
+     "en": "Paris",
+     "lat": 48.8566,
+     "lon": 2.3522,
+     "tz": "Europe/Paris"
+    },
+    {
+     "ja": "ニース",
+     "en": "Nice",
+     "lat": 43.7102,
+     "lon": 7.262,
+     "tz": "Europe/Paris"
+    }
+   ]
+  },
+  {
+   "code": "IT",
+   "ja": "イタリア",
+   "en": "Italy",
+   "region": "ヨーロッパ",
+   "flag": "🇮🇹",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ローマ",
+     "en": "Rome",
+     "lat": 41.9028,
+     "lon": 12.4964,
+     "tz": "Europe/Rome"
+    },
+    {
+     "ja": "ヴェネツィア",
+     "en": "Venice",
+     "lat": 45.4408,
+     "lon": 12.3155,
+     "tz": "Europe/Rome"
+    },
+    {
+     "ja": "ミラノ",
+     "en": "Milan",
+     "lat": 45.4642,
+     "lon": 9.19,
+     "tz": "Europe/Rome"
+    }
+   ]
+  },
+  {
+   "code": "ES",
+   "ja": "スペイン",
+   "en": "Spain",
+   "region": "ヨーロッパ",
+   "flag": "🇪🇸",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "バルセロナ",
+     "en": "Barcelona",
+     "lat": 41.3874,
+     "lon": 2.1686,
+     "tz": "Europe/Madrid"
+    },
+    {
+     "ja": "マドリード",
+     "en": "Madrid",
+     "lat": 40.4168,
+     "lon": -3.7038,
+     "tz": "Europe/Madrid"
+    }
+   ]
+  },
+  {
+   "code": "DE",
+   "ja": "ドイツ",
+   "en": "Germany",
+   "region": "ヨーロッパ",
+   "flag": "🇩🇪",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ミュンヘン",
+     "en": "Munich",
+     "lat": 48.1351,
+     "lon": 11.582,
+     "tz": "Europe/Berlin"
+    },
+    {
+     "ja": "ベルリン",
+     "en": "Berlin",
+     "lat": 52.52,
+     "lon": 13.405,
+     "tz": "Europe/Berlin"
+    },
+    {
+     "ja": "フランクフルト",
+     "en": "Frankfurt",
+     "lat": 50.1109,
+     "lon": 8.6821,
+     "tz": "Europe/Berlin"
+    }
+   ]
+  },
+  {
+   "code": "NL",
+   "ja": "オランダ",
+   "en": "Netherlands",
+   "region": "ヨーロッパ",
+   "flag": "🇳🇱",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "アムステルダム",
+     "en": "Amsterdam",
+     "lat": 52.3676,
+     "lon": 4.9041,
+     "tz": "Europe/Amsterdam"
+    }
+   ]
+  },
+  {
+   "code": "BE",
+   "ja": "ベルギー",
+   "en": "Belgium",
+   "region": "ヨーロッパ",
+   "flag": "🇧🇪",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ブリュッセル",
+     "en": "Brussels",
+     "lat": 50.8503,
+     "lon": 4.3517,
+     "tz": "Europe/Brussels"
+    }
+   ]
+  },
+  {
+   "code": "AT",
+   "ja": "オーストリア",
+   "en": "Austria",
+   "region": "ヨーロッパ",
+   "flag": "🇦🇹",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ウィーン",
+     "en": "Vienna",
+     "lat": 48.2082,
+     "lon": 16.3738,
+     "tz": "Europe/Vienna"
+    },
+    {
+     "ja": "ザルツブルク",
+     "en": "Salzburg",
+     "lat": 47.8095,
+     "lon": 13.055,
+     "tz": "Europe/Vienna"
+    }
+   ]
+  },
+  {
+   "code": "CH",
+   "ja": "スイス",
+   "en": "Switzerland",
+   "region": "ヨーロッパ",
+   "flag": "🇨🇭",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "チューリッヒ",
+     "en": "Zurich",
+     "lat": 47.3769,
+     "lon": 8.5417,
+     "tz": "Europe/Zurich"
+    },
+    {
+     "ja": "インターラーケン",
+     "en": "Interlaken",
+     "lat": 46.6863,
+     "lon": 7.8632,
+     "tz": "Europe/Zurich"
+    }
+   ]
+  },
+  {
+   "code": "DK",
+   "ja": "デンマーク",
+   "en": "Denmark",
+   "region": "ヨーロッパ",
+   "flag": "🇩🇰",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "コペンハーゲン",
+     "en": "Copenhagen",
+     "lat": 55.6761,
+     "lon": 12.5683,
+     "tz": "Europe/Copenhagen"
+    }
+   ]
+  },
+  {
+   "code": "SE",
+   "ja": "スウェーデン",
+   "en": "Sweden",
+   "region": "ヨーロッパ",
+   "flag": "🇸🇪",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ストックホルム",
+     "en": "Stockholm",
+     "lat": 59.3293,
+     "lon": 18.0686,
+     "tz": "Europe/Stockholm"
+    }
+   ]
+  },
+  {
+   "code": "FI",
+   "ja": "フィンランド",
+   "en": "Finland",
+   "region": "ヨーロッパ",
+   "flag": "🇫🇮",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ヘルシンキ",
+     "en": "Helsinki",
+     "lat": 60.1699,
+     "lon": 24.9384,
+     "tz": "Europe/Helsinki"
+    },
+    {
+     "ja": "ロヴァニエミ",
+     "en": "Rovaniemi",
+     "lat": 66.5039,
+     "lon": 25.7294,
+     "tz": "Europe/Helsinki"
+    }
+   ]
+  },
+  {
+   "code": "NO",
+   "ja": "ノルウェー",
+   "en": "Norway",
+   "region": "ヨーロッパ",
+   "flag": "🇳🇴",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "オスロ",
+     "en": "Oslo",
+     "lat": 59.9139,
+     "lon": 10.7522,
+     "tz": "Europe/Oslo"
+    },
+    {
+     "ja": "トロムソ",
+     "en": "Tromsø",
+     "lat": 69.6492,
+     "lon": 18.9553,
+     "tz": "Europe/Oslo"
+    }
+   ]
+  },
+  {
+   "code": "IS",
+   "ja": "アイスランド",
+   "en": "Iceland",
+   "region": "ヨーロッパ",
+   "flag": "🇮🇸",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "レイキャビク",
+     "en": "Reykjavík",
+     "lat": 64.1466,
+     "lon": -21.9426,
+     "tz": "Atlantic/Reykjavik"
+    }
+   ]
+  },
+  {
+   "code": "IE",
+   "ja": "アイルランド",
+   "en": "Ireland",
+   "region": "ヨーロッパ",
+   "flag": "🇮🇪",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ダブリン",
+     "en": "Dublin",
+     "lat": 53.3498,
+     "lon": -6.2603,
+     "tz": "Europe/Dublin"
+    }
+   ]
+  },
+  {
+   "code": "PL",
+   "ja": "ポーランド",
+   "en": "Poland",
+   "region": "ヨーロッパ",
+   "flag": "🇵🇱",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "クラクフ",
+     "en": "Kraków",
+     "lat": 50.0647,
+     "lon": 19.945,
+     "tz": "Europe/Warsaw"
+    },
+    {
+     "ja": "ワルシャワ",
+     "en": "Warsaw",
+     "lat": 52.2297,
+     "lon": 21.0122,
+     "tz": "Europe/Warsaw"
+    }
+   ]
+  },
+  {
+   "code": "CZ",
+   "ja": "チェコ",
+   "en": "Czechia",
+   "region": "ヨーロッパ",
+   "flag": "🇨🇿",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "プラハ",
+     "en": "Prague",
+     "lat": 50.0755,
+     "lon": 14.4378,
+     "tz": "Europe/Prague"
+    }
+   ]
+  },
+  {
+   "code": "HU",
+   "ja": "ハンガリー",
+   "en": "Hungary",
+   "region": "ヨーロッパ",
+   "flag": "🇭🇺",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ブダペスト",
+     "en": "Budapest",
+     "lat": 47.4979,
+     "lon": 19.0402,
+     "tz": "Europe/Budapest"
+    }
+   ]
+  },
+  {
+   "code": "HR",
+   "ja": "クロアチア",
+   "en": "Croatia",
+   "region": "ヨーロッパ",
+   "flag": "🇭🇷",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ドゥブロヴニク",
+     "en": "Dubrovnik",
+     "lat": 42.6507,
+     "lon": 18.0944,
+     "tz": "Europe/Zagreb"
+    },
+    {
+     "ja": "ザグレブ",
+     "en": "Zagreb",
+     "lat": 45.815,
+     "lon": 15.9819,
+     "tz": "Europe/Zagreb"
+    }
+   ]
+  },
+  {
+   "code": "SI",
+   "ja": "スロベニア",
+   "en": "Slovenia",
+   "region": "ヨーロッパ",
+   "flag": "🇸🇮",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "リュブリャナ",
+     "en": "Ljubljana",
+     "lat": 46.0569,
+     "lon": 14.5058,
+     "tz": "Europe/Ljubljana"
+    }
+   ]
+  },
+  {
+   "code": "GR",
+   "ja": "ギリシャ",
+   "en": "Greece",
+   "region": "ヨーロッパ",
+   "flag": "🇬🇷",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "アテネ",
+     "en": "Athens",
+     "lat": 37.9838,
+     "lon": 23.7275,
+     "tz": "Europe/Athens"
+    },
+    {
+     "ja": "サントリーニ島",
+     "en": "Santorini",
+     "lat": 36.3932,
+     "lon": 25.4615,
+     "tz": "Europe/Athens"
+    }
+   ]
+  },
+  {
+   "code": "PT",
+   "ja": "ポルトガル",
+   "en": "Portugal",
+   "region": "ヨーロッパ",
+   "flag": "🇵🇹",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "リスボン",
+     "en": "Lisbon",
+     "lat": 38.7223,
+     "lon": -9.1393,
+     "tz": "Europe/Lisbon"
+    },
+    {
+     "ja": "ポルト",
+     "en": "Porto",
+     "lat": 41.1579,
+     "lon": -8.6291,
+     "tz": "Europe/Lisbon"
+    }
+   ]
+  },
+  {
+   "code": "MT",
+   "ja": "マルタ",
+   "en": "Malta",
+   "region": "ヨーロッパ",
+   "flag": "🇲🇹",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "バレッタ",
+     "en": "Valletta",
+     "lat": 35.8989,
+     "lon": 14.5146,
+     "tz": "Europe/Malta"
+    }
+   ]
+  },
+  {
+   "code": "EE",
+   "ja": "エストニア",
+   "en": "Estonia",
+   "region": "ヨーロッパ",
+   "flag": "🇪🇪",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "タリン",
+     "en": "Tallinn",
+     "lat": 59.437,
+     "lon": 24.7536,
+     "tz": "Europe/Tallinn"
+    }
+   ]
+  },
+  {
+   "code": "US",
+   "ja": "アメリカ",
+   "en": "United States",
+   "region": "北米",
+   "flag": "🇺🇸",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ニューヨーク",
+     "en": "New York",
+     "lat": 40.7128,
+     "lon": -74.006,
+     "tz": "America/New_York"
+    },
+    {
+     "ja": "ロサンゼルス",
+     "en": "Los Angeles",
+     "lat": 34.0522,
+     "lon": -118.2437,
+     "tz": "America/Los_Angeles"
+    },
+    {
+     "ja": "ホノルル",
+     "en": "Honolulu",
+     "lat": 21.3069,
+     "lon": -157.8583,
+     "tz": "Pacific/Honolulu"
+    },
+    {
+     "ja": "ラスベガス",
+     "en": "Las Vegas",
+     "lat": 36.1699,
+     "lon": -115.1398,
+     "tz": "America/Los_Angeles"
+    },
+    {
+     "ja": "シアトル",
+     "en": "Seattle",
+     "lat": 47.6062,
+     "lon": -122.3321,
+     "tz": "America/Los_Angeles"
+    }
+   ]
+  },
+  {
+   "code": "CA",
+   "ja": "カナダ",
+   "en": "Canada",
+   "region": "北米",
+   "flag": "🇨🇦",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "バンクーバー",
+     "en": "Vancouver",
+     "lat": 49.2827,
+     "lon": -123.1207,
+     "tz": "America/Vancouver"
+    },
+    {
+     "ja": "トロント",
+     "en": "Toronto",
+     "lat": 43.6532,
+     "lon": -79.3832,
+     "tz": "America/Toronto"
+    },
+    {
+     "ja": "カルガリー",
+     "en": "Calgary",
+     "lat": 51.0447,
+     "lon": -114.0719,
+     "tz": "America/Edmonton"
+    }
+   ]
+  },
+  {
+   "code": "MX",
+   "ja": "メキシコ",
+   "en": "Mexico",
+   "region": "北米",
+   "flag": "🇲🇽",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "メキシコシティ",
+     "en": "Mexico City",
+     "lat": 19.4326,
+     "lon": -99.1332,
+     "tz": "America/Mexico_City"
+    },
+    {
+     "ja": "カンクン",
+     "en": "Cancún",
+     "lat": 21.1619,
+     "lon": -86.8515,
+     "tz": "America/Cancun"
+    }
+   ]
+  },
+  {
+   "code": "GU",
+   "ja": "グアム",
+   "en": "Guam",
+   "region": "北米",
+   "flag": "🇬🇺",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ハガニア",
+     "en": "Hagåtña",
+     "lat": 13.4443,
+     "lon": 144.7937,
+     "tz": "Pacific/Guam"
+    }
+   ]
+  },
+  {
+   "code": "CU",
+   "ja": "キューバ",
+   "en": "Cuba",
+   "region": "中南米",
+   "flag": "🇨🇺",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ハバナ",
+     "en": "Havana",
+     "lat": 23.1136,
+     "lon": -82.3666,
+     "tz": "America/Havana"
+    }
+   ]
+  },
+  {
+   "code": "CR",
+   "ja": "コスタリカ",
+   "en": "Costa Rica",
+   "region": "中南米",
+   "flag": "🇨🇷",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "サンホセ",
+     "en": "San José",
+     "lat": 9.9281,
+     "lon": -84.0907,
+     "tz": "America/Costa_Rica"
+    }
+   ]
+  },
+  {
+   "code": "PE",
+   "ja": "ペルー",
+   "en": "Peru",
+   "region": "中南米",
+   "flag": "🇵🇪",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "クスコ",
+     "en": "Cusco",
+     "lat": -13.5319,
+     "lon": -71.9675,
+     "tz": "America/Lima"
+    },
+    {
+     "ja": "リマ",
+     "en": "Lima",
+     "lat": -12.0464,
+     "lon": -77.0428,
+     "tz": "America/Lima"
+    }
+   ]
+  },
+  {
+   "code": "BR",
+   "ja": "ブラジル",
+   "en": "Brazil",
+   "region": "中南米",
+   "flag": "🇧🇷",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "リオデジャネイロ",
+     "en": "Rio de Janeiro",
+     "lat": -22.9068,
+     "lon": -43.1729,
+     "tz": "America/Sao_Paulo"
+    },
+    {
+     "ja": "サンパウロ",
+     "en": "São Paulo",
+     "lat": -23.5505,
+     "lon": -46.6333,
+     "tz": "America/Sao_Paulo"
+    }
+   ]
+  },
+  {
+   "code": "AR",
+   "ja": "アルゼンチン",
+   "en": "Argentina",
+   "region": "中南米",
+   "flag": "🇦🇷",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ブエノスアイレス",
+     "en": "Buenos Aires",
+     "lat": -34.6037,
+     "lon": -58.3816,
+     "tz": "America/Argentina/Buenos_Aires"
+    }
+   ]
+  },
+  {
+   "code": "CL",
+   "ja": "チリ",
+   "en": "Chile",
+   "region": "中南米",
+   "flag": "🇨🇱",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "サンティアゴ",
+     "en": "Santiago",
+     "lat": -33.4489,
+     "lon": -70.6693,
+     "tz": "America/Santiago"
+    }
+   ]
+  },
+  {
+   "code": "EG",
+   "ja": "エジプト",
+   "en": "Egypt",
+   "region": "アフリカ",
+   "flag": "🇪🇬",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "カイロ",
+     "en": "Cairo",
+     "lat": 30.0444,
+     "lon": 31.2357,
+     "tz": "Africa/Cairo"
+    },
+    {
+     "ja": "ルクソール",
+     "en": "Luxor",
+     "lat": 25.6872,
+     "lon": 32.6396,
+     "tz": "Africa/Cairo"
+    }
+   ]
+  },
+  {
+   "code": "MA",
+   "ja": "モロッコ",
+   "en": "Morocco",
+   "region": "アフリカ",
+   "flag": "🇲🇦",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "マラケシュ",
+     "en": "Marrakesh",
+     "lat": 31.6295,
+     "lon": -7.9811,
+     "tz": "Africa/Casablanca"
+    },
+    {
+     "ja": "カサブランカ",
+     "en": "Casablanca",
+     "lat": 33.5731,
+     "lon": -7.5898,
+     "tz": "Africa/Casablanca"
+    }
+   ]
+  },
+  {
+   "code": "TN",
+   "ja": "チュニジア",
+   "en": "Tunisia",
+   "region": "アフリカ",
+   "flag": "🇹🇳",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "チュニス",
+     "en": "Tunis",
+     "lat": 36.8065,
+     "lon": 10.1815,
+     "tz": "Africa/Tunis"
+    }
+   ]
+  },
+  {
+   "code": "ET",
+   "ja": "エチオピア",
+   "en": "Ethiopia",
+   "region": "アフリカ",
+   "flag": "🇪🇹",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "アディスアベバ",
+     "en": "Addis Ababa",
+     "lat": 9.032,
+     "lon": 38.7469,
+     "tz": "Africa/Addis_Ababa"
+    }
+   ]
+  },
+  {
+   "code": "KE",
+   "ja": "ケニア",
+   "en": "Kenya",
+   "region": "アフリカ",
+   "flag": "🇰🇪",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ナイロビ",
+     "en": "Nairobi",
+     "lat": -1.2921,
+     "lon": 36.8219,
+     "tz": "Africa/Nairobi"
+    }
+   ]
+  },
+  {
+   "code": "TZ",
+   "ja": "タンザニア",
+   "en": "Tanzania",
+   "region": "アフリカ",
+   "flag": "🇹🇿",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "アルーシャ",
+     "en": "Arusha",
+     "lat": -3.3869,
+     "lon": 36.683,
+     "tz": "Africa/Dar_es_Salaam"
+    },
+    {
+     "ja": "ザンジバル",
+     "en": "Zanzibar",
+     "lat": -6.1659,
+     "lon": 39.2026,
+     "tz": "Africa/Dar_es_Salaam"
+    }
+   ]
+  },
+  {
+   "code": "ZA",
+   "ja": "南アフリカ",
+   "en": "South Africa",
+   "region": "アフリカ",
+   "flag": "🇿🇦",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ケープタウン",
+     "en": "Cape Town",
+     "lat": -33.9249,
+     "lon": 18.4241,
+     "tz": "Africa/Johannesburg"
+    },
+    {
+     "ja": "ヨハネスブルグ",
+     "en": "Johannesburg",
+     "lat": -26.2041,
+     "lon": 28.0473,
+     "tz": "Africa/Johannesburg"
+    }
+   ]
+  },
+  {
+   "code": "MU",
+   "ja": "モーリシャス",
+   "en": "Mauritius",
+   "region": "アフリカ",
+   "flag": "🇲🇺",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ポートルイス",
+     "en": "Port Louis",
+     "lat": -20.1609,
+     "lon": 57.5012,
+     "tz": "Indian/Mauritius"
+    }
+   ]
+  },
+  {
+   "code": "AU",
+   "ja": "オーストラリア",
+   "en": "Australia",
+   "region": "オセアニア",
+   "flag": "🇦🇺",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "シドニー",
+     "en": "Sydney",
+     "lat": -33.8688,
+     "lon": 151.2093,
+     "tz": "Australia/Sydney"
+    },
+    {
+     "ja": "ケアンズ",
+     "en": "Cairns",
+     "lat": -16.9186,
+     "lon": 145.7781,
+     "tz": "Australia/Brisbane"
+    },
+    {
+     "ja": "メルボルン",
+     "en": "Melbourne",
+     "lat": -37.8136,
+     "lon": 144.9631,
+     "tz": "Australia/Melbourne"
+    },
+    {
+     "ja": "パース",
+     "en": "Perth",
+     "lat": -31.9505,
+     "lon": 115.8605,
+     "tz": "Australia/Perth"
+    }
+   ]
+  },
+  {
+   "code": "NZ",
+   "ja": "ニュージーランド",
+   "en": "New Zealand",
+   "region": "オセアニア",
+   "flag": "🇳🇿",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "オークランド",
+     "en": "Auckland",
+     "lat": -36.8485,
+     "lon": 174.7633,
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "ja": "クイーンズタウン",
+     "en": "Queenstown",
+     "lat": -45.0312,
+     "lon": 168.6626,
+     "tz": "Pacific/Auckland"
+    }
+   ]
+  },
+  {
+   "code": "FJ",
+   "ja": "フィジー",
+   "en": "Fiji",
+   "region": "オセアニア",
+   "flag": "🇫🇯",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ナンディ",
+     "en": "Nadi",
+     "lat": -17.7765,
+     "lon": 177.4356,
+     "tz": "Pacific/Fiji"
+    }
+   ]
+  },
+  {
+   "code": "PF",
+   "ja": "タヒチ",
+   "en": "French Polynesia",
+   "region": "オセアニア",
+   "flag": "🇵🇫",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "パペーテ",
+     "en": "Papeete",
+     "lat": -17.5516,
+     "lon": -149.5585,
+     "tz": "Pacific/Tahiti"
+    }
+   ]
+  },
+  {
+   "code": "NC",
+   "ja": "ニューカレドニア",
+   "en": "New Caledonia",
+   "region": "オセアニア",
+   "flag": "🇳🇨",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ヌメア",
+     "en": "Nouméa",
+     "lat": -22.2758,
+     "lon": 166.458,
+     "tz": "Pacific/Noumea"
+    }
+   ]
+  },
+  {
+   "code": "PG",
+   "ja": "パプアニューギニア",
+   "en": "Papua New Guinea",
+   "region": "オセアニア",
+   "flag": "🇵🇬",
+   "direct": true,
+   "cities": [
+    {
+     "ja": "ポートモレスビー",
+     "en": "Port Moresby",
+     "lat": -9.4438,
+     "lon": 147.1803,
+     "tz": "Pacific/Port_Moresby"
+    }
+   ]
+  },
+  {
+   "code": "PW",
+   "ja": "パラオ",
+   "en": "Palau",
+   "region": "オセアニア",
+   "flag": "🇵🇼",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "コロール",
+     "en": "Koror",
+     "lat": 7.3419,
+     "lon": 134.479,
+     "tz": "Pacific/Palau"
+    }
+   ]
+  },
+  {
+   "code": "CK",
+   "ja": "クック諸島",
+   "en": "Cook Islands",
+   "region": "オセアニア",
+   "flag": "🇨🇰",
+   "direct": false,
+   "cities": [
+    {
+     "ja": "ラロトンガ",
+     "en": "Rarotonga",
+     "lat": -21.2367,
+     "lon": -159.7777,
+     "tz": "Pacific/Rarotonga"
+    }
+   ]
+  }
+ ]
+}

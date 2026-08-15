@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Travel Box のアイコン。2026年8月15日に決定。
+       淡い藍の地に濃紺のかばん。中の白と金の玉は、入っている2つのアプリ
+       （Trip Board ＝ 藍／Flight Board ＝ 金）を表しています。
+
+       文字を入れるかどうかは、ホーム画面の実寸（約60px）で読めるかを
+       見比べて決めました。かばんを大きくして1行で入れる案は、
+       実寸だと文字がつぶれて読めなかったので採っていません。
+       いまの大きさが「かばんの形も残り、文字も読める」ぎりぎりです。
+
+       直したら、同じフォルダで次を実行して PNG を作り直してください。
+         for s in 512 192 180; do qlmanage -t -s $s -o . app-icon.svg && mv app-icon.svg.png app-icon-$s.png; done
+       ★ 作り直しただけではホーム画面のアイコンは変わりません。
+         いったん消して追加し直す必要があります。 -->
+  <rect width="512" height="512" rx="112" fill="#d3e5f2"/>
+
+  <!-- かばんの取っ手 -->
+  <path d="M204 110 v-14 a22 22 0 0 1 22-22 h60 a22 22 0 0 1 22 22 v14"
+        fill="none" stroke="#1e4a68" stroke-width="17" stroke-linecap="round"/>
+  <!-- かばん本体 -->
+  <rect x="136" y="110" width="240" height="176" rx="28" fill="#1e4a68"/>
+  <!-- 中身。白＝Trip Board、金＝Flight Board -->
+  <circle cx="214" cy="198" r="31" fill="#ffffff"/>
+  <circle cx="298" cy="198" r="31" fill="#e8b923"/>
+
+  <text x="256" y="378" text-anchor="middle" font-size="86" font-weight="700"
+        letter-spacing="1" font-family="Avenir Next, Helvetica Neue, sans-serif"
+        fill="#1e4a68">TRAVEL</text>
+  <text x="256" y="458" text-anchor="middle" font-size="86" font-weight="700"
+        letter-spacing="1" font-family="Avenir Next, Helvetica Neue, sans-serif"
+        fill="#1e4a68">BOX</text>
+</svg>

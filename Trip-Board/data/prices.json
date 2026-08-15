@@ -1,0 +1,528 @@
+{
+ "meta": {
+  "version": "2026-08-15",
+  "base": "日本 = 100",
+  "level_source": "世界銀行 NY.GDP.PCAP.CD ÷ NY.GDP.PCAP.PP.CD（日本は2025年）",
+  "bigmac_source": "The Economist Big Mac index 2026-07-01",
+  "bigmac_jpy_japan": 500,
+  "usdjpy": 162.1,
+  "manual": {
+   "TW": "IMF World Economic Outlook 2025年推計"
+  },
+  "spearman": 0.745,
+  "note": "物価水準は経済全体の平均で、家賃や医療費も含みます。旅行者が払う金額はビッグマックのほうが近い目安です。"
+ },
+ "prices": {
+  "KR": {
+   "level": 88,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 124,
+   "bigmac_jpy": 622
+  },
+  "TW": {
+   "level": 68,
+   "level_year": "2025",
+   "level_src": "IMF World Economic Outlook 2025年推計",
+   "bigmac": 79,
+   "bigmac_jpy": 393
+  },
+  "CN": {
+   "level": 73,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 127,
+   "bigmac_jpy": 635
+  },
+  "HK": {
+   "level": 109,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 105,
+   "bigmac_jpy": 527
+  },
+  "MO": {
+   "level": 85,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "MN": {
+   "level": 53,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "TH": {
+   "level": 47,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 130,
+   "bigmac_jpy": 651
+  },
+  "VN": {
+   "level": 43,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 94,
+   "bigmac_jpy": 469
+  },
+  "SG": {
+   "level": 93,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 187,
+   "bigmac_jpy": 936
+  },
+  "MY": {
+   "level": 49,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 116,
+   "bigmac_jpy": 578
+  },
+  "ID": {
+   "level": 44,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 77,
+   "bigmac_jpy": 386
+  },
+  "PH": {
+   "level": 51,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 89,
+   "bigmac_jpy": 444
+  },
+  "KH": {
+   "level": 52,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "BN": {
+   "level": 54,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "LA": {
+   "level": 35,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "MM": {
+   "level": 38,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "IN": {
+   "level": 35,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 80,
+   "bigmac_jpy": 398
+  },
+  "NP": {
+   "level": 38,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "BD": {
+   "level": 39,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "LK": {
+   "level": 45,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "MV": {
+   "level": 79,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "UZ": {
+   "level": 45,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "AE": {
+   "level": 98,
+   "level_year": "2024",
+   "level_src": "世界銀行",
+   "bigmac": 168,
+   "bigmac_jpy": 839
+  },
+  "QA": {
+   "level": 87,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 160,
+   "bigmac_jpy": 802
+  },
+  "IL": {
+   "level": 156,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 249,
+   "bigmac_jpy": 1243
+  },
+  "TR": {
+   "level": 63,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 224,
+   "bigmac_jpy": 1120
+  },
+  "JO": {
+   "level": 65,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 114,
+   "bigmac_jpy": 572
+  },
+  "SA": {
+   "level": 72,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 164,
+   "bigmac_jpy": 820
+  },
+  "OM": {
+   "level": 73,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 129,
+   "bigmac_jpy": 644
+  },
+  "GE": {
+   "level": 51,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "GB": {
+   "level": 137,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 240,
+   "bigmac_jpy": 1200
+  },
+  "FR": {
+   "level": 118,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "IT": {
+   "level": 106,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "ES": {
+   "level": 99,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "DE": {
+   "level": 124,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "NL": {
+   "level": 130,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "BE": {
+   "level": 125,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "AT": {
+   "level": 126,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "CH": {
+   "level": 173,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 293,
+   "bigmac_jpy": 1466
+  },
+  "DK": {
+   "level": 143,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 228,
+   "bigmac_jpy": 1141
+  },
+  "SE": {
+   "level": 134,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 232,
+   "bigmac_jpy": 1161
+  },
+  "FI": {
+   "level": 131,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "NO": {
+   "level": 140,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 261,
+   "bigmac_jpy": 1306
+  },
+  "IS": {
+   "level": 182,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "IE": {
+   "level": 131,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "PL": {
+   "level": 81,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 202,
+   "bigmac_jpy": 1008
+  },
+  "CZ": {
+   "level": 92,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 176,
+   "bigmac_jpy": 881
+  },
+  "HU": {
+   "level": 80,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 172,
+   "bigmac_jpy": 859
+  },
+  "HR": {
+   "level": 82,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "SI": {
+   "level": 97,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "GR": {
+   "level": 92,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "PT": {
+   "level": 93,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "MT": {
+   "level": 102,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "EE": {
+   "level": 102,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 230,
+   "bigmac_jpy": 1148,
+   "bigmac_area": "ユーロ圏の平均"
+  },
+  "US": {
+   "level": 154,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 202,
+   "bigmac_jpy": 1008
+  },
+  "CA": {
+   "level": 129,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 189,
+   "bigmac_jpy": 943
+  },
+  "MX": {
+   "level": 83,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 203,
+   "bigmac_jpy": 1016
+  },
+  "GU": {
+   "note": "アメリカの海外領土でドルが使えます。物価はアメリカ本土並みか、輸送費のぶんやや高めです。"
+  },
+  "CU": {
+   "note": "公式統計が実態を表さないため数字を出していません。観光客向けの価格と地元向けの価格が大きく違う国です。"
+  },
+  "CR": {
+   "level": 91,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 227,
+   "bigmac_jpy": 1134
+  },
+  "PE": {
+   "level": 79,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 162,
+   "bigmac_jpy": 809
+  },
+  "BR": {
+   "level": 70,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 153,
+   "bigmac_jpy": 763
+  },
+  "AR": {
+   "level": 70,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 192,
+   "bigmac_jpy": 958
+  },
+  "CL": {
+   "level": 73,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 175,
+   "bigmac_jpy": 877
+  },
+  "EG": {
+   "level": 24,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 93,
+   "bigmac_jpy": 465
+  },
+  "MA": {
+   "level": 65,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "TN": {
+   "level": 47,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "ET": {
+   "level": 40,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "KE": {
+   "level": 52,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "TZ": {
+   "level": 45,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "ZA": {
+   "level": 64,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 113,
+   "bigmac_jpy": 565
+  },
+  "MU": {
+   "level": 59,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "AU": {
+   "level": 140,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 193,
+   "bigmac_jpy": 965
+  },
+  "NZ": {
+   "level": 133,
+   "level_year": "2025",
+   "level_src": "世界銀行",
+   "bigmac": 167,
+   "bigmac_jpy": 833
+  },
+  "FJ": {
+   "level": 63,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "PF": {
+   "note": "フランスの海外領土。食料品の多くを輸入に頼るため、日本よりはっきり高くつきます。外食・宿ともに割高です。"
+  },
+  "NC": {
+   "note": "フランスの海外領土。タヒチと同じく輸入品中心で、日本より高めです。"
+  },
+  "PG": {
+   "level": 89,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "PW": {
+   "level": 131,
+   "level_year": "2025",
+   "level_src": "世界銀行"
+  },
+  "CK": {
+   "note": "ニュージーランドドルを使います。物価はニュージーランドに近く、離島のぶん食料品は割高です。"
+  }
+ }
+}

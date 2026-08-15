@@ -1,0 +1,14 @@
+{
+  "name": "Trip Board",
+  "short_name": "Trip Board",
+  "description": "行き先を、季節・物価・治安・時差で比較するアプリ",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#12161f",
+  "theme_color": "#12161f",
+  "lang": "ja",
+  "icons": [
+    { "src": "img/app-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/app-icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

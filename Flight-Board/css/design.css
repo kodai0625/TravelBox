@@ -1,0 +1,225 @@
+/* ============================================================
+ *  Flight Board — デザイン
+ *
+ *  色・書体・余白はこのファイルが決めます。
+ *  配置や大きさの土台は style.css にあり、こちらはその上に重ねます。
+ *  ★ style.css より後ろで読み込むこと。
+ *
+ *  上質な航空会社のブランドサイトを狙った配色です。
+ *  金と余白と細い線で構成し、見出しには明朝体を使っています。
+ *
+ *  色の数値はコントラスト比の実測に基づいています（本文の目安は 4.5 : 1 以上）。
+ *  作り始めの版では一覧の2行目が 3.0 : 1、背景とカードの差が 1.09 : 1 しかなく、
+ *  「薄くて読めない」「カードの切れ目が分からない」状態でした。
+ * ============================================================ */
+
+/* ---- 明るいとき ---- */
+:root {
+  --bg:        #eee9df;   /* カードとの差を 1.09 → 1.21 に広げた */
+  --surface:   #ffffff;
+  --surface-2: #f9f6f1;
+  --line:      #ddd6c9;
+  --line-2:    #e6e0d4;   /* 行の区切りを少し濃く */
+  --text:      #1b1a18;
+  --text-sub:  #6d6862;   /* 5.5 : 1 */
+  --text-weak: #79736a;   /* 3.0 → 4.7 : 1。一覧の2行目はここを使う */
+  --accent:    #8f7016;   /* 4.0 → 4.7 : 1 */
+  --gold:      #c9a227;   /* 塗りの上にだけ乗せる、明るいほうの金 */
+  --tile-bg:   #2b2823;   /* コードのタイル。深い炒茶色寄りの黒 */
+  --tile-fg:   #efece6;
+  --tile-gold: #c9a227;   /* 濃い地の上なので明るい金でよい（6.1 : 1）*/
+  --header-bg: #17161a;
+  --radius:    14px;
+  --shadow:    0 1px 2px rgba(30, 25, 15, .04);
+
+  --map-sea:    #e3ddd0;
+  --map-land:   #faf7f2;
+  --map-coast:  #cec5b5;
+  --map-dot:    rgba(110, 100, 85, .38);
+  --map-origin: #1b1a18;
+}
+
+/* ---- 暗いとき ---- */
+/* 暗いとき。端末の設定とアプリ内の切替の両方に効くよう、
+   data-theme を見る形にしています（JS が起動時に決めます） */
+:root[data-theme="dark"] {
+  --bg:        #0d0d0f;
+  --surface:   #17171a;
+  --surface-2: #1d1d21;
+  --line:      #33333a;
+  --line-2:    #2b2b31;   /* 行の区切りを少し濃く */
+  --text:      #eceae6;
+  --text-sub:  #a09c95;
+  --text-weak: #8b867e;   /* 3.6 → 5.0 : 1。明るいときと同じ基準で見直し */
+  --accent:    #c9a227;   /* 7.4 : 1 */
+  --gold:      #c9a227;
+  --tile-bg:   #e6e2d9;   /* 暗いときは明暗を反転させて、同じ「起点」の役割を持たせる */
+  --tile-fg:   #17161a;
+  --tile-gold: #7a5f10;   /* 明るい地の上なので濃い金にする（4.7 : 1）*/
+  --header-bg: #0a0a0c;
+  --shadow:    none;
+
+  --map-sea:    #0a0a0c;
+  --map-land:   #1e1e22;
+  --map-coast:  #3a3a40;
+  --map-dot:    rgba(180, 170, 150, .3);
+  --map-origin: #f0ede7;
+}
+
+
+/* 余白を広げる。ここがこの案のいちばんの違い */
+.page { padding: 20px 16px 48px; }
+.list__item { padding: 14px 16px; }
+.alliance,
+.award,
+.filter-panel { padding: 18px; }
+.destgroup { margin-bottom: 10px; }
+.destgroup[open] { margin-bottom: 26px; }
+.sheet__body { padding: 20px 20px 28px; }
+
+/* 見出しは明朝体で字間を開ける。iPhone にも Mac にも入っている書体 */
+.app-title__main,
+.sheet__title,
+.alliance__name,
+.award__name,
+.verdict__title,
+.favgroup__airline {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+.destgroup__name {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  letter-spacing: .1em;
+  font-weight: 600;
+}
+
+/* 線はすべて細く。囲うより「区切る」*/
+.app-title__mark {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+}
+
+/* IATAコードは塗りにする。
+   金の細枠だと背景に溶けて、一覧を上から追うときの起点になりませんでした。
+   明るいときは濃い塗りに明るい文字、暗いときはその逆。
+   どちらでも「背景と反対」にすることで、行の先頭が必ず目に留まります。
+   色を金にしないのは、選択中のチップ（金）と区別が付かなくなるためです。 */
+.code {
+  background: var(--tile-bg);
+  border: 0;
+  color: var(--tile-fg);
+  border-radius: 6px;
+  letter-spacing: .08em;
+  text-indent: .08em;
+}
+.code--L,
+.code--M,
+.code--S,
+.code--airline,
+.code--ac-wide,
+.code--ac-narrow,
+.code--ac-regional,
+.code--ac-prop {
+  background: var(--tile-bg);
+  color: var(--tile-fg);
+}
+/* 大規模空港とお気に入りだけ、文字を金にして格を付ける。
+   金は明暗で使い分けが必要です。暗いときはタイルが明るい地になるので、
+   そのまま明るい金を乗せると 1.9 : 1 まで落ちて読めません。 */
+.code--L,
+.code--fav {
+  background: var(--tile-bg);
+  color: var(--tile-gold);
+}
+
+/* 行の主役と副次で大きさの差を付ける。
+   今までは 15px と 12px で差が小さく、目が滑っていました */
+.list__name { font-size: 16px; }
+.list__sub { font-size: 12px; }
+.list__item { gap: 12px; }
+
+/* タブの下線を金に */
+.tabs__btn.is-active { border-bottom-color: var(--gold); }
+
+/* 金は「選択中」と「最上級」だけに絞る。
+   リンクや good の印まで金にすると、全部が同じ強さになって
+   どこを見ればいいのか分からなくなります。 */
+.chip.is-active,
+.viewtoggle__btn.is-active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #17161a;
+}
+.mark--excellent { background: var(--gold); color: #17161a; }
+.mark--good {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--text-sub);
+}
+/* リンクは無彩色にして、下線で押せることを示す */
+.link-btn {
+  color: var(--text);
+  border-color: var(--line);
+}
+.award__label { color: var(--text); }
+.map-info__code { color: var(--text); }
+
+
+
+/* ヘッダー左上の「玄関へ戻る」ボタン。
+   Travel Box（この2つのアプリの入れ物）へ戻るためのものです。
+   明暗切替ボタンと同じ作りにして、押せる場所だと分かるようにしています。 */
+.home-link {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  margin-right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 12px;
+  color: rgba(255, 255, 255, .75);
+  border: 1px solid rgba(255, 255, 255, .22);
+}
+.home-link:active { background: rgba(255, 255, 255, .1); }
+
+/* ヘッダー右上の明暗切替ボタン */
+.head-btn {
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, .8);
+  font: inherit;
+  font-size: 10.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.head-btn:active { background: rgba(255, 255, 255, .1); }
+.head-btns { margin-left: auto; display: flex; gap: 6px; flex: 0 0 auto; }
+
+/* ヘッダーのボタンが増えたぶん、タイトルが折り返さないようにする */
+.app-title { min-width: 0; }
+.app-title__text { min-width: 0; }
+.app-title__main,
+.app-title__sub {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 2行目に札を置くので、この行だけ折り返しを許す */
+.list__sub--wrap {
+  white-space: normal;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.badge--sm { font-size: 10px; padding: 1px 7px; }

@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "note": "特典航空券の検索ページへのショートカット。リンクは手で編集できます（生成スクリプトはありません）。",
+    "warning": "どのプログラムもログインが必要です。区間や日付を入れた状態で飛べるリンクは各社とも用意していないので、飛べるのは検索画面の入口までです。",
+    "howto": "リンクを足したら python3 tools/check_links.py で到達確認できます。",
+    "checked": "2026-08-10 時点で tools/check_links.py により到達確認。JAL・ユナイテッド・ターキッシュは自動アクセスを遮断しているため機械では確認できず、公式サイトの検索結果に出たURLをそのまま採用しています。"
+  },
+  "programs": [
+    {
+      "id": "ana",
+      "airline": "NH",
+      "name": "ANAマイレージクラブ",
+      "alliance": "star",
+      "note": "スターアライアンス26社に加え、エティハドなど提携社でも発券できます。国際線特典は「シーズン」と「区間マイル」で必要マイルが決まります。",
+      "links": [
+        {
+          "label": "特典航空券トップ",
+          "url": "https://www.ana.co.jp/ja/jp/guide/amc/award/",
+          "note": ""
+        },
+        {
+          "label": "国際線特典航空券",
+          "url": "https://www.ana.co.jp/ja/jp/guide/amc/award/international/application/",
+          "note": ""
+        },
+        {
+          "label": "国内線特典航空券",
+          "url": "https://www.ana.co.jp/ja/jp/guide/amc/award/domestic/usage/",
+          "note": ""
+        },
+        {
+          "label": "提携航空会社の特典",
+          "url": "https://www.ana.co.jp/ja/us/amc/partner-flight-awards/",
+          "note": "スターアライアンス各社の特典はここから"
+        },
+        {
+          "label": "マイル残高・口座",
+          "url": "https://www.ana.co.jp/ja/jp/amc/",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "jal",
+      "airline": "JL",
+      "name": "JALマイレージバンク",
+      "alliance": "oneworld",
+      "note": "国内線は「特典航空券PLUS」で必要マイルが変動します。行き先をおまかせにすると少ないマイルで飛べる「どこかにマイル」も。",
+      "links": [
+        {
+          "label": "特典航空券トップ",
+          "url": "https://www.jal.co.jp/jp/ja/jmb/use/jal/",
+          "note": ""
+        },
+        {
+          "label": "国際線特典航空券",
+          "url": "https://www.jal.co.jp/jp/ja/jmb/use/jal/inter/",
+          "note": ""
+        },
+        {
+          "label": "どこかにマイル",
+          "url": "https://www.jal.co.jp/jp/ja/dom/dokokani/",
+          "note": "6,000マイルで行き先おまかせの国内往復"
+        },
+        {
+          "label": "提携航空会社の特典",
+          "url": "https://www.jal.co.jp/jp/ja/jmb/use/partner/",
+          "note": "ワンワールド各社の特典はここから"
+        },
+        {
+          "label": "マイル残高・口座",
+          "url": "https://www.jal.co.jp/jp/ja/jmb/",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "united",
+      "airline": "UA",
+      "name": "ユナイテッド航空 MileagePlus",
+      "alliance": "star",
+      "note": "ANAと同じスターアライアンス。ANA便の特典を取るのに使われることが多く、必要マイル数が変動する代わりに空席が出やすい傾向があります。",
+      "links": [
+        {
+          "label": "マイルで特典航空券を予約",
+          "url": "https://www.united.com/en/us/book-flight/united-award-travel/",
+          "note": ""
+        },
+        {
+          "label": "マイルの使い方",
+          "url": "https://www.united.com/en/us/fly/mileageplus/use-miles.html",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "aeroplan",
+      "airline": "AC",
+      "name": "エア・カナダ Aeroplan",
+      "alliance": "star",
+      "note": "スターアライアンス系。距離で必要マイルが決まる方式で、日本発の長距離が比較的取りやすいと言われます。",
+      "links": [
+        {
+          "label": "ポイントを使う",
+          "url": "https://www.aircanada.com/ca/en/aco/home/aeroplan/redeem.html",
+          "note": ""
+        },
+        {
+          "label": "Aeroplan トップ",
+          "url": "https://www.aircanada.com/ca/en/aco/home/aeroplan.html",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "alaska",
+      "airline": "AS",
+      "name": "アラスカ航空 Atmos Rewards",
+      "alliance": "oneworld",
+      "note": "2021年にワンワールド加盟。JALやキャセイの特典を発券でき、途中降機に寛容なことで知られます。2025年にマイレージプランから Atmos Rewards へ改称しました。",
+      "links": [
+        {
+          "label": "ポイントを使う",
+          "url": "https://www.alaskaair.com/atmosrewards/content/use-points",
+          "note": ""
+        },
+        {
+          "label": "Atmos Rewards トップ",
+          "url": "https://www.alaskaair.com/atmosrewards",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ba",
+      "airline": "BA",
+      "name": "ブリティッシュ・エアウェイズ Executive Club（Avios）",
+      "alliance": "oneworld",
+      "note": "ワンワールド系。区間ごとに必要マイルが決まるので、短距離を1区間だけ取るのに向きます。JALの国内線にも使えます。",
+      "links": [
+        {
+          "label": "Aviosで予約",
+          "url": "https://www.britishairways.com/en-gb/executive-club/spending-avios",
+          "note": ""
+        },
+        {
+          "label": "Executive Club トップ",
+          "url": "https://www.britishairways.com/en-gb/executive-club",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "krisflyer",
+      "airline": "SQ",
+      "name": "シンガポール航空 KrisFlyer",
+      "alliance": "star",
+      "note": "スターアライアンス系。シンガポール航空の上位クラスは自社マイルでしか取れない座席があります。",
+      "links": [
+        {
+          "label": "KrisFlyer トップ",
+          "url": "https://www.singaporeair.com/ja_JP/jp/ppsclub-krisflyer/",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "asiamiles",
+      "airline": "CX",
+      "name": "キャセイパシフィック Asia Miles",
+      "alliance": "oneworld",
+      "note": "ワンワールド系。香港経由の路線に強く、日本発着も取りやすい部類です。",
+      "links": [
+        {
+          "label": "特典航空券を予約",
+          "url": "https://www.cathaypacific.com/cx/ja_JP/book-a-trip/redeem-flights/login.html",
+          "note": "ログインしてから検索します"
+        },
+        {
+          "label": "必要マイル数の一覧",
+          "url": "https://flights.cathaypacific.com/ja_JP/redeem-flights/flight-award-chart.html",
+          "note": ""
+        },
+        {
+          "label": "Cathay トップ",
+          "url": "https://www.cathaypacific.com/cx/ja_JP.html",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "delta",
+      "airline": "DL",
+      "name": "デルタ航空 SkyMiles",
+      "alliance": "skyteam",
+      "note": "スカイチーム系。有効期限が無いのが特徴ですが、必要マイル数は変動制です。",
+      "links": [
+        {
+          "label": "SkyMiles トップ",
+          "url": "https://ja.delta.com/jp/ja/skymiles/overview",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "turkish",
+      "airline": "TK",
+      "name": "ターキッシュ エアラインズ Miles&Smiles",
+      "alliance": "star",
+      "note": "スターアライアンス系。ANA便の特典を少ないマイルで取れる場合があります。",
+      "links": [
+        {
+          "label": "Miles&Smiles トップ",
+          "url": "https://www.turkishairlines.com/ja-jp/miles-and-smiles",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "virginatlantic",
+      "airline": "VS",
+      "name": "ヴァージン アトランティック Flying Club",
+      "alliance": "skyteam",
+      "note": "2023年にスカイチーム加盟。ANAの提携ではないものの、デルタなどの特典発券に使われます。",
+      "links": [
+        {
+          "label": "Flying Club トップ",
+          "url": "https://www.virginatlantic.com/flying-club",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

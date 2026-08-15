@@ -1,0 +1,617 @@
+{
+ "meta": {
+  "version": "2026-08-15",
+  "source": "外務省 海外安全ホームページ 危険情報一覧",
+  "source_url": "https://www.anzen.mofa.go.jp/kiken_list.html",
+  "updated": "2026年7月13日",
+  "levels": {
+   "1": "十分注意してください",
+   "2": "不要不急の渡航は止めてください",
+   "3": "渡航は止めてください（渡航中止勧告）",
+   "4": "退避してください。渡航は止めてください（退避勧告）"
+  },
+  "note": "一覧に無い国は危険情報が出ていません。「安全である」という意味ではなく「特段の注意喚起が無い」という意味です。渡航前に必ず出典ページで最新を確かめてください。"
+ },
+ "safety": {
+  "IN": {
+   "base": 1,
+   "max": 4,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル4、レベル3及びレベル2発出地域以外のインド全域（デリー、コルカタ、チェンナイ、ムンバイ、ベンガルールなどの大都市を含む地域）"
+    },
+    {
+     "level": 2,
+     "area": "ジャンム・カシミール準州スリナガルおよびその近郊北東部諸州：マニプール州、アッサム州（グワハティ市を除く地域）、ナガランド州、メガラヤ州（東カシ・ヒルズ県、リボイ県、西ジャインティア・ヒルズ県、東ジャインティア・ヒルズ県を除く地域） 中・東部諸州：マハーラーシュトラ州東部地域ガドチロリ県、ゴンデア県及びチャンドラプル県、アンドラ・プラデシュ、テランガナ、オディシャ、チャッティースガル各州の高原奥地、ジャールカンドおよびビハール両州の農村地域"
+    },
+    {
+     "level": 3,
+     "area": "ジャンム・カシミール準州（スリナガルおよびその近郊、管理ライン(LoC)付近、ラダック連邦直轄領を除く地域）"
+    },
+    {
+     "level": 4,
+     "area": "ジャンム・カシミール準州及びラダック連邦直轄領の管理ライン（LoC）付近"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_001.html"
+  },
+  "ID": {
+   "base": 1,
+   "max": 2,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル２発出地域以外のインドネシア全域（ジャカルタ首都特別州及びバリ島を含む。）"
+    },
+    {
+     "level": 2,
+     "area": "中部パプア州及び山岳パプア州"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_002.html"
+  },
+  "KH": {
+   "base": 1,
+   "max": 3,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル３及びレベル２発出地域以外の全土"
+    },
+    {
+     "level": 2,
+     "area": "タイとの国境付近（タイ国境から30kmを越えて50km以内の地域)"
+    },
+    {
+     "level": 3,
+     "area": "タイとの国境付近（タイ国境から30km以内)"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_004.html"
+  },
+  "LK": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "全土"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_006.html"
+  },
+  "CN": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "新疆ウイグル自治区、チベット自治区"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_009.html"
+  },
+  "NP": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "スドゥール・パスチム州、カルナリ州（フムラ郡及びムグ郡を除く）、ルンビニ州、ガンダキ州（ムスタン郡及びマナン郡を除く）、バグマティ州（ラスワ郡を除く）、マデシ州、コシ州（ソルクンブ郡クンブ地区を除く）"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_010.html"
+  },
+  "BD": {
+   "base": 1,
+   "max": 2,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル２発出地域以外のバングラデシュ全土"
+    },
+    {
+     "level": 2,
+     "area": "チッタゴン（チョットグラム）丘陵地帯（カグラチャリ県、ランガマティ県、バンドルボン県）"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_012.html"
+  },
+  "PH": {
+   "base": 1,
+   "max": 3,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル３及びレベル２発出地域以外のフィリピン全土（マニラ首都圏を含む）"
+    },
+    {
+     "level": 2,
+     "area": "サランガニ州東部（マルンゴン町、アラベル町、マラパタン町及びグラン町）、パラワン州南部（プエルト・プリンセサ市以南地域）及びミンダナオ地方一部地域（ブキドノン州、南コタバト州、北スリガオ州（スリガオ市及びシャルガオ島を除く）、南スリガオ州、北アグサン州、南アグサン州（ただし、レベル１発出の地域を除く。）（周辺海域を含む。）"
+    },
+    {
+     "level": 3,
+     "area": "ミンダナオ地方一部地域（北サンボアンガ州、南サンボアンガ州、サンボアンガ・シブガイ州、北ラナオ州、西ミサミス州、コタバト州、スルタン・クダラット州、サランガニ州西部（マアシム町、キアンバ町及びマイトゥム町）、南ラナオ州、北マギンダナオ州、南マギンダナオ州、バシラン州、スールー州、タウィタウィ州）（周辺海域を含む）"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_013.html"
+  },
+  "HK": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "全土"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_016.html"
+  },
+  "MY": {
+   "base": 1,
+   "max": 2,
+   "areas": [
+    {
+     "level": 1,
+     "area": "サバ州東側における、バンジ島、バラムバンガン島等及びクダットからタワウまでの沿岸"
+    },
+    {
+     "level": 2,
+     "area": "サバ州東側における、バンジ島、バラムバンガン島等を除く島嶼"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_017.html"
+  },
+  "LA": {
+   "base": 1,
+   "max": 2,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル２発出地域以外のラオス全土（首都ビエンチャンを含む。）"
+    },
+    {
+     "level": 2,
+     "area": "サイソンブン県全域、シェンクワン県のサイソンブン県との一部県境周辺地域"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_020.html"
+  },
+  "NC": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "全域"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_299.html"
+  },
+  "PG": {
+   "base": 1,
+   "max": 2,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル２発出地域以外のパプアニューギニア全土"
+    },
+    {
+     "level": 2,
+     "area": "ヘラ州、南ハイランド州"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_075.html"
+  },
+  "FJ": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "首都圏（スバ市、ラミ町、ナシヌ町及びナウソリ町）並びに西部地区のラウトカ市、ナンディ町（デナラウを除く。）及びバ町"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_076.html"
+  },
+  "AR": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "首都ブエノスアイレス市及び周辺都市、サンタフェ州ロサリオ市"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_241.html"
+  },
+  "CU": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "全土"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_245.html"
+  },
+  "CR": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "サンホセ州サンホセ市、同州ゴイコエチェア市、同州アラフエリータ市、同州デサンパラドス市、リモン州及びプンタレナス州"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_247.html"
+  },
+  "CL": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "全土"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_251.html"
+  },
+  "BR": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "ブラジリア連邦区、大サンパウロ圏及びカンピーナス市、大リオ圏、大ビトリア圏、大マナウス圏、ロライマ州北部、大ベレン圏、大レシフェ圏、大サルバドール圏、大フォルタレーザ圏、大クリチバ圏、ポルトアレグレ市"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_259.html"
+  },
+  "PE": {
+   "base": 1,
+   "max": 3,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル３及び２発出以外の全土（首都リマ市及びカヤオ憲法特別市を含む）"
+    },
+    {
+     "level": 2,
+     "area": "コロンビア及びブラジルとの国境地帯（ロレト州マリスカル・ラモン・カスティーヤ郡）、アマソナス州コンドル山脈のエクアドルとの国境地帯"
+    },
+    {
+     "level": 3,
+     "area": "フニン州の一部地域（ワンカヨ郡、コンセプシオン郡の一部地域及びサティポ郡）、ワンカベリカ州タカヤハ郡及びチュルカンパ郡、アヤクチョ州ワンタ郡及びラ・マル郡、クスコ州コンベンシオン郡の一部地域、コロンビアとの国境地帯（ロレト州プトゥマヨ郡）"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_261.html"
+  },
+  "MX": {
+   "base": 1,
+   "max": 3,
+   "areas": [
+    {
+     "level": 1,
+     "area": "イダルゴ州、オアハカ州、カンペチェ州、キンタナ・ロー州、グアナファト州（危険レベル2が発出されている南部地域を除く）、ゲレロ州タスコ市、サン・ルイス・ポトシ州、ソノラ州、タバスコ州、チアパス州、チワワ州（フアレス市を除く）、ヌエボ・レオン州、バハ・カリフォルニア州（ティファナ市を除く）、バハ・カリフォルニア・スル州ラ・パス市及びロス・カボス、ハリスコ州（危険レベル2が発出されている南部地域を除く）、プエブラ州、ベラクルス州、ミチョアカン州の一部地域、メキシコ市、メキシコ州、モレロス州"
+    },
+    {
+     "level": 2,
+     "area": "タマウリパス州、ハリスコ州トマトラン市とチャパラ湖等を含む南部地域、グアナファト州セラヤ市とサラマンカ市を含む南部地域、ゲレロ州（チルパンシンゴ市及びその周辺地域並びにタスコ市を除く）、コリマ州、サカテカス州、シナロア州、チワワ州フアレス市、バハ・カリフォルニア州ティファナ市、ミチョアカン州（一部地域を除く）"
+    },
+    {
+     "level": 3,
+     "area": "ゲレロ州チルパンシンゴ市及びその周辺地域"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_264.html"
+  },
+  "UZ": {
+   "base": 1,
+   "max": 2,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル２発出地域以外のウズベキスタン全土（首都タシケント市を含む）"
+    },
+    {
+     "level": 2,
+     "area": "アフガニスタンとの国境付近で立入りが制限されている地域。ナマンガン州、アンディジャン州及びフェルガナ州のタジキスタン及びキルギスとの国境沿い山岳地帯（キルギス領に囲まれた飛び地ソフ及びシャヒーマルダンを含む）"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_183.html"
+  },
+  "HR": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "シサク・モスラヴィナ県、カルロヴァツ県、リカ・セニ県及びスプリト・ダルマチア県の一部"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_188.html"
+  },
+  "GE": {
+   "base": 1,
+   "max": 3,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル３及びレベル２発出地域以外のジョージア全土（首都トビリシ市を含む）"
+    },
+    {
+     "level": 2,
+     "area": "ロシアとの国境周辺地域"
+    },
+    {
+     "level": 3,
+     "area": "ツヒンヴァリ/南オセチア及びその周辺地域、アブハジア及びその周辺地域"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_200.html"
+  },
+  "SA": {
+   "base": 1,
+   "max": 3,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル３及びレベル２発出地域以外のサウジアラビア全土"
+    },
+    {
+     "level": 2,
+     "area": "イラクとの国境地帯、リヤド州、東部州"
+    },
+    {
+     "level": 3,
+     "area": "ジャーザーン州、アシール州、ナジュラーン州、イエメンとの国境地帯"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_050.html"
+  },
+  "TR": {
+   "base": 1,
+   "max": 4,
+   "areas": [
+    {
+     "level": 1,
+     "area": "イスタンブール県、東部11県（トゥンジェリ、エラズー、ビンギョル、ムシュ、ビトリス、ヴァン、ウードゥル、カルス、アール、エルズルム、エルジンジャン）及び南東部5県（バトマン、シールト、アドゥヤマンの全域、ガジアンテプ、シャンルウルファの県都以北）"
+    },
+    {
+     "level": 2,
+     "area": "ハッカーリ県、シュルナク県、ハタイ県、キリス県、ガジアンテップ県、シャンルウルファ県、マルディン県の一部（シリア又はイラクとの国境地帯を除く）"
+    },
+    {
+     "level": 3,
+     "area": "ディヤルバクル県及びイラクとの国境地帯"
+    },
+    {
+     "level": 4,
+     "area": "シリアとの国境地帯"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_052.html"
+  },
+  "EG": {
+   "base": 1,
+   "max": 3,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル３及びレベル２発出地域以外のエジプト全土（大カイロ都市圏を含む）"
+    },
+    {
+     "level": 2,
+     "area": "西部及び南部の砂漠地帯（地中海に面したマルサ・マトルーフからアレキサンドリアまでの沿岸地域などを除く）"
+    },
+    {
+     "level": 3,
+     "area": "北シナイ県、南シナイ県（アカバ湾に面したダハブからシャルム・エル・シェイクまでの沿岸地域を除く）、リビア国境地帯"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_094.html"
+  },
+  "ET": {
+   "base": 1,
+   "max": 4,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル４、レベル３及びレベル２発出地域以外のエチオピア全土（首都アディスアベバを含む）"
+    },
+    {
+     "level": 2,
+     "area": "アファール州のレベル３、４以外の地域、オロミア州ボレナ地区（ケニアとの国境地帯を除く）、東西ハラルゲ地区、バレ地区、北シェワ地区、西シェワ地区、東シェワ地区、ガンベラ州ガンベラ市、ソマリ州（ソマリア及びケニアとの国境地帯を除く）"
+    },
+    {
+     "level": 3,
+     "area": "ティグライ州メケレ市及びシレ市、ティグライ州（エリトリアとの国境地帯、西部地区及びアムハラ州との州境地帯を除く）、アファール州キルバティ地区及びティグライ州との州境地帯、アムハラ州（レベル４地域を除く）、オロミア州イルバボール地区、ガンベラ州（ガンベラ市、南スーダンとの国境地帯を除く）、ベニシャングル・グムズ州アソサ地区、ケニアとの国境地帯"
+    },
+    {
+     "level": 4,
+     "area": "エリトリア、ソマリア、スーダン、南スーダンとの国境地帯、ティグライ州西部地区及びアムハラ州との州境地帯、オロミア州東西ウェレガ地区、ケレム・ウェレガ地区、ホログドゥル・ウェレガ地区及び東西グジ地区、ベニシャングル・グムズ州カマシ地区及びメテケル地区"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_095.html"
+  },
+  "KE": {
+   "base": 1,
+   "max": 4,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル４、レベル３及びレベル２発出地域以外のケニア全土"
+    },
+    {
+     "level": 2,
+     "area": "ナイロビ郡の一部（ナイロビ東部イスリー地区周辺地域、キベラ、マザレ、カワンガレ等スラム街周辺地域）、リフトバレー地域トゥルカナ郡の一部、マルサビット郡の一部、サンブル郡及びイシオロ郡、沿岸地域タナ・リバー郡並びにキリフィ郡の一部沿岸地帯（マリンディ以北）"
+    },
+    {
+     "level": 3,
+     "area": "リフトバレー地域トゥルカナ郡の南スーダン及びウガンダとの国境地帯並びに南部一帯、マルサビット郡（モヤレ準郡を含む）のエチオピアとの国境地帯、ウェスト・ポコット郡、バリンゴ郡北部一帯、北東地域マンデラ郡、ワジル郡、ガリッサ郡の一部並びに沿岸地域ラム郡の一部"
+    },
+    {
+     "level": 4,
+     "area": "ソマリアとの国境地帯、北東地域ガリッサ郡ダダーブ難民キャンプ周辺地域及びガリッサ"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_100.html"
+  },
+  "TZ": {
+   "base": 1,
+   "max": 3,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル３及びレベル２発出地域以外のタンザニア全土"
+    },
+    {
+     "level": 2,
+     "area": "ムトワラ州"
+    },
+    {
+     "level": 3,
+     "area": "キゴマ州西部等ブルンジとの国境付近"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_111.html"
+  },
+  "TN": {
+   "base": 1,
+   "max": 3,
+   "areas": [
+    {
+     "level": 1,
+     "area": "レベル３及びレベル２発出地域以外のチュニジア全土（首都チュニスを含む。）"
+    },
+    {
+     "level": 2,
+     "area": "ジャンドゥーバ県（レベル3の地域、国道17号線以東、タバルカ市内、アイン・ドラハム市内及びジャンドゥーバ市内を除く）、ル・ケフ県（レベル3の地域、国道17号線以東及びル・ケフ市内を除く）及び南部砂漠地帯の一部（ジュビル国立公園、ボルジュ・ブルギバ、ルマダ、タタウィン、ザルジスの各都市を除くそれより南方の一部地域で、レベル3以外の地域）、カスリン県（レベル3の地域、スベイトラ市内、国道13号線及び国道東3号線のうちスベイトラ以東並びに国道3号線を除く）"
+    },
+    {
+     "level": 3,
+     "area": "カスリン県及びシディ・ブ・ジッド県の山岳地帯（シャアンビ山、セルーン山、ムギラ山、スメナ山、オルバタ山付近）、ガフサ県の山岳地帯（オルバタ山付近）、アルジェリア・リビア国境付近及び南部軍事緩衝地帯"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_113.html"
+  },
+  "ZA": {
+   "base": 1,
+   "max": 2,
+   "areas": [
+    {
+     "level": 1,
+     "area": "ヨハネスブルグ市、ツワネ市（旧プレトリア）及びダーバン市のCBD（CENTRAL BUSINESS DISTRICT）およびその周辺を除く全土"
+    },
+    {
+     "level": 2,
+     "area": "ヨハネスブルグ市、ツワネ市（旧プレトリア）及びダーバン市のCBD（CENTRAL BUSINESS DISTRICT）およびその周辺"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_122.html"
+  },
+  "MA": {
+   "base": 1,
+   "max": 1,
+   "areas": [
+    {
+     "level": 1,
+     "area": "全土"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_124.html"
+  },
+  "TH": {
+   "base": 2,
+   "max": 3,
+   "areas": [
+    {
+     "level": 2,
+     "area": "カンボジアとの国境付近（シーサケート県、スリン県、ブリラム県、ウボンラチャタニ県サケーオ県、チャンタブリ県、トラート県のカンボジア国境から30kmを超えて50km以内の地域）、ソンクラー県(ジャナ郡、テーパー郡及びサバヨーイ郡を除く。)"
+    },
+    {
+     "level": 3,
+     "area": "カンボジアとの国境付近（シーサケート県、スリン県、ブリラム県、ウボンラチャタニ県サケーオ県、チャンタブリ県、トラート県のカンボジア国境から30km以内）、ナラティワート県、ヤラー県、パッタニー県及びソンクラー県の一部(ジャナ郡、テーパー郡及びサバヨーイ郡)"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_007.html"
+  },
+  "MM": {
+   "base": 2,
+   "max": 3,
+   "areas": [
+    {
+     "level": 2,
+     "area": "レベル３発出地域以外のミャンマー全土"
+    },
+    {
+     "level": 3,
+     "area": "ラカイン州マウンドー県（マウンドー地区、ブディタウン地区）及びラカイン州シットウェ県（シットウェ地区（除く市街地）、パウトー地区、ポンナチュン地区、ラテダウン地区）、ミャウー県（ミャウー地区、チャウトー地区、ミンビャ地区、ミェボン地区）並びにチン州パレワ地区、シャン州コーカン自治地帯、カチン州ライザー周辺以下の戒厳令発令地区（ヤンゴン地域の6地区除く）チン州8地区（ティディム地区、トンザン地区、ファラム地区、カンペレッ地区、マトゥピ地区、タンタラン地区、ハーカー地区、ミンダ地区）ザガイン地域14地区（インドー地区、バンマウ地区、コーリン地区、ピンレーブー地区、ミャウン地区、サーリンジー地区、パレー地区、インマービン地区、キンウー地区、タゼー地区、イェーウー地区、シュエボー地区、ウェッレッ地区、アヤードー地区）マグウェ地域5地区（ガンゴー地区、ティーリン地区、ソー地区、パウッ地区、ミャイン地区）カヤー州4地区（デモーソー地区、プルーソー地区、シャードー地区、ボーラケー地区）バゴー地域5地区（タンタビン地区、オウッポー地区、ナッタリン地区、パウンデー地区、パウッカウン地区）タニンダーリ地域2地区（タニンダーリ地区、パロー地区）カレン州2地区（チャインセイッジー地区、コーカレイ地区）モン州1地区（イェー地区）シャン州13地区（クッカイ地区、クンロン地区、ナムカン地区、ムセ地区、ラショー地区、テインニー地区、コンジャン地区、ラウカイ地区、モーメイッ地区、マベイン地区、マントン地区、ナムサン（Namhsan）地区、ナムトゥ地区）"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_018.html"
+  },
+  "AE": {
+   "base": 2,
+   "max": 2,
+   "areas": [
+    {
+     "level": 2,
+     "area": "全土"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_042.html"
+  },
+  "OM": {
+   "base": 2,
+   "max": 2,
+   "areas": [
+    {
+     "level": 2,
+     "area": "全土"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_047.html"
+  },
+  "QA": {
+   "base": 2,
+   "max": 2,
+   "areas": [
+    {
+     "level": 2,
+     "area": "全土"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_048.html"
+  },
+  "JO": {
+   "base": 2,
+   "max": 2,
+   "areas": [
+    {
+     "level": 2,
+     "area": "全土"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_054.html"
+  },
+  "IL": {
+   "base": 3,
+   "max": 4,
+   "areas": [
+    {
+     "level": 3,
+     "area": "レベル４発出地域以外のイスラエル全土"
+    },
+    {
+     "level": 4,
+     "area": "ガザ地区及び同地区との境界周辺、レバノンとの国境地帯"
+    }
+   ],
+   "url": "https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_044.html"
+  }
+ }
+}
