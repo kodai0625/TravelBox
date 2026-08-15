@@ -32,7 +32,7 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css を直したら、ここを1つ上げてください。 -->
-<link rel="stylesheet" href="css/entry.css?v=20260815b">
+<link rel="stylesheet" href="css/entry.css?v=20260815c">
 </head>
 <body>
 
@@ -56,6 +56,15 @@
     <path fill="currentColor" d="M12 2.4c1.05 0 1.75 1.35 1.75 3v3.05l7.15 4.2v2.1
       l-7.15-2.2v4.05l2.2 1.6v1.6L12 18.7l-3.95 1.1v-1.6l2.2-1.6v-4.05L3.1 14.75v-2.1
       l7.15-4.2V5.4c0-1.65.7-3 1.75-3z"/>
+  </symbol>
+
+  <!-- 更新のしるし。時計回りの矢印は「読み込み直す」の共通の形です -->
+  <symbol id="i-refresh" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 4 23 10 17 10"/>
+      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+    </g>
   </symbol>
 
   <symbol id="i-case" viewBox="0 0 24 24">
@@ -90,7 +99,15 @@
     <h1 class="hero__title">旅の道具箱</h1>
     <p class="hero__sub" id="heroSub">読み込み中…</p>
   </div>
-  <button type="button" class="theme-btn" id="themeBtn">自動</button>
+  <div class="hero__btns">
+    <!-- 手動での更新。ふだんは sw.js が自動で新しくしますが、
+         古い画面のままのときはここを押します（js/update.js） -->
+    <button type="button" class="head-icon" id="updateBtn"
+            title="最新版に更新" aria-label="最新版に更新">
+      <svg class="head-icon__i" aria-hidden="true"><use href="#i-refresh"/></svg>
+    </button>
+    <button type="button" class="theme-btn" id="themeBtn">自動</button>
+  </div>
 </header>
 
 <main class="page">
@@ -182,6 +199,7 @@
   } catch (e) { /* 保存できなくてもリンクは働きます */ }
 })();
 </script>
+<script src="js/update.js?v=20260815c"></script>
 
 <script>
 /* 世話係の登録。これが無いと sw.js は働きません。

@@ -112,6 +112,14 @@
       <circle cx="12" cy="15.5" r="5.3"/>
     </g>
   </symbol>
+  <!-- 更新のしるし。時計回りの矢印は「読み込み直す」の共通の形です -->
+  <symbol id="i-refresh" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 4 23 10 17 10"/>
+      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+    </g>
+  </symbol>
 </svg>
 
 <!-- ===== ヘッダー ===== -->
@@ -134,6 +142,12 @@
       </span>
     </button>
     <div class="head-btns">
+      <!-- 手動での更新。ふだんは sw.js が自動で新しくしますが、
+           古い画面のままのときはここを押します（js/update.js） -->
+      <button type="button" class="head-icon" id="updateBtn"
+              title="最新版に更新" aria-label="最新版に更新">
+        <svg class="head-icon__i" aria-hidden="true"><use href="#i-refresh"/></svg>
+      </button>
       <!-- 明暗の切替。自動＝端末の設定に追従 -->
       <button type="button" class="head-btn" id="themeBtn">自動</button>
     </div>
@@ -370,5 +384,6 @@
 <script src="js/data.js?v=20260815e"></script>
 <script src="js/map.js?v=20260815e"></script>
 <script src="js/app.js?v=20260815e"></script>
+<script src="js/update.js?v=20260815e"></script>
 </body>
 </html>

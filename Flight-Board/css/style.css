@@ -1363,3 +1363,69 @@ body.is-locked { overflow: hidden; }
 
 /* 会社の一覧に置く入口の丸 */
 .code__i { width: 17px; height: 17px; display: block; }
+
+/* ===== 更新ボタン =====
+   ホームボタンと同じ「囲みのある四角＝押せる」に揃えています。
+   押しているあいだは矢印が回って、待っていることが分かるようにします。 */
+.head-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 10px;
+  font: inherit;
+  cursor: pointer;
+}
+/* 見た目は32pxのまま、指の当たり判定だけ44pxに広げます */
+.head-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+.head-icon__i { width: 17px; height: 17px; display: block; }
+.head-icon.is-busy { pointer-events: none; }
+.head-icon.is-busy .head-icon__i { animation: spin .9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .head-icon.is-busy .head-icon__i { animation: none; opacity: .5; }
+}
+
+/* ===== 画面の上に出る短い知らせ =====
+   押したのに何も言われないと、効いたのかどうか分かりません。 */
+.toast {
+  position: fixed;
+  left: 50%;
+  top: calc(14px + env(safe-area-inset-top));
+  z-index: 60;
+  margin: 0;
+  padding: 9px 18px;
+  max-width: calc(100vw - 32px);
+  border-radius: 999px;
+  font-size: 13px;
+  text-align: center;
+  transform: translate(-50%, -14px);
+  opacity: 0;
+  transition: opacity .3s ease, transform .3s ease;
+  pointer-events: none;
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+.head-icon {
+  border: 1px solid rgba(255, 255, 255, .34);
+  background: rgba(255, 255, 255, .14);
+  color: rgba(255, 255, 255, .92);
+}
+.head-icon:active { background: rgba(255, 255, 255, .26); }
+.toast {
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+}
