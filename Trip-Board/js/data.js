@@ -152,6 +152,18 @@ function eatLevelOf(code) {
   return typeof p.level === 'number' ? p.level : null;
 }
 
+/** 点数を ◎○△✕ に直す。
+ *  build_seasons.py の grade() と同じ境目です。片方だけ変えると
+ *  月を選んだときと指定なしのときで意味が食い違うので、
+ *  境目を変えるときは両方直してください。 */
+function gradeOf(score) {
+  if (score == null) return null;
+  if (score >= 80) return '◎';
+  if (score >= 65) return '○';
+  if (score >= 50) return '△';
+  return '✕';
+}
+
 /** 危険情報。出ていない国は null */
 function safetyOf(code) { return DB.safety[code] || null; }
 

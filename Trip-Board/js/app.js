@@ -313,9 +313,15 @@ function searchRow(c, now) {
   const storm = state.month && isStormMonth(c.code, state.month);
   const rain = state.month && s && s.rainy.includes(state.month);
 
-  const mark = state.month
-    ? `<span class="mark mark--${rank}">${g}</span>`
-    : `<span class="mark mark--none">${sc == null ? '—' : sc}</span>`;
+  // 月を選んでいないときは、12か月の平均を同じ ◎○△✕ に直して出します。
+  // 数字を出していたころは「何点満点の何の点数か」が画面から分からず、
+  // 月を選んだときと見た目も揃いませんでした。
+  const g2 = state.month ? g : gradeOf(sc);
+  const rank2 = state.month ? rank
+    : ({ '◎': 4, '○': 3, '△': 2, '✕': 1 }[g2] || 0);
+  const mark = g2
+    ? `<span class="mark mark--${rank2}">${g2}</span>`
+    : '<span class="mark mark--none">—</span>';
 
   // 台風は「国の一部だけ」のことがあるので、そう書き分けます
   const stormWord = storm
@@ -365,7 +371,7 @@ function renderSearch() {
 
   const head = state.month
     ? `${MONTHS[state.month - 1]}に行くなら ${list.length} の国・地域`
-    : `${list.length} の国・地域　点数は天気の12か月平均です`;
+    : `${list.length} の国・地域　印は天気の12か月平均です`;
   $('searchCount').textContent = head + (grouping()
     ? '　エリアごとに、天気が良い順で並べています'
     : (state.month
