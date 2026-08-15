@@ -971,3 +971,48 @@ a { color: inherit; }
 .cl { display: inline-block; flex: 0 0 auto; }
 .cl--hi, .cl--lo { width: 16px; height: 3px; border-radius: 2px; }
 .cl--bar { width: 8px; height: 12px; border-radius: 2px; }
+
+/* ---------- 費目別の物価 ----------
+   数字だけだと大小がつかみにくいので、棒を添えています。
+   日本(100)が棒の真ん中に来るよう、200を上限にしています。
+   表ではなく格子（grid）で組んでいます。表だと高さが行に引きずられ、
+   棒が丸く膨らんでしまうためです。 */
+.prices {
+  display: grid;
+  grid-template-columns: 5.6em 1fr 2.4em auto;
+  align-items: center;
+  gap: 10px 8px;
+  margin: 0 0 10px;
+}
+.prices__name { font-size: 12.5px; white-space: nowrap; }
+.prices__bar {
+  position: relative;
+  height: 10px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: visible;
+}
+/* 日本の位置（100）を示す縦線 */
+.prices__bar::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: -3px; bottom: -3px;
+  width: 1px;
+  background: var(--line);
+}
+.prices__bar i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  min-width: 4px;
+}
+.prices__n {
+  font-size: 14px;
+  text-align: right;
+  white-space: nowrap;
+}
+.prices__w {
+  font-size: 11px;
+  color: var(--text-weak);
+  white-space: nowrap;
+}

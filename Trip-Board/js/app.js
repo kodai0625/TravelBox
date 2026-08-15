@@ -217,7 +217,7 @@ function filtered() {
     if (state.conds.has('direct') && !c.direct) return false;
     if (state.conds.has('safe') && safetyOf(c.code)) return false;
     if (state.conds.has('cheap')) {
-      const p = priceLevelOf(c.code);
+      const p = eatLevelOf(c.code);   // 外食と宿泊で見ます
       if (p === null || p >= 100) return false;
     }
     if (state.conds.has('near')) {
@@ -264,7 +264,7 @@ function sorted(list) {
     });
   } else if (state.sort === 'price') {
     arr.sort((a, b) => {
-      const pa = priceLevelOf(a.code), pb = priceLevelOf(b.code);
+      const pa = eatLevelOf(a.code), pb = eatLevelOf(b.code);
       if (pa === null && pb === null) return a.ja.localeCompare(b.ja, 'ja');
       if (pa === null) return 1;
       if (pb === null) return -1;
@@ -283,10 +283,16 @@ function sorted(list) {
  *  探す
  * ---------------------------------------------------------- */
 function priceBadge(code) {
+  // 旅行の支出でいちばん大きいのは外食と宿泊なので、札にはそれを出します。
+  // 無い国だけ、経済全体の物価水準で代わりにします。
   const p = DB.prices[code];
-  if (!p || typeof p.level !== 'number') return '<span class="tag">物価 —</span>';
-  const cls = p.level < 60 ? 'tag--cheap' : p.level < 100 ? 'tag--mid' : 'tag--pricey';
-  return `<span class="tag ${cls}">物価 ${p.level}</span>`;
+  if (!p) return '<span class="tag">物価 —</span>';
+  const v = typeof p.eat === 'number' ? p.eat
+    : (typeof p.level === 'number' ? p.level : null);
+  if (v === null) return '<span class="tag">物価 —</span>';
+  const cls = v < 60 ? 'tag--cheap' : v < 100 ? 'tag--mid' : 'tag--pricey';
+  const what = typeof p.eat === 'number' ? '外食' : '物価';
+  return `<span class="tag ${cls}">${what} ${v}</span>`;
 }
 
 function safetyBadge(code) {
@@ -634,15 +640,15 @@ function renderCompare() {
   }, 'country');
 
   // ---- ふたたび国で決まるもの ----
-  add('物価（日本=100）', (p) => {
+  (DB.meta.prices.categories || []).forEach((cat) => {
+    add(`${cat.ja}（日本=100）`, (p) => {
+      const x = DB.prices[p.c.code];
+      return x && typeof x[cat.key] === 'number' ? `${x[cat.key]}` : '—';
+    }, 'country');
+  });
+  add('経済全体の物価', (p) => {
     const x = DB.prices[p.c.code];
     return x && typeof x.level === 'number' ? `${x.level}` : '—';
-  }, 'country');
-  add('ビッグマック', (p) => {
-    const x = DB.prices[p.c.code];
-    if (!x || !x.bigmac_jpy) return '—';
-    return `${x.bigmac_jpy}円`
-      + (x.bigmac_area ? `<br><span class="src">${esc(x.bigmac_area)}</span>` : '');
   }, 'country');
   add('危険情報', (p) => {
     const s = safetyOf(p.c.code);
@@ -870,25 +876,34 @@ function sheetHTML(c, ci) {
   // ---- 物価 ----
   out.push('<h3 class="sec">物価</h3>');
   const p = DB.prices[c.code];
-  if (p && (typeof p.level === 'number' || p.bigmac_jpy)) {
-    out.push('<dl class="kv">');
+  const cats = DB.meta.prices.categories || [];
+  if (p && cats.some((x) => typeof p[x.key] === 'number')) {
+    out.push('<p class="sec-note">日本を100としたときの値です。'
+      + '旅行者が実際に払うものに近い順に並べています。</p>');
+    out.push('<div class="prices">' + cats.map((x) => {
+      const v = p[x.key];
+      if (typeof v !== 'number') return '';
+      const word = v < 50 ? 'かなり安い' : v < 80 ? '安い'
+        : v < 110 ? '日本と同じくらい' : v < 150 ? '高い' : 'かなり高い';
+      const cls = v < 60 ? 'is-cheap' : v < 110 ? 'is-mid' : 'is-pricey';
+      // 棒の長さ。200を上限にして、日本(100)が真ん中に来るようにします
+      const w = Math.min(100, v / 2);
+      return `<span class="prices__name">${esc(x.ja)}</span>
+        <span class="prices__bar"><i class="${cls}" style="width:${w}%"></i></span>
+        <span class="prices__n">${v}</span>
+        <span class="prices__w">${word}</span>`;
+    }).join('') + '</div>');
+
     if (typeof p.level === 'number') {
-      const word = p.level < 50 ? 'かなり安い' : p.level < 80 ? '安い'
-        : p.level < 110 ? '日本と同じくらい' : p.level < 150 ? '高い' : 'かなり高い';
-      out.push(`<dt>物価水準</dt><dd><b>${p.level}</b>（日本を100として）　${word}
-        <span class="src">${esc(p.level_src)}・${esc(p.level_year)}年</span></dd>`);
+      out.push(`<dl class="kv"><dt>経済全体の物価水準（参考）</dt>
+        <dd>${p.level}　<span class="src">家賃や医療費まで含む平均です。
+        その国の暮らしの水準を表しますが、旅行の予算とはずれます</span></dd></dl>`);
     }
-    if (p.bigmac_jpy) {
-      out.push(`<dt>ビッグマック</dt><dd><b>${p.bigmac_jpy}円</b>
-        （日本 ${DB.meta.prices.bigmac_jpy_japan}円）
-        ${p.bigmac_area ? `<span class="src">${esc(p.bigmac_area)}。`
-          + '国別には公表されていません</span>' : ''}</dd>`);
-    }
-    out.push('</dl>');
-    out.push(`<p class="src">物価水準は家賃や医療費まで含む経済全体の平均です。
-      旅行者が実際に払う金額は、外食1食にあたるビッグマックのほうが近い目安になります。
-      日本の外食が世界的に安いため、多くの国で「物価水準は日本より下なのに
-      外食は日本より高い」ことが起きます。</p>`);
+    out.push(`<p class="src">出典は${esc(DB.meta.prices.category_source)}。
+      日本の値で割り直して100にしています。<br>
+      以前はビッグマックの値段を出していましたが、旅行者の実感と正反対の数字が
+      出ることが分かったのでやめました（タイはビッグマックだと日本より3割高く、
+      外食全体では日本の3割です）。</p>`);
   } else if (p && p.note) {
     out.push(`<p class="note">${esc(p.note)}</p>`);
   } else {

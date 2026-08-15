@@ -2,44 +2,59 @@
  "meta": {
   "version": "2026-08-15",
   "base": "日本 = 100",
+  "categories": [
+   {
+    "key": "eat",
+    "ja": "外食と宿泊"
+   },
+   {
+    "key": "move",
+    "ja": "交通"
+   },
+   {
+    "key": "food",
+    "ja": "食料品"
+   }
+  ],
+  "category_source": "世界銀行 国際比較プログラム（ICP 2021）価格水準指数 PX.WL",
   "level_source": "世界銀行 NY.GDP.PCAP.CD ÷ NY.GDP.PCAP.PP.CD（日本は2025年）",
-  "bigmac_source": "The Economist Big Mac index 2026-07-01",
-  "bigmac_jpy_japan": 500,
-  "usdjpy": 162.1,
   "manual": {
    "TW": "IMF World Economic Outlook 2025年推計"
   },
-  "spearman": 0.745,
-  "note": "物価水準は経済全体の平均で、家賃や医療費も含みます。旅行者が払う金額はビッグマックのほうが近い目安です。"
+  "note": "費目別は旅行者が実際に払うものに近い数字です。経済全体の物価水準は家賃や医療費まで含む平均なので、旅行の予算とはずれます。"
  },
  "prices": {
   "KR": {
    "level": 88,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 124,
-   "bigmac_jpy": 622
+   "eat": 96,
+   "move": 44,
+   "food": 107
   },
   "TW": {
    "level": 68,
    "level_year": "2025",
    "level_src": "IMF World Economic Outlook 2025年推計",
-   "bigmac": 79,
-   "bigmac_jpy": 393
+   "eat": 42,
+   "move": 42,
+   "food": 73
   },
   "CN": {
    "level": 73,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 127,
-   "bigmac_jpy": 635
+   "eat": 57,
+   "move": 30,
+   "food": 68
   },
   "HK": {
    "level": 109,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 105,
-   "bigmac_jpy": 527
+   "eat": 63,
+   "move": 40,
+   "food": 88
   },
   "MO": {
    "level": 85,
@@ -49,64 +64,82 @@
   "MN": {
    "level": 53,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 29,
+   "move": 17,
+   "food": 40
   },
   "TH": {
    "level": 47,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 130,
-   "bigmac_jpy": 651
+   "eat": 28,
+   "move": 20,
+   "food": 44
   },
   "VN": {
    "level": 43,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 94,
-   "bigmac_jpy": 469
+   "eat": 24,
+   "move": 23,
+   "food": 41
   },
   "SG": {
    "level": 93,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 187,
-   "bigmac_jpy": 936
+   "eat": 47,
+   "move": 43,
+   "food": 67
   },
   "MY": {
    "level": 49,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 116,
-   "bigmac_jpy": 578
+   "eat": 21,
+   "move": 19,
+   "food": 43
   },
   "ID": {
    "level": 44,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 77,
-   "bigmac_jpy": 386
+   "eat": 30,
+   "move": 21,
+   "food": 47
   },
   "PH": {
    "level": 51,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 89,
-   "bigmac_jpy": 444
+   "eat": 32,
+   "move": 22,
+   "food": 48
   },
   "KH": {
    "level": 52,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 32,
+   "move": 25,
+   "food": 47
   },
   "BN": {
    "level": 54,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 45,
+   "move": 17,
+   "food": 53
   },
   "LA": {
    "level": 35,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 32,
+   "move": 30,
+   "food": 46
   },
   "MM": {
    "level": 38,
@@ -117,289 +150,329 @@
    "level": 35,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 80,
-   "bigmac_jpy": 398
+   "eat": 26,
+   "move": 18,
+   "food": 31
   },
   "NP": {
    "level": 38,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 25,
+   "move": 20,
+   "food": 35
   },
   "BD": {
    "level": 39,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 27,
+   "move": 19,
+   "food": 45
   },
   "LK": {
    "level": 45,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 23,
+   "move": 13,
+   "food": 40
   },
   "MV": {
    "level": 79,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 47,
+   "move": 29,
+   "food": 54
   },
   "UZ": {
    "level": 45,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 36,
+   "move": 11,
+   "food": 38
   },
   "AE": {
    "level": 98,
    "level_year": "2024",
    "level_src": "世界銀行",
-   "bigmac": 168,
-   "bigmac_jpy": 839
+   "eat": 75,
+   "move": 34,
+   "food": 72
   },
   "QA": {
    "level": 87,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 160,
-   "bigmac_jpy": 802
+   "eat": 72,
+   "move": 45,
+   "food": 66
   },
   "IL": {
    "level": 156,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 249,
-   "bigmac_jpy": 1243
+   "eat": 146,
+   "move": 58,
+   "food": 99
   },
   "TR": {
    "level": 63,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 224,
-   "bigmac_jpy": 1120
+   "eat": 47,
+   "move": 27,
+   "food": 39
   },
   "JO": {
    "level": 65,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 114,
-   "bigmac_jpy": 572
+   "eat": 42,
+   "move": 30,
+   "food": 52
   },
   "SA": {
    "level": 72,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 164,
-   "bigmac_jpy": 820
+   "eat": 52,
+   "move": 39,
+   "food": 67
   },
   "OM": {
    "level": 73,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 129,
-   "bigmac_jpy": 644
+   "eat": 47,
+   "move": 28,
+   "food": 57
   },
   "GE": {
    "level": 51,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 35,
+   "move": 20,
+   "food": 42
   },
   "GB": {
    "level": 137,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 240,
-   "bigmac_jpy": 1200
+   "eat": 89,
+   "move": 98,
+   "food": 58
   },
   "FR": {
    "level": 118,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 107,
+   "move": 71,
+   "food": 67
   },
   "IT": {
    "level": 106,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 99,
+   "move": 54,
+   "food": 65
   },
   "ES": {
    "level": 99,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 75,
+   "move": 54,
+   "food": 60
   },
   "DE": {
    "level": 124,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 101,
+   "move": 74,
+   "food": 64
   },
   "NL": {
    "level": 130,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 110,
+   "move": 76,
+   "food": 60
   },
   "BE": {
    "level": 125,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 113,
+   "move": 67,
+   "food": 65
   },
   "AT": {
    "level": 126,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 94,
+   "move": 74,
+   "food": 66
   },
   "CH": {
    "level": 173,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 293,
-   "bigmac_jpy": 1466
+   "eat": 154,
+   "move": 84,
+   "food": 101
   },
   "DK": {
    "level": 143,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 228,
-   "bigmac_jpy": 1141
+   "eat": 140,
+   "move": 80,
+   "food": 73
   },
   "SE": {
    "level": 134,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 232,
-   "bigmac_jpy": 1161
+   "eat": 119,
+   "move": 107,
+   "food": 72
   },
   "FI": {
    "level": 131,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 119,
+   "move": 86,
+   "food": 70
   },
   "NO": {
    "level": 140,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 261,
-   "bigmac_jpy": 1306
+   "eat": 148,
+   "move": 100,
+   "food": 91
   },
   "IS": {
    "level": 182,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 148,
+   "move": 112,
+   "food": 85
   },
   "IE": {
    "level": 131,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 116,
+   "move": 87,
+   "food": 73
   },
   "PL": {
    "level": 81,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 202,
-   "bigmac_jpy": 1008
+   "eat": 66,
+   "move": 36,
+   "food": 44
   },
   "CZ": {
    "level": 92,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 176,
-   "bigmac_jpy": 881
+   "eat": 52,
+   "move": 37,
+   "food": 55
   },
   "HU": {
    "level": 80,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 172,
-   "bigmac_jpy": 859
+   "eat": 55,
+   "move": 41,
+   "food": 52
   },
   "HR": {
    "level": 82,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 71,
+   "move": 53,
+   "food": 60
   },
   "SI": {
    "level": 97,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 78,
+   "move": 60,
+   "food": 61
   },
   "GR": {
    "level": 92,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 79,
+   "move": 46,
+   "food": 65
   },
   "PT": {
    "level": 93,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 64,
+   "move": 51,
+   "food": 62
   },
   "MT": {
    "level": 102,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 84,
+   "move": 48,
+   "food": 72
   },
   "EE": {
    "level": 102,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 230,
-   "bigmac_jpy": 1148,
-   "bigmac_area": "ユーロ圏の平均"
+   "eat": 84,
+   "move": 45,
+   "food": 60
   },
   "US": {
    "level": 154,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 202,
-   "bigmac_jpy": 1008
+   "eat": 96,
+   "move": 45,
+   "food": 61
   },
   "CA": {
    "level": 129,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 189,
-   "bigmac_jpy": 943
+   "eat": 102,
+   "move": 79,
+   "food": 76
   },
   "MX": {
    "level": 83,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 203,
-   "bigmac_jpy": 1016
+   "eat": 57,
+   "move": 37,
+   "food": 52
   },
   "GU": {
    "note": "アメリカの海外領土でドルが使えます。物価はアメリカ本土並みか、輸送費のぶんやや高めです。"
@@ -411,99 +484,129 @@
    "level": 91,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 227,
-   "bigmac_jpy": 1134
+   "eat": 60,
+   "move": 25,
+   "food": 65
   },
   "PE": {
    "level": 79,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 162,
-   "bigmac_jpy": 809
+   "eat": 47,
+   "move": 23,
+   "food": 47
   },
   "BR": {
    "level": 70,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 153,
-   "bigmac_jpy": 763
+   "eat": 33,
+   "move": 32,
+   "food": 42
   },
   "AR": {
    "level": 70,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 192,
-   "bigmac_jpy": 958
+   "eat": 52,
+   "move": 26,
+   "food": 43
   },
   "CL": {
    "level": 73,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 175,
-   "bigmac_jpy": 877
+   "eat": 69,
+   "move": 27,
+   "food": 65
   },
   "EG": {
    "level": 24,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 93,
-   "bigmac_jpy": 465
+   "eat": 20,
+   "move": 14,
+   "food": 33
   },
   "MA": {
    "level": 65,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 39,
+   "move": 28,
+   "food": 49
   },
   "TN": {
    "level": 47,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 22,
+   "move": 16,
+   "food": 34
   },
   "ET": {
    "level": 40,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 20,
+   "move": 9,
+   "food": 39
   },
   "KE": {
    "level": 52,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 29,
+   "move": 25,
+   "food": 49
   },
   "TZ": {
    "level": 45,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 23,
+   "move": 19,
+   "food": 34
   },
   "ZA": {
    "level": 64,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 113,
-   "bigmac_jpy": 565
+   "eat": 41,
+   "move": 46,
+   "food": 46
   },
   "MU": {
    "level": 59,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 55,
+   "move": 18,
+   "food": 54
   },
   "AU": {
    "level": 140,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 193,
-   "bigmac_jpy": 965
+   "eat": 127,
+   "move": 84,
+   "food": 78
   },
   "NZ": {
    "level": 133,
    "level_year": "2025",
    "level_src": "世界銀行",
-   "bigmac": 167,
-   "bigmac_jpy": 833
+   "eat": 117,
+   "move": 50,
+   "food": 73
   },
   "FJ": {
    "level": 63,
    "level_year": "2025",
-   "level_src": "世界銀行"
+   "level_src": "世界銀行",
+   "eat": 59,
+   "move": 24,
+   "food": 49
   },
   "PF": {
    "note": "フランスの海外領土。食料品の多くを輸入に頼るため、日本よりはっきり高くつきます。外食・宿ともに割高です。"

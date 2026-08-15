@@ -203,6 +203,11 @@
 .cl--lo  { background: var(--cool); }
 .cl--bar { background: var(--rain); opacity: .55; }
 
+/* ---- 費目別の物価の棒 ---- */
+.prices__bar i.is-cheap  { background: var(--lv0-fg); }
+.prices__bar i.is-mid    { background: var(--text-sub); }
+.prices__bar i.is-pricey { background: var(--storm); }
+
 /* ---- 良し悪しの言葉 ---- */
 .good { color: var(--accent); }
 .bad, .warn { color: var(--storm); }

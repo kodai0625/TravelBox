@@ -29,9 +29,9 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/style.css?v=20260815r">
+<link rel="stylesheet" href="css/style.css?v=20260815t">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260815r">
+<link rel="stylesheet" href="css/design.css?v=20260815t">
 </head>
 <body>
 
@@ -89,7 +89,7 @@
         <label class="sortwrap__label" for="sortSel">並び</label>
         <select class="sortsel" id="sortSel">
           <option value="score">天気の良さ</option>
-          <option value="price">物価が安い順</option>
+          <option value="price">外食が安い順</option>
           <option value="tz">時差が小さい順</option>
           <option value="name">五十音順</option>
         </select>
@@ -103,7 +103,7 @@
       <p class="filter-panel__label">条件</p>
       <div class="chips" id="condChips">
         <button type="button" class="chip" data-cond="direct">日本から直行便</button>
-        <button type="button" class="chip" data-cond="cheap">物価が日本より安い</button>
+        <button type="button" class="chip" data-cond="cheap">外食が日本より安い</button>
         <button type="button" class="chip" data-cond="safe">危険情報なし</button>
         <button type="button" class="chip" data-cond="near">時差5時間以内</button>
         <button type="button" class="chip" data-cond="nostorm">選んだ月が台風の季節でない</button>
@@ -190,9 +190,9 @@
   <div class="sheet__body" id="sheetBody"></div>
 </aside>
 
-<script src="js/config.js?v=20260815r"></script>
-<script src="js/data.js?v=20260815r"></script>
-<script src="js/chart.js?v=20260815r"></script>
-<script src="js/app.js?v=20260815r"></script>
+<script src="js/config.js?v=20260815t"></script>
+<script src="js/data.js?v=20260815t"></script>
+<script src="js/chart.js?v=20260815t"></script>
+<script src="js/app.js?v=20260815t"></script>
 </body>
 </html>

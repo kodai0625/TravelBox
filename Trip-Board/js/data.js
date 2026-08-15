@@ -136,10 +136,20 @@ function scoreOf(code, month, cityIndex) {
   return Math.round(s.scores.reduce((a, b) => a + b, 0) / 12);
 }
 
-/** 物価水準（日本=100）。数字が無い国は null */
+/** 経済全体の物価水準（日本=100）。数字が無い国は null */
 function priceLevelOf(code) {
   const p = DB.prices[code];
   return p && typeof p.level === 'number' ? p.level : null;
+}
+
+/** 外食と宿泊の物価（日本=100）。並べ替えと絞り込みはこちらを使います。
+ *  旅行の支出でいちばん大きい費目だからです。
+ *  無い国は経済全体の物価水準で代わりにします。 */
+function eatLevelOf(code) {
+  const p = DB.prices[code];
+  if (!p) return null;
+  if (typeof p.eat === 'number') return p.eat;
+  return typeof p.level === 'number' ? p.level : null;
 }
 
 /** 危険情報。出ていない国は null */
