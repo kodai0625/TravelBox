@@ -1429,3 +1429,56 @@ body.is-locked { overflow: hidden; }
   color: var(--bg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
 }
+
+/* ============================================================
+ *  パソコンなど横に広い画面
+ *
+ *  中身の幅を720pxで止めていたので、1440pxの画面では
+ *  左右に360pxずつ空いていました。使える場所を増やします。
+ *
+ *  ただし「1本の列のまま横に伸ばす」のはしません。
+ *  IATAコードと右端の矢印が離れすぎて、目で追えなくなるからです。
+ *  一覧とカードは2列に分けます。
+ * ============================================================ */
+@media (min-width: 900px) {
+  .page { max-width: 1120px; }
+
+  /* ---- 空港・航空会社・機材・就航先の一覧を2列にする ---- */
+  .list { display: grid; grid-template-columns: 1fr 1fr; }
+  /* 列と列のあいだ。カードの中なので、すき間ではなく線で分けます */
+  .list__item:nth-child(odd) { border-right: 1px solid var(--line-2); }
+  /* 件数が奇数のとき、最後の1件は右半分が空きます。
+     縦線だけ残ると宙ぶらりんに見えるので消します。 */
+  .list__item:last-child:nth-child(odd) { border-right: 0; }
+  /* 下から2番目の下線を消します。理由は件数で変わりますが、
+     どちらも「その下に何も無い」ので同じ扱いで済みます。
+       件数が偶数 … 最後の2件が同じ行に並ぶので、左側の下線が余る
+       件数が奇数 … 最後の1件が左半分だけになるので、右側の下線が余る */
+  .list__item:nth-last-child(2) { border-bottom: 0; }
+
+  /* ---- 特典のカードを2列に ----
+     72社あるので、上から下までたどる距離が半分になります。
+     高さがまちまちなので、上端をそろえて伸ばさないようにします。 */
+  #awardList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+    align-items: start;
+  }
+  #awardList .prod-group { grid-column: 1 / -1; }
+
+  /* ---- 特別な座席のカードも2列 ----
+     詳細パネル（640px）の中にも同じカードが出るので、
+     広いのは機材タブの一覧だけに絞ります。 */
+  #aircraftList .prod-list { grid-template-columns: 1fr 1fr; }
+
+  /* ---- 地図 ----
+     横に広がったぶん、高さも少し伸ばして形をたもちます */
+  #routeMap { height: min(68vh, 600px); }
+}
+
+/* さらに広い画面。むやみに広げると1行が長くなりすぎるので、
+   ここで頭打ちにします（Trip Board と同じ）。 */
+@media (min-width: 1400px) {
+  .page { max-width: 1240px; }
+}
