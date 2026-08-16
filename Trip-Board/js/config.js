@@ -40,6 +40,7 @@ const DATA_FILES = {
   prices:    'data/prices.json',    // 物価（tools/build_prices.py）
   safety:    'data/safety.json',    // 外務省の危険情報（tools/build_safety.py）
   guide:     'data/guide.json',     // 行事と独自ルール（tools/build_guide.py）
+  fares:     'data/fares.json',     // 航空券の高い時期・安い時期（tools/build_fares.py）
 };
 
 /* ------------------------------------------------------------
@@ -55,6 +56,8 @@ const SOURCES = [
     url: 'https://www.worldbank.org/en/programs/icp' },
   { name: '経済全体の物価水準', by: '世界銀行 World Development Indicators',
     url: 'https://data.worldbank.org/' },
+  { name: '航空券の高低', by: '各国のシーズン解説をもとに手で整備（金額は持ちません）',
+    url: 'https://www.ana.co.jp/ja/jp/guide/amc/award/international/terms/' },
   { name: '危険情報', by: '外務省 海外安全ホームページ',
     url: 'https://www.anzen.mofa.go.jp/kiken_list.html' },
   { name: '時差', by: 'IANA タイムゾーンデータベース（端末が持つもの）',

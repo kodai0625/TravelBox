@@ -120,8 +120,13 @@ function monthStrip(s, highlight) {
     if (s.cold[i]) flags.push('is-cold');
     if (s.storm && s.storm.months.includes(i + 1)) flags.push('is-storm');
     if (highlight === i + 1) flags.push('is-on');
+    // 調べた内容で1段上げた月。測った値そのままではないので、
+    // マスの左下に小さな印を付けて区別できるようにします。
+    const up = s.lifted && s.lifted[i + 1];
+    if (up) flags.push('is-lifted');
 
     const tip = [`${i + 1}月 天気${g}（${s.scores[i]}点・雨${s.wet[i]}日）`];
+    if (up) tip.push(`雨季の変わり目なので ${up.from} から ${up.to} に上げています`);
     if (s.hot[i]) tip.push('著しく暑い');
     if (s.cold[i]) tip.push('著しく寒い');
 

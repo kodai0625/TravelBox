@@ -32,7 +32,7 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css を直したら、ここを1つ上げてください。 -->
-<link rel="stylesheet" href="css/entry.css?v=20260815c">
+<link rel="stylesheet" href="css/entry.css?v=20260816a">
 </head>
 <body>
 
@@ -64,6 +64,20 @@
        stroke-linecap="round" stroke-linejoin="round">
       <polyline points="23 4 23 10 17 10"/>
       <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+    </g>
+  </symbol>
+
+  <!-- Pack Board のしるし。留め具の付いた紙ばさみ -->
+  <symbol id="i-board" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.6"
+       stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4.4" y="4.6" width="15.2" height="16.2" rx="2.2"/>
+      <path d="M9.2 4.6V3.9a2.8 2.8 0 0 1 5.6 0v.7"/>
+      <path d="M8.6 4.6h6.8"/>
+      <path d="M12.4 10.2h4.2M12.4 14h4.2M12.4 17.4h2.6"/>
+      <path d="m7.2 9.6 1.2 1.2 2-2.2"/>
+      <rect x="7" y="12.8" width="2.6" height="2.6" rx=".7"/>
+      <rect x="7" y="16.4" width="2.6" height="2.6" rx=".7"/>
     </g>
   </symbol>
 
@@ -139,12 +153,24 @@
       <span class="app__chev" aria-hidden="true">›</span>
     </a>
 
+    <a class="app app--pack" href="Pack-Board/index.html">
+      <span class="app__icon" aria-hidden="true">
+        <svg class="app__mark"><use href="#i-board"/></svg>
+      </span>
+      <span class="app__body">
+        <span class="app__name">Pack Board</span>
+        <span class="app__desc">持ち物を確かめる</span>
+        <span class="app__detail">行き先ごとのリスト・忘れ物チェック・自分用に登録</span>
+      </span>
+      <span class="app__chev" aria-hidden="true">›</span>
+    </a>
+
   </nav>
 
 
   <footer class="foot">
     <svg class="foot__mark" aria-hidden="true"><use href="#i-case"/></svg>
-    <p>ホーム画面にはこの1つだけを追加すれば、中の2つを行き来できます。</p>
+    <p>ホーム画面にはこの1つだけを追加すれば、中の3つを行き来できます。</p>
   </footer>
 
 </main>
@@ -199,7 +225,7 @@
   } catch (e) { /* 保存できなくてもリンクは働きます */ }
 })();
 </script>
-<script src="js/update.js?v=20260815c"></script>
+<script src="js/update.js?v=20260816a"></script>
 
 <script>
 /* 世話係の登録。これが無いと sw.js は働きません。

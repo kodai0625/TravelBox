@@ -41,6 +41,9 @@
      使っていない紫にしています。どの色の上に来ても浮くので、
      一覧表のどこにいても選択中の列が目で追えます。 */
   --pick:  #6a1b9a;
+  /* 調べた内容で上げた月の角印。測った値ではないと分かるよう、
+     天気の4色（青・黄・赤）とも気温の帯（赤・紺）とも違う緑にしています */
+  --lifted: #2f7d5b;
 
   /* 天気の4段。◎○は青（濃さで差を付ける）、△は黄、✕は赤。
      ✕を赤にしたのは、記号の見た目どおりの意味に揃えるためです。
@@ -82,6 +85,7 @@
   --storm: #e0806c;
   --stormmark: #ccd1db;
   --pick:  #d9a8ff;
+  --lifted: #5fbf92;
 
   /* 暗いときは塗りを暗めに保ちます。気温の帯が明るい色なので、
      塗りまで明るくすると帯が埋もれてしまうためです。 */
@@ -233,3 +237,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* ---- 航空券の高い時期・安い時期 ----
+   高いほうを赤、安いほうを緑にしています。天気の◎○△✕（青・黄・赤）とは
+   別の話なので、同じ色を使うと意味が混ざります。
+   高いの赤だけは天気の✕と近いのですが、置き場所が別の行なので取り違えません。 */
+.fare--high { background: var(--lv3-bg); color: var(--lv3-fg); }
+.fare--mid  { background: var(--surface-2); color: var(--text-weak); }
+.fare--low  { background: var(--lv0-bg); color: var(--lv0-fg); }
+.fare-warn  { background: var(--lv1-bg); color: var(--lv1-fg); }

@@ -1,0 +1,14 @@
+{
+  "name": "Pack Board",
+  "short_name": "Pack Board",
+  "description": "持ち物をあらかじめ登録して、旅行前にカバンに入れたか確かめるアプリ",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#141d18",
+  "theme_color": "#141d18",
+  "lang": "ja",
+  "icons": [
+    { "src": "img/app-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/app-icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

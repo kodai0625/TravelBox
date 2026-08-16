@@ -25,10 +25,12 @@
   --hero-line: rgba(30, 74, 104, .3);
   --trip:      #2f5d7c;
   --flight:    #8f7016;
+  --pack:      #2f7d5b;
   /* しるしを置く四角の地。アプリの色を薄く敷いて、
      2枚のカードがひと目で別のものだと分かるようにしています。 */
   --tile-trip:   #e7f0f7;
   --tile-flight: #f6efd9;
+  --tile-pack:   #e6f1eb;
   --radius:    16px;
   --shadow:    0 1px 3px rgba(30, 28, 20, .07);
 }
@@ -48,8 +50,10 @@
   --hero-line: rgba(200, 224, 240, .3);
   --trip:      #7fb3d5;
   --flight:    #c9a227;
+  --pack:      #5fbf92;
   --tile-trip:   #1d2c37;
   --tile-flight: #2a2718;
+  --tile-pack:   #1b2b23;
   --shadow:    none;
 }
 
@@ -196,6 +200,7 @@ body {
 }
 .app--trip::before { color: var(--trip); }
 .app--flight::before { color: var(--flight); }
+.app--pack::before { color: var(--pack); }
 
 .app__icon {
   flex: 0 0 auto;
@@ -217,6 +222,7 @@ body {
 
 .app--trip .app__icon { color: var(--trip); --tile: var(--tile-trip); }
 .app--flight .app__icon { color: var(--flight); --tile: var(--tile-flight); }
+.app--pack .app__icon { color: var(--pack); --tile: var(--tile-pack); }
 
 .app__body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
 

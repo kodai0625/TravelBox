@@ -29,9 +29,9 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/style.css?v=20260815x">
+<link rel="stylesheet" href="css/style.css?v=20260816a">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260815x">
+<link rel="stylesheet" href="css/design.css?v=20260816a">
 </head>
 <body>
 
@@ -138,6 +138,16 @@
       <path d="M12 6.6v13.6"/>
     </g>
   </symbol>
+  <!-- 航空券。値札の形にして「値段の話」だと分かるようにします -->
+  <symbol id="i-fare" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.6"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.6 3.2H20a.8.8 0 0 1 .8.8v7.4L11.4 20.8a.8.8 0 0 1-1.1 0l-7.1-7.1
+               a.8.8 0 0 1 0-1.1z"/>
+      <circle cx="16.9" cy="7.1" r="1.4"/>
+    </g>
+  </symbol>
+
   <!-- 更新のしるし。時計回りの矢印は「読み込み直す」の共通の形です -->
   <symbol id="i-refresh" viewBox="0 0 24 24">
     <g fill="none" stroke="currentColor" stroke-width="2"
@@ -275,6 +285,7 @@
       <span class="legend__item"><i class="sw sw--hot"></i>著しく暑い</span>
       <span class="legend__item"><i class="sw sw--cold"></i>著しく寒い</span>
       <span class="legend__item"><i class="sw sw--storm"></i>台風・サイクロン</span>
+      <span class="legend__item"><i class="sw sw--lifted"></i>雨季の変わり目（人のすすめを加えた月）</span>
     </div>
 
     <div class="matrixwrap">
@@ -327,10 +338,10 @@
   <div class="sheet__body" id="sheetBody"></div>
 </aside>
 
-<script src="js/config.js?v=20260815x"></script>
-<script src="js/data.js?v=20260815x"></script>
-<script src="js/chart.js?v=20260815x"></script>
-<script src="js/app.js?v=20260815x"></script>
-<script src="js/update.js?v=20260815x"></script>
+<script src="js/config.js?v=20260816a"></script>
+<script src="js/data.js?v=20260816a"></script>
+<script src="js/chart.js?v=20260816a"></script>
+<script src="js/app.js?v=20260816a"></script>
+<script src="js/update.js?v=20260816a"></script>
 </body>
 </html>

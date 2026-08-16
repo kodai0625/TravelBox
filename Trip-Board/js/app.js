@@ -13,6 +13,30 @@ const sec = (icon, text) =>
   `<h3 class="sec"><svg class="sec__i" aria-hidden="true">
      <use href="#i-${icon}"/></svg>${text}</h3>`;
 
+/** [5,6,9,10] を「5〜6月・9〜10月」のように書く。
+ *  build_seasons.py の runs()＋label() と同じことを JS 側でします。
+ *  12月と1月がつながる場合もひとまとまりにします（例：11〜2月）。 */
+function monthRange(months) {
+  const ms = [...new Set(months)].sort((a, b) => a - b);
+  if (!ms.length) return '';
+  if (ms.length === 12) return '一年中';
+  const groups = [];
+  let start = ms[0], prev = ms[0];
+  for (const m of ms.slice(1)) {
+    if (m === prev + 1) { prev = m; continue; }
+    groups.push([start, prev]);
+    start = prev = m;
+  }
+  groups.push([start, prev]);
+  // 12月と1月が両方あるなら、年をまたいでつなげます
+  if (groups.length > 1 && groups[0][0] === 1 && groups[groups.length - 1][1] === 12) {
+    const first = groups.shift();
+    const last = groups.pop();
+    groups.push([last[0], first[1]]);
+  }
+  return groups.map(([a, b]) => (a === b ? `${a}月` : `${a}〜${b}月`)).join('・');
+}
+
 const MONTHS = ['1月', '2月', '3月', '4月', '5月', '6月',
                 '7月', '8月', '9月', '10月', '11月', '12月'];
 
@@ -459,6 +483,90 @@ function renderTable() {
   $('matrix').innerHTML = `<tbody>${rows}</tbody>`;
 }
 
+
+/* ------------------------------------------------------------
+ *  航空券の高い時期・安い時期
+ *
+ *  値段そのものは持ちません。航空券は予約の時期・曜日・空席で毎日変わり、
+ *  「5月なら何円」と言える数字はどこにもないからです。
+ *  ここで出すのは上がり下がりの傾向だけです。
+ *
+ *  効き方の大きい順に並べています。
+ *    1. 日本の休みの並び（行き先を問わず同じ。ふだんの2〜3倍になる）
+ *    2. 行き先じたいの人気（国ごとに違う）
+ *  1のほうが強いので先に出します。
+ * ---------------------------------------------------------- */
+function fareBlock(code, s) {
+  const f = DB.fares[code];
+  if (!f) return '';
+  const meta = DB.fareMeta || {};
+  const jp = meta.jp || {};
+
+  const peak = new Set(f.peak);
+  const cheap = new Set(f.cheap);
+
+  // 天気が良くて、しかも安い月。いちばん知りたいのはここなので、
+  // 別の印を立てて目立たせます。データから導いたもので、手書きではありません。
+  const sweet = [];
+  const cells = MONTHS.map((label, i) => {
+    const m = i + 1;
+    let kind = 'mid';
+    if (peak.has(m)) kind = 'high';
+    else if (cheap.has(m)) kind = 'low';
+    const good = s && (s.grades[i] === '◎' || s.grades[i] === '○');
+    const isSweet = kind === 'low' && good;
+    if (isSweet) sweet.push(m);
+    const tip = [`${m}月`,
+      kind === 'high' ? '高くなりやすい' : (kind === 'low' ? '安くなりやすい' : 'ふつう')];
+    if (isSweet) tip.push('天気も良いので狙い目');
+    return `<td class="fare fare--${kind}${isSweet ? ' is-sweet' : ''}"
+      title="${tip.join('／')}">${kind === 'high' ? '高' : (kind === 'low' ? '安' : '')}</td>`;
+  }).join('');
+
+  const rows = [];
+  rows.push(`<table class="fare-strip"><tr>${cells}</tr>
+    <tr class="strip__labels">${monthLabels(state.month)}</tr></table>`);
+
+  rows.push(`<p class="fare-legend">
+    <span class="fare-legend__i fare--high"></span>高くなりやすい
+    <span class="fare-legend__i fare--low"></span>安くなりやすい
+    <span class="fare-legend__i fare--low is-sweet"></span>安くて天気も良い</p>`);
+
+  if (sweet.length) {
+    rows.push(`<p class="fare-sweet"><b>狙い目は ${
+      esc(monthRange(sweet))}</b>　安いのに天気は◎か○の月です。</p>`);
+  }
+  if (f.note) {
+    rows.push(`<p class="fare-note">${
+      esc(f.note).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')}</p>`);
+  }
+  if (f.lunar && meta.lunar) {
+    rows.push(`<p class="fare-warn"><b>旧正月</b>　${esc(meta.lunar.when)}<br>${
+      esc(meta.lunar.note)}</p>`);
+  }
+
+  // 日本側の山。行き先に関係なく同じなので、たたんで置きます。
+  const li = (x) => `<li><b>${esc(x.name)}</b>　${esc(x.when)}<br>
+    <span class="fare-jp__note">${esc(x.note)}</span></li>`;
+  rows.push(`<details class="fare-jp">
+    <summary class="fare-jp__head">日本発ならどこへ行っても上がる時期</summary>
+    <div class="fare-jp__body">
+      <p class="fare-jp__lead">${esc(jp.note || '').replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')}</p>
+      <p class="fare-jp__label">とくに高い</p>
+      <ul class="fare-jp__list">${(jp.high || []).map(li).join('')}</ul>
+      <p class="fare-jp__label">やや高い</p>
+      <ul class="fare-jp__list">${(jp.mid || []).map(li).join('')}</ul>
+      <p class="fare-jp__label">安いことが多い</p>
+      <ul class="fare-jp__list">${(jp.low || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+    </div>
+  </details>`);
+
+  rows.push(`<p class="fineprint">${
+    esc(meta.note || '').replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')}</p>`);
+
+  return sec('fare', '航空券の高い時期・安い時期') + rows.join('');
+}
+
 /* ------------------------------------------------------------
  *  比較
  *
@@ -836,6 +944,21 @@ function sheetHTML(c, ci) {
       </div>`);
     }
 
+    // 調べた内容で上げた月があれば、どの月をどう上げたのかを出します。
+    // 印だけ付けて理由を書かないと、測った値と区別が付きません。
+    const up = Object.keys(s.lifted || {});
+    if (up.length) {
+      const list = up.map(Number).sort((a, b) => a - b)
+        .map((m) => `${m}月 ${s.lifted[m].from}→${s.lifted[m].to}`).join('　');
+      out.push(`<div class="lift">
+        <p class="lift__head"><i class="sw sw--lifted"></i>雨季の変わり目として上げた月　<b>${esc(list)}</b></p>
+        <p class="lift__text">${esc(s.lifted_text).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')}</p>
+        <p class="lift__src">雨の実測だけだと、雨季の終わりかけまで一律に✕になります。
+          旅行ガイドや旅行会社が「行ける時期」として挙げている月を、
+          隣に良い月がある場合にかぎって1段上げています。上げるだけで、下げることはありません。</p>
+      </div>`);
+    }
+
     out.push('<p class="sec-note">◎○△✕ は天気（雨の少なさ）だけを表します。'
       + '暑さ寒さはマスの下の帯（<i class="sw sw--hot"></i>暑い '
       + '<i class="sw sw--cold"></i>寒い）で別に示しています。'
@@ -890,6 +1013,8 @@ function sheetHTML(c, ci) {
   }
 
   // ---- 物価 ----
+  out.push(fareBlock(c.code, s));
+
   out.push(sec('coin', '物価'));
   const p = DB.prices[c.code];
   const cats = DB.meta.prices.categories || [];

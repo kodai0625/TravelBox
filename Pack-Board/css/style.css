@@ -1,0 +1,499 @@
+/* ============================================================
+ *  Pack Board — 土台
+ *
+ *  配置・大きさ・並び方はこのファイルが決めます。
+ *  色と書体は design.css が後から重ねます。
+ *  Trip Board / Flight Board と同じ組み立て方にしてあります。
+ * ============================================================ */
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+               "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+  overflow-wrap: anywhere;
+}
+body.is-locked { overflow: hidden; }
+
+.is-hidden { display: none !important; }
+
+/* ---------- しるし ---------- */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ---------- ヘッダー ---------- */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--header-bg);
+  padding-top: env(safe-area-inset-top);
+}
+.app-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 8px;
+}
+
+/* 玄関へ戻るボタン。3つのアプリで同じ寸法・同じ色です */
+.home-link {
+  position: relative;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, .92);
+  background: rgba(255, 255, 255, .14);
+  border: 1px solid rgba(255, 255, 255, .34);
+}
+.home-link::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+.home-link__icon { width: 18px; height: 18px; display: block; }
+.home-link:active { background: rgba(255, 255, 255, .26); }
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+/* アプリのしるし。囲みは付けません（囲みがあるのはホームボタンだけ） */
+.app-title__mark {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-title__glyph { width: 26px; height: 26px; display: block; }
+.app-title__text { display: flex; flex-direction: column; min-width: 0; }
+.app-title__main { font-size: 16px; line-height: 1.3; }
+.app-title__sub {
+  font-size: 10.5px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .62);
+}
+
+.head-btns { margin-left: auto; display: flex; gap: 6px; flex: 0 0 auto; }
+.head-btn {
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, .8);
+  font: inherit;
+  font-size: 10.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.head-btn:active { background: rgba(255, 255, 255, .1); }
+
+/* 更新ボタン。3つのアプリで同じ作りです */
+.head-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, .34);
+  background: rgba(255, 255, 255, .14);
+  color: rgba(255, 255, 255, .92);
+  font: inherit;
+  cursor: pointer;
+}
+.head-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+.head-icon__i { width: 17px; height: 17px; display: block; }
+.head-icon:active { background: rgba(255, 255, 255, .26); }
+.head-icon.is-busy { pointer-events: none; }
+.head-icon.is-busy .head-icon__i { animation: spin .9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .head-icon.is-busy .head-icon__i { animation: none; opacity: .5; }
+}
+
+/* ---------- リストの切り替え ---------- */
+.chips {
+  display: flex;
+  gap: 6px;
+  padding: 0 12px 9px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, .72);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+/* 残りの数。全部入れたら「済」に変わります */
+.chip__n {
+  font-size: 10.5px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .16);
+}
+.chip--add { border-style: dashed; }
+
+/* ---------- ページ ---------- */
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 18px 14px calc(56px + env(safe-area-inset-bottom));
+}
+
+/* ---------- 進みぐあい ---------- */
+.prog {
+  padding: 16px 16px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  margin-bottom: 14px;
+}
+.prog__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 8px;
+}
+.prog__name { font-size: 17px; }
+.prog__count { font-size: 13px; color: var(--text-weak); flex: 0 0 auto; }
+.prog__bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--line-2);
+  overflow: hidden;
+}
+.prog__bar i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width .25s ease;
+}
+.prog__msg { margin: 8px 0 0; font-size: 13px; color: var(--text-sub); }
+
+/* ---------- ボタンの並び ---------- */
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.btn {
+  flex: 0 0 auto;
+  padding: 9px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:active { background: var(--surface-2); }
+.btn--main { flex: 1 1 auto; }
+.btn.is-on { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- 分類ごとのまとまり ---------- */
+.group { margin-bottom: 18px; }
+.group__head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 6px;
+  padding: 0 2px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--text-sub);
+}
+.group__n { font-size: 11px; font-weight: 400; color: var(--text-weak); }
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+/* ---------- 持ち物1件 ---------- */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--line-2);
+  cursor: pointer;
+}
+.item:last-child { border-bottom: 0; }
+.item:active { background: var(--surface-2); }
+
+/* チェックの丸。指で押しやすいよう28pxにし、
+   当たり判定は行全体なので、外しても押せます。 */
+.item__check {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+}
+.item__tick { width: 15px; height: 15px; display: block; }
+.item.is-done .item__check {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.item__body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+.item__name { font-size: 14.5px; line-height: 1.45; }
+.item__note { font-size: 11.5px; line-height: 1.5; color: var(--text-weak); }
+/* 入れ終わったものは薄くします。消さずに残すのは、
+   「入れたつもりで入れていない」を見返せるようにするためです。 */
+.item.is-done .item__name { color: var(--text-weak); text-decoration: line-through; }
+.item.is-done .item__note { opacity: .6; }
+
+.item__edit {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+.item__del {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--danger);
+  cursor: pointer;
+}
+.item__del svg { width: 17px; height: 17px; display: block; }
+
+/* 編集中はチェックを押せないようにします。
+   消すつもりで触ってチェックが変わると、直したのか消したのか分からなくなります。 */
+body.is-editing .item { cursor: default; }
+body.is-editing .item__check { opacity: .45; pointer-events: none; }
+
+/* ---------- 何もないとき ---------- */
+.empty {
+  margin: 24px 0;
+  padding: 30px 16px;
+  text-align: center;
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--text-weak);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+.empty__i {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 12px;
+  opacity: .5;
+  fill: none;
+  stroke: currentColor;
+}
+
+/* ---------- リストの設定 ---------- */
+.listops {
+  margin-top: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.listops__head {
+  padding: 11px 14px;
+  background: var(--surface-2);
+  font-size: 13px;
+  cursor: pointer;
+  list-style: none;
+}
+.listops__head::-webkit-details-marker { display: none; }
+.listops__head::after { content: ' ▾'; color: var(--text-weak); }
+.listops[open] .listops__head::after { content: ' ▴'; }
+.listops__body { padding: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+.listops__note {
+  flex: 1 1 100%;
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: var(--text-weak);
+}
+
+.fineprint {
+  margin: 22px 0 0;
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: var(--text-weak);
+}
+
+/* ---------- 入力欄 ---------- */
+.form-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(10, 12, 16, .45);
+}
+.form {
+  position: fixed;
+  z-index: 41;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  max-width: 460px;
+  transform: translateX(-50%);
+  padding: 20px 20px calc(24px + env(safe-area-inset-bottom));
+  border-radius: 18px 18px 0 0;
+  background: var(--surface);
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, .22);
+  animation: slideup .2s ease;
+}
+@keyframes slideup { from { transform: translate(-50%, 14px); opacity: .6; } }
+@media (min-width: 640px) {
+  .form {
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    border-radius: 18px;
+  }
+  @keyframes slideup { from { opacity: .4; } }
+}
+.form__title {
+  margin: 0 0 14px;
+  font-size: 17px;
+}
+.form__label {
+  display: block;
+  margin: 12px 0 4px;
+  font-size: 11.5px;
+  color: var(--text-weak);
+}
+.form__input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  /* iOS で入力欄をタップしたときの自動ズームを防ぐには16px以上が必要 */
+  font-size: 16px;
+  -webkit-appearance: none;
+}
+.form__input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.form__btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+.form__btns .btn { flex: 1 1 0; justify-content: center; text-align: center; }
+
+/* ---------- 短い知らせ ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 11px 18px;
+  max-width: calc(100vw - 28px);
+  border-radius: 999px;
+  font-size: 13px;
+  transform: translate(-50%, 14px);
+  opacity: 0;
+  transition: opacity .3s ease, transform .3s ease;
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+.toast__btn {
+  flex: 0 0 auto;
+  padding: 3px 11px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ---------- パソコンなど横に広い画面 ---------- */
+@media (min-width: 900px) {
+  .page { max-width: 900px; }
+  /* 持ち物は1件が短いので、広い画面では2列にします */
+  .items { display: grid; grid-template-columns: 1fr 1fr; }
+  .item:nth-child(odd) { border-right: 1px solid var(--line-2); }
+  .item:last-child:nth-child(odd) { border-right: 0; }
+  .item:nth-last-child(2) { border-bottom: 0; }
+}

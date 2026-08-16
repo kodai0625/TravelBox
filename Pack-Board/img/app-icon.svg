@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Pack Board のアイコン。緑の地に、留め具の付いた紙ばさみとチェック。
+       Trip Board（藍の地球）・Flight Board（金の翼）と並べたとき、
+       色と形の両方で見分けが付くようにしています。 -->
+  <rect width="512" height="512" rx="112" fill="#141d18"/>
+  <g fill="none" stroke="#86c9a6" stroke-width="11"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- 紙ばさみの板 -->
+    <rect x="140" y="120" width="232" height="284" rx="26"/>
+    <!-- 上の留め具 -->
+    <path d="M212 120V104a44 44 0 0 1 88 0v16"/>
+    <path d="M204 120h104"/>
+    <!-- 項目の行 -->
+    <path d="M250 214h74"/>
+    <path d="M250 274h74"/>
+    <path d="M250 334h44"/>
+    <!-- 未チェックの箱 -->
+    <rect x="186" y="256" width="36" height="36" rx="8"/>
+    <rect x="186" y="316" width="36" height="36" rx="8"/>
+  </g>
+  <!-- 入れ終わった1件。ここだけ色を差して「確かめる道具」だと示します -->
+  <path d="M186 196h36a8 8 0 0 1 8 8v36a8 8 0 0 1-8 8h-36a8 8 0 0 1-8-8v-36a8 8 0 0 1 8-8z"
+        fill="#e0a35c"/>
+  <path d="M188 214l14 14 24-26" fill="none" stroke="#141d18"
+        stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

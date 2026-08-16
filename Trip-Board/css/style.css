@@ -522,6 +522,14 @@ a { color: inherit; }
   border: 0;
   border-radius: 2px;
 }
+/* 「肩の月」の見本。マスに出る左端の線と同じ形にします */
+.sw--lifted {
+  width: 3px;
+  height: 13px;
+  border: 0;
+  border-radius: 0 2px 2px 0;
+  background: var(--lifted);
+}
 
 .matrixwrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
@@ -650,6 +658,22 @@ a { color: inherit; }
   border-radius: 2px;
   background: var(--stormmark);
   box-shadow: 0 0 0 1.5px var(--bg);
+}
+
+/* 調べた内容で1段上げた月の印。
+   マスの中はすでに、上に台風の帯・下に気温の帯があります。
+   どちらも左右を2px空けて引いているので、**左端の3pxだけが空いています**。
+   はじめは左下の角に三角を置きましたが、気温の帯と重なって
+   帯の左端が欠けて見えたため、縦の線に変えました。 */
+.cell.is-lifted::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  bottom: 3px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--lifted);
 }
 
 /* ---------- 12か月の帯（詳細パネル） ---------- */
@@ -1216,3 +1240,114 @@ a { color: inherit; }
 @media (min-width: 1400px) {
   .page { max-width: 1240px; }
 }
+
+/* ---------- 雨季の変わり目として上げた月 ----------
+   測った雨に人のすすめを重ねた月です。出どころが違うので、
+   「一般に勧められている時期」（.rec）と同じように枠で囲って、
+   実測の表とは別のものだと分かるようにしています。 */
+.lift {
+  margin: 10px 0 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--lifted);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+.lift__head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  color: var(--text-sub);
+}
+.lift__text { margin: 0; font-size: 13px; line-height: 1.8; }
+.lift__src {
+  margin: 8px 0 0;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-weak);
+}
+
+/* ---------- 航空券の高い時期・安い時期 ----------
+   天気の帯（.strip）と同じ形にして、月の位置が縦にそろうようにしています。
+   見比べるときに目が迷わないためです。 */
+.fare-strip {
+  border-collapse: separate;
+  border-spacing: 2px;
+  width: 100%;
+  table-layout: fixed;
+  margin: 2px 0 6px;
+}
+.fare {
+  height: 24px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 5px;
+}
+/* 安くて天気も良い月。いちばん知りたいところなので枠で囲みます */
+.fare.is-sweet { outline: 2px solid var(--lifted); outline-offset: -2px; }
+
+.fare-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0 0 10px;
+  font-size: 11px;
+  color: var(--text-weak);
+}
+.fare-legend__i {
+  width: 14px;
+  height: 11px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 2px;
+  vertical-align: -1px;
+}
+
+.fare-sweet {
+  margin: 0 0 8px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  border-left: 3px solid var(--lifted);
+  background: var(--surface-2);
+  font-size: 13px;
+}
+.fare-note { margin: 0 0 8px; font-size: 13px; line-height: 1.8; }
+.fare-warn {
+  margin: 0 0 8px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+/* 日本側の山。行き先を問わず同じ内容なので、畳んで置きます */
+.fare-jp {
+  margin: 0 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.fare-jp__head {
+  padding: 10px 12px;
+  background: var(--surface-2);
+  font-size: 12.5px;
+  cursor: pointer;
+  list-style: none;
+}
+.fare-jp__head::-webkit-details-marker { display: none; }
+.fare-jp__head::after { content: ' ▾'; color: var(--text-weak); }
+.fare-jp[open] .fare-jp__head::after { content: ' ▴'; }
+.fare-jp__body { padding: 12px; }
+.fare-jp__lead { margin: 0 0 10px; font-size: 12.5px; line-height: 1.8; }
+.fare-jp__label {
+  margin: 10px 0 4px;
+  font-size: 11px;
+  color: var(--text-weak);
+  letter-spacing: .04em;
+}
+.fare-jp__list { margin: 0; padding-left: 1.1em; font-size: 12.5px; line-height: 1.8; }
+.fare-jp__note { color: var(--text-weak); font-size: 11.5px; }

@@ -1,0 +1,76 @@
+/* ============================================================
+ *  Pack Board — 色と書体
+ *
+ *  style.css より後ろで読むこと。
+ *
+ *  Trip Board（藍）・Flight Board（金）と兄弟に見えるよう、
+ *  明朝体の見出しと細い線という作りは揃えています。
+ *  違うのは主色で、こちらは緑です。3つ並べたときに
+ *  色だけで取り違えないようにするための決めごとです。
+ *
+ *  色の数値はコントラスト比を確かめたうえで決めています。
+ *  本文と背景で 4.5 : 1 以上を保っています。
+ * ============================================================ */
+
+/* ---- 明るいとき ---- */
+:root {
+  --bg:        #f1f0ea;
+  --surface:   #ffffff;
+  --surface-2: #f6f5ef;
+  --line:      #dad9cd;
+  --line-2:    #e5e4d9;
+  --text:      #1a1d1a;
+  --text-sub:  #5e645e;   /* 6.0 : 1 */
+  --text-weak: #6e756e;   /* 4.8 : 1 */
+  --accent:    #2f7d5b;   /* 緑。4.9 : 1 */
+  --on-accent: #ffffff;
+  --header-bg: #141d18;
+  --danger:    #9c3320;   /* 5.9 : 1 */
+  --radius:    14px;
+}
+
+/* ---- 暗いとき ---- */
+:root[data-theme="dark"] {
+  --bg:        #0e120f;
+  --surface:   #171c19;
+  --surface-2: #1d2320;
+  --line:      #333b36;
+  --line-2:    #2a312d;
+  --text:      #e9ebe9;
+  --text-sub:  #a2aaa4;   /* 7.4 : 1 */
+  --text-weak: #8d958f;   /* 5.6 : 1 */
+  --accent:    #5fbf92;   /* 暗い地の上なので明るい緑に反転。8.5 : 1 */
+  --on-accent: #0e120f;
+  --header-bg: #090d0b;
+  --danger:    #e0806c;   /* 7.2 : 1 */
+}
+
+/* ---- 見出しは明朝体。3つのアプリで揃えた家族の印 ---- */
+.app-title__main,
+.prog__name,
+.form__title {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+.app-title__mark { color: rgba(255, 255, 255, .9); }
+
+/* ---- 選んでいるリスト ---- */
+.chip.is-active {
+  background: rgba(255, 255, 255, .92);
+  border-color: rgba(255, 255, 255, .92);
+  color: #141d18;
+  font-weight: 600;
+}
+.chip.is-active .chip__n { background: rgba(20, 29, 24, .12); }
+
+/* ---- 消す操作は赤で示します ---- */
+.btn--danger { color: var(--danger); border-color: var(--danger); }
+
+/* ---- 短い知らせ ---- */
+.toast {
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .28);
+}
