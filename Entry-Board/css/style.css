@@ -648,3 +648,11 @@ a { color: inherit; }
   .list__group, .empty { grid-column: 1 / -1; }
   .procs { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
 }
+
+/* 確かめの限界を書いた行。注意そのものより一段落として、
+   読む順番が「まず注意 → つぎに限界」になるようにします */
+.alert__text--limit {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid currentColor;
+  opacity: .88; font-size: 12.5px;
+}
