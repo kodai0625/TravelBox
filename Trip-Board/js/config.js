@@ -41,6 +41,7 @@ const DATA_FILES = {
   safety:    'data/safety.json',    // 外務省の危険情報（tools/build_safety.py）
   guide:     'data/guide.json',     // 行事と独自ルール（tools/build_guide.py）
   fares:     'data/fares.json',     // 航空券の高い時期・安い時期（tools/build_fares.py）
+  entry:     'data/entry.json',     // 入国の手続き（tools/build_entry.py）
 };
 
 /* ------------------------------------------------------------
