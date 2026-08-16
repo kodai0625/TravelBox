@@ -38,9 +38,20 @@ self.addEventListener('fetch', (e) => {
     e.respondWith((async () => {
       try {
         const res = await fetch(req);
-        const c = await caches.open(CACHE);
-        c.put(req, res.clone());
-        return res;
+        // ★ 取れた＝正しいページ、ではありません。
+        //    GitHub が落ちているときは、エラーの画面（ユニコーンの絵）が
+        //    ちゃんと返ってきます。中身を見ずに控えると、それを
+        //    アプリの画面として持ち続け、電波のない場所で出してしまいます。
+        //    控えるのは 200 のときだけです。
+        if (res && res.ok) {
+          const c = await caches.open(CACHE);
+          c.put(req, res.clone());
+          return res;
+        }
+        // サーバーが変事のときは、前に取っておいた正しい画面を出します。
+        // 無ければ、起きたことがそのまま見えるようにエラーを返します。
+        const hit = await caches.match(req);
+        return hit || res;
       } catch (err) {
         const hit = await caches.match(req);
         return hit || Response.error();
