@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Entry Board">
+<meta name="theme-color" content="#1c1214">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/app-icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/app-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/app-icon-512.png">
+<title>Entry Board</title>
+<script>
+/* 画面が描かれる前に明暗を決めます。
+   ここを後回しにすると、暗い設定の端末で一瞬だけ白い画面が出てしまいます。 */
+(function () {
+  try {
+    var pref = localStorage.getItem('entry-board-v1:theme') || 'auto';
+    var dark = pref === 'dark' ||
+               (pref === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  } catch (e) {
+    document.documentElement.dataset.theme = 'light';
+  }
+})();
+</script>
+<!-- ★ ?v= は「読み込み直させるための版番号」です。
+     css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。 -->
+<link rel="stylesheet" href="css/style.css?v=20260817a">
+<!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
+<link rel="stylesheet" href="css/design.css?v=20260817a">
+</head>
+<body>
+
+<!-- ===== しるしのもと =====
+     形をここに1回だけ書いて、下や js から <use href="#i-○○"> で呼び出します。
+     ★ i-home は Trip Board / Flight Board / Pack Board と同じ形です。
+       4つそろえてください。 -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-home" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.9"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.2 11.3 12 4.2l8.8 7.1"/>
+      <path d="M5.6 10.1v9.7h12.8v-9.7"/>
+      <path d="M9.7 19.8v-5.2h4.6v5.2"/>
+    </g>
+  </symbol>
+
+  <!-- アプリのしるし。パスポートに判が押された形。アイコンと同じです -->
+  <symbol id="i-passport" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7"
+       stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4.6" y="2.8" width="14.8" height="18.4" rx="2.2"/>
+      <circle cx="12" cy="9.4" r="2.9"/>
+      <path d="M8.6 16.4h6.8"/>
+    </g>
+  </symbol>
+
+  <!-- 外へ出るしるし。公式サイトへのリンクに付けます -->
+  <symbol id="i-external" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13.4 4.6h6v6"/>
+      <path d="m19.4 4.6-8.2 8.2"/>
+      <path d="M17.4 13.8v4.4a1.8 1.8 0 0 1-1.8 1.8H5.8A1.8 1.8 0 0 1 4 18.2V8.4
+               a1.8 1.8 0 0 1 1.8-1.8h4.4"/>
+    </g>
+  </symbol>
+
+  <!-- 気をつけることのしるし -->
+  <symbol id="i-warn" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.4 21.4 20H2.6z"/>
+      <path d="M12 9.4v4.6"/>
+      <circle cx="12" cy="17" r=".2"/>
+    </g>
+  </symbol>
+
+  <symbol id="i-search" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+      <circle cx="10.6" cy="10.6" r="6.6"/>
+      <path d="m15.6 15.6 4.4 4.4"/>
+    </g>
+  </symbol>
+
+  <!-- エリアの見出し -->
+  <symbol id="i-pin" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21.2s6.6-6 6.6-10.6a6.6 6.6 0 1 0-13.2 0C5.4 15.2 12 21.2 12 21.2z"/>
+      <circle cx="12" cy="10.4" r="2.4"/>
+    </g>
+  </symbol>
+
+  <!-- 更新のしるし。時計回りの矢印は「読み込み直す」の共通の形です -->
+  <symbol id="i-refresh" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 4 23 10 17 10"/>
+      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ===== ヘッダー ===== -->
+<header class="app-header">
+  <div class="app-header__inner">
+    <!-- 旅の道具箱（玄関）へ戻る。4つのアプリで同じ形・同じ大きさです -->
+    <a class="home-link" href="../"
+       title="旅の道具箱に戻る" aria-label="旅の道具箱に戻る">
+      <svg class="home-link__icon" aria-hidden="true"><use href="#i-home"/></svg>
+    </a>
+    <button type="button" class="app-title" id="homeBtn" title="上に戻る">
+      <span class="app-title__mark" aria-hidden="true">
+        <svg class="app-title__glyph"><use href="#i-passport"/></svg>
+      </span>
+      <span class="app-title__text">
+        <span class="app-title__main">Entry Board</span>
+        <span class="app-title__sub">入国の手続きを調べる</span>
+      </span>
+    </button>
+    <div class="head-btns">
+      <!-- 手動での更新。ふだんは sw.js が自動で新しくします（js/update.js） -->
+      <button type="button" class="head-icon" id="updateBtn"
+              title="最新版に更新" aria-label="最新版に更新">
+        <svg class="head-icon__i" aria-hidden="true"><use href="#i-refresh"/></svg>
+      </button>
+      <button type="button" class="head-btn" id="themeBtn">自動</button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+  <section class="notice" id="loading">
+    <span class="loader" aria-hidden="true">
+      <svg class="loader__mark"><use href="#i-passport"/></svg>
+    </span>
+    <p class="notice__text">データを読み込んでいます…</p>
+  </section>
+  <section class="notice notice--error is-hidden" id="loadError">
+    <p class="notice__text" id="loadErrorText"></p>
+  </section>
+
+  <div class="view is-hidden" id="view">
+
+    <!-- ★この注意書きはいちばん上から動かさないでください。
+         偽サイトで金を払ってしまう事故を防ぐのが、このアプリの一番の役目です。 -->
+    <div class="alert">
+      <svg class="alert__i" aria-hidden="true"><use href="#i-warn"/></svg>
+      <div class="alert__body">
+        <p class="alert__title">偽サイトに気をつけてください</p>
+        <p class="alert__text" id="warnText"></p>
+        <p class="alert__text"><strong>ここに載せたリンクは、
+          政府のドメインかどうかを機械で確かめたものだけです。</strong>
+          検索して出てきたサイトではなく、ここから開いてください。</p>
+      </div>
+    </div>
+
+    <div class="vjw" id="japan"></div>
+
+    <div class="search">
+      <input type="search" class="search__input" id="search"
+             placeholder="国名で探す（例：タイ、Thailand）"
+             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button type="button" class="search__clear is-hidden" id="searchClear" aria-label="消す">✕</button>
+    </div>
+
+    <div class="chips" id="filterChips"></div>
+
+    <ul class="list" id="list"></ul>
+  </div>
+
+</main>
+
+<!-- ===== 国ごとの中身 ===== -->
+<div class="sheet-backdrop is-hidden" id="sheetBackdrop"></div>
+<aside class="sheet is-hidden" id="sheet" role="dialog" aria-modal="true"
+       aria-labelledby="sheetTitle">
+  <div class="sheet__grip"></div>
+  <div class="sheet__head">
+    <h2 class="sheet__title" id="sheetTitle"></h2>
+    <button type="button" class="sheet__close" id="sheetClose" aria-label="閉じる">✕</button>
+  </div>
+  <div class="sheet__body" id="sheetBody"></div>
+</aside>
+
+<script src="js/config.js?v=20260817a"></script>
+<script src="js/app.js?v=20260817a"></script>
+<script src="js/update.js?v=20260817a"></script>
+</body>
+</html>

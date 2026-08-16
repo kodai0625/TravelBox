@@ -32,7 +32,7 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css を直したら、ここを1つ上げてください。 -->
-<link rel="stylesheet" href="css/entry.css?v=20260816a">
+<link rel="stylesheet" href="css/entry.css?v=20260817a">
 </head>
 <body>
 
@@ -78,6 +78,16 @@
       <path d="m7.2 9.6 1.2 1.2 2-2.2"/>
       <rect x="7" y="12.8" width="2.6" height="2.6" rx=".7"/>
       <rect x="7" y="16.4" width="2.6" height="2.6" rx=".7"/>
+    </g>
+  </symbol>
+
+  <!-- Entry Board のしるし。パスポートに判が押された形 -->
+  <symbol id="i-passport" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7"
+       stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4.6" y="2.8" width="14.8" height="18.4" rx="2.2"/>
+      <circle cx="12" cy="9.4" r="2.9"/>
+      <path d="M8.6 16.4h6.8"/>
     </g>
   </symbol>
 
@@ -153,6 +163,18 @@
       <span class="app__chev" aria-hidden="true">›</span>
     </a>
 
+    <a class="app app--entry" href="Entry-Board/index.html">
+      <span class="app__icon" aria-hidden="true">
+        <svg class="app__mark"><use href="#i-passport"/></svg>
+      </span>
+      <span class="app__body">
+        <span class="app__name">Entry Board</span>
+        <span class="app__desc">入国の手続きを調べる</span>
+        <span class="app__detail">電子入国書・ビザ・そのほかの申請・公式サイト</span>
+      </span>
+      <span class="app__chev" aria-hidden="true">›</span>
+    </a>
+
     <a class="app app--pack" href="Pack-Board/index.html">
       <span class="app__icon" aria-hidden="true">
         <svg class="app__mark"><use href="#i-board"/></svg>
@@ -170,7 +192,7 @@
 
   <footer class="foot">
     <svg class="foot__mark" aria-hidden="true"><use href="#i-case"/></svg>
-    <p>ホーム画面にはこの1つだけを追加すれば、中の3つを行き来できます。</p>
+    <p>ホーム画面にはこの1つだけを追加すれば、中の4つを行き来できます。</p>
   </footer>
 
 </main>
@@ -225,7 +247,7 @@
   } catch (e) { /* 保存できなくてもリンクは働きます */ }
 })();
 </script>
-<script src="js/update.js?v=20260816a"></script>
+<script src="js/update.js?v=20260817a"></script>
 
 <script>
 /* 世話係の登録。これが無いと sw.js は働きません。

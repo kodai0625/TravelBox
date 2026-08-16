@@ -42,7 +42,6 @@ const MONTHS = ['1月', '2月', '3月', '4月', '5月', '6月',
 
 const state = {
   tab: 'search',
-  entryFilter: '',    // 入国タブの絞り込み（''／card／visa／todo）
   month: 0,            // 0 は「指定なし」
   query: '',
   regions: new Set(),
@@ -225,40 +224,6 @@ function setupFilters() {
     input.value = ''; state.query = '';
     clear.classList.add('is-hidden');
     input.focus(); render();
-  });
-
-  // 入国タブの検索と絞り込み
-  const eIn = $('entrySearch');
-  const eClear = $('entryClear');
-  eIn.addEventListener('input', () => {
-    eClear.classList.toggle('is-hidden', !eIn.value);
-    renderEntry();
-  });
-  eClear.addEventListener('click', () => {
-    eIn.value = ''; eClear.classList.add('is-hidden');
-    eIn.focus(); renderEntry();
-  });
-
-  const ENTRY_FILTERS = [
-    { id: '', name: 'すべて' },
-    { id: 'todo', name: '手続きが要る' },
-    { id: 'card', name: '電子入国書あり' },
-    { id: 'visa', name: 'ビザが要る' },
-  ];
-  $('entryFilterChips').innerHTML = ENTRY_FILTERS.map((f, i) =>
-    `<button type="button" class="chip${i === 0 ? ' is-active' : ''}"
-       data-efilter="${f.id}">${esc(f.name)}</button>`).join('');
-  $('entryFilterChips').addEventListener('click', (e) => {
-    const b = e.target.closest('.chip');
-    if (!b) return;
-    state.entryFilter = b.dataset.efilter;
-    $('entryFilterChips').querySelectorAll('.chip').forEach((x) =>
-      x.classList.toggle('is-active', x === b));
-    renderEntry();
-  });
-  $('entryList').addEventListener('click', (e) => {
-    const li = e.target.closest('[data-entry]');
-    if (li) openEntrySheet(li.dataset.entry);
   });
 
   // 一覧表の地域チップ
@@ -1091,15 +1056,6 @@ function sheetHTML(c, ci) {
     out.push('<p class="hint">データがありません。</p>');
   }
 
-  // ---- 入国の手続き ----
-  // 治安の前に置きます。行けるかどうか（手続き）が先に決まり、
-  // 気をつけかた（治安）はそのあとの話だからです。
-  out.push(sec('passport', '入国の手続き'));
-  out.push(`<div class="procs">${entryBlockHTML(c.code)}</div>`);
-  out.push(`<p class="proc__caution">入国の決まりは国が随時変えます。
-    <strong>出発の前に、かならず公式サイトで最新を確かめてください。</strong>
-    リンクは政府のドメインかどうかを機械で確かめたものだけを載せています。</p>`);
-
   // ---- 治安 ----
   out.push(sec('shield', '治安（外務省の危険情報）'));
   const sf = safetyOf(c.code);
@@ -1205,197 +1161,6 @@ function setupSheet() {
 
 
 /* ------------------------------------------------------------
- *  入国の手続き
- *
- *  このページのいちばんの役目は「偽サイトで金を払わせない」ことです。
- *  ですから、どの手続きにも**料金を必ず出します**。
- *  無料と書いてあるものにお金を求められたら、そこは偽サイトです。
- *
- *  リンクは data/entry.json のものだけを使います。
- *  そのURLは組み立てのときに、政府ドメインかどうかを機械で確かめています
- *  （tools/check_entry_urls.py）。画面側で URL を組み立てないでください。
- * ---------------------------------------------------------- */
-
-/** 公式サイトへのボタン。外に出るしるしを必ず付けます */
-function officialLink(url, label) {
-  return `<a class="gov" href="${esc(url)}" target="_blank" rel="noopener">
-    <span class="gov__body">
-      <span class="gov__label">${esc(label)}</span>
-      <span class="gov__url">${esc(hostOf(url))}</span>
-    </span>
-    <svg class="gov__i" aria-hidden="true"><use href="#i-external"/></svg>
-  </a>`;
-}
-
-function hostOf(url) {
-  const m = /^https?:\/\/([^/]+)/.exec(url);
-  return m ? m[1] : url;
-}
-
-/** 料金の見た目。無料は緑、お金がかかるものは地の色 */
-function feeTag(fee) {
-  if (!fee) return '';
-  const free = fee.indexOf('無料') === 0;
-  return `<span class="fee${free ? ' fee--free' : ''}">${esc(fee)}</span>`;
-}
-
-/** 太字（**…**）だけを通します。データに書いた強調をそのまま出すためです */
-function emph(text) {
-  return esc(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-}
-
-/** その国の手続きが「何件あるか」。一覧のしるしに使います */
-function entryCounts(code) {
-  const e = DB.entry[code];
-  if (!e) return null;
-  return {
-    card: !!e.card,
-    visa: e.visa.need !== '不要',
-    other: (e.other || []).length,
-  };
-}
-
-function entryOf(code) { return DB.entry[code] || null; }
-
-/** 手続きの中身（詳細パネルと入国タブの両方で使います） */
-function entryBlockHTML(code) {
-  const e = entryOf(code);
-  if (!e) return '';
-  const out = [];
-
-  // --- 電子入国書 ---
-  if (e.card) {
-    const c = e.card;
-    out.push(`<div class="proc proc--card">
-      <p class="proc__head"><span class="proc__kind">電子入国書</span>
-        ${esc(c.name)} ${feeTag(c.fee)}</p>
-      <p class="proc__when">出せるのは ${esc(c.when)}</p>
-      ${c.note ? `<p class="proc__note">${emph(c.note)}</p>` : ''}
-      ${officialLink(c.url, '公式サイトを開く')}
-    </div>`);
-  } else if (e.nocard_note) {
-    out.push(`<div class="proc proc--none">
-      <p class="proc__head"><span class="proc__kind proc__kind--none">電子入国書</span>
-        なし</p>
-      <p class="proc__note">${emph(e.nocard_note)}</p>
-    </div>`);
-  }
-
-  // --- ビザ ---
-  const v = e.visa;
-  const vClass = v.need === '不要' ? 'proc--ok'
-               : v.need === '要る' ? 'proc--need' : 'proc--onsite';
-  out.push(`<div class="proc ${vClass}">
-    <p class="proc__head"><span class="proc__kind">ビザ</span>
-      ${esc(v.need)}${v.stay ? `<span class="proc__stay">${esc(v.stay)}</span>` : ''}
-      ${feeTag(v.fee)}</p>
-    ${v.note ? `<p class="proc__note">${emph(v.note)}</p>` : ''}
-    ${v.url ? officialLink(v.url, '公式サイトを開く') : ''}
-  </div>`);
-
-  // --- そのほか ---
-  (e.other || []).forEach((o) => {
-    out.push(`<div class="proc proc--other">
-      <p class="proc__head"><span class="proc__kind">そのほか</span>
-        ${esc(o.name)} ${feeTag(o.fee)}</p>
-      ${o.when ? `<p class="proc__when">${esc(o.when)}</p>` : ''}
-      ${o.note ? `<p class="proc__note">${emph(o.note)}</p>` : ''}
-      ${officialLink(o.url, '公式サイトを開く')}
-    </div>`);
-  });
-
-  return out.join('');
-}
-
-/** 一覧の1行に出す短いしるし */
-function entryChips(code) {
-  const n = entryCounts(code);
-  if (!n) return '';
-  const out = [];
-  out.push(n.card
-    ? '<span class="etag etag--card">電子入国書</span>'
-    : '<span class="etag etag--dim">電子入国書なし</span>');
-  const e = entryOf(code);
-  if (e.visa.need === '要る') out.push('<span class="etag etag--visa">ビザが要る</span>');
-  else if (e.visa.need === '現地で取れる') out.push('<span class="etag etag--onsite">現地でビザ</span>');
-  if (n.other) out.push(`<span class="etag etag--other">申請 ${n.other}</span>`);
-  return out.join('');
-}
-
-function renderEntry() {
-  const m = DB.entryMeta || {};
-  $('entryWarnText').innerHTML = emph(m.warning || '');
-
-  // 日本に帰るときの手続き。行き先ではないので上に別枠で出します
-  if (m.japan) {
-    const j = m.japan;
-    $('entryJapan').innerHTML = `<p class="vjw__head">
-        帰りの日本で使うもの ${feeTag(j.fee)}</p>
-      <p class="vjw__name">${esc(j.name)}</p>
-      <p class="vjw__note">${emph(j.note)}</p>
-      ${officialLink(j.url, '公式サイトを開く')}`;
-  }
-
-  const q = $('entrySearch').value.trim();
-  const rows = orderedCountries().filter((c) => {
-    if (!matches(c, q)) return false;
-    const e = entryOf(c.code);
-    if (!e) return false;
-    if (state.entryFilter === 'card') return !!e.card;
-    if (state.entryFilter === 'visa') return e.visa.need !== '不要';
-    if (state.entryFilter === 'todo') {
-      return !!e.card || e.visa.need !== '不要' || (e.other || []).length > 0;
-    }
-    return true;
-  });
-
-  const row = (c) => `<li class="list__item entry-row" data-entry="${c.code}">
-    <div class="list__body">
-      <p class="list__name">${c.flag} ${esc(c.ja)}</p>
-      <p class="etags">${entryChips(c.code)}</p>
-    </div>
-    <span class="list__chev" aria-hidden="true">›</span>
-  </li>`;
-
-  if (!rows.length) {
-    $('entryList').innerHTML = '<li class="empty"><svg class="empty__i" aria-hidden="true"><use href="#i-search"/></svg>見つかりませんでした。</li>';
-    return;
-  }
-
-  if (q || state.entryFilter) {
-    $('entryList').innerHTML = rows.map(row).join('');
-    return;
-  }
-
-  const html = [];
-  DB.regions.forEach((region) => {
-    const inRegion = rows.filter((c) => c.region === region);
-    if (!inRegion.length) return;
-    html.push(`<li class="list__group">
-      <svg class="list__group-i" aria-hidden="true"><use href="#i-pin"/></svg>
-      ${esc(region)}
-      <span class="list__group-n">${inRegion.length}</span></li>`);
-    inRegion.forEach((c) => html.push(row(c)));
-  });
-  $('entryList').innerHTML = html.join('');
-}
-
-/** 入国の手続きだけを出すパネル */
-function openEntrySheet(code) {
-  const c = DB.byCode[code];
-  if (!c) return;
-  $('sheetTitle').innerHTML = `${c.flag} ${esc(c.ja)}　入国の手続き`;
-  $('sheetBody').innerHTML =
-    `<div class="procs">${entryBlockHTML(code)}</div>
-     <p class="proc__caution">入国の決まりは国が随時変えます。
-       <strong>出発の前に、かならず上の公式サイトで最新を確かめてください。</strong></p>`;
-  $('sheet').classList.remove('is-hidden');
-  $('sheetBackdrop').classList.remove('is-hidden');
-  document.body.classList.add('is-locked');
-  $('sheetBody').scrollTop = 0;
-}
-
-/* ------------------------------------------------------------
  *  出典
  * ---------------------------------------------------------- */
 function renderSources() {
@@ -1416,7 +1181,6 @@ function render() {
   else if (state.tab === 'table') renderTable();
   else if (state.tab === 'compare') renderCompare();
   else if (state.tab === 'clock') renderClock();
-  else if (state.tab === 'entry') renderEntry();
 }
 
 /* ------------------------------------------------------------

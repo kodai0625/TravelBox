@@ -1,0 +1,650 @@
+/* ============================================================
+ *  Entry Board — 配置と大きさ
+ *
+ *  上半分は Trip Board の style.css から、共通の部品だけを
+ *  そのまま持ってきています（ヘッダー・探す・一覧・詳細パネル）。
+ *  4つのアプリで押す場所と大きさを揃えるためです。
+ *  ★手で書き写したものではありません。中身を変えるときは、
+ *    Trip Board 側も一緒に見てください。
+ *
+ *  下半分がこのアプリだけのものです。
+ * ========================================================== */
+
+/* ============================================================
+ *  Trip Board — 土台
+ *
+ *  配置・大きさ・並び方はこのファイルが決めます。
+ *  色と書体は design.css が後から重ねます。
+ * ============================================================ */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+               "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+  overflow-wrap: anywhere;
+}
+
+body.is-locked { overflow: hidden; }
+
+a { color: inherit; }
+
+/* ---------- しるし（アイコン） ----------
+   形は index.html の <symbol> にあります。ここでは置き方だけを決めます。
+   しるしのきまり：四角い枠で囲んだものは押せる、囲みのないものは飾りや目印。
+   囲みを足すときは、押せるかどうかを確かめてからにしてください。 */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ---------- ヘッダー ---------- */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--header-bg);
+  padding-top: env(safe-area-inset-top);
+}
+
+.app-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 8px;
+}
+
+/* ヘッダー左上の「旅の道具箱に戻る」ボタン。
+   前は ◀ の1文字でしたが、薄くて小さく、戻る先も伝わりませんでした。
+   家の形と塗りを入れて、押せる場所だとひと目で分かるようにしています。
+   Flight Board 側と同じ寸法・同じ色にそろえてあります。 */
+.home-link {
+  position: relative;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, .92);
+  background: rgba(255, 255, 255, .14);
+  border: 1px solid rgba(255, 255, 255, .34);
+}
+
+/* 見た目は32pxのまま、指の当たり判定だけ44pxに広げます。
+   見た目を44pxにするとヘッダーが窮屈になるためです。
+   右隣のタイトルとは2px空くので、押し間違えは起きません。 */
+.home-link::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.home-link__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.home-link:active { background: rgba(255, 255, 255, .26); }
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: 0;
+  padding: 0;
+  min-width: 0;
+  color: #fff;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* アプリのしるし。玄関のカードに置いてある地球と同じ形です。
+   ここは囲みを付けません。左隣のホームボタンだけが囲みを持つので、
+   「囲みがあるほうが押す場所」という区別がヘッダーの中で保てます。 */
+.app-title__mark {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-title__glyph { width: 26px; height: 26px; display: block; }
+
+.app-title__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.app-title__main { font-size: 16px; line-height: 1.3; }
+
+.app-title__sub {
+  font-size: 10.5px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .62);
+}
+
+.head-btns { margin-left: auto; display: flex; gap: 6px; flex: 0 0 auto; }
+
+.head-btn {
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, .8);
+  font: inherit;
+  font-size: 10.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.head-btn:active { background: rgba(255, 255, 255, .1); }
+
+/* ---------- ページ ---------- */
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 18px 14px 56px;
+}
+
+.view { animation: fade .18s ease; }
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.is-hidden { display: none !important; }
+
+.notice { padding: 40px 0; text-align: center; }
+
+.notice__text { color: var(--text-sub); font-size: 13px; }
+
+.notice--error .notice__text { color: var(--danger); }
+
+/* 読み込み中のしるし。地球のまわりを点線の航路が回ります。
+   ただの丸を回すより、このアプリが何を扱っているかが待ち時間に伝わります。 */
+.loader {
+  position: relative;
+  display: block;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 14px;
+  color: var(--text-weak);
+}
+
+.loader__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: orbit 2.6s linear infinite;
+}
+
+.loader__mark { position: absolute; inset: 13px; width: 28px; height: 28px; }
+
+@keyframes orbit { to { transform: rotate(360deg); } }
+
+/* 動きを減らす設定の端末では回しません */
+@media (prefers-reduced-motion: reduce) {
+  .loader__ring { animation: none; }
+}
+
+.empty {
+  padding: 28px 12px;
+  text-align: center;
+  color: var(--text-weak);
+  font-size: 13px;
+  list-style: none;
+}
+
+.empty__i {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin: 0 auto 10px;
+  opacity: .45;
+}
+
+/* ---------- 検索欄 ---------- */
+.search { position: relative; margin: 0 0 12px; }
+
+.search__input {
+  width: 100%;
+  padding: 11px 38px 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;         /* iOS で拡大されないよう16px近くを保つ */
+  -webkit-appearance: none;
+}
+
+.search__input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+
+.search__clear {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--text-sub);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.chips--months .chip { min-width: 44px; justify-content: center; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ---------- 一覧 ---------- */
+.list { list-style: none; margin: 0; padding: 0; }
+
+.list__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line-2);
+  cursor: pointer;
+}
+
+.list__item:active { background: var(--surface-2); }
+
+/* エリアの見出し。上に貼り付いて、下へたどっても今どのエリアかが分かります */
+.list__group {
+  position: sticky;
+  top: var(--header-h, 0px);
+  z-index: 5;
+  display: flex;
+  /* しるしを足したので、文字の下端そろえ（baseline）から中央そろえに変えました。
+     baseline のままだと、絵だけが一段下がって見えます。 */
+  align-items: center;
+  gap: 7px;
+  padding: 10px 10px 9px;
+  margin-top: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--text);
+}
+
+.list__group-n { font-size: 11px; font-weight: 400; color: var(--text-weak);
+                 letter-spacing: 0; }
+
+.list__group-i { flex: 0 0 auto; width: 14px; height: 14px; color: var(--accent); }
+
+.list__body { flex: 1 1 auto; min-width: 0; }
+
+.list__name {
+  margin: 0;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list__chev { flex: 0 0 auto; color: var(--text-weak); font-size: 17px; }
+
+/* ---------- 詳細パネル ---------- */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, .42);
+}
+
+.sheet {
+  position: fixed;
+  z-index: 41;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, .22);
+  animation: slideup .22s ease;
+}
+
+@keyframes slideup { from { transform: translateY(14px); opacity: .6; } }
+
+@media (min-width: 700px) {
+  .sheet {
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    top: 50%;
+    width: 640px;
+    transform: translate(-50%, -50%);
+    border-radius: 18px;
+    max-height: 86vh;
+  }
+  @keyframes slideup { from { opacity: .4; } }
+}
+
+.sheet__grip {
+  width: 36px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+  margin: 8px auto 0;
+}
+
+.sheet__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 8px;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.sheet__title { margin: 0; font-size: 18px; flex: 1 1 auto; }
+
+.sheet__close {
+  flex: 0 0 auto;
+  width: 30px; height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--text-sub);
+  cursor: pointer;
+}
+
+.sheet__body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 16px calc(28px + env(safe-area-inset-bottom));
+}
+
+/* ---------- 出典 ---------- */
+.sources {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-2);
+  font-size: 11px;
+  color: var(--text-weak);
+}
+
+.sources__head { margin: 0 0 6px; letter-spacing: .06em; }
+
+.sources ul { margin: 0; padding-left: 1.1em; }
+
+.sources li { margin-bottom: 3px; }
+
+/* ===== 更新ボタン =====
+   ホームボタンと同じ「囲みのある四角＝押せる」に揃えています。
+   押しているあいだは矢印が回って、待っていることが分かるようにします。 */
+.head-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* 見た目は32pxのまま、指の当たり判定だけ44pxに広げます */
+.head-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.head-icon__i { width: 17px; height: 17px; display: block; }
+
+.head-icon.is-busy { pointer-events: none; }
+
+.head-icon.is-busy .head-icon__i { animation: spin .9s linear infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .head-icon.is-busy .head-icon__i { animation: none; opacity: .5; }
+}
+
+/* ===== 画面の上に出る短い知らせ =====
+   押したのに何も言われないと、効いたのかどうか分かりません。 */
+.toast {
+  position: fixed;
+  left: 50%;
+  top: calc(14px + env(safe-area-inset-top));
+  z-index: 60;
+  margin: 0;
+  padding: 9px 18px;
+  max-width: calc(100vw - 32px);
+  border-radius: 999px;
+  font-size: 13px;
+  text-align: center;
+  transform: translate(-50%, -14px);
+  opacity: 0;
+  transition: opacity .3s ease, transform .3s ease;
+  pointer-events: none;
+}
+
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+.head-icon {
+  border: 1px solid rgba(255, 255, 255, .34);
+  background: rgba(255, 255, 255, .14);
+  color: rgba(255, 255, 255, .92);
+}
+
+.head-icon:active { background: rgba(255, 255, 255, .26); }
+
+.toast {
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+}
+
+/* ============================================================
+ *  パソコンなど横に広い画面
+ *
+ *  中身の幅を720pxで止めていたので、1440pxの画面では
+ *  左右に360pxずつ空いていました。使える場所を増やします。
+ *
+ *  ただし「1本の列のまま横に伸ばす」のはしません。
+ *  国名と右端の矢印が離れすぎて、目で追えなくなるからです。
+ *  一覧は2列に分け、表は列の幅の配り方を変えます。
+ * ============================================================ */
+@media (min-width: 900px) {
+  .page { max-width: 1120px; }
+  /* ---- 探す・時差の一覧を2列にする ---- */
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 28px;
+  }
+  /* エリアの見出しと「見つかりません」は2列にまたがらせます */
+  .list__group,
+  .empty { grid-column: 1 / -1; }
+}
+
+/* さらに広い画面。むやみに広げると1行が長くなりすぎるので、
+   ここで頭打ちにします。 */
+@media (min-width: 1400px) {
+  .page { max-width: 1240px; }
+}
+
+/* ============================================================
+ *  ここからが Entry Board だけのもの
+ *
+ *  見た目でいちばん大事なのは「料金」と「公式サイトへの入口」です。
+ *  偽サイトで金を払う事故を防ぐのがこのアプリの役目なので、
+ *  無料かどうかがひと目で分かるようにしています。
+ * ========================================================== */
+
+/* ---- 偽サイトの注意。いちばん上から動かさないこと ---- */
+.alert {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin: 0 0 18px; padding: 14px 16px;
+  border-radius: var(--radius);
+  background: var(--warn-bg); color: var(--warn-fg);
+}
+.alert__i { width: 22px; height: 22px; flex: 0 0 22px; margin-top: 1px; }
+.alert__title { margin: 0 0 6px; font-weight: 700; font-size: 15px; }
+.alert__text { margin: 0 0 6px; font-size: 13px; line-height: 1.75; }
+.alert__text:last-child { margin-bottom: 0; }
+
+/* ---- 帰りの日本 ---- */
+.vjw {
+  margin: 0 0 18px; padding: 14px 16px;
+  border: 1px solid var(--line-2); border-radius: var(--radius);
+  background: var(--surface);
+}
+.vjw__head { margin: 0 0 4px; font-size: 12px; letter-spacing: .06em;
+             color: var(--text-weak); }
+.vjw__name { margin: 0 0 6px; font-weight: 700; font-size: 16px; }
+.vjw__note { margin: 0 0 10px; font-size: 13px; line-height: 1.75;
+             color: var(--text-sub); }
+
+/* ---- 一覧の行に出すしるし ---- */
+.etags { margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.etag {
+  display: inline-block; padding: 2px 7px; border-radius: 5px;
+  font-size: 11px; line-height: 1.5; white-space: nowrap;
+  border: 1px solid var(--line-2); color: var(--text-sub);
+}
+.etag--card   { border-color: transparent; background: var(--ok); color: var(--on-ok); }
+.etag--visa   { border-color: transparent; background: var(--need-bg);
+                color: var(--need-fg); }
+.etag--onsite { border-color: transparent; background: var(--warn-bg);
+                color: var(--warn-fg); }
+.etag--other  { background: var(--surface-2); }
+.etag--dim    { color: var(--text-weak); border-style: dashed; }
+
+/* ---- 手続きの札 ---- */
+.procs { margin: 4px 0 0; }
+.proc {
+  margin: 0 0 10px; padding: 12px 14px;
+  border: 1px solid var(--line-2); border-radius: 10px;
+  background: var(--surface);
+  /* 左の帯で種類が分かります。文字を読む前に当たりが付くように */
+  border-left: 3px solid var(--line-2);
+}
+.proc--card   { border-left-color: var(--ok); }
+.proc--ok     { border-left-color: var(--ok); }
+.proc--need   { border-left-color: var(--need-fg); }
+.proc--onsite { border-left-color: var(--warn-fg); }
+.proc--other  { border-left-color: var(--accent); }
+.proc--none   { background: transparent; border-style: dashed; }
+
+.proc__head { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.7; }
+.proc__kind {
+  display: inline-block; margin-right: 8px; padding: 1px 7px;
+  border-radius: 4px; background: var(--surface-2);
+  font-size: 11px; font-weight: 600; letter-spacing: .04em;
+  color: var(--text-sub); vertical-align: 2px;
+}
+.proc__kind--none { opacity: .6; }
+.proc__stay { margin-left: 8px; font-size: 13px; font-weight: 400;
+              color: var(--text-sub); }
+.proc__when { margin: 6px 0 0; font-size: 12px; color: var(--text-weak); }
+.proc__note { margin: 6px 0 0; font-size: 13px; line-height: 1.8;
+              color: var(--text-sub); }
+.proc__note strong { color: var(--text); }
+.proc__caution {
+  margin: 12px 0 0; padding: 10px 12px; border-radius: 8px;
+  background: var(--surface-2); font-size: 12px; line-height: 1.8;
+  color: var(--text-sub);
+}
+
+/* ---- 料金。無料かどうかがこのアプリの肝です ---- */
+.fee {
+  display: inline-block; margin-left: 8px; padding: 1px 7px;
+  border-radius: 4px; border: 1px solid var(--line-2);
+  font-size: 12px; font-weight: 600; color: var(--text-sub); vertical-align: 1px;
+}
+.fee--free { border-color: transparent; background: var(--ok); color: var(--on-ok); }
+
+/* ---- 公式サイトへの入口 ----
+   ホスト名をわざと出しています。押す前に「政府のドメインか」を
+   自分の目でも確かめられるようにするためです。 */
+.gov {
+  display: flex; align-items: center; gap: 10px;
+  margin: 10px 0 0; padding: 9px 12px;
+  border: 1px solid var(--line-2); border-radius: 8px;
+  background: var(--surface-2); text-decoration: none; color: inherit;
+}
+.gov:hover { border-color: var(--accent); }
+.gov__body { flex: 1; min-width: 0; }
+.gov__label { display: block; font-size: 13px; font-weight: 600; }
+.gov__url {
+  display: block; margin-top: 1px; font-size: 11px; color: var(--text-weak);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.gov__i { width: 16px; height: 16px; flex: 0 0 16px; color: var(--text-weak); }
+
+.sources__note { margin: 10px 0 0; font-size: 12px; line-height: 1.8;
+                 color: var(--text-weak); }
+
+/* ---- パソコンでは2列 ---- */
+@media (min-width: 900px) {
+  .list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; }
+  .list__group, .empty { grid-column: 1 / -1; }
+  .procs { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+}

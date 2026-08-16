@@ -1,0 +1,88 @@
+/* ============================================================
+ *  Entry Board — 色と書体
+ *
+ *  style.css より後ろで読むこと。
+ *
+ *  Trip Board（藍）・Flight Board（金）・Pack Board（緑）と
+ *  兄弟に見えるよう、明朝体の見出しと細い線という作りは揃えています。
+ *  違うのは主色で、こちらは**あずき色**です。4つ並べたときに
+ *  色だけで取り違えないようにするための決めごとです。
+ *  入国の判（スタンプ）の色から取っています。
+ *
+ *  数値はコントラスト比を確かめたうえで決めています。
+ *  本文と背景で 4.5 : 1 以上を保っています。
+ * ============================================================ */
+
+/* ---- 明るいとき ---- */
+:root {
+  --bg:        #f2f0ee;
+  --surface:   #ffffff;
+  --surface-2: #f7f4f3;
+  --line:      #ddd6d4;
+  --line-2:    #e7e1df;
+  --text:      #1c191b;   /* 17.4 : 1 */
+  --text-sub:  #645a5f;   /*  6.6 : 1 */
+  --text-weak: #74696e;   /*  5.3 : 1 */
+  --accent:    #8a3a52;   /* あずき。7.5 : 1 */
+  --on-accent: #ffffff;
+  --header-bg: #1c1214;
+  --danger:    #9c3320;
+  --radius:    14px;
+
+  /* 手続きの重さを表す3色。既にある物差しを使い回さず、
+     このアプリだけの意味（無料／当日／事前）に割り当てています。 */
+  --ok:        #2f7d5b;   /* 無料・手続き不要。白文字で 5.0 : 1 */
+  --on-ok:     #ffffff;
+  --warn-bg:   #f6e6c4;   /* 現地で取る＝当日にやることがある */
+  --warn-fg:   #5a3c06;   /* 8.2 : 1 */
+  --need-bg:   #f3ccc4;   /* 事前にビザが要る＝行く前にやることがある */
+  --need-fg:   #8a2617;   /* 6.0 : 1 */
+}
+
+/* ---- 暗いとき ---- */
+:root[data-theme="dark"] {
+  --bg:        #120e10;
+  --surface:   #1b1618;
+  --surface-2: #221c1e;
+  --line:      #3a3134;
+  --line-2:    #2e2729;
+  --text:      #ece7e9;   /* 15.7 : 1 */
+  --text-sub:  #aaa0a4;   /*  7.5 : 1 */
+  --text-weak: #958a8e;   /*  5.8 : 1 */
+  --accent:    #e8a0b4;   /* 暗い地の上なので明るく反転。9.2 : 1 */
+  --on-accent: #120e10;
+  --header-bg: #0b0709;
+  --danger:    #e0806c;
+
+  --ok:        #5fbf92;   /* 8.5 : 1 */
+  --on-ok:     #120e10;
+  --warn-bg:   #3a3110;
+  --warn-fg:   #e8d59a;   /* 8.9 : 1 */
+  --need-bg:   #48221a;
+  --need-fg:   #f2b3a2;   /* 7.7 : 1 */
+}
+
+/* ---- 見出しは明朝体。4つのアプリで揃えた家族の印 ---- */
+.app-title__main,
+.sheet__title {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+.app-title__mark { color: rgba(255, 255, 255, .9); }
+
+/* ---- 選んでいる絞り込み ---- */
+.chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+/* ---- 短い知らせ（更新ボタンが出すもの） ---- */
+.toast {
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .28);
+}

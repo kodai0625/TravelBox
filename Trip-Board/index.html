@@ -93,37 +93,6 @@
     </g>
   </symbol>
 
-  <!-- 入国。パスポートに判が押された形。「手続き」だと分かる形にしています -->
-  <symbol id="i-passport" viewBox="0 0 24 24">
-    <g fill="none" stroke="currentColor" stroke-width="1.7"
-       stroke-linecap="round" stroke-linejoin="round">
-      <rect x="4.6" y="2.8" width="14.8" height="18.4" rx="2.2"/>
-      <circle cx="12" cy="9.4" r="2.9"/>
-      <path d="M8.6 16.4h6.8"/>
-    </g>
-  </symbol>
-
-  <!-- 外へ出るしるし。公式サイトへのリンクに付けます -->
-  <symbol id="i-external" viewBox="0 0 24 24">
-    <g fill="none" stroke="currentColor" stroke-width="1.8"
-       stroke-linecap="round" stroke-linejoin="round">
-      <path d="M13.4 4.6h6v6"/>
-      <path d="m19.4 4.6-8.2 8.2"/>
-      <path d="M17.4 13.8v4.4a1.8 1.8 0 0 1-1.8 1.8H5.8A1.8 1.8 0 0 1 4 18.2V8.4
-               a1.8 1.8 0 0 1 1.8-1.8h4.4"/>
-    </g>
-  </symbol>
-
-  <!-- 気をつけることのしるし -->
-  <symbol id="i-warn" viewBox="0 0 24 24">
-    <g fill="none" stroke="currentColor" stroke-width="1.8"
-       stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 3.4 21.4 20H2.6z"/>
-      <path d="M12 9.4v4.6"/>
-      <circle cx="12" cy="17" r=".2"/>
-    </g>
-  </symbol>
-
   <!-- ---- エリアの見出し ---- -->
   <symbol id="i-pin" viewBox="0 0 24 24">
     <g fill="none" stroke="currentColor" stroke-width="1.7"
@@ -230,8 +199,6 @@
       <svg class="tabs__i" aria-hidden="true"><use href="#i-compare"/></svg>比較</button>
     <button type="button" class="tabs__btn" data-tab="clock">
       <svg class="tabs__i" aria-hidden="true"><use href="#i-clock"/></svg>時差</button>
-    <button type="button" class="tabs__btn" data-tab="entry">
-      <svg class="tabs__i" aria-hidden="true"><use href="#i-passport"/></svg>入国</button>
   </nav>
 </header>
 
@@ -356,36 +323,6 @@
     </div>
     <div class="now" id="nowJapan"></div>
     <ul class="list" id="clockList"></ul>
-  </section>
-
-  <!-- ===== 入国 ===== -->
-  <section class="view is-hidden" id="viewEntry">
-
-    <!-- ★この注意書きはいちばん上から動かさないでください。
-         偽サイトで金を払ってしまう事故を防ぐのが、このページの一番の役目です。 -->
-    <div class="alert" id="entryWarn">
-      <svg class="alert__i" aria-hidden="true"><use href="#i-warn"/></svg>
-      <div class="alert__body">
-        <p class="alert__title">偽サイトに気をつけてください</p>
-        <p class="alert__text" id="entryWarnText"></p>
-        <p class="alert__text"><strong>ここに載せたリンクは、
-          政府のドメインかどうかを機械で確かめたものだけです。</strong>
-          検索して出てきたサイトではなく、ここから開いてください。</p>
-      </div>
-    </div>
-
-    <div class="vjw" id="entryJapan"></div>
-
-    <div class="search">
-      <input type="search" class="search__input" id="entrySearch"
-             placeholder="国名で探す（例：タイ、Thailand）"
-             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-      <button type="button" class="search__clear is-hidden" id="entryClear" aria-label="消す">✕</button>
-    </div>
-
-    <div class="chips chips--filter" id="entryFilterChips"></div>
-
-    <ul class="list" id="entryList"></ul>
   </section>
 
 </main>

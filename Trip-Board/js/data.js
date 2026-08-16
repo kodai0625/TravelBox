@@ -26,12 +26,11 @@ async function loadAll() {
     return res.json();
   };
 
-  const [countries, climate, seasons, prices, safety, guide, fares, entry] =
-    await Promise.all([
-      get(DATA_FILES.countries), get(DATA_FILES.climate), get(DATA_FILES.seasons),
-      get(DATA_FILES.prices), get(DATA_FILES.safety), get(DATA_FILES.guide),
-      get(DATA_FILES.fares), get(DATA_FILES.entry),
-    ]);
+  const [countries, climate, seasons, prices, safety, guide, fares] = await Promise.all([
+    get(DATA_FILES.countries), get(DATA_FILES.climate), get(DATA_FILES.seasons),
+    get(DATA_FILES.prices), get(DATA_FILES.safety), get(DATA_FILES.guide),
+    get(DATA_FILES.fares),
+  ]);
 
   DB.countries = countries.countries;
   DB.regions = countries.regions;
@@ -46,14 +45,11 @@ async function loadAll() {
   // 航空券の高い時期・安い時期。値段そのものではなく上がり下がりの傾向です
   DB.fares = fares.fares;
   DB.fareMeta = fares.meta;
-  // 入国の手続き。URLは政府ドメインかどうかを組み立て時に機械で確かめています
-  DB.entry = entry.entry;
-  DB.entryMeta = entry.meta;
 
   DB.meta = {
     countries: countries.meta, climate: climate.meta, seasons: seasons.meta,
     prices: prices.meta, safety: safety.meta, guide: guide.meta,
-    fares: fares.meta, entry: entry.meta,
+    fares: fares.meta,
   };
 }
 

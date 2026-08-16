@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Entry Board のアイコン
+       あずき色の地に、判（スタンプ）の押されたパスポート。
+       Trip Board（淡い藍にかばん）・Flight Board（金）・Pack Board（緑）と
+       並べたとき、色と形の両方で見分けが付くようにしています。
+       ★ホーム画面では約60pxまで縮みます。細い線と小さい文字は
+         その大きさで消えるので、太い線と2行の文字だけにしています。 -->
+  <rect width="512" height="512" rx="112" fill="#f0dfe4"/>
+
+  <!-- パスポートの本体 -->
+  <rect x="146" y="96" width="220" height="256" rx="26"
+        fill="#8a3a52"/>
+  <rect x="146" y="96" width="26" height="256" rx="13" fill="#6f2c41"/>
+
+  <!-- 判。斜めに押されている見た目にして「手続きが済んだ」を表します -->
+  <g transform="rotate(-14 268 208)">
+    <circle cx="268" cy="208" r="62" fill="none" stroke="#f0dfe4" stroke-width="13"/>
+    <circle cx="268" cy="208" r="44" fill="none" stroke="#f0dfe4" stroke-width="7"/>
+    <path d="M240 209l19 19 38-40" fill="none" stroke="#f0dfe4"
+          stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 下の線。パスポートの記名欄 -->
+  <path d="M206 300h120" stroke="#f0dfe4" stroke-width="12" stroke-linecap="round"/>
+
+  <text x="256" y="410" text-anchor="middle"
+        font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+        font-size="52" font-weight="700" letter-spacing="2" fill="#6f2c41">ENTRY</text>
+  <text x="256" y="462" text-anchor="middle"
+        font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+        font-size="52" font-weight="700" letter-spacing="2" fill="#6f2c41">BOARD</text>
+</svg>
