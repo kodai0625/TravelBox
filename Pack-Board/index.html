@@ -28,9 +28,9 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。 -->
-<link rel="stylesheet" href="css/style.css?v=20260816b">
+<link rel="stylesheet" href="css/style.css?v=20260816c">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260816b">
+<link rel="stylesheet" href="css/design.css?v=20260816c">
 </head>
 <body>
 
@@ -145,11 +145,19 @@
     <div class="listops__body">
       <button type="button" class="btn" id="renameBtn">名前を変える</button>
       <button type="button" class="btn" id="copyBtn">うつしを作る</button>
+      <button type="button" class="btn" id="seedBtn">見本から足りないものを足す</button>
       <button type="button" class="btn btn--danger" id="delListBtn">このリストを消す</button>
       <p class="listops__note">
         「うつしを作る」は、いまの持ち物をそのまま写した別のリストを作ります。
         チェックは外れた状態から始まります。
         <strong>行き先ごとに少しずつ違うリストを作るときに使ってください。</strong>
+      </p>
+      <p class="listops__note">
+        「見本から足りないものを足す」は、はじめから入っている見本と見くらべて、
+        <strong>いまのリストに無いものだけ</strong>を足します。同じ名前のものは足しません。
+        見本が増えたときに使ってください。勝手に増えることはなく、押したときだけ足します。
+        <strong>前に消したものも「無いもの」なので戻ってきます。</strong>
+        要らなければ、そのまま消し直してください（「元に戻す」でまとめて取り消せます）。
       </p>
     </div>
   </details>
@@ -182,8 +190,8 @@
   </div>
 </div>
 
-<script src="js/config.js?v=20260816b"></script>
-<script src="js/app.js?v=20260816b"></script>
-<script src="js/update.js?v=20260816b"></script>
+<script src="js/config.js?v=20260816c"></script>
+<script src="js/app.js?v=20260816c"></script>
+<script src="js/update.js?v=20260816c"></script>
 </body>
 </html>

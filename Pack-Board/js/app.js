@@ -316,6 +316,47 @@ function copyList() {
   toast(`「${copy.name}」を作りました`);
 }
 
+/**
+ * 見本（config.js の SEEDS）にあって、いまのリストに無いものを足します。
+ *
+ * 見本は「はじめて開いたときに一度だけ写す種」なので、あとから見本を
+ * 増やしても、すでに使っている端末には届きません。それを届ける道です。
+ *
+ * ★消したものが勝手に戻ってこないよう、**押したときだけ**足します。
+ *   自動で足すと、いらないから消したものが毎回よみがえります。
+ */
+function addFromSeed() {
+  const l = activeList();
+  const seed = SEEDS.find((s) => s.name === l.name);
+  if (!seed) {
+    toast(`「${l.name}」に合う見本がありません（見本：`
+      + SEEDS.map((s) => s.name).join('／') + '）');
+    return;
+  }
+  // 同じ名前のものは足しません。書きかたのゆれ（空白・大文字小文字）は同じとみなします
+  const key = (s) => s.replace(/[\s　]/g, '').toLowerCase();
+  const have = new Set(l.items.map((it) => key(it.name)));
+  const missing = seed.items.filter(([, name]) => !have.has(key(name)));
+
+  if (!missing.length) { toast('足りないものはありませんでした'); return; }
+  if (l.items.length + missing.length > APP.maxItems) {
+    toast(`1つのリストは ${APP.maxItems} 個までです`);
+    return;
+  }
+
+  const added = missing.map(([cat, name, note]) => ({
+    id: newId(), cat, name, note: note || '', done: false,
+  }));
+  l.items.push(...added);
+  save(); render();
+
+  const ids = new Set(added.map((it) => it.id));
+  toast(`${added.length} 個足しました`, '元に戻す', () => {
+    l.items = l.items.filter((it) => !ids.has(it.id));
+    save(); render();
+  });
+}
+
 /** 次の旅行にそなえてチェックだけ外します。項目は消しません。 */
 function resetChecks() {
   const l = activeList();
@@ -402,6 +443,7 @@ function init() {
   $('resetBtn').addEventListener('click', resetChecks);
   $('renameBtn').addEventListener('click', renameList);
   $('copyBtn').addEventListener('click', copyList);
+  $('seedBtn').addEventListener('click', addFromSeed);
   $('delListBtn').addEventListener('click', () => removeList(state.activeId));
 
   // ---- 入力欄 ----
