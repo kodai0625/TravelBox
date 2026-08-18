@@ -753,6 +753,35 @@ function setupReorder() {
 
 
 /* ------------------------------------------------------------
+ *  二択の問いかけ
+ *
+ *  素の confirm() を使わない理由は2つあります。
+ *  ・見た目がアプリと合わない
+ *  ・何が起きるかを長く書けない（大事な選択ほど説明が要ります）
+ * ---------------------------------------------------------- */
+function ask(title, text, yes, no) {
+  return new Promise((done) => {
+    $('askTitle').textContent = title;
+    $('askText').innerHTML = text;
+    $('askYes').textContent = yes;
+    $('askNo').textContent = no;
+    $('askBox').classList.remove('is-hidden');
+    $('formBackdrop').classList.remove('is-hidden');
+    document.body.classList.add('is-locked');
+
+    const close = (v) => {
+      $('askBox').classList.add('is-hidden');
+      $('formBackdrop').classList.add('is-hidden');
+      document.body.classList.remove('is-locked');
+      $('askYes').onclick = $('askNo').onclick = null;
+      done(v);
+    };
+    $('askYes').onclick = () => close(true);
+    $('askNo').onclick = () => close(false);
+  });
+}
+
+/* ------------------------------------------------------------
  *  ほかの端末と合わせる（画面まわり）
  * ---------------------------------------------------------- */
 function renderSync() {
@@ -789,37 +818,41 @@ function setupSync() {
 
   $('pinSaveBtn').addEventListener('click', async () => {
     const pin = $('pinInput').value.trim();
-    if (pin.length < 4) { toast('合言葉は4文字以上にしてください'); return; }
+    if (pin.length < 8) { toast('合言葉は8文字以上にしてください'); return; }
     $('syncState').textContent = '確かめています…';
-    try {
-      const r = await Sync.test(pin);
-      if (!r.ok) { toast(r.error || 'つなげませんでした'); renderSync(); return; }
-    } catch (e) {
-      toast('つながりませんでした。通信を確かめてください');
-      renderSync();
-      return;
-    }
     // ★2台目をつなぐときの落とし穴。
     //   どの端末も、はじめて開いたときに自前の見本を作ります。
     //   その中身は同じでも**名札（id）が違う**ので、そのまま合わせると
     //   「海外旅行」が2つ、「パスポート」が2つ…と二重になります。
     //   なので、相手側にすでにリストがあるときは先に聞きます。
+    // ★問い合わせは**1回だけ**にします。
+    //   はじめ「確かめる」と「数える」で2回投げていましたが、
+    //   中身の無い合言葉への問い合わせは向こうで数えられるので、
+    //   つなぐたびに回数を無駄に使っていました。
     let already = 0;
     try {
-      const peek = await Sync.test(pin);          // probe は中身を返しません
       const full = await (await fetch(APP.syncUrl, {
         method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({ pin, since: '', records: [] }),
       })).json();
+      if (!full.ok) { toast(full.error || 'つなげませんでした'); renderSync(); return; }
       already = (full.rows || []).filter((x) => !x.del && x.kind === 'list').length;
-    } catch (e) { /* 数えられなくても続けます */ }
+    } catch (e) {
+      toast('つながりませんでした。通信を確かめてください');
+      renderSync();
+      return;
+    }
 
     if (already) {
-      const ok = confirm(
-        `つなぎ先に、すでに ${already} 個のリストがあります。\n\n`
-        + 'OK … つなぎ先に合わせます（この端末のいまのリストは消えます）\n'
-        + 'キャンセル … 両方を残します（同じものが二重に並ぶことがあります）\n\n'
-        + '2台目としてつなぐなら OK を選んでください。');
+      const ok = await ask(
+        'つなぎ先にリストがあります',
+        `つなぎ先には、すでに <strong>${already} 個のリスト</strong>があります。<br><br>`
+        + 'どの端末も、はじめて開いたときに自前の見本を作ります。'
+        + '中身が同じでも別のものとして扱われるので、そのまま合わせると'
+        + '<strong>「海外旅行」が2つ、「パスポート」が2つ…と二重に並びます。</strong>'
+        + '<br><br><strong>2台目としてつなぐなら「つなぎ先に合わせる」</strong>を'
+        + '選んでください。この端末のいまのリストは消えて、つなぎ先のものになります。',
+        'つなぎ先に合わせる', '両方を残す');
       if (ok) {
         // この端末のぶんは捨てて、まっさらから受け取ります。
         // 送る前に空にするので、こちらの見本が相手へ流れ出しません。

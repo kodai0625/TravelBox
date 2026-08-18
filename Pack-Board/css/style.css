@@ -632,3 +632,9 @@ body.is-reordering .item::after {
 .sync__state--ok { color: var(--accent); font-weight: 600; }
 .sync__state--ng { color: var(--danger); }
 .sync__btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+/* 二択の問いかけ */
+.ask__text {
+  margin: 0 0 4px; font-size: 13.5px; line-height: 1.85; color: var(--text-sub);
+}
+.ask__text strong { color: var(--text); }

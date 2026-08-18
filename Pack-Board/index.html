@@ -28,9 +28,9 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。 -->
-<link rel="stylesheet" href="css/style.css?v=20260818e">
+<link rel="stylesheet" href="css/style.css?v=20260818f">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260818e">
+<link rel="stylesheet" href="css/design.css?v=20260818f">
 </head>
 <body>
 
@@ -244,7 +244,7 @@
       <p class="sync__state" id="syncState"></p>
       <label class="form__label" for="pinInput">合言葉</label>
       <input type="password" class="form__input" id="pinInput"
-             placeholder="4文字以上" autocomplete="off"
+             placeholder="8文字以上（当てにくいものに）" autocomplete="off"
              inputmode="text" enterkeyhint="done">
       <div class="sync__btns">
         <button type="button" class="btn btn--main" id="pinSaveBtn">つなぐ</button>
@@ -297,9 +297,22 @@
   </div>
 </div>
 
-<script src="js/config.js?v=20260818e"></script>
-<script src="js/sync.js?v=20260818e"></script>
-<script src="js/app.js?v=20260818e"></script>
-<script src="js/update.js?v=20260818e"></script>
+<!-- ===== 二択の問いかけ =====
+     素の confirm() ではなくアプリ自前の形にしています。
+     見た目がそろうのと、押す前に何が起きるかを長く書けるためです。 -->
+<div class="form is-hidden" id="askBox" role="dialog" aria-modal="true"
+     aria-labelledby="askTitle">
+  <h2 class="form__title" id="askTitle"></h2>
+  <p class="ask__text" id="askText"></p>
+  <div class="form__btns">
+    <button type="button" class="btn" id="askNo"></button>
+    <button type="button" class="btn btn--main" id="askYes"></button>
+  </div>
+</div>
+
+<script src="js/config.js?v=20260818f"></script>
+<script src="js/sync.js?v=20260818f"></script>
+<script src="js/app.js?v=20260818f"></script>
+<script src="js/update.js?v=20260818f"></script>
 </body>
 </html>

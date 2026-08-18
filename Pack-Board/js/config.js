@@ -22,7 +22,7 @@ const APP = {
    *  入れかたは gas/コード.gs の先頭と、
    *  「同期のはじめかた.md」に書いてあります。
    * ---------------------------------------------------------- */
-  syncUrl: '',
+  syncUrl: 'https://script.google.com/macros/s/AKfycbwNohOykxTArxxq4MH4dRrxbN5BgQGpc7EWXlFR8fN9wRBrFKmjq0o1PcfiC7BO4YPhhQ/exec',
 
   // 1つのリストに入れられる項目の上限。
   // 多すぎると「確かめる道具」ではなくなるので、上限を設けています。
