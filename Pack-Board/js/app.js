@@ -316,6 +316,7 @@ function itemRow(it) {
 }
 
 function render() {
+  renderFineprint();
   renderTabs();
   renderProgress();
   renderItems();
@@ -753,6 +754,38 @@ function setupReorder() {
 
 
 /* ------------------------------------------------------------
+ *  いちばん下の説明
+ *
+ *  ★つないでいるかどうかで、書いてよいことが変わります。
+ *    つないでいないのに「サーバーに送っています」と書けば怖がらせますし、
+ *    つないでいるのに「送っていません」と書けば嘘になります。
+ * ---------------------------------------------------------- */
+function renderFineprint() {
+  const el = $('fineprint');
+  if (!el) return;
+  if (typeof Sync !== 'undefined' && Sync.on()) {
+    el.innerHTML =
+      '登録した持ち物は<strong>この端末の中に保存され、'
+      + '同じ合言葉の端末にも送られます。</strong>'
+      + '直したものはまず端末に入るので、機内でも電波のない場所でも使えます。'
+      + '<br>送り先は<strong>合言葉ごとに分かれていて、'
+      + '合言葉が違う人のリストは見えません。</strong>'
+      + 'ただし<strong>送り先の表を持っている人は中身を見られます。</strong>'
+      + '見られたくないものは書かないでください。';
+    return;
+  }
+  el.innerHTML =
+    '登録した持ち物は<strong>この端末の中だけ</strong>に保存されます。'
+    + 'サーバーには送っていないので、機内でも電波のない場所でも開けます。'
+    + '<br>そのかわり<strong>別の端末には引き継げません。</strong>'
+    + 'ブラウザの履歴やサイトデータを消すと、リストも一緒に消えます。'
+    + (typeof Sync !== 'undefined' && Sync.enabled()
+      ? '引き継ぎたいときだけ、上の「ほかの端末と合わせる」を使ってください。'
+        + '<strong>1台で使うなら、つなぐ必要はありません。</strong>'
+      : '');
+}
+
+/* ------------------------------------------------------------
  *  二択の問いかけ
  *
  *  素の confirm() を使わない理由は2つあります。
@@ -787,6 +820,7 @@ function ask(title, text, yes, no) {
 function renderSync() {
   if (!Sync.enabled()) return;
   const el = $('syncState');
+  renderFineprint();
   if (Sync.running) { el.textContent = '合わせています…'; el.className = 'sync__state'; return; }
   if (Sync.lastError) {
     el.textContent = 'つながりませんでした：' + Sync.lastError

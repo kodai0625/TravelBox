@@ -28,9 +28,9 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。 -->
-<link rel="stylesheet" href="css/style.css?v=20260818f">
+<link rel="stylesheet" href="css/style.css?v=20260819a">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260818f">
+<link rel="stylesheet" href="css/design.css?v=20260819a">
 </head>
 <body>
 
@@ -269,12 +269,9 @@
     </div>
   </details>
 
-  <p class="fineprint">
-    登録した持ち物は<strong>この端末の中だけ</strong>に保存されます。
-    サーバーには送っていないので、機内でも電波のない場所でも開けます。
-    そのかわり、別の端末には引き継げません。
-    ブラウザの履歴やサイトデータを消すと、リストも一緒に消えます。
-  </p>
+  <!-- ★同期をつなぐと「サーバーには送っていない」が事実でなくなります。
+       いまの状態に合わせて js が書き分けます（renderFineprint）。 -->
+  <p class="fineprint" id="fineprint"></p>
 
 </main>
 
@@ -310,9 +307,9 @@
   </div>
 </div>
 
-<script src="js/config.js?v=20260818f"></script>
-<script src="js/sync.js?v=20260818f"></script>
-<script src="js/app.js?v=20260818f"></script>
-<script src="js/update.js?v=20260818f"></script>
+<script src="js/config.js?v=20260819a"></script>
+<script src="js/sync.js?v=20260819a"></script>
+<script src="js/app.js?v=20260819a"></script>
+<script src="js/update.js?v=20260819a"></script>
 </body>
 </html>
