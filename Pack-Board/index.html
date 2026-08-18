@@ -28,9 +28,9 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。 -->
-<link rel="stylesheet" href="css/style.css?v=20260818c">
+<link rel="stylesheet" href="css/style.css?v=20260818e">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260818c">
+<link rel="stylesheet" href="css/design.css?v=20260818e">
 </head>
 <body>
 
@@ -237,6 +237,38 @@
     </div>
   </details>
 
+  <!-- 端末をまたいだ同期。APP.syncUrl が空のあいだは丸ごと隠れます -->
+  <details class="listops is-hidden" id="syncBox">
+    <summary class="listops__head">ほかの端末と合わせる</summary>
+    <div class="listops__body">
+      <p class="sync__state" id="syncState"></p>
+      <label class="form__label" for="pinInput">合言葉</label>
+      <input type="password" class="form__input" id="pinInput"
+             placeholder="4文字以上" autocomplete="off"
+             inputmode="text" enterkeyhint="done">
+      <div class="sync__btns">
+        <button type="button" class="btn btn--main" id="pinSaveBtn">つなぐ</button>
+        <button type="button" class="btn" id="syncNowBtn">いま合わせる</button>
+        <button type="button" class="btn btn--danger" id="pinOffBtn">やめる</button>
+      </div>
+      <p class="listops__note">
+        <strong>同じ合言葉を入れた端末どうしだけ</strong>が合わさります。
+        Mac と iPhone に同じ合言葉を入れれば、どちらで直しても両方に届きます。
+        <strong>合言葉が違えば、中身は互いに見えません。</strong>
+        人に配るときは、その人には別の合言葉を決めてもらってください。
+      </p>
+      <p class="listops__note">
+        直したものは<strong>まず端末の中に入ります</strong>ので、
+        機内でも山の中でも使えます。つながったときに自動で送られます。
+        <strong>1件ずつ送るので、2つの端末で同時に直しても消えません。</strong>
+      </p>
+      <p class="listops__note">
+        「やめる」を押すと、この端末だけ合わせるのをやめます。
+        <strong>持ち物は消えません。</strong>
+      </p>
+    </div>
+  </details>
+
   <p class="fineprint">
     登録した持ち物は<strong>この端末の中だけ</strong>に保存されます。
     サーバーには送っていないので、機内でも電波のない場所でも開けます。
@@ -265,8 +297,9 @@
   </div>
 </div>
 
-<script src="js/config.js?v=20260818c"></script>
-<script src="js/app.js?v=20260818c"></script>
-<script src="js/update.js?v=20260818c"></script>
+<script src="js/config.js?v=20260818e"></script>
+<script src="js/sync.js?v=20260818e"></script>
+<script src="js/app.js?v=20260818e"></script>
+<script src="js/update.js?v=20260818e"></script>
 </body>
 </html>

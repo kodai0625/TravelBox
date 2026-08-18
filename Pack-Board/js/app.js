@@ -19,9 +19,37 @@ const esc = (s) => String(s == null ? '' : s)
 let seq = 0;
 const newId = () => `${Date.now().toString(36)}-${(seq++).toString(36)}`;
 
+/* ------------------------------------------------------------
+ *  同期のための決めごと
+ *
+ *  ★リストを丸ごと送り合うと、あとから送ったほうで
+ *    相手の修正が消えます。そこで **1件ごとに更新時刻（up）を持たせ、
+ *    新しいほうを残します。**
+ *
+ *    こうすると、iPhone で「パスポート」に、Mac で「歯ブラシ」に
+ *    同時にチェックを付けても、別々の1件なので両方とも残ります。
+ *    消えるのは「まったく同じ1件を、同時に別々の値に直した」ときだけで、
+ *    持ち物リストではめったに起きません。
+ *
+ *  ★消したものは、消したという印（del）を残します。
+ *    行ごと消すと、まだ知らない端末から「あるよ」と送り返されて
+ *    よみがえってしまうためです。
+ * ---------------------------------------------------------- */
+const nowStamp = () => new Date().toISOString();
+
+/** そのレコードを「いま直した」ことにします */
+function touch(rec) {
+  rec.up = nowStamp();
+  return rec;
+}
+
+/** 新しいほうを残す。同じ時刻なら、いま持っているほうを残します */
+const isNewer = (a, b) => String(a && a.up || '') > String(b && b.up || '');
+
 const state = {
   lists: [],
   cats: [],           // 分類。あとから足せるので、端末の中に保存します
+  graves: [],         // 消したものの印。よみがえりを防ぎます
   activeId: null,
   editing: false,     // 編集モード（消す・並べ替えるボタンを出す）
   undo: null,         // 直前に消したもの。取り消しに使います
@@ -40,19 +68,55 @@ function fallbackCat() {
  *  保存と読み込み
  * ---------------------------------------------------------- */
 function save() {
+  // 端末の中が先。送るのはあとです（機内でも動くように）
+  if (typeof Sync !== 'undefined') Sync.push();
   try {
     localStorage.setItem(APP.storageKey, JSON.stringify({
       lists: state.lists, cats: state.cats, activeId: state.activeId,
+      graves: state.graves,
     }));
   } catch (e) {
     toast('保存できませんでした。端末の空き容量を確かめてください。');
   }
 }
 
+/**
+ * 保存データを同期できる形に整えます。
+ *
+ * ・すべての1件に up（更新時刻）を付けます
+ * ・持ち物に ord（分類の中での順番）を付けます
+ *   これまでは配列の並び順そのものが順番でしたが、
+ *   同期では順番も1件ごとに持っていないと相手に伝わりません
+ * ・消したものを入れる棚（graves）を用意します
+ */
+function migrate() {
+  const t = nowStamp();
+  state.cats.forEach((c, i) => {
+    if (!c.up) c.up = t;
+    if (typeof c.ord !== 'number') c.ord = i;
+  });
+  state.lists.forEach((l, li) => {
+    if (!l.up) l.up = t;
+    if (typeof l.ord !== 'number') l.ord = li;
+    // 分類ごとに、いまの並び順をそのまま番号にします
+    const seen = {};
+    l.items.forEach((it) => {
+      if (!it.up) it.up = t;
+      if (typeof it.ord !== 'number') {
+        seen[it.cat] = (seen[it.cat] || 0) + 1;
+        it.ord = seen[it.cat];
+      }
+    });
+  });
+  if (!Array.isArray(state.graves)) state.graves = [];
+}
+
 function load() {
   let raw = null;
   try { raw = JSON.parse(localStorage.getItem(APP.storageKey) || 'null'); }
   catch (e) { raw = null; }
+
+  state.graves = (raw && Array.isArray(raw.graves)) ? raw.graves : [];
 
   if (raw && Array.isArray(raw.lists) && raw.lists.length) {
     state.lists = raw.lists;
@@ -73,6 +137,7 @@ function load() {
     state.lists.forEach((l) => l.items.forEach((it) => {
       if (!state.cats.some((c) => c.id === it.cat)) it.cat = fallbackCat();
     }));
+    migrate();
     return;
   }
 
@@ -86,10 +151,29 @@ function load() {
     })),
   }));
   state.activeId = state.lists[0].id;
+  migrate();
   save();
 }
 
 const activeList = () => state.lists.find((l) => l.id === state.activeId) || state.lists[0];
+
+/* ------------------------------------------------------------
+ *  消したものの印（墓標）
+ *
+ *  行ごと消すと、まだ知らない端末から「あるよ」と送り返されて
+ *  よみがえります。消したことも1件の記録として残します。
+ * ---------------------------------------------------------- */
+function bury(kind, id, listId) {
+  state.graves = state.graves.filter((g) => !(g.kind === kind && g.id === id));
+  state.graves.push({ kind, id, listId: listId || '', up: nowStamp(), del: 1 });
+}
+
+function unbury(kind, id) {
+  state.graves = state.graves.filter((g) => !(g.kind === kind && g.id === id));
+}
+
+const buried = (kind, id) =>
+  state.graves.some((g) => g.kind === kind && g.id === id);
 
 /* ------------------------------------------------------------
  *  短い知らせ（更新ボタンと同じ見た目）
@@ -122,7 +206,8 @@ function toast(text, undoLabel, onUndo) {
  * ---------------------------------------------------------- */
 function renderTabs() {
   const l = activeList();
-  $('listChips').innerHTML = state.lists.map((x) => {
+  $('listChips').innerHTML = [...state.lists]
+    .sort((a, b) => (a.ord - b.ord) || (a.up < b.up ? -1 : 1)).map((x) => {
     const left = x.items.filter((i) => !i.done).length;
     return `<button type="button" class="chip${x.id === l.id ? ' is-active' : ''}"
       data-list="${esc(x.id)}">${esc(x.name)}<span class="chip__n">${
@@ -180,8 +265,12 @@ function renderItems() {
 
   // 空の分類も出します。作ったばかりの分類が消えて見えると、
   // 足せたのかどうか分からなくなるためです。
-  const rows = state.cats.map((c) => {
-    const items = l.items.filter((i) => i.cat === c.id);
+  const rows = [...state.cats]
+    .sort((a, b) => (a.ord - b.ord) || (a.up < b.up ? -1 : 1)).map((c) => {
+    // 並びは ord で決めます（配列の順ではありません）。
+    // 同期では順番も1件ごとに持っていないと、相手に伝わらないためです。
+    const items = l.items.filter((i) => i.cat === c.id)
+      .sort((a, b) => (a.ord - b.ord) || (a.up < b.up ? -1 : 1));
     const done = items.filter((i) => i.done).length;
     // 自分で足した分類には荷札のしるしを付けます
     const icon = c.icon || 'tag';
@@ -275,14 +364,22 @@ function submitItemForm() {
 
   if (id) {
     const it = l.items.find((x) => x.id === id);
-    if (it) { it.name = name; it.note = $('fNote').value.trim(); it.cat = $('fCat').value; }
+    if (it) {
+      it.name = name; it.note = $('fNote').value.trim(); it.cat = $('fCat').value;
+      touch(it);
+    }
   } else {
     if (l.items.length >= APP.maxItems) {
       toast(`1つのリストに入れられるのは ${APP.maxItems} 個までです`);
       return;
     }
-    l.items.push({ id: newId(), cat: $('fCat').value, name,
-                   note: $('fNote').value.trim(), done: false });
+    const cat = $('fCat').value;
+    // 同じ分類のいちばん下に置きます
+    const last = l.items.filter((x) => x.cat === cat)
+      .reduce((m, x) => Math.max(m, x.ord || 0), 0);
+    l.items.push(touch({ id: newId(), cat, name,
+                         note: $('fNote').value.trim(), done: false,
+                         ord: last + 1 }));
   }
   save(); closeItemForm(); render();
 }
@@ -295,9 +392,11 @@ function removeItem(id) {
   const i = l.items.findIndex((x) => x.id === id);
   if (i < 0) return;
   const [gone] = l.items.splice(i, 1);
+  bury('item', gone.id, l.id);
   save(); render();
   toast(`「${gone.name}」を消しました`, '元に戻す', () => {
-    l.items.splice(i, 0, gone);
+    unbury('item', gone.id);
+    l.items.splice(i, 0, touch(gone));
     save(); render();
   });
 }
@@ -310,10 +409,14 @@ function removeList(id) {
   const i = state.lists.findIndex((x) => x.id === id);
   if (i < 0) return;
   const [gone] = state.lists.splice(i, 1);
+  bury('list', gone.id);
+  gone.items.forEach((it) => bury('item', it.id, gone.id));
   if (state.activeId === id) state.activeId = state.lists[0].id;
   save(); render();
   toast(`リスト「${gone.name}」を消しました`, '元に戻す', () => {
-    state.lists.splice(i, 0, gone);
+    unbury('list', gone.id);
+    gone.items.forEach((it) => { unbury('item', it.id); touch(it); });
+    state.lists.splice(i, 0, touch(gone));
     state.activeId = gone.id;
     save(); render();
   });
@@ -344,7 +447,7 @@ function renameList() {
   if (name === null) return;
   const t = name.trim();
   if (!t) return;
-  l.name = t;
+  l.name = t; touch(l);
   save(); render();
 }
 
@@ -433,7 +536,8 @@ function addCategory() {
     toast(`「${t}」はもうあります`);
     return;
   }
-  const c = { id: 'c' + newId(), name: t, icon: 'tag' };
+  const c = touch({ id: 'c' + newId(), name: t, icon: 'tag',
+                    ord: state.cats.length });
   state.cats.push(c);
   save(); render();
   // 作った分類まで画面を送ります。下に足されるので、そのままだと見えません
@@ -441,6 +545,7 @@ function addCategory() {
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   toast(`「${t}」を作りました`, '元に戻す', () => {
     state.cats = state.cats.filter((x) => x.id !== c.id);
+    bury('cat', c.id);
     save(); render();
   });
 }
@@ -458,17 +563,19 @@ function removeCategory(id) {
   const i = state.cats.findIndex((c) => c.id === id);
   if (i < 0) return;
   const [gone] = state.cats.splice(i, 1);
+  bury('cat', gone.id);
   const to = fallbackCat();
   // どの持ち物を動かしたか覚えておきます（取り消しのため）
   const moved = [];
   state.lists.forEach((l) => l.items.forEach((it) => {
-    if (it.cat === id) { moved.push(it); it.cat = to; }
+    if (it.cat === id) { moved.push(it); it.cat = to; touch(it); }
   }));
   save(); render();
   const what = moved.length ? `${moved.length} 個は「${catName(to)}」に移しました` : '';
   toast(`分類「${gone.name}」を消しました。${what}`, '元に戻す', () => {
-    state.cats.splice(i, 0, gone);
-    moved.forEach((it) => { it.cat = id; });
+    unbury('cat', gone.id);
+    state.cats.splice(i, 0, touch(gone));
+    moved.forEach((it) => { it.cat = id; touch(it); });
     save(); render();
   });
 }
@@ -580,10 +687,16 @@ function commitOrder() {
   const order = [...document.querySelectorAll('#items .item')]
     .map((el) => el.dataset.item);
   const byId = new Map(l.items.map((it) => [it.id, it]));
-  const next = order.map((id) => byId.get(id)).filter(Boolean);
-  // 画面に出ていないものが万一あっても落とさないようにします
-  l.items.forEach((it) => { if (!order.includes(it.id)) next.push(it); });
-  l.items = next;
+  // 画面の並びを分類ごとの番号（ord）に写します。
+  // 動いた1件だけでなく、その分類ぜんぶに番号を振り直します。
+  // 番号が飛び飛びだと、別の端末とぶつかったときに順番が決まらないためです。
+  const perCat = {};
+  order.forEach((id) => {
+    const it = byId.get(id);
+    if (!it) return;
+    perCat[it.cat] = (perCat[it.cat] || 0) + 1;
+    if (it.ord !== perCat[it.cat]) { it.ord = perCat[it.cat]; touch(it); }
+  });
   save();
   renderProgress();
   renderTabs();
@@ -636,6 +749,108 @@ function setupReorder() {
   items.addEventListener('contextmenu', (e) => {
     if (drag.active || drag.timer) e.preventDefault();
   });
+}
+
+
+/* ------------------------------------------------------------
+ *  ほかの端末と合わせる（画面まわり）
+ * ---------------------------------------------------------- */
+function renderSync() {
+  if (!Sync.enabled()) return;
+  const el = $('syncState');
+  if (Sync.running) { el.textContent = '合わせています…'; el.className = 'sync__state'; return; }
+  if (Sync.lastError) {
+    el.textContent = 'つながりませんでした：' + Sync.lastError
+      + '（直したものは端末に残っています）';
+    el.className = 'sync__state sync__state--ng';
+    return;
+  }
+  if (!Sync.pin()) {
+    el.textContent = 'まだつないでいません。合言葉を入れると、'
+      + '同じ合言葉の端末と合わさります。';
+    el.className = 'sync__state';
+    return;
+  }
+  const t = Sync.lastAt
+    ? new Intl.DateTimeFormat('ja-JP', { hour: 'numeric', minute: '2-digit' })
+        .format(Sync.lastAt) + ' に合わせました'
+    : 'つないでいます';
+  el.textContent = t;
+  el.className = 'sync__state sync__state--ok';
+}
+
+function setupSync() {
+  if (!Sync.enabled()) return;      // 送り先が無いときは、丸ごと出しません
+  $('syncBox').classList.remove('is-hidden');
+  Sync.onChange = renderSync;
+
+  $('pinInput').value = Sync.pin();
+  renderSync();
+
+  $('pinSaveBtn').addEventListener('click', async () => {
+    const pin = $('pinInput').value.trim();
+    if (pin.length < 4) { toast('合言葉は4文字以上にしてください'); return; }
+    $('syncState').textContent = '確かめています…';
+    try {
+      const r = await Sync.test(pin);
+      if (!r.ok) { toast(r.error || 'つなげませんでした'); renderSync(); return; }
+    } catch (e) {
+      toast('つながりませんでした。通信を確かめてください');
+      renderSync();
+      return;
+    }
+    // ★2台目をつなぐときの落とし穴。
+    //   どの端末も、はじめて開いたときに自前の見本を作ります。
+    //   その中身は同じでも**名札（id）が違う**ので、そのまま合わせると
+    //   「海外旅行」が2つ、「パスポート」が2つ…と二重になります。
+    //   なので、相手側にすでにリストがあるときは先に聞きます。
+    let already = 0;
+    try {
+      const peek = await Sync.test(pin);          // probe は中身を返しません
+      const full = await (await fetch(APP.syncUrl, {
+        method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ pin, since: '', records: [] }),
+      })).json();
+      already = (full.rows || []).filter((x) => !x.del && x.kind === 'list').length;
+    } catch (e) { /* 数えられなくても続けます */ }
+
+    if (already) {
+      const ok = confirm(
+        `つなぎ先に、すでに ${already} 個のリストがあります。\n\n`
+        + 'OK … つなぎ先に合わせます（この端末のいまのリストは消えます）\n'
+        + 'キャンセル … 両方を残します（同じものが二重に並ぶことがあります）\n\n'
+        + '2台目としてつなぐなら OK を選んでください。');
+      if (ok) {
+        // この端末のぶんは捨てて、まっさらから受け取ります。
+        // 送る前に空にするので、こちらの見本が相手へ流れ出しません。
+        state.lists = []; state.cats = []; state.graves = [];
+        state.activeId = null;
+        save();
+      }
+    }
+
+    Sync.setPin(pin);
+    // はじめてつなぐときは、相手側にあるものを全部取りに行きます
+    await Sync.run(true);
+    if (!state.lists.length) { load(); save(); }   // 相手も空なら見本から始めます
+    if (!state.activeId && state.lists.length) state.activeId = state.lists[0].id;
+    render();
+    renderCopyFrom();
+    toast('つなぎました。ほかの端末にも同じ合言葉を入れてください');
+  });
+
+  $('syncNowBtn').addEventListener('click', () => Sync.run(true));
+
+  $('pinOffBtn').addEventListener('click', () => {
+    if (!Sync.pin()) return;
+    Sync.clearPin();
+    $('pinInput').value = '';
+    renderSync();
+    toast('この端末だけ、合わせるのをやめました。持ち物は残っています。');
+  });
+
+  // 開いたときに一度だけ合わせます
+  if (Sync.pin()) Sync.run();
 }
 
 /* ------------------------------------------------------------
@@ -696,6 +911,7 @@ function init() {
     const it = activeList().items.find((x) => x.id === li.dataset.item);
     if (!it) return;
     it.done = !it.done;
+    touch(it);
     save();
     // 1件の切り替えで画面全部を作り直すと、押した場所が飛びます。
     // そこで、変わったところだけを直します。
@@ -737,6 +953,7 @@ function init() {
 
   $('homeBtn').addEventListener('click', () => window.scrollTo(0, 0));
   renderCopyFrom();
+  setupSync();
 }
 
 if (document.readyState === 'loading') {
