@@ -28,9 +28,9 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。 -->
-<link rel="stylesheet" href="css/style.css?v=20260816c">
+<link rel="stylesheet" href="css/style.css?v=20260818c">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260816c">
+<link rel="stylesheet" href="css/design.css?v=20260818c">
 </head>
 <body>
 
@@ -83,6 +83,67 @@
       <rect x="2.8" y="7" width="18.4" height="13.2" rx="2.4"/>
       <path d="M8.4 7V5.4a1.8 1.8 0 0 1 1.8-1.8h3.6a1.8 1.8 0 0 1 1.8 1.8V7"/>
       <path d="M2.8 12.2h18.4"/>
+    </g>
+  </symbol>
+
+  <!-- ---- 分類のしるし ----
+       飾りであると同時に目印です。見出しを読まなくても、形で
+       「お金まわり」「洗面・薬」の当たりが付くようにしています。
+       囲みが無いので押せません（4つのアプリ共通の決めごと）。 -->
+  <symbol id="i-c-must" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.9"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.6 21 19.4H3z"/><path d="M12 9.6v3.8"/>
+      <circle cx="12" cy="16.4" r=".3"/>
+    </g>
+  </symbol>
+  <symbol id="i-c-money" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="8.4"/>
+      <path d="M12 7.4v9.2M9.6 9.8h4.2a1.9 1.9 0 0 1 0 3.8h-3.6"/>
+    </g>
+  </symbol>
+  <symbol id="i-c-elec" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 3.6v5M15 3.6v5"/>
+      <path d="M6.4 8.6h11.2v3.2a5.6 5.6 0 0 1-11.2 0z"/>
+      <path d="M12 17.4v3"/>
+    </g>
+  </symbol>
+  <symbol id="i-c-cloth" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 3.8 4.2 6.6l1.6 4 2-.8v9.4h8.4v-9.4l2 .8 1.6-4L15 3.8"/>
+      <path d="M9 3.8a3 3 0 0 0 6 0"/>
+    </g>
+  </symbol>
+  <symbol id="i-c-wash" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.4c3.6 4.2 5.6 7 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.4 2-5.2 5.6-9.4z"/>
+    </g>
+  </symbol>
+  <symbol id="i-c-local" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21s6.4-5.8 6.4-10.4a6.4 6.4 0 1 0-12.8 0C5.6 15.2 12 21 12 21z"/>
+      <circle cx="12" cy="10.4" r="2.3"/>
+    </g>
+  </symbol>
+  <symbol id="i-c-other" viewBox="0 0 24 24">
+    <g fill="currentColor">
+      <circle cx="6" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/>
+      <circle cx="18" cy="12" r="1.7"/>
+    </g>
+  </symbol>
+  <!-- 自分で足した分類のしるし（荷札） -->
+  <symbol id="i-c-tag" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11.4 3.6H20v8.6l-8.8 8.8-8.6-8.6z"/>
+      <circle cx="16.2" cy="7.8" r="1.5"/>
     </g>
   </symbol>
 
@@ -146,11 +207,25 @@
       <button type="button" class="btn" id="renameBtn">名前を変える</button>
       <button type="button" class="btn" id="copyBtn">うつしを作る</button>
       <button type="button" class="btn" id="seedBtn">見本から足りないものを足す</button>
+      <div class="copyfrom">
+        <label class="copyfrom__label" for="copyFromSel">ほかのリストから持ってくる</label>
+        <div class="copyfrom__row">
+          <select class="copyfrom__sel" id="copyFromSel"></select>
+          <button type="button" class="btn" id="copyFromBtn">持ってくる</button>
+        </div>
+      </div>
       <button type="button" class="btn btn--danger" id="delListBtn">このリストを消す</button>
       <p class="listops__note">
         「うつしを作る」は、いまの持ち物をそのまま写した別のリストを作ります。
         チェックは外れた状態から始まります。
         <strong>行き先ごとに少しずつ違うリストを作るときに使ってください。</strong>
+      </p>
+      <p class="listops__note">
+        「ほかのリストから持ってくる」は、えらんだリストの持ち物のうち、
+        <strong>いまのリストに無いものだけ</strong>を足します。
+        海外旅行と国内旅行はかなり重なるので、
+        <strong>同じ名前のものは足しません。</strong>
+        同じ行が2つ並ぶと、数えて確かめるときに合わなくなるためです。
       </p>
       <p class="listops__note">
         「見本から足りないものを足す」は、はじめから入っている見本と見くらべて、
@@ -190,8 +265,8 @@
   </div>
 </div>
 
-<script src="js/config.js?v=20260816c"></script>
-<script src="js/app.js?v=20260816c"></script>
-<script src="js/update.js?v=20260816c"></script>
+<script src="js/config.js?v=20260818c"></script>
+<script src="js/app.js?v=20260818c"></script>
+<script src="js/update.js?v=20260818c"></script>
 </body>
 </html>

@@ -206,19 +206,6 @@ body.is-locked { overflow: hidden; }
 }
 .prog__name { font-size: 17px; }
 .prog__count { font-size: 13px; color: var(--text-weak); flex: 0 0 auto; }
-.prog__bar {
-  height: 8px;
-  border-radius: 999px;
-  background: var(--line-2);
-  overflow: hidden;
-}
-.prog__bar i {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  background: var(--accent);
-  transition: width .25s ease;
-}
 .prog__msg { margin: 8px 0 0; font-size: 13px; color: var(--text-sub); }
 
 /* ---------- ボタンの並び ---------- */
@@ -496,4 +483,142 @@ body.is-editing .item__check { opacity: .45; pointer-events: none; }
   .item:nth-child(odd) { border-right: 1px solid var(--line-2); }
   .item:last-child:nth-child(odd) { border-right: 0; }
   .item:nth-last-child(2) { border-bottom: 0; }
+}
+
+/* ============================================================
+ *  分類の追加・各分類への直接追加・並べ替え
+ * ========================================================== */
+
+/* ---- 各分類の下の「ここに足す」 ----
+   持ち物を足すとき、上の大きなボタンまで戻らずに済みます。
+   分類を選び直す手間も無くなります。 */
+.group__add {
+  display: block; width: 100%;
+  margin: 2px 0 0; padding: 10px 14px;
+  border: 1px dashed var(--line); border-radius: 10px;
+  background: none; color: var(--text-weak);
+  font: inherit; font-size: 13px; text-align: left; cursor: pointer;
+}
+.group__add:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---- 分類を足す ---- */
+.catadd {
+  display: block; width: 100%;
+  margin: 18px 0 0; padding: 13px;
+  border: 1px dashed var(--line); border-radius: var(--radius);
+  background: none; color: var(--text-sub);
+  font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.catadd:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---- 分類を消す（編集中だけ出ます） ---- */
+.group__del {
+  margin-left: auto; width: 30px; height: 30px; padding: 5px;
+  border: 0; border-radius: 8px; background: none;
+  color: var(--danger); cursor: pointer;
+}
+.group__del svg { width: 100%; height: 100%; }
+
+/* ---- ほかのリストから持ってくる ---- */
+.copyfrom { margin: 6px 0 2px; }
+.copyfrom__label {
+  display: block; margin-bottom: 5px;
+  font-size: 12px; color: var(--text-weak);
+}
+.copyfrom__row { display: flex; gap: 8px; }
+.copyfrom__sel {
+  flex: 1; min-width: 0; padding: 9px 10px;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); color: var(--text); font: inherit; font-size: 14px;
+}
+
+/* ============================================================
+ *  長押しで並べ替える
+ *
+ *  ★指で長押ししたときに、文字が選ばれたり虫めがねが出たりするのを
+ *    止めます。iPhone では CSS だけでは足りず、js 側の
+ *    preventDefault と両方が要ります（js/app.js の setupReorder）。
+ * ========================================================== */
+.item {
+  -webkit-user-select: none; user-select: none;
+  -webkit-touch-callout: none;      /* 長押しで出るiOSのメニューを止めます */
+  touch-action: pan-y;              /* 縦の画面送りだけは残します */
+}
+/* 文字のところは選べるままにしておきたいので、並べ替え中だけ止めます */
+body.is-reordering { -webkit-user-select: none; user-select: none; }
+body.is-reordering .item { touch-action: none; }
+
+.item.is-dragging {
+  background: var(--surface-2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .18);
+  border-radius: 10px;
+  transform: scale(1.02);
+  position: relative; z-index: 2;
+}
+
+/* つかんでいる間だけ、動かせることが分かる手がかりを出します */
+body.is-reordering .item::after {
+  content: ''; position: absolute; right: 12px; top: 50%;
+  width: 14px; height: 10px; margin-top: -5px;
+  background:
+    linear-gradient(var(--text-weak), var(--text-weak)) 0 0 / 14px 2px no-repeat,
+    linear-gradient(var(--text-weak), var(--text-weak)) 0 4px / 14px 2px no-repeat,
+    linear-gradient(var(--text-weak), var(--text-weak)) 0 8px / 14px 2px no-repeat;
+  opacity: .5;
+}
+
+/* ============================================================
+ *  見た目の手入れ
+ *
+ *  飾りは足しますが、**読みやすさを下げないこと**を上に置いています。
+ *  分類のしるしは飾りであると同時に目印で、見出しを読まなくても
+ *  形で当たりが付きます。囲みが無いので押せません
+ *  （4つのアプリ共通の決めごと）。
+ * ========================================================== */
+
+/* ---- 進みぐあい。輪にして、数字を真ん中に置きます ---- */
+.prog { display: flex; align-items: center; gap: 16px; }
+.prog__ring { position: relative; width: 64px; height: 64px; flex: 0 0 64px; }
+.prog__ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.prog__track {
+  fill: none; stroke: var(--line); stroke-width: 6;
+}
+.prog__fill {
+  fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round;
+  transition: stroke-dashoffset .45s ease;
+}
+.prog__pct {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; font-weight: 700; letter-spacing: -.02em;
+}
+.prog__pct i { font-style: normal; font-size: 11px; margin-left: 1px; opacity: .7; }
+.prog__body { flex: 1; min-width: 0; }
+
+/* 全部入れ終えたら輪の色を変えます。数字を読まなくても分かるように */
+.prog:has(.prog__fill[stroke-dashoffset="0.0"]) .prog__fill { stroke: var(--accent); }
+
+/* ---- 分類の見出し ---- */
+.group__head { display: flex; align-items: center; gap: 8px; }
+.group__i {
+  width: 17px; height: 17px; flex: 0 0 17px;
+  color: var(--accent); opacity: .85;
+}
+.group__name { flex: 0 0 auto; }
+
+/* ---- 分類のかたまりを、少し浮かせます ---- */
+.group { position: relative; }
+
+/* ---- 入れ終えた行 ---- */
+.item.is-done .item__name { opacity: .55; }
+
+/* ---- パソコンでは進みぐあいを大きく ---- */
+@media (min-width: 700px) {
+  .prog__ring { width: 76px; height: 76px; flex: 0 0 76px; }
+  .prog__pct { font-size: 19px; }
+}
+
+/* 分類がリスト共通であることの説明 */
+.catnote {
+  margin: 8px 2px 0; font-size: 12px; line-height: 1.7; color: var(--text-weak);
 }
