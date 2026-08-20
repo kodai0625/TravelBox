@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Mile Board のアイコン。2026年8月21日に決定。
+       葡萄色の地に、金の周遊ルート。
+       ・四角い点 ＝ 出発地（日本）。ここから出て、ここへ帰る
+       ・小さい丸 ＝ 乗継地
+       ・大きい丸 ＝ 目的地（いちばん必要マイル数が多い都市）
+       閉じた輪にしているのは、このアプリが「周遊」の道具だからです。
+
+       色は家族のだれとも重ならないように選びました。
+         Travel Box  淡い藍 #d3e5f2
+         Trip Board  暗い藍 #12161f
+         Flight Board 濃紺  #1b2b40
+         Pack Board  暗い緑 #141d18
+         Entry Board あずき #f0dfe4
+         Mile Board  葡萄   #241a2e  ←これ
+       金にしたのは「マイル」を表すためで、Trip Board と Pack Board で
+       差し色に使っている #e0a35c と同じ系統にそろえてあります。
+
+       文字は入れていません。ホーム画面では約60pxまで縮むので、
+       輪の形だけのほうが Flight Board（飛行機）と見分けが付きます。
+
+       直したら、同じフォルダの「アイコンを作り直す.command」を
+       ダブルクリックしてください（PNGが作り直されます）。
+       ★ 作り直しただけではホーム画面のアイコンは変わりません。
+         いったん消して、追加し直す必要があります。 -->
+
+  <rect width="512" height="512" rx="112" fill="#241a2e"/>
+
+  <!-- 形ぜんぶを少しだけ動かして、キャンバスの真ん中にそろえます。
+       いまの外枠は x 118〜414 / y 113〜384 で、中心が (266, 249) だったためです。 -->
+  <g transform="translate(-10 7)">
+
+  <!-- 周遊のルート。出発地から左まわりに回って、出発地へ戻ります -->
+  <path d="M143 321 L143 191 L279 128 L384 233 L321 369 Z"
+        fill="none" stroke="#e0a35c" stroke-width="13"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 乗継地。小さい丸で、地の色で抜いてから金で描きます -->
+  <g fill="#241a2e" stroke="#e0a35c" stroke-width="13">
+    <circle cx="143" cy="191" r="15"/>
+    <circle cx="279" cy="128" r="15"/>
+    <circle cx="321" cy="369" r="15"/>
+  </g>
+
+  <!-- 目的地。ここだけ塗りつぶして大きくします -->
+  <circle cx="384" cy="233" r="30" fill="#241a2e"/>
+  <circle cx="384" cy="233" r="30" fill="#f0b968"/>
+
+  <!-- 出発地（日本）。四角にして「行き先」と区別します -->
+  <rect x="118" y="296" width="50" height="50" rx="12" fill="#241a2e"/>
+  <rect x="118" y="296" width="50" height="50" rx="12"
+        fill="none" stroke="#e0a35c" stroke-width="13"/>
+
+  </g>
+</svg>

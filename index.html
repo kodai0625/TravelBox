@@ -32,7 +32,7 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css を直したら、ここを1つ上げてください。 -->
-<link rel="stylesheet" href="css/entry.css?v=20260817a">
+<link rel="stylesheet" href="css/entry.css?v=20260821a">
 </head>
 <body>
 
@@ -89,6 +89,20 @@
       <circle cx="12" cy="9.4" r="2.9"/>
       <path d="M8.6 16.4h6.8"/>
     </g>
+  </symbol>
+
+  <!-- Mile Board のしるし。周遊のルート。
+       四角が出発地、大きい丸が目的地、小さい丸が乗継地です。
+       ★ Mile Board 側のアプリアイコン（img/app-icon.svg）と同じ形です。
+         玄関でこのアプリを表しているしるしなので、片方だけ変えないでください。
+         こちらは玄関用に形を減らしてあります。しるしは24pxまで縮むので、
+         乗継地の小さい丸まで描くと、線と重なって団子に見えてしまいます。
+         出発地の四角と目的地の丸だけ残せば、小さくても道すじだと分かります。 -->
+  <symbol id="i-loop" viewBox="0 0 24 24">
+    <path d="M6 15.2V9.4l6.2-3 4.9 4.8-2.9 6.2z" fill="none" stroke="currentColor"
+          stroke-width="1.9" stroke-linejoin="round"/>
+    <circle cx="17.1" cy="11.2" r="3" fill="currentColor"/>
+    <rect x="4.1" y="13.3" width="3.9" height="3.9" rx="1.2" fill="currentColor"/>
   </symbol>
 
   <!-- Rate Board のしるし。横長のお札に円記号。
@@ -180,6 +194,18 @@
       <span class="app__chev" aria-hidden="true">›</span>
     </a>
 
+    <a class="app app--mile" href="Mile-Board/index.html">
+      <span class="app__icon" aria-hidden="true">
+        <svg class="app__mark"><use href="#i-loop"/></svg>
+      </span>
+      <span class="app__body">
+        <span class="app__name">Mile Board</span>
+        <span class="app__desc">マイルで旅程を組む</span>
+        <span class="app__detail">周遊ルートの判定・必要マイル数・乗り継ぎの航空会社</span>
+      </span>
+      <span class="app__chev" aria-hidden="true">›</span>
+    </a>
+
     <a class="app app--entry" href="Entry-Board/index.html">
       <span class="app__icon" aria-hidden="true">
         <svg class="app__mark"><use href="#i-passport"/></svg>
@@ -226,7 +252,7 @@
 
   <footer class="foot">
     <svg class="foot__mark" aria-hidden="true"><use href="#i-case"/></svg>
-    <p>ホーム画面にはこの1つだけを追加すれば、中の5つを行き来できます。</p>
+    <p>ホーム画面にはこの1つだけを追加すれば、中の6つを行き来できます。</p>
   </footer>
 
 </main>
@@ -281,7 +307,7 @@
   } catch (e) { /* 保存できなくてもリンクは働きます */ }
 })();
 </script>
-<script src="js/update.js?v=20260817a"></script>
+<script src="js/update.js?v=20260821a"></script>
 
 <script>
 /* 世話係の登録。これが無いと sw.js は働きません。

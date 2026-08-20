@@ -1,0 +1,133 @@
+/* ============================================================
+ *  色と書体
+ *  style.css より後ろで読みます（土台の色を上書きするため）。
+ *
+ *  色はここの :root にまとめてあります。
+ *  明るい画面と暗い画面の2組があるので、
+ *  片方だけ直すともう片方が変わらないので気をつけてください。
+ * ============================================================ */
+
+:root {
+  --bg:        #f6f4f8;
+  --panel:     #ffffff;
+  --panel-2:   #f2eff5;
+  --line:      #e3dfe8;
+  --line-soft: #ece8f0;
+  --ink:       #1e1826;
+  --ink-2:     #61586c;
+  --ink-3:     #918a9c;
+
+  --accent:    #7a4a12;   /* 見出しの番号など。アイコンの金にそろえています */
+  --accent-bg: #f6ecdb;
+
+  --ok:        #14713f;
+  --ok-bg:     #e4f5ea;
+  --ok-line:   #b6e0c4;
+
+  --ng:        #a92222;
+  --ng-bg:     #fdeaea;
+  --ng-line:   #f2c4c4;
+
+  --note:      #7a5a12;
+  --note-bg:   #fdf4e0;
+
+  --star:      #123a72;   /* スターアライアンス */
+  --star-bg:   #e3ecf8;
+  --partner:   #5c4a75;   /* 単独運航のみの提携会社 */
+  --partner-bg:#efeaf7;
+
+  --long:      #8a4a12;   /* 24時間以上 */
+  --long-bg:   #fbeedd;
+  --dest:      #7a2060;   /* 目的地 */
+  --dest-bg:   #fbe8f4;
+}
+
+html[data-theme="dark"] {
+  --bg:        #1a1322;   /* アイコンの葡萄色 #241a2e にそろえています */
+  --panel:     #241a2e;
+  --panel-2:   #2e2239;
+  --line:      #3b2d49;
+  --line-soft: #332643;
+  --ink:       #efe9f3;
+  --ink-2:     #b3a7bd;
+  --ink-3:     #8b7f96;
+
+  --accent:    #e0a35c;
+  --accent-bg: #33254a;
+
+  --ok:        #6fd79b;
+  --ok-bg:     #16311f;
+  --ok-line:   #2c5a3c;
+
+  --ng:        #ff9b9b;
+  --ng-bg:     #351a1c;
+  --ng-line:   #5d2c2f;
+
+  --note:      #e7c97a;
+  --note-bg:   #322a15;
+
+  --star:      #a8c8f0;
+  --star-bg:   #26304a;
+  --partner:   #cdb6d8;
+  --partner-bg:#3a2a44;
+
+  --long:      #f0bd88;
+  --long-bg:   #38281a;
+  --dest:      #f0a3d4;
+  --dest-bg:   #3a1e33;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic',
+               'Noto Sans JP', sans-serif;
+}
+
+.app-sub, .hint, .app-foot { color: var(--ink-2); }
+.app-foot .src, .mile-unit { color: var(--ink-3); }
+.hint a { color: var(--accent); }
+
+.theme-btn, .head-icon { border-color: var(--line); color: var(--ink-2); }
+.toast { background: var(--ink); color: var(--bg); }
+
+.mode { background: var(--panel); border-color: var(--line); color: var(--ink-2); }
+.mode.on { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+.mode-desc { color: var(--ink-3); }
+.mode.on .mode-desc { color: var(--accent); opacity: .85; }
+.seg-gap { border-color: var(--line); }
+
+.verdict { background: var(--panel); border-color: var(--line); }
+.verdict.idle { color: var(--ink-2); }
+.verdict.ok { background: var(--ok-bg); border-color: var(--ok-line); color: var(--ok); }
+.verdict.ng { background: var(--ng-bg); border-color: var(--ng-line); color: var(--ng); }
+
+.msg-list li.ng { background: var(--ng-bg); color: var(--ng); }
+.msg-list li.note { background: var(--note-bg); color: var(--note); }
+
+.card { background: var(--panel); border-color: var(--line); }
+.step { background: var(--accent-bg); color: var(--accent); }
+
+.sel { background-color: var(--panel-2); border-color: var(--line); color: var(--ink); }
+.goal { background: var(--accent-bg); color: var(--accent); }
+.row-label { color: var(--ink-2); }
+
+.mile { background: var(--panel-2); }
+.mile-cls { color: var(--ink-2); }
+
+.chip { border-color: var(--line); color: var(--ink-2); }
+.chip.on { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+
+.seg { background: var(--panel-2); }
+.air.star { background: var(--star-bg); color: var(--star); }
+.air.partner { background: var(--partner-bg); color: var(--partner); }
+.air.none { background: var(--ng-bg); color: var(--ng); }
+
+.stay { background: var(--line-soft); color: var(--ink-2); }
+.stay.long { background: var(--long-bg); color: var(--long); }
+.stay.dest { background: var(--dest-bg); color: var(--dest); }
+
+.btn { border-color: var(--line); color: var(--ink); }
+.btn-quiet { color: var(--ink-3); }
+
+.loading { color: var(--ink-2); }

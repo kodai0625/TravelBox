@@ -1,0 +1,4271 @@
+{
+"meta": {
+"title": "国と都市の選択肢",
+"note": "tools/build_cities.py で生成しています。手で編集しないでください。 この特典で乗れる会社が就航している空港だけを載せています。"
+},
+"countries": {
+"AE": {
+"zone": "8",
+"cities": {
+"Al Ain": [
+"AAN"
+],
+"アブダビ": [
+"AUH"
+],
+"ドバイ": [
+"DWC",
+"DXB",
+"SHJ"
+]
+}
+},
+"AF": {
+"zone": "4",
+"cities": {
+"Kabul": [
+"KBL"
+]
+}
+},
+"AG": {
+"zone": "9",
+"cities": {
+"Osbourn": [
+"ANU"
+]
+}
+},
+"AL": {
+"zone": "7",
+"cities": {
+"Rinas": [
+"TIA"
+]
+}
+},
+"AM": {
+"zone": "7",
+"cities": {
+"Yerevan": [
+"EVN"
+]
+}
+},
+"AO": {
+"zone": "8",
+"cities": {
+"Luanda": [
+"LAD",
+"NBJ"
+]
+}
+},
+"AR": {
+"zone": "9",
+"cities": {
+"Cordoba": [
+"COR"
+],
+"Mendoza": [
+"MDZ"
+],
+"Rosario": [
+"ROS"
+],
+"Salta": [
+"SLA"
+],
+"San Miguel de Tucumán": [
+"TUC"
+],
+"ブエノスアイレス": [
+"AEP",
+"EZE"
+]
+}
+},
+"AT": {
+"zone": "7",
+"cities": {
+"Feldkirchen bei Graz": [
+"GRZ"
+],
+"Innsbruck": [
+"INN"
+],
+"Klagenfurt am Wörthersee": [
+"KLU"
+],
+"Linz": [
+"LNZ"
+],
+"Salzburg": [
+"SZG"
+],
+"ウィーン": [
+"VIE"
+]
+}
+},
+"AU": {
+"zone": "10",
+"cities": {
+"Adelaide": [
+"ADL"
+],
+"Alice Springs": [
+"ASP"
+],
+"Ballina": [
+"BNK"
+],
+"Broadwood": [
+"KGI"
+],
+"Broome": [
+"BME"
+],
+"Canberra": [
+"CBR"
+],
+"Darwin": [
+"DRW"
+],
+"Emerald": [
+"EMD"
+],
+"Gladstone": [
+"GLT"
+],
+"Gold Coast": [
+"OOL"
+],
+"Hamilton Island": [
+"HTI"
+],
+"Hobart": [
+"HBA"
+],
+"Karratha": [
+"KTA"
+],
+"Kununurra": [
+"KNX"
+],
+"Launceston": [
+"LST"
+],
+"Mackay": [
+"MKY"
+],
+"Maroochydore": [
+"MCY"
+],
+"Mount Isa": [
+"ISA"
+],
+"Newman": [
+"ZNE"
+],
+"Port Hedland": [
+"PHE"
+],
+"Proserpine": [
+"PPP"
+],
+"Rockhampton": [
+"ROK"
+],
+"Townsville": [
+"TSV"
+],
+"ケアンズ": [
+"CNS"
+],
+"シドニー": [
+"SYD"
+],
+"パース": [
+"PER"
+],
+"ブリスベン": [
+"BNE"
+],
+"メルボルン": [
+"MEL"
+]
+}
+},
+"AW": {
+"zone": "9",
+"cities": {
+"Oranjestad": [
+"AUA"
+]
+}
+},
+"AZ": {
+"zone": "7",
+"cities": {
+"Baku": [
+"GYD"
+],
+"Ganja": [
+"GNJ"
+],
+"Nakhchivan": [
+"NAJ"
+]
+}
+},
+"BA": {
+"zone": "7",
+"cities": {
+"Mahovljani": [
+"BNX"
+],
+"Mostar": [
+"OMO"
+],
+"Sarajevo": [
+"SJJ"
+]
+}
+},
+"BB": {
+"zone": "9",
+"cities": {
+"Bridgetown": [
+"BGI"
+]
+}
+},
+"BD": {
+"zone": "4",
+"cities": {
+"ダッカ": [
+"DAC"
+]
+}
+},
+"BE": {
+"zone": "7",
+"cities": {
+"ブリュッセル": [
+"BRU"
+]
+}
+},
+"BF": {
+"zone": "8",
+"cities": {
+"Ouagadougou": [
+"OUA"
+]
+}
+},
+"BG": {
+"zone": "7",
+"cities": {
+"Burgas": [
+"BOJ"
+],
+"Sofia": [
+"SOF"
+],
+"Varna": [
+"VAR"
+]
+}
+},
+"BH": {
+"zone": "8",
+"cities": {
+"バーレーン": [
+"BAH"
+]
+}
+},
+"BI": {
+"zone": "8",
+"cities": {
+"Bujumbura": [
+"BJM"
+]
+}
+},
+"BJ": {
+"zone": "8",
+"cities": {
+"Cotonou": [
+"COO"
+]
+}
+},
+"BM": {
+"zone": "9",
+"cities": {
+"Hamilton": [
+"BDA"
+]
+}
+},
+"BN": {
+"zone": "4",
+"cities": {
+"バンダルスリブガワン": [
+"BWN"
+]
+}
+},
+"BO": {
+"zone": "9",
+"cities": {
+"La Paz / El Alto": [
+"LPB"
+],
+"Santa Cruz": [
+"VVI"
+]
+}
+},
+"BR": {
+"zone": "9",
+"cities": {
+"Belo Horizonte": [
+"CNF"
+],
+"Belém": [
+"BEL"
+],
+"Brasília": [
+"BSB"
+],
+"Curitiba": [
+"CWB"
+],
+"Florianópolis": [
+"FLN"
+],
+"Fortaleza": [
+"FOR"
+],
+"Maceió": [
+"MCZ"
+],
+"Manaus": [
+"MAO"
+],
+"Natal": [
+"NAT"
+],
+"Porto Alegre": [
+"POA"
+],
+"Recife": [
+"REC"
+],
+"Salvador": [
+"SSA"
+],
+"サンパウロ": [
+"GRU"
+],
+"リオデジャネイロ": [
+"GIG"
+]
+}
+},
+"BS": {
+"zone": "9",
+"cities": {
+"Moss Town": [
+"GGT"
+],
+"Nassau": [
+"NAS"
+]
+}
+},
+"BW": {
+"zone": "8",
+"cities": {
+"Gaborone": [
+"GBE"
+],
+"Maun": [
+"MUB"
+]
+}
+},
+"BY": {
+"zone": "7",
+"cities": {
+"Minsk": [
+"MSQ"
+]
+}
+},
+"BZ": {
+"zone": "9",
+"cities": {
+"Belize City": [
+"BZE"
+]
+}
+},
+"CA": {
+"zone": "6",
+"cities": {
+"Charlottetown": [
+"YYG"
+],
+"Edmonton": [
+"YEG"
+],
+"Fort McMurray": [
+"YMM"
+],
+"Fredericton": [
+"YFC"
+],
+"Halifax": [
+"YHZ"
+],
+"Kelowna": [
+"YLW"
+],
+"Moncton": [
+"YQM"
+],
+"Ottawa": [
+"YOW"
+],
+"Quebec": [
+"YQB"
+],
+"Regina": [
+"YQR"
+],
+"Saint John": [
+"YSJ"
+],
+"Saskatoon": [
+"YXE"
+],
+"St. John's": [
+"YYT"
+],
+"Thunder Bay": [
+"YQT"
+],
+"Whitehorse": [
+"YXY"
+],
+"Winnipeg": [
+"YWG"
+],
+"Yellowknife": [
+"YZF"
+],
+"カルガリー": [
+"YYC"
+],
+"トロント": [
+"YYZ"
+],
+"バンクーバー": [
+"YVR",
+"YYJ",
+"YCD"
+],
+"モントリオール": [
+"YUL"
+]
+}
+},
+"CD": {
+"zone": "8",
+"cities": {
+"Goma": [
+"GOM"
+],
+"Kinshasa": [
+"FIH"
+],
+"Lubumbashi": [
+"FBM"
+],
+"Mbuji Mayi": [
+"MJM"
+]
+}
+},
+"CF": {
+"zone": "8",
+"cities": {
+"Bangui": [
+"BGF"
+]
+}
+},
+"CG": {
+"zone": "8",
+"cities": {
+"Brazzaville": [
+"BZV"
+],
+"Pointe Noire": [
+"PNR"
+]
+}
+},
+"CH": {
+"zone": "7",
+"cities": {
+"Geneva": [
+"GVA"
+],
+"チューリッヒ": [
+"ZRH"
+]
+}
+},
+"CI": {
+"zone": "8",
+"cities": {
+"Abidjan": [
+"ABJ"
+]
+}
+},
+"CK": {
+"zone": "10",
+"cities": {
+"Avarua": [
+"RAR"
+]
+}
+},
+"CL": {
+"zone": "9",
+"cities": {
+"サンティアゴ": [
+"SCL"
+]
+}
+},
+"CM": {
+"zone": "8",
+"cities": {
+"Douala": [
+"DLA"
+],
+"Yaoundé": [
+"NSI"
+]
+}
+},
+"CN": {
+"zone": "3",
+"cities": {
+"Aksu": [
+"AKU"
+],
+"Altay": [
+"AAT"
+],
+"Bangda": [
+"BPX"
+],
+"Baotou": [
+"BAV"
+],
+"Bayannur": [
+"RLK"
+],
+"Bazhong": [
+"BZX"
+],
+"Beihai": [
+"BHY"
+],
+"Bijie": [
+"BFJ"
+],
+"Changzhi": [
+"CIH"
+],
+"Chenzhou": [
+"HCZ"
+],
+"Chifeng": [
+"CIF"
+],
+"Chizhou": [
+"JUH"
+],
+"Dali": [
+"DLU"
+],
+"Dandong": [
+"DDG"
+],
+"Daqing": [
+"DQA"
+],
+"Datong": [
+"DAT"
+],
+"Dazhou": [
+"DZH"
+],
+"Dehong": [
+"LUM"
+],
+"Dongying": [
+"DOY"
+],
+"Dunhuang": [
+"DNH"
+],
+"Fuyuan": [
+"FYJ"
+],
+"Ganzhou": [
+"KOW"
+],
+"Garzê": [
+"DCY"
+],
+"Guangyuan": [
+"GYS"
+],
+"Guilin": [
+"KWL"
+],
+"Guiyang": [
+"KWE"
+],
+"Guyuan": [
+"GYU"
+],
+"Haidong": [
+"XNN"
+],
+"Hailar": [
+"HLD"
+],
+"Hami": [
+"HMI"
+],
+"Hanzhong": [
+"HZG"
+],
+"Hefei": [
+"HFE"
+],
+"Hengyang": [
+"HNY"
+],
+"Hohhot": [
+"HET"
+],
+"Hotan": [
+"HTN"
+],
+"Huai'an": [
+"HIA"
+],
+"Huangshan": [
+"TXN"
+],
+"Huizhou": [
+"HUZ"
+],
+"Ili": [
+"YIN"
+],
+"Ji'an": [
+"JGS"
+],
+"Jiamusi": [
+"JMU"
+],
+"Jiansanjiang": [
+"JSJ"
+],
+"Jieyang": [
+"SWA"
+],
+"Jinchang": [
+"JIC"
+],
+"Jingdezhen": [
+"JDZ"
+],
+"Jinghong": [
+"JHG"
+],
+"Karamay": [
+"KRY"
+],
+"Kashgar": [
+"KHG"
+],
+"Korla": [
+"KRL"
+],
+"Kuqa": [
+"KCA"
+],
+"Liangshan": [
+"XIC"
+],
+"Lianyungang": [
+"LYG"
+],
+"Lijiang": [
+"LJG"
+],
+"Linfen": [
+"LFQ"
+],
+"Linyi": [
+"LYI"
+],
+"Liupanshui": [
+"LPF"
+],
+"Liuzhou": [
+"LZH"
+],
+"Longnan": [
+"LNL"
+],
+"Longyan": [
+"LCX"
+],
+"Luzhou": [
+"LZO"
+],
+"Lüliang": [
+"LLV"
+],
+"Manzhouli": [
+"NZH"
+],
+"Mianyang": [
+"MIG"
+],
+"Mudanjiang": [
+"MDG"
+],
+"Nanchang": [
+"KHN"
+],
+"Nanchong": [
+"NAO"
+],
+"Nanning": [
+"NNG"
+],
+"Nantong": [
+"NTG"
+],
+"Ngawa": [
+"JZH"
+],
+"Nyingchi": [
+"LZY"
+],
+"Ordos": [
+"DSN"
+],
+"Panzhihua": [
+"PZI"
+],
+"Qingyang": [
+"IQN"
+],
+"Qiqihar": [
+"NDG"
+],
+"Quzhou": [
+"JUZ"
+],
+"Sanya": [
+"SYX"
+],
+"Shangrao": [
+"SQD"
+],
+"Shannan": [
+"LXA"
+],
+"Shaoguan": [
+"HSC"
+],
+"Shaoyang": [
+"WGN"
+],
+"Shiyan": [
+"WDS"
+],
+"Shuozhou": [
+"SZH"
+],
+"Taiyuan": [
+"TYN"
+],
+"Taizhou": [
+"HYN"
+],
+"Tonghua": [
+"TNH"
+],
+"Tongliao": [
+"TGO"
+],
+"Tongren": [
+"TEN"
+],
+"Tumxuk": [
+"TWC"
+],
+"Ulanhot": [
+"HLH"
+],
+"Wanzhou": [
+"WXN"
+],
+"Weihai": [
+"WEH"
+],
+"Wenzhou": [
+"WNZ"
+],
+"Wuhai": [
+"WUA"
+],
+"Wuyishan": [
+"WUS"
+],
+"Xiangyang": [
+"XFN"
+],
+"Xigazê": [
+"DDR"
+],
+"Xilinhot": [
+"XIL"
+],
+"Yan'an": [
+"ENY"
+],
+"Yancheng": [
+"YNZ"
+],
+"Yangzhou": [
+"YTY"
+],
+"Yanji": [
+"YNJ"
+],
+"Yibin": [
+"YBP"
+],
+"Yichang": [
+"YIH"
+],
+"Yichun": [
+"YIC"
+],
+"Yinchuan": [
+"INC"
+],
+"Yingkou": [
+"YKH"
+],
+"Yingzhou, Fuyang": [
+"FUG"
+],
+"Yiwu/Jinhua": [
+"YIW"
+],
+"Yulin": [
+"UYN",
+"YLX"
+],
+"Zhangjiajie": [
+"DYG"
+],
+"Zhangye": [
+"YZY"
+],
+"Zhanjiang": [
+"ZHA"
+],
+"Zhongwei": [
+"ZHY"
+],
+"Zhoushan": [
+"HSN"
+],
+"Zhuhai": [
+"ZUH"
+],
+"Zunyi": [
+"WMT"
+],
+"Ürümqi": [
+"URC"
+],
+"ハルビン": [
+"HRB"
+],
+"上海": [
+"PVG",
+"SHA"
+],
+"北京": [
+"PEK",
+"PKX"
+],
+"南京": [
+"NKG",
+"WHA"
+],
+"厦門": [
+"JJN",
+"XMN"
+],
+"大連": [
+"DLC"
+],
+"天津": [
+"TSN"
+],
+"寧波": [
+"NGB"
+],
+"広州": [
+"CAN"
+],
+"成都": [
+"CTU",
+"TFU"
+],
+"昆明": [
+"KMG"
+],
+"杭州": [
+"HGH"
+],
+"武漢": [
+"WUH"
+],
+"海口": [
+"HAK"
+],
+"深圳": [
+"SZX"
+],
+"済南": [
+"TNA"
+],
+"瀋陽": [
+"SHE"
+],
+"無錫": [
+"WUX",
+"CZX"
+],
+"煙台": [
+"YNT"
+],
+"石家荘": [
+"SJW"
+],
+"福州": [
+"FOC"
+],
+"蘭州": [
+"LHW"
+],
+"西安": [
+"XIY"
+],
+"運城": [
+"YCU"
+],
+"鄭州": [
+"CGO"
+],
+"重慶": [
+"CKG"
+],
+"長春": [
+"CGQ"
+],
+"長沙": [
+"CSX"
+],
+"青島": [
+"TAO"
+]
+}
+},
+"CO": {
+"zone": "9",
+"cities": {
+"Arauca": [
+"AUC"
+],
+"Armenia": [
+"AXM"
+],
+"Barrancabermeja": [
+"EJA"
+],
+"Barranquilla": [
+"BAQ"
+],
+"Bucaramanga": [
+"BGA"
+],
+"Cali": [
+"CLO"
+],
+"Cartagena": [
+"CTG"
+],
+"Chachagüí": [
+"PSO"
+],
+"Corozal": [
+"CZU"
+],
+"Cúcuta": [
+"CUC"
+],
+"Florencia": [
+"FLA"
+],
+"Ibagué": [
+"IBE"
+],
+"Ipiales": [
+"IPI"
+],
+"Leticia": [
+"LET"
+],
+"Medellín": [
+"MDE"
+],
+"Montería": [
+"MTR"
+],
+"Neiva": [
+"NVA"
+],
+"Pereira": [
+"PEI"
+],
+"Popayán": [
+"PPN"
+],
+"Quibdó": [
+"UIB"
+],
+"Riohacha": [
+"RCH"
+],
+"San Andrés": [
+"ADZ"
+],
+"Santa Marta": [
+"SMR"
+],
+"Valledupar": [
+"VUP"
+],
+"Villavicencio": [
+"VVC"
+],
+"Yopal": [
+"EYP"
+],
+"ボゴタ": [
+"BOG"
+]
+}
+},
+"CR": {
+"zone": "9",
+"cities": {
+"Liberia": [
+"LIR"
+],
+"San José": [
+"SJO"
+]
+}
+},
+"CU": {
+"zone": "9",
+"cities": {
+"Havana": [
+"HAV"
+],
+"Matanzas": [
+"VRA"
+]
+}
+},
+"CV": {
+"zone": "8",
+"cities": {
+"Espargos": [
+"SID"
+],
+"Praia": [
+"RAI"
+],
+"Rabil": [
+"BVC"
+],
+"São Pedro": [
+"VXE"
+]
+}
+},
+"CW": {
+"zone": "9",
+"cities": {
+"Willemstad": [
+"CUR"
+]
+}
+},
+"CY": {
+"zone": "7",
+"cities": {
+"Larnaca": [
+"LCA"
+],
+"Paphos": [
+"PFO"
+],
+"Tymbou": [
+"ECN"
+]
+}
+},
+"CZ": {
+"zone": "7",
+"cities": {
+"Mošnov": [
+"OSR"
+],
+"プラハ": [
+"PRG"
+]
+}
+},
+"DE": {
+"zone": "7",
+"cities": {
+"Berlin": [
+"BER"
+],
+"Bremen": [
+"BRE"
+],
+"Büren": [
+"PAD"
+],
+"Dortmund": [
+"DTM"
+],
+"Dresden": [
+"DRS"
+],
+"Düsseldorf": [
+"DUS"
+],
+"Erfurt": [
+"ERF"
+],
+"Friedrichshafen": [
+"FDH"
+],
+"Greven": [
+"FMO"
+],
+"Hamburg": [
+"HAM"
+],
+"Hannover": [
+"HAJ"
+],
+"Köln": [
+"CGN"
+],
+"Memmingen": [
+"FMM"
+],
+"Nuremberg": [
+"NUE"
+],
+"Rheinmünster": [
+"FKB"
+],
+"Saarbrücken": [
+"SCN"
+],
+"Schkeuditz": [
+"LEJ"
+],
+"Stuttgart": [
+"STR"
+],
+"Sylt": [
+"GWT"
+],
+"Zirchow": [
+"HDF"
+],
+"フランクフルト": [
+"FRA"
+],
+"ミュンヘン": [
+"MUC"
+]
+}
+},
+"DJ": {
+"zone": "8",
+"cities": {
+"Djibouti City": [
+"JIB"
+]
+}
+},
+"DK": {
+"zone": "7",
+"cities": {
+"Aarhus": [
+"AAR"
+],
+"Billund": [
+"BLL"
+],
+"コペンハーゲン": [
+"CPH"
+]
+}
+},
+"DM": {
+"zone": "9",
+"cities": {
+"Marigot": [
+"DOM"
+]
+}
+},
+"DO": {
+"zone": "9",
+"cities": {
+"La Romana": [
+"LRM"
+],
+"Puerto Plata": [
+"POP"
+],
+"Punta Cana": [
+"PUJ"
+],
+"Samana": [
+"AZS"
+],
+"Santiago": [
+"STI"
+],
+"Santo Domingo": [
+"SDQ"
+]
+}
+},
+"DZ": {
+"zone": "7",
+"cities": {
+"Algiers": [
+"ALG"
+],
+"Constantine": [
+"CZL"
+],
+"Es-Sénia": [
+"ORN"
+]
+}
+},
+"EC": {
+"zone": "9",
+"cities": {
+"Guayaquil": [
+"GYE"
+],
+"Manta": [
+"MEC"
+],
+"Quito": [
+"UIO"
+]
+}
+},
+"EE": {
+"zone": "7",
+"cities": {
+"Tallinn": [
+"TLL"
+]
+}
+},
+"EG": {
+"zone": "8",
+"cities": {
+"Abu Simbel": [
+"ABS"
+],
+"Alexandria": [
+"HBE"
+],
+"Aswan": [
+"ASW"
+],
+"Asyut": [
+"ATZ"
+],
+"El Alamein": [
+"DBB"
+],
+"Hurghada": [
+"HRG"
+],
+"Luxor": [
+"LXR"
+],
+"Marsa Alam": [
+"RMF"
+],
+"Sharm El Sheikh": [
+"SSH"
+],
+"Suhaj": [
+"HMB"
+],
+"Taba": [
+"TCP"
+],
+"カイロ": [
+"CAI"
+]
+}
+},
+"ER": {
+"zone": "8",
+"cities": {
+"Asmara": [
+"ASM"
+]
+}
+},
+"ES": {
+"zone": "7",
+"cities": {
+"Alicante": [
+"ALC"
+],
+"Bilbao": [
+"BIO"
+],
+"El Matorral": [
+"FUE"
+],
+"Girona": [
+"GRO"
+],
+"Gran Canaria Island": [
+"LPA"
+],
+"Ibiza": [
+"IBZ"
+],
+"Jerez de la Frontera": [
+"XRY"
+],
+"Mahón": [
+"MAH"
+],
+"Málaga": [
+"AGP"
+],
+"Palma de Mallorca": [
+"PMI"
+],
+"Ranón": [
+"OVD"
+],
+"San Bartolomé": [
+"ACE"
+],
+"Santiago de Compostela": [
+"SCQ"
+],
+"Seville": [
+"SVQ"
+],
+"Sta Cruz de la Palma, La Palma Island": [
+"SPC"
+],
+"Tenerife": [
+"TFS"
+],
+"Valencia": [
+"VLC"
+],
+"バルセロナ": [
+"BCN"
+],
+"マドリード": [
+"MAD"
+]
+}
+},
+"ET": {
+"zone": "8",
+"cities": {
+"Akwi": [
+"HUE"
+],
+"Arba Minch": [
+"AMH"
+],
+"Asosa": [
+"ASO"
+],
+"Axum": [
+"AXU"
+],
+"Azezo": [
+"GDQ"
+],
+"Bahir Dar": [
+"BJR"
+],
+"Debre Markos": [
+"DBM"
+],
+"Dembidollo": [
+"DEM"
+],
+"Dessie": [
+"DSE"
+],
+"Dire Dawa": [
+"DIR"
+],
+"Gambela": [
+"GMB"
+],
+"Gode": [
+"GDE"
+],
+"Hawassa": [
+"AWA"
+],
+"Jijiga": [
+"JIJ"
+],
+"Jimma": [
+"JIM"
+],
+"Jinka": [
+"BCO"
+],
+"Mekele": [
+"MQX"
+],
+"Semera": [
+"SZE"
+],
+"Shire Inda Selassie": [
+"SHC"
+],
+"アディスアベバ": [
+"ADD"
+]
+}
+},
+"FI": {
+"zone": "7",
+"cities": {
+"Ivalo": [
+"IVL"
+],
+"Kittilä": [
+"KTT"
+],
+"Kuopio / Siilinjärvi": [
+"KUO"
+],
+"Kuusamo": [
+"KAO"
+],
+"Oulu / Oulunsalo": [
+"OUL"
+],
+"Rovaniemi": [
+"RVN"
+],
+"Tampere / Pirkkala": [
+"TMP"
+],
+"Turku": [
+"TKU"
+],
+"ヘルシンキ": [
+"HEL"
+]
+}
+},
+"FJ": {
+"zone": "10",
+"cities": {
+"ナンディ": [
+"NAN"
+]
+}
+},
+"FM": {
+"zone": "10",
+"cities": {
+"Okat": [
+"KSA"
+],
+"Pohnpei Island": [
+"PNI"
+],
+"Weno Island": [
+"TKK"
+],
+"Yap Island": [
+"YAP"
+]
+}
+},
+"FR": {
+"zone": "7",
+"cities": {
+"Bastia": [
+"BIA"
+],
+"Biarritz": [
+"BIQ"
+],
+"Bordeaux": [
+"BOD"
+],
+"Brest": [
+"BES"
+],
+"Bâle / Mulhouse": [
+"BSL"
+],
+"Calvi": [
+"CLY"
+],
+"Colombier-Saugnieu, Rhône": [
+"LYS"
+],
+"Deauville": [
+"DOL"
+],
+"Goin": [
+"ETZ"
+],
+"Lesquin": [
+"LIL"
+],
+"Marignane, Bouches-du-Rhône": [
+"MRS"
+],
+"Montpellier/Méditerranée": [
+"MPL"
+],
+"Nantes": [
+"NTE"
+],
+"Nice, Alpes-Maritimes": [
+"NCE"
+],
+"Strasbourg": [
+"SXB"
+],
+"Toulouse/Blagnac": [
+"TLS"
+],
+"パリ": [
+"CDG",
+"ORY"
+]
+}
+},
+"GA": {
+"zone": "8",
+"cities": {
+"Libreville": [
+"LBV"
+]
+}
+},
+"GB": {
+"zone": "7",
+"cities": {
+"Birmingham, West Midlands": [
+"BHX"
+],
+"Newcastle upon Tyne, Tyne and Wear": [
+"NCL"
+],
+"Newquay": [
+"NQY"
+],
+"エディンバラ": [
+"EDI",
+"GLA"
+],
+"マンチェスター": [
+"MAN"
+],
+"ロンドン": [
+"LGW",
+"LHR",
+"STN",
+"LCY"
+]
+}
+},
+"GD": {
+"zone": "9",
+"cities": {
+"Saint George's": [
+"GND"
+]
+}
+},
+"GE": {
+"zone": "7",
+"cities": {
+"Batumi": [
+"BUS"
+],
+"Tbilisi": [
+"TBS"
+]
+}
+},
+"GH": {
+"zone": "8",
+"cities": {
+"Accra": [
+"ACC"
+]
+}
+},
+"GL": {
+"zone": "7",
+"cities": {
+"Nuuk": [
+"GOH"
+]
+}
+},
+"GM": {
+"zone": "8",
+"cities": {
+"Banjul": [
+"BJL"
+]
+}
+},
+"GN": {
+"zone": "8",
+"cities": {
+"Conakry": [
+"CKY"
+]
+}
+},
+"GP": {
+"zone": "9",
+"cities": {
+"Pointe-à-Pitre": [
+"PTP"
+]
+}
+},
+"GQ": {
+"zone": "8",
+"cities": {
+"Malabo": [
+"SSG"
+]
+}
+},
+"GR": {
+"zone": "7",
+"cities": {
+"Alexandroupolis": [
+"AXD"
+],
+"Chios Island": [
+"JKH"
+],
+"Heraklion": [
+"HER"
+],
+"Ioannina": [
+"IOA"
+],
+"Kalamata": [
+"KLX"
+],
+"Karpathos Island": [
+"AOK"
+],
+"Kavala": [
+"KVA"
+],
+"Kefallinia Island": [
+"EFL"
+],
+"Kerkyra": [
+"CFU"
+],
+"Kos Island": [
+"KGS"
+],
+"Limnos Island": [
+"LXS"
+],
+"Milos Island": [
+"MLO"
+],
+"Mykonos": [
+"JMK"
+],
+"Mytilene": [
+"MJT"
+],
+"Naxos": [
+"JNX"
+],
+"Nea Anchialos": [
+"VOL"
+],
+"Paros": [
+"PAS"
+],
+"Patras": [
+"GPA"
+],
+"Preveza": [
+"PVK"
+],
+"Rhodes": [
+"RHO"
+],
+"Samos Island": [
+"SMI"
+],
+"Santorini Island": [
+"JTR"
+],
+"Skiathos": [
+"JSI"
+],
+"Skiros Island": [
+"SKU"
+],
+"Souda": [
+"CHQ"
+],
+"Syros Island": [
+"JSY"
+],
+"Thessaloniki": [
+"SKG"
+],
+"Zakynthos": [
+"ZTH"
+],
+"アテネ": [
+"ATH"
+]
+}
+},
+"GT": {
+"zone": "9",
+"cities": {
+"Guatemala City": [
+"GUA"
+]
+}
+},
+"GU": {
+"zone": "3",
+"cities": {
+"グアム": [
+"GUM"
+]
+}
+},
+"GW": {
+"zone": "8",
+"cities": {
+"Bissau": [
+"OXB"
+]
+}
+},
+"GY": {
+"zone": "9",
+"cities": {
+"Georgetown": [
+"GEO"
+]
+}
+},
+"HK": {
+"zone": "3",
+"cities": {
+"香港": [
+"HKG"
+]
+}
+},
+"HN": {
+"zone": "9",
+"cities": {
+"Coxen Hole": [
+"RTB"
+],
+"Palmerola": [
+"XPL"
+],
+"San Pedro Sula": [
+"SAP"
+]
+}
+},
+"HR": {
+"zone": "7",
+"cities": {
+"Dubrovnik": [
+"DBV"
+],
+"Gornji Humac": [
+"BWK"
+],
+"Osijek(Klisa)": [
+"OSI"
+],
+"Pula": [
+"PUY"
+],
+"Rijeka(Omišalj)": [
+"RJK"
+],
+"Split": [
+"SPU"
+],
+"Velika Gorica": [
+"ZAG"
+],
+"Zadar": [
+"ZAD"
+]
+}
+},
+"HU": {
+"zone": "7",
+"cities": {
+"Debrecen": [
+"DEB"
+],
+"ブダペスト": [
+"BUD"
+]
+}
+},
+"ID": {
+"zone": "4",
+"cities": {
+"Beringin": [
+"KNO"
+],
+"Surabaya": [
+"SUB"
+],
+"ジャカルタ": [
+"CGK"
+],
+"バリ島": [
+"DPS"
+]
+}
+},
+"IE": {
+"zone": "7",
+"cities": {
+"Cork": [
+"ORK"
+],
+"Shannon": [
+"SNN"
+],
+"ダブリン": [
+"DUB"
+]
+}
+},
+"IL": {
+"zone": "8",
+"cities": {
+"テルアビブ": [
+"TLV"
+]
+}
+},
+"IN": {
+"zone": "4",
+"cities": {
+"": [
+"JSA"
+],
+"Ahmedabad": [
+"AMD"
+],
+"Allahabad": [
+"IXD"
+],
+"Amritsar": [
+"ATQ"
+],
+"Aurangabad": [
+"IXU"
+],
+"Bhopal": [
+"BHO"
+],
+"Bhubaneswar": [
+"BBI"
+],
+"Bhuj": [
+"BHJ"
+],
+"Calicut": [
+"CCJ"
+],
+"Chandigarh": [
+"IXC"
+],
+"Coimbatore": [
+"CJB"
+],
+"Dehradun": [
+"DED"
+],
+"Gaya": [
+"GAY"
+],
+"Guwahati": [
+"GAU"
+],
+"Halwara": [
+"HWR"
+],
+"Indore": [
+"IDR"
+],
+"Jaipur": [
+"JAI"
+],
+"Jammu": [
+"IXJ"
+],
+"Jamnagar": [
+"JGA"
+],
+"Jodhpur": [
+"JDH"
+],
+"Kochi": [
+"COK"
+],
+"Leh": [
+"IXL"
+],
+"Lucknow": [
+"LKO"
+],
+"Madurai": [
+"IXM"
+],
+"Mopa": [
+"GOX"
+],
+"Nagpur": [
+"NAG"
+],
+"Patna": [
+"PAT"
+],
+"Port Blair": [
+"IXZ"
+],
+"Pune": [
+"PNQ"
+],
+"Raipur": [
+"RPR"
+],
+"Rajkot": [
+"HSR"
+],
+"Srinagar": [
+"SXR"
+],
+"Thiruvananthapuram": [
+"TRV"
+],
+"Tirupati": [
+"TIR"
+],
+"Udaipur": [
+"UDR"
+],
+"Vadodara": [
+"BDQ"
+],
+"Varanasi": [
+"VNS"
+],
+"Vasco da Gama": [
+"GOI"
+],
+"Vijayawada": [
+"VGA"
+],
+"Visakhapatnam": [
+"VTZ"
+],
+"コルカタ": [
+"CCU"
+],
+"チェンナイ": [
+"MAA"
+],
+"デリー": [
+"DEL"
+],
+"ハイデラバード": [
+"HYD"
+],
+"ベンガルール": [
+"BLR"
+],
+"ムンバイ": [
+"BOM"
+]
+}
+},
+"IQ": {
+"zone": "8",
+"cities": {
+"Arbil": [
+"EBL"
+],
+"Baghdad": [
+"BGW"
+],
+"Basra": [
+"BSR"
+],
+"Kirkuk": [
+"KIK"
+],
+"Najaf": [
+"NJF"
+],
+"Sulaymaniyah": [
+"ISU"
+]
+}
+},
+"IR": {
+"zone": "8",
+"cities": {
+"Shiraz": [
+"SYZ"
+],
+"Tehran": [
+"IKA"
+]
+}
+},
+"IS": {
+"zone": "7",
+"cities": {
+"Reykjavík": [
+"KEF"
+]
+}
+},
+"IT": {
+"zone": "7",
+"cities": {
+"Alghero": [
+"AHO"
+],
+"Bari": [
+"BRI"
+],
+"Bologna": [
+"BLQ"
+],
+"Brindisi": [
+"BDS"
+],
+"Cagliari": [
+"CAG"
+],
+"Caselle": [
+"VRN"
+],
+"Caselle Torinese": [
+"TRN"
+],
+"Catania": [
+"CTA"
+],
+"Firenze": [
+"FLR"
+],
+"Genova": [
+"GOA"
+],
+"Lamezia Terme": [
+"SUF"
+],
+"Lampedusa": [
+"LMP"
+],
+"Napoli": [
+"NAP"
+],
+"Olbia": [
+"OLB"
+],
+"Palermo": [
+"PMO"
+],
+"Pantelleria": [
+"PNL"
+],
+"Pisa": [
+"PSA"
+],
+"Reggio Calabria": [
+"REG"
+],
+"Ronchi dei Legionari/Trieste": [
+"TRS"
+],
+"Trapani": [
+"TPS"
+],
+"Venezia": [
+"VCE"
+],
+"ミラノ": [
+"BGY",
+"LIN",
+"MXP"
+],
+"ローマ": [
+"FCO"
+]
+}
+},
+"JM": {
+"zone": "9",
+"cities": {
+"Kingston": [
+"KIN"
+],
+"Montego Bay": [
+"MBJ"
+]
+}
+},
+"JO": {
+"zone": "8",
+"cities": {
+"Amman": [
+"AMM"
+],
+"Aqaba": [
+"AQJ"
+]
+}
+},
+"JP": {
+"zone": "1",
+"cities": {
+"青森": [
+"AOJ"
+],
+"秋田": [
+"AXT"
+],
+"石垣島": [
+"ISG"
+],
+"岩国": [
+"IWK"
+],
+"宇部": [
+"UBJ"
+],
+"大分": [
+"OIT"
+],
+"大阪": [
+"ITM",
+"KIX"
+],
+"岡山": [
+"OKJ"
+],
+"鹿児島": [
+"KOJ"
+],
+"金沢": [
+"KMQ"
+],
+"北秋田": [
+"ONJ"
+],
+"釧路": [
+"KUH"
+],
+"熊本": [
+"KMJ"
+],
+"高知": [
+"KCZ"
+],
+"神戸": [
+"UKB"
+],
+"佐賀": [
+"HSG"
+],
+"札幌": [
+"CTS"
+],
+"庄内": [
+"SYO"
+],
+"仙台": [
+"SDJ"
+],
+"高松": [
+"TAK"
+],
+"東京": [
+"HND",
+"NRT"
+],
+"徳島": [
+"TKS"
+],
+"鳥取": [
+"TTJ"
+],
+"富山": [
+"TOY"
+],
+"中標津": [
+"SHB"
+],
+"長崎": [
+"NGS"
+],
+"名古屋": [
+"NGO"
+],
+"那覇": [
+"OKA"
+],
+"新潟": [
+"KIJ"
+],
+"函館": [
+"HKD"
+],
+"八丈島": [
+"HAC"
+],
+"広島": [
+"HIJ"
+],
+"福岡": [
+"FUK"
+],
+"益田": [
+"IWJ"
+],
+"松山": [
+"MYJ"
+],
+"宮古島": [
+"MMY"
+],
+"宮崎": [
+"KMI"
+],
+"紋別": [
+"MBE"
+],
+"米子": [
+"YGJ"
+],
+"輪島": [
+"NTQ"
+],
+"稚内": [
+"WKJ"
+]
+}
+},
+"KE": {
+"zone": "8",
+"cities": {
+"Mombasa": [
+"MBA"
+],
+"ナイロビ": [
+"NBO"
+]
+}
+},
+"KG": {
+"zone": "4",
+"cities": {
+"Bishkek": [
+"BSZ"
+]
+}
+},
+"KH": {
+"zone": "4",
+"cities": {
+"シェムリアップ": [
+"SAI"
+],
+"プノンペン": [
+"KTI"
+]
+}
+},
+"KM": {
+"zone": "8",
+"cities": {
+"Moroni": [
+"HAH"
+]
+}
+},
+"KN": {
+"zone": "9",
+"cities": {
+"Basseterre": [
+"SKB"
+]
+}
+},
+"KR": {
+"zone": "2",
+"cities": {
+"Gwangju": [
+"KWJ"
+],
+"Yeosu": [
+"RSU"
+],
+"ソウル": [
+"GMP",
+"ICN"
+],
+"大邱": [
+"TAE"
+],
+"清州": [
+"CJJ"
+],
+"済州": [
+"CJU"
+],
+"釜山": [
+"PUS"
+]
+}
+},
+"KW": {
+"zone": "8",
+"cities": {
+"クウェート": [
+"KWI"
+]
+}
+},
+"KY": {
+"zone": "9",
+"cities": {
+"George Town": [
+"GCM"
+]
+}
+},
+"KZ": {
+"zone": "4",
+"cities": {
+"Aktau": [
+"SCO"
+],
+"Almaty": [
+"ALA"
+],
+"Astana": [
+"NQZ"
+],
+"Turkıstan": [
+"HSA"
+]
+}
+},
+"LA": {
+"zone": "4",
+"cities": {
+"Luang Phabang": [
+"LPQ"
+],
+"ビエンチャン": [
+"VTE"
+]
+}
+},
+"LB": {
+"zone": "8",
+"cities": {
+"Beirut": [
+"BEY"
+]
+}
+},
+"LC": {
+"zone": "9",
+"cities": {
+"Vieux Fort": [
+"UVF"
+]
+}
+},
+"LK": {
+"zone": "4",
+"cities": {
+"コロンボ": [
+"CMB"
+]
+}
+},
+"LR": {
+"zone": "8",
+"cities": {
+"Monrovia": [
+"ROB"
+]
+}
+},
+"LT": {
+"zone": "7",
+"cities": {
+"Vilnius": [
+"VNO"
+]
+}
+},
+"LU": {
+"zone": "7",
+"cities": {
+"Luxembourg": [
+"LUX"
+]
+}
+},
+"LV": {
+"zone": "7",
+"cities": {
+"Riga": [
+"RIX"
+]
+}
+},
+"MA": {
+"zone": "7",
+"cities": {
+"Agadir": [
+"AGA"
+],
+"Ahl Angad": [
+"OUD"
+],
+"Al Aaroui": [
+"NDR"
+],
+"Marrakesh": [
+"RAK"
+],
+"Rabat": [
+"RBA"
+],
+"Tangier": [
+"TNG"
+],
+"カサブランカ": [
+"CMN"
+]
+}
+},
+"MD": {
+"zone": "7",
+"cities": {
+"Chişinău": [
+"RMO"
+]
+}
+},
+"ME": {
+"zone": "7",
+"cities": {
+"Podgorica": [
+"TGD"
+],
+"Tivat": [
+"TIV"
+]
+}
+},
+"MG": {
+"zone": "8",
+"cities": {
+"Antananarivo": [
+"TNR"
+],
+"Nosy Be": [
+"NOS"
+]
+}
+},
+"MH": {
+"zone": "10",
+"cities": {
+"Kwajalein": [
+"KWA"
+],
+"Majuro Atoll": [
+"MAJ"
+]
+}
+},
+"MK": {
+"zone": "7",
+"cities": {
+"Ilinden": [
+"SKP"
+],
+"Ohrid": [
+"OHD"
+]
+}
+},
+"ML": {
+"zone": "8",
+"cities": {
+"Bamako": [
+"BKO"
+]
+}
+},
+"MM": {
+"zone": "4",
+"cities": {
+"ヤンゴン": [
+"RGN"
+]
+}
+},
+"MN": {
+"zone": "4",
+"cities": {
+"ウランバートル": [
+"UBN"
+]
+}
+},
+"MO": {
+"zone": "3",
+"cities": {
+"マカオ": [
+"MFM"
+]
+}
+},
+"MP": {
+"zone": "10",
+"cities": {
+"サイパン": [
+"SPN"
+]
+}
+},
+"MQ": {
+"zone": "9",
+"cities": {
+"Fort-de-France": [
+"FDF"
+]
+}
+},
+"MR": {
+"zone": "8",
+"cities": {
+"Nouakchott": [
+"NKC"
+]
+}
+},
+"MT": {
+"zone": "7",
+"cities": {
+"Valletta": [
+"MLA"
+]
+}
+},
+"MU": {
+"zone": "8",
+"cities": {
+"Plaine Magnien": [
+"MRU"
+]
+}
+},
+"MV": {
+"zone": "4",
+"cities": {
+"マレ": [
+"MLE"
+]
+}
+},
+"MW": {
+"zone": "8",
+"cities": {
+"Blantyre": [
+"BLZ"
+],
+"Lumbadzi": [
+"LLW"
+]
+}
+},
+"MX": {
+"zone": "6",
+"cities": {
+"Ciudad Madero": [
+"TAM"
+],
+"Guadalajara": [
+"GDL"
+],
+"Huatulco": [
+"HUX"
+],
+"Ixtapa": [
+"ZIH"
+],
+"Mazatlàn": [
+"MZT"
+],
+"Mérida": [
+"MID"
+],
+"Puerto Vallarta": [
+"PVR"
+],
+"Querétaro": [
+"QRO"
+],
+"San José del Cabo": [
+"SJD"
+],
+"San Luis Potosí": [
+"SLP"
+],
+"Silao": [
+"BJX"
+],
+"Tulum": [
+"TQO"
+],
+"Veracruz": [
+"VER"
+],
+"カンクン": [
+"CUN",
+"CZM"
+],
+"メキシコシティ": [
+"MEX"
+],
+"モンテレイ": [
+"MTY"
+]
+}
+},
+"MY": {
+"zone": "4",
+"cities": {
+"Langkawi": [
+"LGK"
+],
+"Penang": [
+"PEN"
+],
+"Tawau": [
+"TWU"
+],
+"クアラルンプール": [
+"KUL"
+],
+"コタキナバル": [
+"BKI"
+]
+}
+},
+"MZ": {
+"zone": "8",
+"cities": {
+"Beira": [
+"BEW"
+],
+"Maputo": [
+"MPM"
+]
+}
+},
+"NA": {
+"zone": "8",
+"cities": {
+"Windhoek": [
+"WDH"
+]
+}
+},
+"NC": {
+"zone": "10",
+"cities": {
+"Nouméa": [
+"NOU"
+]
+}
+},
+"NE": {
+"zone": "8",
+"cities": {
+"Niamey": [
+"NIM"
+]
+}
+},
+"NG": {
+"zone": "8",
+"cities": {
+"Abuja": [
+"ABV"
+],
+"Enegu": [
+"ENU"
+],
+"Kano": [
+"KAN"
+],
+"Port Harcourt": [
+"PHC"
+],
+"ラゴス": [
+"LOS"
+]
+}
+},
+"NI": {
+"zone": "9",
+"cities": {
+"Managua": [
+"MGA"
+]
+}
+},
+"NL": {
+"zone": "7",
+"cities": {
+"アムステルダム": [
+"AMS"
+]
+}
+},
+"NO": {
+"zone": "7",
+"cities": {
+"Alta": [
+"ALF"
+],
+"Bergen": [
+"BGO"
+],
+"Evenes": [
+"EVE"
+],
+"Kristiansand(Kjevik)": [
+"KRS"
+],
+"Stavanger": [
+"SVG"
+],
+"Tromsø": [
+"TOS"
+],
+"Trondheim": [
+"TRD"
+],
+"オスロ": [
+"OSL"
+]
+}
+},
+"NP": {
+"zone": "4",
+"cities": {
+"カトマンズ": [
+"KTM"
+]
+}
+},
+"NU": {
+"zone": "10",
+"cities": {
+"Alofi": [
+"IUE"
+]
+}
+},
+"NZ": {
+"zone": "10",
+"cities": {
+"": [
+"HKK",
+"TIU"
+],
+"Blenheim": [
+"BHE"
+],
+"Dunedin": [
+"DUD"
+],
+"Gisborne": [
+"GIS"
+],
+"Hamilton": [
+"HLZ"
+],
+"Invercargill": [
+"IVC"
+],
+"Kerikeri": [
+"KKE"
+],
+"Napier": [
+"NPE"
+],
+"Nelson": [
+"NSN"
+],
+"New Plymouth": [
+"NPL"
+],
+"Palmerston North": [
+"PMR"
+],
+"Queenstown": [
+"ZQN"
+],
+"Rotorua": [
+"ROT"
+],
+"Taupo": [
+"TUO"
+],
+"Tauranga": [
+"TRG"
+],
+"Wellington": [
+"WLG"
+],
+"Whangarei": [
+"WRE"
+],
+"オークランド": [
+"AKL"
+],
+"クライストチャーチ": [
+"CHC"
+]
+}
+},
+"OM": {
+"zone": "8",
+"cities": {
+"Salalah": [
+"SLL"
+],
+"マスカット": [
+"MCT"
+]
+}
+},
+"PA": {
+"zone": "9",
+"cities": {
+"David": [
+"DAV"
+],
+"パナマシティ": [
+"PTY"
+]
+}
+},
+"PE": {
+"zone": "9",
+"cities": {
+"Chiclayo": [
+"CIX"
+],
+"Cusco": [
+"CUZ"
+],
+"リマ": [
+"LIM"
+]
+}
+},
+"PF": {
+"zone": "10",
+"cities": {
+"タヒチ": [
+"PPT"
+]
+}
+},
+"PG": {
+"zone": "10",
+"cities": {
+"ポートモレスビー": [
+"POM"
+]
+}
+},
+"PH": {
+"zone": "3",
+"cities": {
+"Cabatuan": [
+"ILO"
+],
+"Davao": [
+"DVO"
+],
+"General Santos": [
+"GES"
+],
+"Kalibo": [
+"KLO"
+],
+"Laguindingan": [
+"CGY"
+],
+"Puerto Princesa": [
+"PPS"
+],
+"クラーク": [
+"CRK"
+],
+"セブ": [
+"CEB"
+],
+"パングラオ": [
+"TAG"
+],
+"マニラ": [
+"MNL"
+]
+}
+},
+"PK": {
+"zone": "4",
+"cities": {
+"Attock": [
+"ISB"
+],
+"Karachi": [
+"KHI"
+],
+"Lahore": [
+"LHE"
+],
+"Peshawar": [
+"PEW"
+]
+}
+},
+"PL": {
+"zone": "7",
+"cities": {
+"Balice": [
+"KRK"
+],
+"Bydgoszcz": [
+"BZG"
+],
+"Gdańsk": [
+"GDN"
+],
+"Jasionka": [
+"RZE"
+],
+"Katowice": [
+"KTW"
+],
+"Lublin": [
+"LUZ"
+],
+"Nowe Kramsko": [
+"IEG"
+],
+"Poznań": [
+"POZ"
+],
+"Radom": [
+"RDO"
+],
+"Szczecin(Glewice)": [
+"SZZ"
+],
+"Szymany": [
+"SZY"
+],
+"Wrocław": [
+"WRO"
+],
+"ワルシャワ": [
+"WAW"
+]
+}
+},
+"PR": {
+"zone": "9",
+"cities": {
+"Aguadilla": [
+"BQN"
+],
+"San Juan": [
+"SJU"
+]
+}
+},
+"PT": {
+"zone": "7",
+"cities": {
+"Faro": [
+"FAO"
+],
+"Funchal": [
+"FNC"
+],
+"Ponta Delgada": [
+"PDL"
+],
+"Porto": [
+"OPO"
+],
+"Praia da Vitória": [
+"TER"
+],
+"Vila Baleira": [
+"PXO"
+],
+"リスボン": [
+"LIS"
+]
+}
+},
+"PW": {
+"zone": "10",
+"cities": {
+"パラオ": [
+"ROR"
+]
+}
+},
+"PY": {
+"zone": "9",
+"cities": {
+"Asunción": [
+"ASU"
+]
+}
+},
+"QA": {
+"zone": "8",
+"cities": {
+"ドーハ": [
+"DOH"
+]
+}
+},
+"RO": {
+"zone": "7",
+"cities": {
+"Cluj-Napoca": [
+"CLJ"
+],
+"Constanța": [
+"CND"
+],
+"Iaşi": [
+"IAS"
+],
+"Oradea": [
+"OMR"
+],
+"Otopeni": [
+"OTP"
+],
+"Sibiu": [
+"SBZ"
+],
+"Timişoara": [
+"TSR"
+]
+}
+},
+"RS": {
+"zone": "7",
+"cities": {
+"Belgrade": [
+"BEG"
+],
+"Niš": [
+"INI"
+]
+}
+},
+"RU": {
+"zone": "7",
+"cities": {
+"Artyom": [
+"VVO"
+],
+"Chita": [
+"HTA"
+],
+"Irkutsk": [
+"IKT"
+],
+"Kazan": [
+"KZN"
+],
+"Omsk": [
+"OMS"
+],
+"Rostov-on-Don": [
+"ROV"
+],
+"Sochi": [
+"AER"
+],
+"St. Petersburg": [
+"LED"
+],
+"Voronezh": [
+"VOZ"
+],
+"モスクワ": [
+"DME",
+"SVO",
+"VKO"
+]
+}
+},
+"RW": {
+"zone": "8",
+"cities": {
+"Kigali": [
+"KGL"
+]
+}
+},
+"SA": {
+"zone": "8",
+"cities": {
+"Abha": [
+"AHB"
+],
+"Ad Dammam": [
+"DMM"
+],
+"Jizan": [
+"GIZ"
+],
+"Medina": [
+"MED"
+],
+"Qassim": [
+"ELQ"
+],
+"Tabuk": [
+"TUU"
+],
+"Taif": [
+"TIF"
+],
+"Yanbu": [
+"YNB"
+],
+"ジッダ": [
+"JED"
+],
+"リヤド": [
+"RUH"
+]
+}
+},
+"SC": {
+"zone": "8",
+"cities": {
+"Victoria": [
+"SEZ"
+]
+}
+},
+"SD": {
+"zone": "8",
+"cities": {
+"Khartoum": [
+"KRT"
+],
+"Port Sudan": [
+"PZU"
+]
+}
+},
+"SE": {
+"zone": "7",
+"cities": {
+"Arvidsjaur": [
+"AJR"
+],
+"Göteborg": [
+"GOT"
+],
+"Kiruna": [
+"KRN"
+],
+"ストックホルム": [
+"ARN"
+]
+}
+},
+"SG": {
+"zone": "4",
+"cities": {
+"シンガポール": [
+"SIN"
+]
+}
+},
+"SI": {
+"zone": "7",
+"cities": {
+"Zgornji Brnik": [
+"LJU"
+]
+}
+},
+"SK": {
+"zone": "7",
+"cities": {
+"Košice": [
+"KSC"
+]
+}
+},
+"SL": {
+"zone": "8",
+"cities": {
+"Freetown": [
+"FNA"
+]
+}
+},
+"SN": {
+"zone": "8",
+"cities": {
+"Dakar": [
+"DSS"
+]
+}
+},
+"SO": {
+"zone": "8",
+"cities": {
+"Bosaso": [
+"BSA"
+],
+"Garowe": [
+"GGR"
+],
+"Hargeisa": [
+"HGA"
+],
+"Mogadishu": [
+"MGQ"
+]
+}
+},
+"SR": {
+"zone": "9",
+"cities": {
+"Paramaribo": [
+"PBM"
+]
+}
+},
+"ST": {
+"zone": "8",
+"cities": {
+"São Tomé": [
+"TMS"
+]
+}
+},
+"SV": {
+"zone": "9",
+"cities": {
+"San Salvador": [
+"SAL"
+]
+}
+},
+"SX": {
+"zone": "9",
+"cities": {
+"Sint Maarten": [
+"SXM"
+]
+}
+},
+"SY": {
+"zone": "8",
+"cities": {
+"Aleppo": [
+"ALP"
+],
+"Damascus": [
+"DAM"
+]
+}
+},
+"TC": {
+"zone": "9",
+"cities": {
+"Providenciales": [
+"PLS"
+]
+}
+},
+"TD": {
+"zone": "8",
+"cities": {
+"N'Djamena": [
+"NDJ"
+]
+}
+},
+"TG": {
+"zone": "8",
+"cities": {
+"Lomé": [
+"LFW"
+]
+}
+},
+"TH": {
+"zone": "4",
+"cities": {
+"Chiang Rai": [
+"CEI"
+],
+"Hat Yai": [
+"HDY"
+],
+"Khon Kaen": [
+"KKC"
+],
+"Ubon Ratchathani": [
+"UBP"
+],
+"Udon Thani": [
+"UTH"
+],
+"チェンマイ": [
+"CNX"
+],
+"バンコク": [
+"BKK",
+"DMK"
+],
+"プーケット": [
+"HKT",
+"KBV"
+]
+}
+},
+"TJ": {
+"zone": "4",
+"cities": {
+"Dushanbe": [
+"DYU"
+]
+}
+},
+"TM": {
+"zone": "4",
+"cities": {
+"Ashgabat": [
+"ASB"
+]
+}
+},
+"TN": {
+"zone": "7",
+"cities": {
+"Enfidha": [
+"NBE"
+],
+"Mellita": [
+"DJE"
+],
+"Monastir": [
+"MIR"
+],
+"Tunis": [
+"TUN"
+]
+}
+},
+"TO": {
+"zone": "10",
+"cities": {
+"Nuku'alofa": [
+"TBU"
+]
+}
+},
+"TR": {
+"zone": "7",
+"cities": {
+"Adıyaman": [
+"ADF"
+],
+"Altıntaş": [
+"KZR"
+],
+"Amasya": [
+"MZH"
+],
+"Ankara": [
+"ESB"
+],
+"Antakya": [
+"HTY"
+],
+"Antalya": [
+"AYT"
+],
+"Ağrı": [
+"AJI"
+],
+"Batman": [
+"BAL"
+],
+"Bingöl": [
+"BGG"
+],
+"Bodrum": [
+"BJV"
+],
+"Dalaman": [
+"DLM"
+],
+"Denizli": [
+"DNZ"
+],
+"Diyarbakır": [
+"DIY"
+],
+"Edremit": [
+"EDO"
+],
+"Elazığ": [
+"EZS"
+],
+"Erzincan": [
+"ERC"
+],
+"Erzurum": [
+"ERZ"
+],
+"Gaziantep": [
+"GZT"
+],
+"Gaziemir": [
+"ADB"
+],
+"Gazipaşa": [
+"GZP"
+],
+"Hakkari": [
+"YKO"
+],
+"Isparta": [
+"ISE"
+],
+"Iğdır": [
+"IGD"
+],
+"Kahramanmaraş": [
+"KCM"
+],
+"Kars": [
+"KSY"
+],
+"Kastamonu": [
+"KFS"
+],
+"Kayseri": [
+"ASR"
+],
+"Konya": [
+"KYA"
+],
+"Malatya": [
+"MLX"
+],
+"Mardin": [
+"MQM"
+],
+"Muş": [
+"MSR"
+],
+"Nevşehir": [
+"NAV"
+],
+"Ordu": [
+"OGU"
+],
+"Rize": [
+"RZV"
+],
+"Samsun": [
+"SZF"
+],
+"Sinop": [
+"NOP"
+],
+"Sivas": [
+"VAS"
+],
+"Tarsus": [
+"COV"
+],
+"Tokat": [
+"TJK"
+],
+"Trabzon": [
+"TZX"
+],
+"Van": [
+"VAN"
+],
+"Zonguldak": [
+"ONQ"
+],
+"Çanakkale": [
+"CKZ"
+],
+"Şanlıurfa": [
+"GNY"
+],
+"Şırnak": [
+"NKT"
+],
+"イスタンブール": [
+"IST"
+]
+}
+},
+"TT": {
+"zone": "9",
+"cities": {
+"Port of Spain": [
+"POS"
+]
+}
+},
+"TW": {
+"zone": "3",
+"cities": {
+"台北": [
+"TPE",
+"TSA"
+],
+"高雄": [
+"KHH"
+]
+}
+},
+"TZ": {
+"zone": "8",
+"cities": {
+"Arusha": [
+"JRO"
+],
+"Dar es Salaam": [
+"DAR"
+],
+"Zanzibar": [
+"ZNZ"
+]
+}
+},
+"UA": {
+"zone": "7",
+"cities": {
+"Kherson": [
+"KHE"
+],
+"Lviv": [
+"LWO"
+]
+}
+},
+"UG": {
+"zone": "8",
+"cities": {
+"Entebbe": [
+"EBB"
+]
+}
+},
+"US": {
+"zone": "6",
+"cities": {
+"Albany": [
+"ALB"
+],
+"Albuquerque": [
+"ABQ"
+],
+"Anchorage": [
+"ANC"
+],
+"Appleton": [
+"ATW"
+],
+"Austin": [
+"AUS"
+],
+"Bakersfield": [
+"BFL"
+],
+"Bangor": [
+"BGR"
+],
+"Billings": [
+"BIL"
+],
+"Boise": [
+"BOI"
+],
+"Bozeman": [
+"BZN"
+],
+"Buffalo": [
+"BUF"
+],
+"Burlington": [
+"BTV"
+],
+"Cedar Rapids": [
+"CID"
+],
+"Charleston": [
+"CHS"
+],
+"Cincinnati / Covington": [
+"CVG"
+],
+"Cleveland": [
+"CLE"
+],
+"Colorado Springs": [
+"COS"
+],
+"Columbus": [
+"CMH"
+],
+"Dayton": [
+"DAY"
+],
+"Des Moines": [
+"DSM"
+],
+"Durango": [
+"DRO"
+],
+"Eagle": [
+"EGE"
+],
+"El Paso": [
+"ELP"
+],
+"Eugene": [
+"EUG"
+],
+"Fairbanks": [
+"FAI"
+],
+"Fargo": [
+"FAR"
+],
+"Fayetteville/Springdale/Rogers": [
+"XNA"
+],
+"Fort Myers": [
+"RSW"
+],
+"Fresno": [
+"FAT"
+],
+"Grand Junction": [
+"GJT"
+],
+"Grand Rapids": [
+"GRR"
+],
+"Great Falls": [
+"GTF"
+],
+"Greenville/Greer/Spartanburg": [
+"GSP"
+],
+"Harrisburg": [
+"MDT"
+],
+"Hartford": [
+"BDL"
+],
+"Hayden": [
+"HDN"
+],
+"Indianapolis": [
+"IND"
+],
+"Jackson": [
+"JAC"
+],
+"Jacksonville": [
+"JAX"
+],
+"Kalispell": [
+"FCA"
+],
+"Kansas City": [
+"MCI"
+],
+"Key West": [
+"EYW"
+],
+"Knoxville/Maryville": [
+"TYS"
+],
+"Lihue, Kauai": [
+"LIH"
+],
+"Little Rock": [
+"LIT"
+],
+"Louisville": [
+"SDF"
+],
+"Madison": [
+"MSN"
+],
+"McAllen": [
+"MFE"
+],
+"Medford": [
+"MFR"
+],
+"Memphis": [
+"MEM"
+],
+"Midland": [
+"MAF"
+],
+"Milwaukee": [
+"MKE"
+],
+"Missoula": [
+"MSO"
+],
+"Monterey": [
+"MRY"
+],
+"Montrose": [
+"MTJ"
+],
+"Myrtle Beach": [
+"MYR"
+],
+"Nashville": [
+"BNA"
+],
+"New Orleans": [
+"MSY"
+],
+"Norfolk": [
+"ORF"
+],
+"Oklahoma City": [
+"OKC"
+],
+"Omaha": [
+"OMA"
+],
+"Palm Springs": [
+"PSP"
+],
+"Panama City Beach": [
+"ECP"
+],
+"Pasco": [
+"PSC"
+],
+"Pensacola": [
+"PNS"
+],
+"Pittsburgh": [
+"PIT"
+],
+"Portland": [
+"PWM"
+],
+"Raleigh/Durham": [
+"RDU"
+],
+"Rapid City": [
+"RAP"
+],
+"Redmond": [
+"RDM"
+],
+"Reno": [
+"RNO"
+],
+"Richmond": [
+"RIC"
+],
+"Rochester": [
+"ROC"
+],
+"Sacramento": [
+"SMF"
+],
+"San Antonio": [
+"SAT"
+],
+"San Luis Obispo": [
+"SBP"
+],
+"Santa Barbara": [
+"SBA"
+],
+"Sarasota/Bradenton": [
+"SRQ"
+],
+"Savannah": [
+"SAV"
+],
+"Sioux Falls": [
+"FSD"
+],
+"Spokane": [
+"GEG"
+],
+"St Louis": [
+"STL"
+],
+"Syracuse": [
+"SYR"
+],
+"Tampa": [
+"TPA"
+],
+"Traverse City": [
+"TVC"
+],
+"Tucson": [
+"TUS"
+],
+"Tulsa": [
+"TUL"
+],
+"West Palm Beach": [
+"PBI"
+],
+"Wichita": [
+"ICT"
+],
+"アトランタ": [
+"ATL"
+],
+"オーランド": [
+"MCO"
+],
+"コナ": [
+"KOA"
+],
+"サンディエゴ": [
+"SAN"
+],
+"サンノゼ": [
+"SJC"
+],
+"サンフランシスコ": [
+"SFO"
+],
+"シアトル": [
+"SEA"
+],
+"シカゴ": [
+"ORD"
+],
+"シャーロット": [
+"CLT"
+],
+"ソルトレイクシティ": [
+"SLC"
+],
+"ダラス": [
+"DFW"
+],
+"デトロイト": [
+"DTW"
+],
+"デンバー": [
+"DEN"
+],
+"ニューヨーク": [
+"EWR",
+"JFK",
+"LGA"
+],
+"ヒューストン": [
+"IAH"
+],
+"フィラデルフィア": [
+"PHL"
+],
+"フェニックス": [
+"PHX"
+],
+"ホノルル": [
+"HNL"
+],
+"ボストン": [
+"BOS",
+"PVD"
+],
+"ポートランド": [
+"PDX"
+],
+"マイアミ": [
+"FLL",
+"MIA"
+],
+"マウイ島": [
+"OGG"
+],
+"ミネアポリス": [
+"MSP"
+],
+"ラスベガス": [
+"LAS"
+],
+"ロサンゼルス": [
+"BUR",
+"LAX",
+"ONT",
+"SNA"
+],
+"ワシントン": [
+"BWI",
+"DCA",
+"IAD"
+]
+}
+},
+"UY": {
+"zone": "9",
+"cities": {
+"Ciudad de la Costa": [
+"MVD"
+]
+}
+},
+"UZ": {
+"zone": "4",
+"cities": {
+"Bukhara": [
+"BHK"
+],
+"Fergana": [
+"FEG"
+],
+"Samarkand": [
+"SKD"
+],
+"Urgench": [
+"UGC"
+],
+"タシケント": [
+"TAS"
+]
+}
+},
+"VC": {
+"zone": "9",
+"cities": {
+"Kingstown": [
+"SVD"
+]
+}
+},
+"VE": {
+"zone": "9",
+"cities": {
+"Barquisimeto": [
+"BRM"
+],
+"Isla Margarita": [
+"PMV"
+],
+"Maiquetía": [
+"CCS"
+],
+"Maracaibo": [
+"MAR"
+],
+"Valencia": [
+"VLN"
+]
+}
+},
+"VI": {
+"zone": "9",
+"cities": {
+"Charlotte Amalie": [
+"STT"
+],
+"Christiansted": [
+"STX"
+]
+}
+},
+"VN": {
+"zone": "4",
+"cities": {
+"Buon Ma Thuot": [
+"BMV"
+],
+"Ca Mau City": [
+"CAH"
+],
+"Can Tho": [
+"VCA"
+],
+"Con Dao": [
+"VCS"
+],
+"Da Lat": [
+"DLI"
+],
+"Dien Bien Phu": [
+"DIN"
+],
+"Dong Hoi": [
+"VDH"
+],
+"Haiphong": [
+"HPH"
+],
+"Nha Trang/nha Trang aiurportCam Ranh": [
+"CXR"
+],
+"Phu Quoc Island": [
+"PQC"
+],
+"Quy Nohn": [
+"UIH"
+],
+"Rach Gia": [
+"VKG"
+],
+"Tam Nghĩa": [
+"VCL"
+],
+"Thanh Hóa": [
+"THD"
+],
+"Tuy Hoa": [
+"TBB"
+],
+"Van Don": [
+"VDO"
+],
+"Vinh": [
+"VII"
+],
+"ダナン": [
+"DAD",
+"HUI"
+],
+"ハノイ": [
+"HAN"
+],
+"ホーチミン": [
+"SGN"
+]
+}
+},
+"VU": {
+"zone": "10",
+"cities": {
+"Port Vila": [
+"VLI"
+]
+}
+},
+"WS": {
+"zone": "10",
+"cities": {
+"Apia": [
+"APW"
+]
+}
+},
+"ZA": {
+"zone": "8",
+"cities": {
+"Durban": [
+"DUR"
+],
+"Gqeberha": [
+"PLZ"
+],
+"ケープタウン": [
+"CPT"
+],
+"ヨハネスブルグ": [
+"JNB"
+]
+}
+},
+"ZM": {
+"zone": "8",
+"cities": {
+"Livingstone": [
+"LVI"
+],
+"Lusaka": [
+"LUN"
+],
+"Ndola": [
+"NLA"
+]
+}
+},
+"ZW": {
+"zone": "8",
+"cities": {
+"Bulawayo": [
+"BUQ"
+],
+"Harare": [
+"HRE"
+],
+"Victoria Falls": [
+"VFA"
+]
+}
+}
+}
+}

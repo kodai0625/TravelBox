@@ -1,0 +1,17003 @@
+{
+"meta": {
+"title": "区間ごとの就航航空会社（この特典で乗れる会社にかぎる）",
+"source": "Flight-Board の data/routes.json（英語版Wikipediaの各空港記事）",
+"note": "tools/build_cities.py で生成しています。手で編集しないでください。 鍵は空港コードを並べ替えて「-」でつないだものです（例 CDG-SIN）。",
+"airlines": {
+"NH": "ANA",
+"A3": "エーゲ航空",
+"AC": "エアカナダ",
+"AI": "エアインディア",
+"CA": "中国国際航空",
+"NZ": "ニュージーランド航空",
+"OZ": "アシアナ航空",
+"OS": "オーストリア航空",
+"AV": "アビアンカ航空",
+"SN": "ブリュッセル航空",
+"CM": "コパ航空",
+"OU": "クロアチア航空",
+"MS": "エジプト航空",
+"ET": "エチオピア航空",
+"BR": "エバー航空",
+"AZ": "ITAエアウェイズ",
+"LO": "LOTポーランド航空",
+"LH": "ルフトハンザ",
+"ZH": "シンセン航空",
+"SQ": "シンガポール航空",
+"SA": "南アフリカ航空",
+"LX": "スイス航空",
+"TP": "TAPポルトガル航空",
+"TG": "タイ国際航空",
+"TK": "ターキッシュ",
+"UA": "ユナイテッド航空",
+"HO": "吉祥航空",
+"EN": "エアドロミティ",
+"NX": "マカオ航空",
+"EY": "エティハド航空",
+"EW": "ユーロウィングス",
+"OA": "オリンピック航空",
+"PR": "フィリピン航空",
+"VS": "ヴァージンアトランティック",
+"VN": "ベトナム航空",
+"VA": "ヴァージン・オーストラリア"
+},
+"star": [
+"A3",
+"AC",
+"AI",
+"AV",
+"AZ",
+"BR",
+"CA",
+"CM",
+"ET",
+"LH",
+"LO",
+"LX",
+"MS",
+"NH",
+"NZ",
+"OS",
+"OU",
+"OZ",
+"SA",
+"SN",
+"SQ",
+"TG",
+"TK",
+"TP",
+"UA",
+"ZH"
+],
+"partnerOnly": [
+"EN",
+"EW",
+"EY",
+"NX",
+"OA",
+"PR",
+"VA",
+"VN",
+"VS"
+],
+"ending": {
+"OZ": "2026年12月16日搭乗分まで"
+}
+},
+"segments": {
+"AAN-JED": [
+"EY"
+],
+"AAR-CHQ": [
+"A3"
+],
+"AAT-PEK": [
+"CA"
+],
+"ABJ-ACC": [
+"SA",
+"SN"
+],
+"ABJ-ADD": [
+"ET"
+],
+"ABJ-BRU": [
+"SN"
+],
+"ABJ-CAI": [
+"MS"
+],
+"ABJ-CKY": [
+"ET"
+],
+"ABJ-COO": [
+"SN",
+"TK"
+],
+"ABJ-IST": [
+"TK"
+],
+"ABJ-JFK": [
+"ET"
+],
+"ABJ-JNB": [
+"SA"
+],
+"ABJ-OUA": [
+"SN"
+],
+"ABQ-DEN": [
+"UA"
+],
+"ABQ-IAD": [
+"UA"
+],
+"ABQ-IAH": [
+"UA"
+],
+"ABQ-ORD": [
+"UA"
+],
+"ABQ-SFO": [
+"UA"
+],
+"ABS-ASW": [
+"MS"
+],
+"ABS-CAI": [
+"MS"
+],
+"ABV-ADD": [
+"ET"
+],
+"ABV-CAI": [
+"MS"
+],
+"ABV-FRA": [
+"LH"
+],
+"ABV-IST": [
+"TK"
+],
+"ACC-ADD": [
+"ET"
+],
+"ACC-BRU": [
+"SN"
+],
+"ACC-CAI": [
+"MS"
+],
+"ACC-FCO": [
+"AZ"
+],
+"ACC-IAD": [
+"UA"
+],
+"ACC-IST": [
+"TK"
+],
+"ACC-JNB": [
+"SA"
+],
+"ACC-LIS": [
+"TP"
+],
+"ACC-ROB": [
+"TK"
+],
+"ACC-TMS": [
+"TP"
+],
+"ACE-BER": [
+"EW"
+],
+"ACE-BRU": [
+"SN"
+],
+"ACE-CGN": [
+"EW"
+],
+"ACE-DUS": [
+"EW"
+],
+"ACE-HAM": [
+"EW"
+],
+"ACE-PRG": [
+"EW"
+],
+"ACE-STR": [
+"EW"
+],
+"ADB-ATH": [
+"A3"
+],
+"ADB-CGN": [
+"EW"
+],
+"ADB-DUS": [
+"EW"
+],
+"ADB-IST": [
+"TK"
+],
+"ADB-KTW": [
+"LO"
+],
+"ADB-MUC": [
+"LH"
+],
+"ADB-SKG": [
+"A3"
+],
+"ADB-STR": [
+"EW"
+],
+"ADB-WAW": [
+"LO"
+],
+"ADD-AMH": [
+"ET"
+],
+"ADD-AMM": [
+"ET"
+],
+"ADD-ARN": [
+"ET"
+],
+"ADD-ASO": [
+"ET"
+],
+"ADD-ATH": [
+"ET"
+],
+"ADD-ATL": [
+"ET"
+],
+"ADD-AUH": [
+"ET",
+"EY"
+],
+"ADD-AWA": [
+"ET"
+],
+"ADD-AXU": [
+"ET"
+],
+"ADD-BAH": [
+"ET"
+],
+"ADD-BCO": [
+"ET"
+],
+"ADD-BEW": [
+"ET"
+],
+"ADD-BEY": [
+"ET"
+],
+"ADD-BGF": [
+"ET"
+],
+"ADD-BJM": [
+"ET"
+],
+"ADD-BJR": [
+"ET"
+],
+"ADD-BKK": [
+"ET"
+],
+"ADD-BKO": [
+"ET"
+],
+"ADD-BLR": [
+"ET"
+],
+"ADD-BLZ": [
+"ET"
+],
+"ADD-BOM": [
+"ET"
+],
+"ADD-BRU": [
+"ET"
+],
+"ADD-BSA": [
+"ET"
+],
+"ADD-BUQ": [
+"ET"
+],
+"ADD-BZV": [
+"ET"
+],
+"ADD-CAI": [
+"ET",
+"MS"
+],
+"ADD-CAN": [
+"ET"
+],
+"ADD-CDG": [
+"ET"
+],
+"ADD-CGK": [
+"ET"
+],
+"ADD-CKY": [
+"ET"
+],
+"ADD-COO": [
+"ET"
+],
+"ADD-CPH": [
+"ET"
+],
+"ADD-CPT": [
+"ET"
+],
+"ADD-DAC": [
+"ET"
+],
+"ADD-DAR": [
+"ET"
+],
+"ADD-DBM": [
+"ET"
+],
+"ADD-DEL": [
+"ET"
+],
+"ADD-DEM": [
+"ET"
+],
+"ADD-DIR": [
+"ET"
+],
+"ADD-DLA": [
+"ET"
+],
+"ADD-DME": [
+"ET"
+],
+"ADD-DMM": [
+"ET"
+],
+"ADD-DOH": [
+"ET"
+],
+"ADD-DSE": [
+"ET"
+],
+"ADD-DSS": [
+"ET"
+],
+"ADD-DXB": [
+"ET"
+],
+"ADD-EBB": [
+"ET"
+],
+"ADD-ENU": [
+"ET"
+],
+"ADD-EZE": [
+"ET"
+],
+"ADD-FBM": [
+"ET"
+],
+"ADD-FCO": [
+"ET"
+],
+"ADD-FIH": [
+"ET"
+],
+"ADD-FNA": [
+"ET"
+],
+"ADD-FRA": [
+"ET"
+],
+"ADD-GBE": [
+"ET"
+],
+"ADD-GDE": [
+"ET"
+],
+"ADD-GDQ": [
+"ET"
+],
+"ADD-GGR": [
+"ET"
+],
+"ADD-GIZ": [
+"ET"
+],
+"ADD-GMB": [
+"ET"
+],
+"ADD-GOM": [
+"ET"
+],
+"ADD-GRU": [
+"ET"
+],
+"ADD-GVA": [
+"ET"
+],
+"ADD-HAH": [
+"ET"
+],
+"ADD-HAN": [
+"ET"
+],
+"ADD-HGA": [
+"ET"
+],
+"ADD-HKG": [
+"ET"
+],
+"ADD-HRE": [
+"ET"
+],
+"ADD-HUE": [
+"ET"
+],
+"ADD-HYD": [
+"ET"
+],
+"ADD-IAD": [
+"ET"
+],
+"ADD-ICN": [
+"ET"
+],
+"ADD-IST": [
+"ET",
+"TK"
+],
+"ADD-JED": [
+"ET"
+],
+"ADD-JFK": [
+"ET"
+],
+"ADD-JIB": [
+"ET"
+],
+"ADD-JIJ": [
+"ET"
+],
+"ADD-JIM": [
+"ET"
+],
+"ADD-JNB": [
+"ET"
+],
+"ADD-JRO": [
+"ET"
+],
+"ADD-KAN": [
+"ET"
+],
+"ADD-KGL": [
+"ET"
+],
+"ADD-KHI": [
+"ET"
+],
+"ADD-KRT": [
+"ET"
+],
+"ADD-KUL": [
+"ET"
+],
+"ADD-KWI": [
+"ET"
+],
+"ADD-LAD": [
+"ET"
+],
+"ADD-LBV": [
+"ET"
+],
+"ADD-LFW": [
+"ET"
+],
+"ADD-LGW": [
+"ET"
+],
+"ADD-LHR": [
+"ET"
+],
+"ADD-LLW": [
+"ET"
+],
+"ADD-LOS": [
+"ET"
+],
+"ADD-LUN": [
+"ET"
+],
+"ADD-LVI": [
+"ET"
+],
+"ADD-LYS": [
+"ET"
+],
+"ADD-MAA": [
+"ET"
+],
+"ADD-MAD": [
+"ET"
+],
+"ADD-MAN": [
+"ET"
+],
+"ADD-MBA": [
+"ET"
+],
+"ADD-MCT": [
+"ET"
+],
+"ADD-MGQ": [
+"ET"
+],
+"ADD-MJM": [
+"ET"
+],
+"ADD-MNL": [
+"ET"
+],
+"ADD-MPM": [
+"ET"
+],
+"ADD-MQX": [
+"ET"
+],
+"ADD-MRS": [
+"ET"
+],
+"ADD-MRU": [
+"ET"
+],
+"ADD-MUB": [
+"ET"
+],
+"ADD-MXP": [
+"ET"
+],
+"ADD-NBJ": [
+"ET"
+],
+"ADD-NBO": [
+"ET"
+],
+"ADD-NDJ": [
+"ET"
+],
+"ADD-NIM": [
+"ET"
+],
+"ADD-NLA": [
+"ET"
+],
+"ADD-NOS": [
+"ET"
+],
+"ADD-NRT": [
+"ET"
+],
+"ADD-NSI": [
+"ET"
+],
+"ADD-OPO": [
+"ET"
+],
+"ADD-ORD": [
+"ET"
+],
+"ADD-OSL": [
+"ET"
+],
+"ADD-OUA": [
+"ET"
+],
+"ADD-PNR": [
+"ET"
+],
+"ADD-PVG": [
+"ET"
+],
+"ADD-PZU": [
+"ET"
+],
+"ADD-ROB": [
+"ET"
+],
+"ADD-RUH": [
+"ET"
+],
+"ADD-SEZ": [
+"ET"
+],
+"ADD-SHC": [
+"ET"
+],
+"ADD-SHJ": [
+"ET"
+],
+"ADD-SIN": [
+"ET"
+],
+"ADD-SSG": [
+"ET"
+],
+"ADD-SZE": [
+"ET"
+],
+"ADD-TFU": [
+"ET"
+],
+"ADD-TLV": [
+"ET"
+],
+"ADD-TNR": [
+"ET"
+],
+"ADD-VFA": [
+"ET"
+],
+"ADD-VIE": [
+"ET"
+],
+"ADD-WAW": [
+"ET"
+],
+"ADD-WDH": [
+"ET"
+],
+"ADD-YYZ": [
+"ET"
+],
+"ADD-ZNZ": [
+"ET"
+],
+"ADD-ZRH": [
+"ET"
+],
+"ADF-IST": [
+"TK"
+],
+"ADL-AKL": [
+"NZ"
+],
+"ADL-ASP": [
+"VA"
+],
+"ADL-BNE": [
+"VA"
+],
+"ADL-CBR": [
+"VA"
+],
+"ADL-CHC": [
+"NZ"
+],
+"ADL-HBA": [
+"VA"
+],
+"ADL-LST": [
+"VA"
+],
+"ADL-MEL": [
+"VA"
+],
+"ADL-OOL": [
+"VA"
+],
+"ADL-PER": [
+"VA"
+],
+"ADL-SFO": [
+"UA"
+],
+"ADL-SIN": [
+"SQ"
+],
+"ADL-SYD": [
+"VA"
+],
+"ADZ-BOG": [
+"AV"
+],
+"ADZ-CLO": [
+"AV"
+],
+"ADZ-MDE": [
+"AV"
+],
+"ADZ-PEI": [
+"AV"
+],
+"ADZ-PTY": [
+"CM"
+],
+"AEP-BOG": [
+"AV"
+],
+"AER-AUH": [
+"EY"
+],
+"AGA-DUS": [
+"EW"
+],
+"AGA-KTW": [
+"LO"
+],
+"AGA-LIS": [
+"TP"
+],
+"AGA-PRG": [
+"EW"
+],
+"AGA-STR": [
+"EW"
+],
+"AGA-WAW": [
+"LO"
+],
+"AGP-ATH": [
+"A3"
+],
+"AGP-AUH": [
+"EY"
+],
+"AGP-BER": [
+"EW"
+],
+"AGP-BRU": [
+"SN"
+],
+"AGP-CGN": [
+"EW"
+],
+"AGP-DUS": [
+"EW"
+],
+"AGP-EWR": [
+"UA"
+],
+"AGP-FCO": [
+"AZ"
+],
+"AGP-FRA": [
+"LH"
+],
+"AGP-GVA": [
+"LX"
+],
+"AGP-HAJ": [
+"EW"
+],
+"AGP-HAM": [
+"EW"
+],
+"AGP-IST": [
+"TK"
+],
+"AGP-LIS": [
+"TP"
+],
+"AGP-MUC": [
+"LH"
+],
+"AGP-PRG": [
+"EW"
+],
+"AGP-STR": [
+"EW"
+],
+"AGP-VIE": [
+"OS"
+],
+"AGP-WAW": [
+"LO"
+],
+"AGP-ZRH": [
+"LX"
+],
+"AHB-CAI": [
+"MS"
+],
+"AHO-LIN": [
+"AZ"
+],
+"AJI-IST": [
+"TK"
+],
+"AJR-HAJ": [
+"EW"
+],
+"AJR-MUC": [
+"EW"
+],
+"AJR-STR": [
+"EW"
+],
+"AKL-APW": [
+"NZ"
+],
+"AKL-BHE": [
+"NZ"
+],
+"AKL-BNE": [
+"NZ"
+],
+"AKL-CHC": [
+"NZ"
+],
+"AKL-CNS": [
+"NZ"
+],
+"AKL-DPS": [
+"NZ"
+],
+"AKL-DUD": [
+"NZ"
+],
+"AKL-GIS": [
+"NZ"
+],
+"AKL-HBA": [
+"NZ"
+],
+"AKL-HKG": [
+"NZ"
+],
+"AKL-HNL": [
+"NZ"
+],
+"AKL-IAH": [
+"NZ"
+],
+"AKL-IUE": [
+"NZ"
+],
+"AKL-IVC": [
+"NZ"
+],
+"AKL-JFK": [
+"NZ"
+],
+"AKL-KKE": [
+"NZ"
+],
+"AKL-LAX": [
+"NZ"
+],
+"AKL-MCY": [
+"NZ"
+],
+"AKL-MEL": [
+"NZ"
+],
+"AKL-NAN": [
+"NZ"
+],
+"AKL-NOU": [
+"NZ"
+],
+"AKL-NPE": [
+"NZ"
+],
+"AKL-NPL": [
+"NZ"
+],
+"AKL-NRT": [
+"NZ"
+],
+"AKL-NSN": [
+"NZ"
+],
+"AKL-OOL": [
+"NZ"
+],
+"AKL-PEK": [
+"CA"
+],
+"AKL-PER": [
+"NZ"
+],
+"AKL-PMR": [
+"NZ"
+],
+"AKL-PPT": [
+"NZ"
+],
+"AKL-PVG": [
+"NZ"
+],
+"AKL-RAR": [
+"NZ"
+],
+"AKL-ROT": [
+"NZ"
+],
+"AKL-SFO": [
+"NZ",
+"UA"
+],
+"AKL-SIN": [
+"NZ",
+"SQ"
+],
+"AKL-SYD": [
+"NZ"
+],
+"AKL-TBU": [
+"NZ"
+],
+"AKL-TPE": [
+"NZ"
+],
+"AKL-TRG": [
+"NZ"
+],
+"AKL-TUO": [
+"NZ"
+],
+"AKL-WLG": [
+"NZ"
+],
+"AKL-WRE": [
+"NZ"
+],
+"AKL-YVR": [
+"AC",
+"NZ"
+],
+"AKL-ZQN": [
+"NZ"
+],
+"AKU-LHW": [
+"CA"
+],
+"AKU-PEK": [
+"CA"
+],
+"AKU-TFU": [
+"CA"
+],
+"AKU-TWC": [
+"CA"
+],
+"AKU-URC": [
+"CA"
+],
+"ALA-FRA": [
+"LH"
+],
+"ALA-ICN": [
+"OZ"
+],
+"ALA-IST": [
+"TK"
+],
+"ALA-PEK": [
+"CA"
+],
+"ALA-WAW": [
+"LO"
+],
+"ALB-DEN": [
+"UA"
+],
+"ALB-ORD": [
+"UA"
+],
+"ALC-BRU": [
+"SN"
+],
+"ALC-CGN": [
+"EW"
+],
+"ALC-DUS": [
+"EW"
+],
+"ALC-FCO": [
+"AZ"
+],
+"ALC-FRA": [
+"LH"
+],
+"ALC-GVA": [
+"LX"
+],
+"ALC-HAJ": [
+"EW"
+],
+"ALC-HAM": [
+"EW"
+],
+"ALC-LIS": [
+"TP"
+],
+"ALC-PRG": [
+"EW"
+],
+"ALC-STR": [
+"EW"
+],
+"ALC-VIE": [
+"OS"
+],
+"ALC-ZRH": [
+"LX"
+],
+"ALF-CHQ": [
+"A3"
+],
+"ALG-CAI": [
+"MS"
+],
+"ALG-FCO": [
+"AZ"
+],
+"ALG-FRA": [
+"LH"
+],
+"ALG-IST": [
+"TK"
+],
+"ALP-IST": [
+"TK"
+],
+"AMD-AUH": [
+"EY"
+],
+"AMD-BKK": [
+"TG"
+],
+"AMD-BOM": [
+"AI"
+],
+"AMD-DEL": [
+"AI"
+],
+"AMD-GOI": [
+"AI"
+],
+"AMD-LGW": [
+"AI"
+],
+"AMD-SIN": [
+"SQ"
+],
+"AMM-ATH": [
+"A3"
+],
+"AMM-AUH": [
+"EY"
+],
+"AMM-CAI": [
+"MS"
+],
+"AMM-FRA": [
+"LH"
+],
+"AMM-IST": [
+"TK"
+],
+"AMM-STR": [
+"EW"
+],
+"AMM-VIE": [
+"OS"
+],
+"AMS-ATH": [
+"A3"
+],
+"AMS-AUH": [
+"EY"
+],
+"AMS-BKK": [
+"BR",
+"TG"
+],
+"AMS-CAI": [
+"MS"
+],
+"AMS-DEL": [
+"AI"
+],
+"AMS-EWR": [
+"UA"
+],
+"AMS-FCO": [
+"AZ"
+],
+"AMS-FRA": [
+"LH"
+],
+"AMS-HAN": [
+"VN"
+],
+"AMS-IAD": [
+"UA"
+],
+"AMS-IAH": [
+"UA"
+],
+"AMS-INN": [
+"OS"
+],
+"AMS-IST": [
+"TK"
+],
+"AMS-LIN": [
+"AZ"
+],
+"AMS-LIS": [
+"TP"
+],
+"AMS-MUC": [
+"LH"
+],
+"AMS-ORD": [
+"UA"
+],
+"AMS-SFO": [
+"UA"
+],
+"AMS-SIN": [
+"SQ"
+],
+"AMS-TPE": [
+"BR"
+],
+"AMS-VIE": [
+"OS"
+],
+"AMS-WAW": [
+"LO"
+],
+"AMS-YUL": [
+"AC"
+],
+"AMS-YYZ": [
+"AC"
+],
+"AMS-ZAG": [
+"OU"
+],
+"AMS-ZRH": [
+"LX"
+],
+"ANC-DEN": [
+"UA"
+],
+"ANC-EWR": [
+"UA"
+],
+"ANC-IAD": [
+"UA"
+],
+"ANC-IAH": [
+"UA"
+],
+"ANC-ORD": [
+"UA"
+],
+"ANC-SFO": [
+"UA"
+],
+"ANC-YVR": [
+"AC"
+],
+"ANU-EWR": [
+"UA"
+],
+"ANU-LHR": [
+"VS"
+],
+"AOJ-TPE": [
+"BR"
+],
+"AOK-DUS": [
+"EW"
+],
+"AOK-GRZ": [
+"EW"
+],
+"AOK-INN": [
+"EW"
+],
+"AOK-SZG": [
+"EW"
+],
+"AOK-VIE": [
+"OS"
+],
+"AQJ-IST": [
+"TK"
+],
+"ARN-ATH": [
+"A3"
+],
+"ARN-BER": [
+"EW"
+],
+"ARN-BEY": [
+"EW"
+],
+"ARN-BKK": [
+"TG"
+],
+"ARN-BRU": [
+"SN"
+],
+"ARN-CGN": [
+"EW"
+],
+"ARN-DUS": [
+"EW"
+],
+"ARN-FRA": [
+"LH"
+],
+"ARN-GVA": [
+"LX"
+],
+"ARN-HAJ": [
+"EW"
+],
+"ARN-HAM": [
+"EW"
+],
+"ARN-HND": [
+"NH"
+],
+"ARN-INN": [
+"EW"
+],
+"ARN-IST": [
+"TK"
+],
+"ARN-KLX": [
+"A3"
+],
+"ARN-LIS": [
+"TP"
+],
+"ARN-MUC": [
+"LH"
+],
+"ARN-PEK": [
+"CA"
+],
+"ARN-PRG": [
+"EW"
+],
+"ARN-PVK": [
+"EW"
+],
+"ARN-SPU": [
+"OU"
+],
+"ARN-STR": [
+"EW"
+],
+"ARN-SZG": [
+"EW"
+],
+"ARN-TRN": [
+"EW"
+],
+"ARN-VIE": [
+"OS"
+],
+"ARN-WAW": [
+"LO"
+],
+"ARN-YYZ": [
+"AC"
+],
+"ARN-ZAG": [
+"OU"
+],
+"ARN-ZRH": [
+"LX"
+],
+"ASB-IST": [
+"TK"
+],
+"ASM-CAI": [
+"MS"
+],
+"ASM-IST": [
+"TK"
+],
+"ASR-CGN": [
+"EW"
+],
+"ASR-HAM": [
+"EW"
+],
+"ASR-IST": [
+"TK"
+],
+"ASU-BOG": [
+"AV"
+],
+"ASU-PTY": [
+"CM"
+],
+"ASW-CAI": [
+"MS"
+],
+"ATH-AUH": [
+"A3",
+"EY"
+],
+"ATH-AXD": [
+"A3"
+],
+"ATH-BCN": [
+"A3"
+],
+"ATH-BEG": [
+"A3"
+],
+"ATH-BER": [
+"A3"
+],
+"ATH-BEY": [
+"A3"
+],
+"ATH-BGW": [
+"A3"
+],
+"ATH-BIO": [
+"A3"
+],
+"ATH-BLQ": [
+"A3"
+],
+"ATH-BNX": [
+"A3"
+],
+"ATH-BOD": [
+"A3"
+],
+"ATH-BRI": [
+"A3"
+],
+"ATH-BRU": [
+"A3",
+"SN"
+],
+"ATH-BSL": [
+"A3"
+],
+"ATH-BUD": [
+"A3"
+],
+"ATH-CAI": [
+"A3",
+"MS"
+],
+"ATH-CDG": [
+"A3"
+],
+"ATH-CFU": [
+"A3"
+],
+"ATH-CGN": [
+"EW"
+],
+"ATH-CHQ": [
+"A3"
+],
+"ATH-CPH": [
+"A3"
+],
+"ATH-CTA": [
+"A3"
+],
+"ATH-DBV": [
+"A3",
+"OU"
+],
+"ATH-DUB": [
+"A3"
+],
+"ATH-DUS": [
+"A3",
+"EW"
+],
+"ATH-DXB": [
+"A3"
+],
+"ATH-EBL": [
+"A3"
+],
+"ATH-EDI": [
+"A3"
+],
+"ATH-EFL": [
+"A3"
+],
+"ATH-EVN": [
+"A3"
+],
+"ATH-EWR": [
+"UA"
+],
+"ATH-FCO": [
+"A3",
+"AZ"
+],
+"ATH-FLR": [
+"A3"
+],
+"ATH-FRA": [
+"A3",
+"LH"
+],
+"ATH-GVA": [
+"A3",
+"LX"
+],
+"ATH-GYD": [
+"A3"
+],
+"ATH-HAJ": [
+"A3"
+],
+"ATH-HAM": [
+"A3"
+],
+"ATH-HBE": [
+"A3"
+],
+"ATH-HEL": [
+"A3"
+],
+"ATH-HER": [
+"A3"
+],
+"ATH-IAD": [
+"UA"
+],
+"ATH-IBZ": [
+"A3"
+],
+"ATH-INN": [
+"A3"
+],
+"ATH-IOA": [
+"A3"
+],
+"ATH-IST": [
+"A3",
+"TK"
+],
+"ATH-JED": [
+"A3"
+],
+"ATH-JKH": [
+"A3"
+],
+"ATH-JMK": [
+"A3"
+],
+"ATH-JTR": [
+"A3"
+],
+"ATH-KGS": [
+"A3"
+],
+"ATH-KLX": [
+"A3"
+],
+"ATH-KRK": [
+"A3"
+],
+"ATH-KVA": [
+"A3"
+],
+"ATH-LCA": [
+"A3"
+],
+"ATH-LGW": [
+"A3"
+],
+"ATH-LHR": [
+"A3"
+],
+"ATH-LIL": [
+"A3"
+],
+"ATH-LIS": [
+"A3",
+"TP"
+],
+"ATH-LJU": [
+"A3"
+],
+"ATH-LUX": [
+"A3"
+],
+"ATH-LXR": [
+"A3"
+],
+"ATH-LXS": [
+"A3"
+],
+"ATH-LYS": [
+"A3"
+],
+"ATH-MAD": [
+"A3"
+],
+"ATH-MAN": [
+"A3"
+],
+"ATH-MJT": [
+"A3"
+],
+"ATH-MLA": [
+"A3"
+],
+"ATH-MRS": [
+"A3"
+],
+"ATH-MUC": [
+"A3",
+"LH"
+],
+"ATH-MXP": [
+"A3"
+],
+"ATH-NAP": [
+"A3"
+],
+"ATH-NCE": [
+"A3"
+],
+"ATH-NTE": [
+"A3"
+],
+"ATH-OLB": [
+"A3"
+],
+"ATH-OPO": [
+"A3"
+],
+"ATH-ORD": [
+"UA"
+],
+"ATH-OSL": [
+"A3"
+],
+"ATH-OTP": [
+"A3"
+],
+"ATH-PEK": [
+"CA"
+],
+"ATH-PFO": [
+"A3"
+],
+"ATH-PMI": [
+"A3"
+],
+"ATH-PMO": [
+"A3"
+],
+"ATH-PRG": [
+"A3",
+"EW"
+],
+"ATH-PSA": [
+"A3"
+],
+"ATH-PVG": [
+"HO"
+],
+"ATH-RAK": [
+"A3"
+],
+"ATH-RHO": [
+"A3"
+],
+"ATH-RIX": [
+"A3"
+],
+"ATH-RMO": [
+"A3"
+],
+"ATH-RUH": [
+"A3"
+],
+"ATH-SJJ": [
+"A3"
+],
+"ATH-SKG": [
+"A3"
+],
+"ATH-SKP": [
+"A3"
+],
+"ATH-SMI": [
+"A3"
+],
+"ATH-SOF": [
+"A3"
+],
+"ATH-SPU": [
+"A3",
+"OU"
+],
+"ATH-SSH": [
+"A3"
+],
+"ATH-STR": [
+"A3",
+"EW"
+],
+"ATH-SVQ": [
+"A3"
+],
+"ATH-SXB": [
+"A3"
+],
+"ATH-TBS": [
+"A3"
+],
+"ATH-TGD": [
+"A3"
+],
+"ATH-TIA": [
+"A3"
+],
+"ATH-TLL": [
+"A3"
+],
+"ATH-TLS": [
+"A3"
+],
+"ATH-TLV": [
+"A3"
+],
+"ATH-TUN": [
+"A3"
+],
+"ATH-VCE": [
+"A3"
+],
+"ATH-VIE": [
+"A3",
+"OS"
+],
+"ATH-VLC": [
+"A3"
+],
+"ATH-VNO": [
+"A3"
+],
+"ATH-WAW": [
+"A3",
+"LO"
+],
+"ATH-YUL": [
+"AC"
+],
+"ATH-YYZ": [
+"AC"
+],
+"ATH-ZAG": [
+"A3",
+"OU"
+],
+"ATH-ZRH": [
+"A3",
+"LX"
+],
+"ATL-AUH": [
+"EY"
+],
+"ATL-DEN": [
+"UA"
+],
+"ATL-EWR": [
+"UA"
+],
+"ATL-FRA": [
+"LH"
+],
+"ATL-IAD": [
+"UA"
+],
+"ATL-IAH": [
+"UA"
+],
+"ATL-IST": [
+"TK"
+],
+"ATL-LHR": [
+"VS"
+],
+"ATL-MAN": [
+"VS"
+],
+"ATL-ORD": [
+"UA"
+],
+"ATL-PTY": [
+"CM"
+],
+"ATL-SFO": [
+"UA"
+],
+"ATL-YUL": [
+"AC"
+],
+"ATL-YYZ": [
+"AC"
+],
+"ATQ-BHX": [
+"AI"
+],
+"ATQ-BOM": [
+"AI"
+],
+"ATQ-DEL": [
+"AI"
+],
+"ATQ-LGW": [
+"AI"
+],
+"ATW-DEN": [
+"UA"
+],
+"ATZ-CAI": [
+"MS"
+],
+"AUA-BOG": [
+"AV"
+],
+"AUA-EWR": [
+"UA"
+],
+"AUA-IAD": [
+"UA"
+],
+"AUA-IAH": [
+"UA"
+],
+"AUA-ORD": [
+"UA"
+],
+"AUA-PTY": [
+"CM"
+],
+"AUA-YUL": [
+"AC"
+],
+"AUC-BOG": [
+"AV"
+],
+"AUH-BAH": [
+"EY"
+],
+"AUH-BCN": [
+"EY"
+],
+"AUH-BER": [
+"EW"
+],
+"AUH-BEY": [
+"EY"
+],
+"AUH-BKK": [
+"EY"
+],
+"AUH-BLR": [
+"EY"
+],
+"AUH-BOM": [
+"EY"
+],
+"AUH-BOS": [
+"EY"
+],
+"AUH-BRU": [
+"EY"
+],
+"AUH-CAI": [
+"EY",
+"MS"
+],
+"AUH-CCJ": [
+"EY"
+],
+"AUH-CCU": [
+"EY"
+],
+"AUH-CDG": [
+"EY"
+],
+"AUH-CGK": [
+"EY"
+],
+"AUH-CLT": [
+"EY"
+],
+"AUH-CMB": [
+"EY"
+],
+"AUH-CMN": [
+"EY"
+],
+"AUH-CNX": [
+"EY"
+],
+"AUH-COK": [
+"EY"
+],
+"AUH-CPH": [
+"EY"
+],
+"AUH-DAC": [
+"EY"
+],
+"AUH-DAM": [
+"EY"
+],
+"AUH-DBB": [
+"EY"
+],
+"AUH-DEL": [
+"EY"
+],
+"AUH-DMM": [
+"EY"
+],
+"AUH-DOH": [
+"EY"
+],
+"AUH-DPS": [
+"EY"
+],
+"AUH-DUB": [
+"EY"
+],
+"AUH-DUS": [
+"EY"
+],
+"AUH-ELQ": [
+"EY"
+],
+"AUH-FCO": [
+"EY"
+],
+"AUH-FRA": [
+"EY"
+],
+"AUH-GVA": [
+"EY"
+],
+"AUH-HAN": [
+"EY"
+],
+"AUH-HKG": [
+"EY"
+],
+"AUH-HKT": [
+"EY"
+],
+"AUH-HYD": [
+"EY"
+],
+"AUH-IAD": [
+"EY"
+],
+"AUH-ICN": [
+"EY"
+],
+"AUH-ISB": [
+"EY"
+],
+"AUH-IST": [
+"EY",
+"TK"
+],
+"AUH-JAI": [
+"EY"
+],
+"AUH-JED": [
+"EY"
+],
+"AUH-JFK": [
+"EY"
+],
+"AUH-JMK": [
+"EY"
+],
+"AUH-JNB": [
+"EY"
+],
+"AUH-JTR": [
+"EY"
+],
+"AUH-KBL": [
+"EY"
+],
+"AUH-KBV": [
+"EY"
+],
+"AUH-KHI": [
+"EY"
+],
+"AUH-KIX": [
+"EY"
+],
+"AUH-KRK": [
+"EY"
+],
+"AUH-KTI": [
+"EY"
+],
+"AUH-KUL": [
+"EY"
+],
+"AUH-KWI": [
+"EY"
+],
+"AUH-KZN": [
+"EY"
+],
+"AUH-LED": [
+"EY"
+],
+"AUH-LHE": [
+"EY"
+],
+"AUH-LHR": [
+"EY"
+],
+"AUH-LIS": [
+"EY"
+],
+"AUH-MAA": [
+"EY"
+],
+"AUH-MAD": [
+"EY"
+],
+"AUH-MAN": [
+"EY"
+],
+"AUH-MCT": [
+"EY"
+],
+"AUH-MED": [
+"EY"
+],
+"AUH-MEL": [
+"EY"
+],
+"AUH-MLE": [
+"EY"
+],
+"AUH-MNL": [
+"EY"
+],
+"AUH-MUC": [
+"EY"
+],
+"AUH-MXP": [
+"EY"
+],
+"AUH-NBO": [
+"EY"
+],
+"AUH-NCE": [
+"EY"
+],
+"AUH-NRT": [
+"EY"
+],
+"AUH-ORD": [
+"EY"
+],
+"AUH-PEK": [
+"CA"
+],
+"AUH-PEW": [
+"EY"
+],
+"AUH-PKX": [
+"EY"
+],
+"AUH-PMI": [
+"EY"
+],
+"AUH-PRG": [
+"EY"
+],
+"AUH-RUH": [
+"EY"
+],
+"AUH-SIN": [
+"EY"
+],
+"AUH-SLL": [
+"EY"
+],
+"AUH-SVO": [
+"EY"
+],
+"AUH-SYD": [
+"EY"
+],
+"AUH-TLV": [
+"EY"
+],
+"AUH-TPE": [
+"EY"
+],
+"AUH-TRV": [
+"EY"
+],
+"AUH-TUN": [
+"EY"
+],
+"AUH-VIE": [
+"EY"
+],
+"AUH-WAW": [
+"EY"
+],
+"AUH-YYC": [
+"EY"
+],
+"AUH-YYZ": [
+"EY"
+],
+"AUH-ZNZ": [
+"EY"
+],
+"AUH-ZRH": [
+"EY"
+],
+"AUS-DEN": [
+"UA"
+],
+"AUS-EWR": [
+"UA"
+],
+"AUS-FRA": [
+"LH"
+],
+"AUS-IAD": [
+"UA"
+],
+"AUS-IAH": [
+"UA"
+],
+"AUS-LAX": [
+"UA"
+],
+"AUS-ORD": [
+"UA"
+],
+"AUS-PTY": [
+"CM"
+],
+"AUS-SFO": [
+"UA"
+],
+"AUS-YUL": [
+"AC"
+],
+"AUS-YVR": [
+"AC"
+],
+"AUS-YYZ": [
+"AC"
+],
+"AXD-HER": [
+"A3"
+],
+"AXM-BOG": [
+"AV"
+],
+"AXM-MDE": [
+"AV"
+],
+"AXT-HND": [
+"NH"
+],
+"AXU-GDQ": [
+"ET"
+],
+"AXU-MQX": [
+"ET"
+],
+"AYT-BER": [
+"TK"
+],
+"AYT-BEY": [
+"TK"
+],
+"AYT-BGW": [
+"TK"
+],
+"AYT-BRU": [
+"SN"
+],
+"AYT-CGN": [
+"EW"
+],
+"AYT-CMN": [
+"TK"
+],
+"AYT-DUS": [
+"EW"
+],
+"AYT-ECN": [
+"TK"
+],
+"AYT-FRA": [
+"TK"
+],
+"AYT-GVA": [
+"LX"
+],
+"AYT-GYD": [
+"TK"
+],
+"AYT-IST": [
+"TK"
+],
+"AYT-KTW": [
+"LO"
+],
+"AYT-LED": [
+"TK"
+],
+"AYT-MUC": [
+"TK"
+],
+"AYT-NQZ": [
+"TK"
+],
+"AYT-OMS": [
+"TK"
+],
+"AYT-RMO": [
+"TK"
+],
+"AYT-STR": [
+"EW",
+"TK"
+],
+"AYT-VIE": [
+"OS"
+],
+"AYT-VKO": [
+"TK"
+],
+"AYT-WAW": [
+"LO",
+"TK"
+],
+"AZS-YUL": [
+"AC"
+],
+"BAH-CAI": [
+"MS"
+],
+"BAH-IST": [
+"TK"
+],
+"BAL-IST": [
+"TK"
+],
+"BAQ-BOG": [
+"AV"
+],
+"BAQ-CLO": [
+"AV"
+],
+"BAQ-FLL": [
+"AV"
+],
+"BAQ-MDE": [
+"AV"
+],
+"BAQ-MIA": [
+"AV"
+],
+"BAQ-PTY": [
+"CM"
+],
+"BAV-PEK": [
+"CA"
+],
+"BAV-WUH": [
+"CA"
+],
+"BBI-BOM": [
+"AI"
+],
+"BBI-DEL": [
+"AI"
+],
+"BCN-BOG": [
+"AV"
+],
+"BCN-BRU": [
+"SN"
+],
+"BCN-CAI": [
+"MS"
+],
+"BCN-CGN": [
+"EW"
+],
+"BCN-DUS": [
+"EW"
+],
+"BCN-EWR": [
+"UA"
+],
+"BCN-FCO": [
+"AZ"
+],
+"BCN-FRA": [
+"LH"
+],
+"BCN-HAM": [
+"EW"
+],
+"BCN-IAD": [
+"UA"
+],
+"BCN-ICN": [
+"OZ"
+],
+"BCN-IST": [
+"TK"
+],
+"BCN-KRK": [
+"LO"
+],
+"BCN-LIS": [
+"TP"
+],
+"BCN-LXR": [
+"MS"
+],
+"BCN-MUC": [
+"LH"
+],
+"BCN-ORD": [
+"UA"
+],
+"BCN-PEK": [
+"CA"
+],
+"BCN-PRG": [
+"EW"
+],
+"BCN-PVG": [
+"CA"
+],
+"BCN-RDO": [
+"LO"
+],
+"BCN-SFO": [
+"UA"
+],
+"BCN-SIN": [
+"SQ"
+],
+"BCN-SKG": [
+"A3"
+],
+"BCN-STR": [
+"EW"
+],
+"BCN-SZG": [
+"EW"
+],
+"BCN-SZX": [
+"ZH"
+],
+"BCN-VIE": [
+"OS"
+],
+"BCN-WAW": [
+"LO"
+],
+"BCN-YUL": [
+"AC"
+],
+"BCN-YYZ": [
+"AC"
+],
+"BCN-ZAG": [
+"OU"
+],
+"BCN-ZRH": [
+"LX"
+],
+"BDA-EWR": [
+"UA"
+],
+"BDL-DEN": [
+"UA"
+],
+"BDL-IAD": [
+"UA"
+],
+"BDL-IAH": [
+"UA"
+],
+"BDL-ORD": [
+"UA"
+],
+"BDQ-BOM": [
+"AI"
+],
+"BDQ-DEL": [
+"AI"
+],
+"BDS-BRU": [
+"SN"
+],
+"BDS-CGN": [
+"EW"
+],
+"BDS-DUS": [
+"EW"
+],
+"BDS-FCO": [
+"AZ"
+],
+"BDS-GVA": [
+"LX"
+],
+"BDS-LIN": [
+"AZ"
+],
+"BDS-PRG": [
+"EW"
+],
+"BDS-STR": [
+"EW"
+],
+"BDS-ZRH": [
+"LX"
+],
+"BEG-CGN": [
+"EW"
+],
+"BEG-FRA": [
+"LH"
+],
+"BEG-IST": [
+"TK"
+],
+"BEG-MUC": [
+"LH"
+],
+"BEG-VIE": [
+"OS"
+],
+"BEG-WAW": [
+"LO"
+],
+"BEG-ZRH": [
+"LX"
+],
+"BEL-BOG": [
+"AV"
+],
+"BEL-LIS": [
+"TP"
+],
+"BER-BEY": [
+"EW"
+],
+"BER-BIA": [
+"EW"
+],
+"BER-BIO": [
+"EW"
+],
+"BER-BJV": [
+"TK"
+],
+"BER-BRU": [
+"SN"
+],
+"BER-CAI": [
+"MS"
+],
+"BER-CFU": [
+"EW"
+],
+"BER-CGN": [
+"EW"
+],
+"BER-COV": [
+"EW"
+],
+"BER-DBV": [
+"EW"
+],
+"BER-DUS": [
+"EW"
+],
+"BER-DWC": [
+"EW"
+],
+"BER-DXB": [
+"EW"
+],
+"BER-EBL": [
+"EW"
+],
+"BER-EVN": [
+"EW"
+],
+"BER-EWR": [
+"UA"
+],
+"BER-FAO": [
+"EW"
+],
+"BER-FRA": [
+"LH"
+],
+"BER-FUE": [
+"EW"
+],
+"BER-GOT": [
+"EW"
+],
+"BER-GRZ": [
+"EW"
+],
+"BER-GVA": [
+"LX"
+],
+"BER-HEL": [
+"EW"
+],
+"BER-HER": [
+"EW"
+],
+"BER-HRG": [
+"EW"
+],
+"BER-IBZ": [
+"EW"
+],
+"BER-IST": [
+"TK"
+],
+"BER-JED": [
+"EW"
+],
+"BER-KGS": [
+"EW"
+],
+"BER-KTT": [
+"EW"
+],
+"BER-KVA": [
+"EW"
+],
+"BER-LCA": [
+"EW"
+],
+"BER-LHR": [
+"EW"
+],
+"BER-LIS": [
+"EW",
+"TP"
+],
+"BER-MUC": [
+"LH"
+],
+"BER-NAP": [
+"EW"
+],
+"BER-NCE": [
+"EW"
+],
+"BER-NCL": [
+"EW"
+],
+"BER-OLB": [
+"EW"
+],
+"BER-OPO": [
+"EW"
+],
+"BER-PMI": [
+"EW"
+],
+"BER-RHO": [
+"EW"
+],
+"BER-RMF": [
+"EW"
+],
+"BER-RVN": [
+"EW"
+],
+"BER-SJJ": [
+"EW"
+],
+"BER-SKG": [
+"A3"
+],
+"BER-SPU": [
+"EW",
+"OU"
+],
+"BER-STR": [
+"EW"
+],
+"BER-SZF": [
+"TK"
+],
+"BER-SZG": [
+"EW"
+],
+"BER-TFS": [
+"EW"
+],
+"BER-TIV": [
+"EW"
+],
+"BER-TOS": [
+"EW"
+],
+"BER-VIE": [
+"OS"
+],
+"BER-WAW": [
+"LO"
+],
+"BER-XRY": [
+"EW"
+],
+"BER-YUL": [
+"AC"
+],
+"BER-ZAG": [
+"OU"
+],
+"BER-ZRH": [
+"EW",
+"LX"
+],
+"BER-ZTH": [
+"EW"
+],
+"BES-HER": [
+"A3"
+],
+"BEY-BJV": [
+"TK"
+],
+"BEY-CAI": [
+"MS"
+],
+"BEY-COV": [
+"TK"
+],
+"BEY-DUS": [
+"EW"
+],
+"BEY-FRA": [
+"LH"
+],
+"BEY-HAJ": [
+"EW"
+],
+"BEY-IST": [
+"TK"
+],
+"BEY-STR": [
+"EW"
+],
+"BEY-SZG": [
+"EW"
+],
+"BEY-WAW": [
+"LO"
+],
+"BEY-ZRH": [
+"LX"
+],
+"BFJ-KMG": [
+"HO"
+],
+"BFJ-PVG": [
+"HO"
+],
+"BFL-DEN": [
+"UA"
+],
+"BGA-BOG": [
+"AV"
+],
+"BGA-CTG": [
+"AV"
+],
+"BGA-MDE": [
+"AV"
+],
+"BGA-PTY": [
+"CM"
+],
+"BGG-IST": [
+"TK"
+],
+"BGI-EWR": [
+"UA"
+],
+"BGI-GND": [
+"VS"
+],
+"BGI-IAD": [
+"UA"
+],
+"BGI-LHR": [
+"VS"
+],
+"BGI-MAN": [
+"VS"
+],
+"BGI-PTY": [
+"CM"
+],
+"BGI-SVD": [
+"VS"
+],
+"BGI-YUL": [
+"AC"
+],
+"BGI-YYZ": [
+"AC"
+],
+"BGO-DUS": [
+"EW"
+],
+"BGO-FRA": [
+"LH"
+],
+"BGO-GDN": [
+"LO"
+],
+"BGO-MUC": [
+"LH"
+],
+"BGO-VIE": [
+"OS"
+],
+"BGR-DEN": [
+"UA"
+],
+"BGW-CAI": [
+"MS"
+],
+"BGW-IST": [
+"TK"
+],
+"BGY-DUS": [
+"EW"
+],
+"BHE-WLG": [
+"NZ"
+],
+"BHJ-BOM": [
+"AI"
+],
+"BHJ-DEL": [
+"AI"
+],
+"BHK-IST": [
+"TK"
+],
+"BHO-BOM": [
+"AI"
+],
+"BHO-DEL": [
+"AI"
+],
+"BHX-DEL": [
+"AI"
+],
+"BHX-DUS": [
+"EW"
+],
+"BHX-FRA": [
+"LH"
+],
+"BHX-IST": [
+"TK"
+],
+"BHX-MUC": [
+"LH"
+],
+"BHX-ZRH": [
+"LX"
+],
+"BHY-PEK": [
+"CA"
+],
+"BHY-TFU": [
+"CA"
+],
+"BIA-CGN": [
+"EW"
+],
+"BIA-DUS": [
+"EW"
+],
+"BIA-FRA": [
+"LH"
+],
+"BIA-HAJ": [
+"EW"
+],
+"BIA-MUC": [
+"LH"
+],
+"BIA-NUE": [
+"EW"
+],
+"BIA-STR": [
+"EW"
+],
+"BIA-VIE": [
+"OS"
+],
+"BIL-DEN": [
+"UA"
+],
+"BIO-BRU": [
+"SN"
+],
+"BIO-DUS": [
+"EW"
+],
+"BIO-EWR": [
+"UA"
+],
+"BIO-FRA": [
+"LH"
+],
+"BIO-HAM": [
+"EW"
+],
+"BIO-IST": [
+"TK"
+],
+"BIO-LIS": [
+"TP"
+],
+"BIO-MUC": [
+"LH"
+],
+"BIO-STR": [
+"EW"
+],
+"BIO-VIE": [
+"OS"
+],
+"BIQ-FRA": [
+"LH"
+],
+"BIQ-GVA": [
+"LX"
+],
+"BIQ-MUC": [
+"LH"
+],
+"BJL-BRU": [
+"SN"
+],
+"BJL-CKY": [
+"SN"
+],
+"BJL-DSS": [
+"SN"
+],
+"BJL-IST": [
+"TK"
+],
+"BJL-LIS": [
+"TP"
+],
+"BJL-NKC": [
+"TK"
+],
+"BJM-BRU": [
+"SN"
+],
+"BJM-GOM": [
+"ET"
+],
+"BJR-SZE": [
+"ET"
+],
+"BJV-GDN": [
+"LO"
+],
+"BJV-IST": [
+"TK"
+],
+"BJV-KTW": [
+"LO"
+],
+"BJV-KWI": [
+"TK"
+],
+"BJV-LED": [
+"TK"
+],
+"BJV-MUC": [
+"TK"
+],
+"BJV-POZ": [
+"LO"
+],
+"BJV-VKO": [
+"TK"
+],
+"BJV-WAW": [
+"LO"
+],
+"BJV-WRO": [
+"LO"
+],
+"BJX-IAH": [
+"UA"
+],
+"BKI-ICN": [
+"OZ"
+],
+"BKK-BLR": [
+"TG"
+],
+"BKK-BOM": [
+"AI",
+"TG"
+],
+"BKK-BRU": [
+"TG"
+],
+"BKK-CAN": [
+"TG"
+],
+"BKK-CCU": [
+"TG"
+],
+"BKK-CDG": [
+"TG"
+],
+"BKK-CEI": [
+"TG"
+],
+"BKK-CGK": [
+"TG"
+],
+"BKK-CMB": [
+"TG"
+],
+"BKK-CNX": [
+"TG"
+],
+"BKK-CPH": [
+"TG"
+],
+"BKK-CSX": [
+"TG"
+],
+"BKK-CTS": [
+"TG"
+],
+"BKK-DAD": [
+"TG",
+"VN"
+],
+"BKK-DEL": [
+"AI",
+"TG"
+],
+"BKK-DPS": [
+"TG"
+],
+"BKK-FCO": [
+"AZ"
+],
+"BKK-FRA": [
+"TG"
+],
+"BKK-FUK": [
+"TG"
+],
+"BKK-GAY": [
+"TG"
+],
+"BKK-HAN": [
+"TG",
+"VN"
+],
+"BKK-HDY": [
+"TG"
+],
+"BKK-HGH": [
+"CA"
+],
+"BKK-HKG": [
+"TG",
+"UA"
+],
+"BKK-HKT": [
+"TG"
+],
+"BKK-HND": [
+"NH",
+"TG"
+],
+"BKK-HYD": [
+"TG"
+],
+"BKK-ICN": [
+"OZ",
+"TG"
+],
+"BKK-ISB": [
+"TG"
+],
+"BKK-IST": [
+"TG",
+"TK"
+],
+"BKK-KBV": [
+"TG"
+],
+"BKK-KHH": [
+"TG"
+],
+"BKK-KHI": [
+"TG"
+],
+"BKK-KIX": [
+"TG"
+],
+"BKK-KKC": [
+"TG"
+],
+"BKK-KMG": [
+"TG"
+],
+"BKK-KTI": [
+"TG",
+"TK"
+],
+"BKK-KTM": [
+"TG"
+],
+"BKK-KTW": [
+"LO"
+],
+"BKK-KUL": [
+"TG"
+],
+"BKK-LAX": [
+"UA"
+],
+"BKK-LHE": [
+"TG"
+],
+"BKK-LHR": [
+"BR",
+"TG"
+],
+"BKK-MAA": [
+"TG"
+],
+"BKK-MEL": [
+"TG"
+],
+"BKK-MNL": [
+"PR",
+"TG"
+],
+"BKK-MUC": [
+"LH",
+"TG"
+],
+"BKK-MXP": [
+"TG"
+],
+"BKK-NGO": [
+"TG"
+],
+"BKK-NKG": [
+"HO"
+],
+"BKK-NRT": [
+"NH",
+"TG"
+],
+"BKK-OSL": [
+"TG"
+],
+"BKK-PEK": [
+"CA",
+"TG"
+],
+"BKK-PEN": [
+"TG"
+],
+"BKK-PER": [
+"TG"
+],
+"BKK-PVG": [
+"TG"
+],
+"BKK-RGN": [
+"TG"
+],
+"BKK-SAI": [
+"TG"
+],
+"BKK-SGN": [
+"TG",
+"VN"
+],
+"BKK-SIN": [
+"SQ",
+"TG"
+],
+"BKK-SYD": [
+"TG"
+],
+"BKK-SZX": [
+"ZH"
+],
+"BKK-TFU": [
+"CA",
+"TG"
+],
+"BKK-TPE": [
+"BR",
+"TG"
+],
+"BKK-UBP": [
+"TG"
+],
+"BKK-UTH": [
+"TG"
+],
+"BKK-VIE": [
+"BR",
+"OS"
+],
+"BKK-VTE": [
+"TG"
+],
+"BKK-YCU": [
+"ZH"
+],
+"BKK-YVR": [
+"AC"
+],
+"BKK-ZRH": [
+"LX",
+"TG"
+],
+"BKO-DSS": [
+"ET"
+],
+"BKO-IST": [
+"TK"
+],
+"BLL-BRU": [
+"SN"
+],
+"BLL-FRA": [
+"LH"
+],
+"BLL-INN": [
+"OS"
+],
+"BLL-IST": [
+"TK"
+],
+"BLL-WAW": [
+"LO"
+],
+"BLL-ZRH": [
+"LX"
+],
+"BLQ-BRU": [
+"SN"
+],
+"BLQ-CGN": [
+"EW"
+],
+"BLQ-DUS": [
+"EW"
+],
+"BLQ-FCO": [
+"AZ"
+],
+"BLQ-FRA": [
+"LH"
+],
+"BLQ-IST": [
+"TK"
+],
+"BLQ-LIS": [
+"TP"
+],
+"BLQ-VIE": [
+"OS"
+],
+"BLQ-WAW": [
+"LO"
+],
+"BLQ-ZRH": [
+"LX"
+],
+"BLR-BOM": [
+"AI"
+],
+"BLR-DEL": [
+"AI"
+],
+"BLR-FRA": [
+"LH"
+],
+"BLR-GOI": [
+"AI"
+],
+"BLR-HAN": [
+"VN"
+],
+"BLR-LHR": [
+"AI",
+"VS"
+],
+"BLR-MUC": [
+"LH"
+],
+"BLR-SIN": [
+"SQ"
+],
+"BME-PER": [
+"VA"
+],
+"BMV-HAN": [
+"VN"
+],
+"BMV-HPH": [
+"VN"
+],
+"BMV-SGN": [
+"VN"
+],
+"BMV-THD": [
+"VN"
+],
+"BMV-VII": [
+"VN"
+],
+"BNA-DEN": [
+"UA"
+],
+"BNA-EWR": [
+"UA"
+],
+"BNA-IAD": [
+"UA"
+],
+"BNA-IAH": [
+"UA"
+],
+"BNA-ORD": [
+"UA"
+],
+"BNA-SFO": [
+"UA"
+],
+"BNA-YVR": [
+"AC"
+],
+"BNA-YYZ": [
+"AC"
+],
+"BNE-CBR": [
+"VA"
+],
+"BNE-CHC": [
+"NZ"
+],
+"BNE-CNS": [
+"VA"
+],
+"BNE-DOH": [
+"VA"
+],
+"BNE-DPS": [
+"VA"
+],
+"BNE-DRW": [
+"VA"
+],
+"BNE-EMD": [
+"VA"
+],
+"BNE-GLT": [
+"VA"
+],
+"BNE-HBA": [
+"VA"
+],
+"BNE-HTI": [
+"VA"
+],
+"BNE-ISA": [
+"VA"
+],
+"BNE-LST": [
+"VA"
+],
+"BNE-MEL": [
+"VA"
+],
+"BNE-MKY": [
+"VA"
+],
+"BNE-MNL": [
+"PR"
+],
+"BNE-NAN": [
+"VA"
+],
+"BNE-PER": [
+"VA"
+],
+"BNE-PPP": [
+"VA"
+],
+"BNE-ROK": [
+"VA"
+],
+"BNE-SFO": [
+"UA"
+],
+"BNE-SIN": [
+"SQ"
+],
+"BNE-SYD": [
+"VA"
+],
+"BNE-TPE": [
+"BR"
+],
+"BNE-TSV": [
+"VA"
+],
+"BNE-VLI": [
+"VA"
+],
+"BNE-WLG": [
+"NZ"
+],
+"BNE-YVR": [
+"AC"
+],
+"BNE-ZQN": [
+"NZ",
+"VA"
+],
+"BNK-SYD": [
+"VA"
+],
+"BOD-BRU": [
+"SN"
+],
+"BOD-FRA": [
+"LH"
+],
+"BOD-HER": [
+"A3"
+],
+"BOD-IST": [
+"TK"
+],
+"BOD-MUC": [
+"LH"
+],
+"BOD-ZRH": [
+"LX"
+],
+"BOG-BOS": [
+"AV"
+],
+"BOG-CCS": [
+"AV"
+],
+"BOG-CDG": [
+"AV"
+],
+"BOG-CLO": [
+"AV"
+],
+"BOG-COR": [
+"AV"
+],
+"BOG-CTG": [
+"AV"
+],
+"BOG-CUC": [
+"AV"
+],
+"BOG-CUN": [
+"AV"
+],
+"BOG-CUR": [
+"AV"
+],
+"BOG-CUZ": [
+"AV"
+],
+"BOG-CZU": [
+"AV"
+],
+"BOG-DFW": [
+"AV"
+],
+"BOG-EJA": [
+"AV"
+],
+"BOG-EWR": [
+"UA"
+],
+"BOG-EYP": [
+"AV"
+],
+"BOG-EZE": [
+"AV"
+],
+"BOG-FLA": [
+"AV"
+],
+"BOG-FLL": [
+"AV"
+],
+"BOG-FRA": [
+"LH"
+],
+"BOG-GEO": [
+"AV"
+],
+"BOG-GIG": [
+"AV"
+],
+"BOG-GRU": [
+"AV"
+],
+"BOG-GUA": [
+"AV"
+],
+"BOG-GYE": [
+"AV"
+],
+"BOG-IAD": [
+"AV"
+],
+"BOG-IAH": [
+"UA"
+],
+"BOG-IBE": [
+"AV"
+],
+"BOG-IPI": [
+"AV"
+],
+"BOG-IST": [
+"TK"
+],
+"BOG-JFK": [
+"AV"
+],
+"BOG-LET": [
+"AV"
+],
+"BOG-LHR": [
+"AV"
+],
+"BOG-LIM": [
+"AV"
+],
+"BOG-LPB": [
+"AV"
+],
+"BOG-MAD": [
+"AV"
+],
+"BOG-MAO": [
+"AV"
+],
+"BOG-MAR": [
+"AV"
+],
+"BOG-MCO": [
+"AV"
+],
+"BOG-MDE": [
+"AV"
+],
+"BOG-MEX": [
+"AV"
+],
+"BOG-MIA": [
+"AV"
+],
+"BOG-MTR": [
+"AV"
+],
+"BOG-MTY": [
+"AV"
+],
+"BOG-MVD": [
+"AV"
+],
+"BOG-NVA": [
+"AV"
+],
+"BOG-ORD": [
+"AV"
+],
+"BOG-PEI": [
+"AV"
+],
+"BOG-PPN": [
+"AV"
+],
+"BOG-PSO": [
+"AV"
+],
+"BOG-PTY": [
+"AV",
+"CM"
+],
+"BOG-PUJ": [
+"AV"
+],
+"BOG-RCH": [
+"AV"
+],
+"BOG-SAL": [
+"AV"
+],
+"BOG-SCL": [
+"AV"
+],
+"BOG-SDQ": [
+"AV"
+],
+"BOG-SJO": [
+"AV"
+],
+"BOG-SJU": [
+"AV"
+],
+"BOG-SMR": [
+"AV"
+],
+"BOG-TPA": [
+"AV"
+],
+"BOG-UIB": [
+"AV"
+],
+"BOG-UIO": [
+"AV"
+],
+"BOG-VLN": [
+"AV"
+],
+"BOG-VUP": [
+"AV"
+],
+"BOG-VVC": [
+"AV"
+],
+"BOG-VVI": [
+"AV"
+],
+"BOG-YUL": [
+"AC",
+"AV"
+],
+"BOG-YYZ": [
+"AC",
+"AV"
+],
+"BOI-DEN": [
+"UA"
+],
+"BOI-ORD": [
+"UA"
+],
+"BOI-SFO": [
+"UA"
+],
+"BOJ-CGN": [
+"EW"
+],
+"BOJ-DUS": [
+"EW"
+],
+"BOJ-HAM": [
+"EW"
+],
+"BOJ-KTW": [
+"LO"
+],
+"BOJ-PRG": [
+"EW"
+],
+"BOJ-STR": [
+"EW"
+],
+"BOJ-SZG": [
+"EW"
+],
+"BOJ-VIE": [
+"OS"
+],
+"BOJ-WAW": [
+"LO"
+],
+"BOM-CAI": [
+"MS"
+],
+"BOM-CCU": [
+"AI"
+],
+"BOM-CJB": [
+"AI"
+],
+"BOM-CMB": [
+"AI"
+],
+"BOM-COK": [
+"AI"
+],
+"BOM-DAC": [
+"AI"
+],
+"BOM-DED": [
+"AI"
+],
+"BOM-DEL": [
+"AI"
+],
+"BOM-DMM": [
+"AI"
+],
+"BOM-DOH": [
+"AI"
+],
+"BOM-DXB": [
+"AI"
+],
+"BOM-EWR": [
+"AI"
+],
+"BOM-FRA": [
+"AI",
+"LH"
+],
+"BOM-GOI": [
+"AI"
+],
+"BOM-GOX": [
+"AI"
+],
+"BOM-HAN": [
+"VN"
+],
+"BOM-HND": [
+"AI"
+],
+"BOM-HSR": [
+"AI"
+],
+"BOM-HYD": [
+"AI"
+],
+"BOM-IDR": [
+"AI"
+],
+"BOM-IST": [
+"TK"
+],
+"BOM-IXC": [
+"AI"
+],
+"BOM-IXJ": [
+"AI"
+],
+"BOM-IXM": [
+"AI"
+],
+"BOM-JAI": [
+"AI"
+],
+"BOM-JDH": [
+"AI"
+],
+"BOM-JED": [
+"AI"
+],
+"BOM-JFK": [
+"AI"
+],
+"BOM-JGA": [
+"AI"
+],
+"BOM-LHR": [
+"AI",
+"VS"
+],
+"BOM-LKO": [
+"AI"
+],
+"BOM-MAA": [
+"AI"
+],
+"BOM-MRU": [
+"AI"
+],
+"BOM-MUC": [
+"LH"
+],
+"BOM-NAG": [
+"AI"
+],
+"BOM-NRT": [
+"NH"
+],
+"BOM-PAT": [
+"AI"
+],
+"BOM-RUH": [
+"AI"
+],
+"BOM-SGN": [
+"VN"
+],
+"BOM-SIN": [
+"AI",
+"SQ"
+],
+"BOM-SXR": [
+"AI"
+],
+"BOM-TRV": [
+"AI"
+],
+"BOM-UDR": [
+"AI"
+],
+"BOM-VGA": [
+"AI"
+],
+"BOM-VNS": [
+"AI"
+],
+"BOM-WAW": [
+"LO"
+],
+"BOM-YYZ": [
+"AC"
+],
+"BOM-ZRH": [
+"LX"
+],
+"BOS-DEN": [
+"UA"
+],
+"BOS-EWR": [
+"UA"
+],
+"BOS-FCO": [
+"AZ"
+],
+"BOS-FRA": [
+"LH"
+],
+"BOS-IAD": [
+"UA"
+],
+"BOS-IAH": [
+"UA"
+],
+"BOS-IST": [
+"TK"
+],
+"BOS-LAX": [
+"UA"
+],
+"BOS-LHR": [
+"VS"
+],
+"BOS-LIS": [
+"TP"
+],
+"BOS-MUC": [
+"LH"
+],
+"BOS-OPO": [
+"TP"
+],
+"BOS-ORD": [
+"UA"
+],
+"BOS-PTY": [
+"CM"
+],
+"BOS-SFO": [
+"UA"
+],
+"BOS-VIE": [
+"OS"
+],
+"BOS-YUL": [
+"AC"
+],
+"BOS-YYZ": [
+"AC"
+],
+"BOS-ZRH": [
+"LX"
+],
+"BPX-CTU": [
+"CA"
+],
+"BQN-EWR": [
+"UA"
+],
+"BRE-FRA": [
+"LH"
+],
+"BRE-HER": [
+"A3"
+],
+"BRE-IST": [
+"TK"
+],
+"BRE-MUC": [
+"LH"
+],
+"BRE-PMI": [
+"EW"
+],
+"BRE-STR": [
+"EW"
+],
+"BRE-VIE": [
+"OS"
+],
+"BRE-ZRH": [
+"LX"
+],
+"BRI-CGN": [
+"EW"
+],
+"BRI-DUS": [
+"EW"
+],
+"BRI-EWR": [
+"UA"
+],
+"BRI-FCO": [
+"AZ"
+],
+"BRI-FRA": [
+"LH"
+],
+"BRI-HAM": [
+"EW"
+],
+"BRI-IST": [
+"TK"
+],
+"BRI-LIN": [
+"AZ"
+],
+"BRI-MUC": [
+"LH"
+],
+"BRI-STR": [
+"EW"
+],
+"BRI-VIE": [
+"OS"
+],
+"BRM-PTY": [
+"CM"
+],
+"BRU-BUD": [
+"SN"
+],
+"BRU-CAI": [
+"MS"
+],
+"BRU-CDG": [
+"SN"
+],
+"BRU-CFU": [
+"SN"
+],
+"BRU-CHQ": [
+"SN"
+],
+"BRU-CKY": [
+"SN"
+],
+"BRU-COO": [
+"SN"
+],
+"BRU-CPH": [
+"SN"
+],
+"BRU-CTA": [
+"SN"
+],
+"BRU-DBV": [
+"SN"
+],
+"BRU-DJE": [
+"SN"
+],
+"BRU-DLA": [
+"SN"
+],
+"BRU-DSS": [
+"SN"
+],
+"BRU-EBB": [
+"SN"
+],
+"BRU-EDI": [
+"SN"
+],
+"BRU-EVE": [
+"SN"
+],
+"BRU-EVN": [
+"SN"
+],
+"BRU-EWR": [
+"UA"
+],
+"BRU-FAO": [
+"SN"
+],
+"BRU-FCO": [
+"AZ",
+"SN"
+],
+"BRU-FIH": [
+"SN"
+],
+"BRU-FLR": [
+"SN"
+],
+"BRU-FNA": [
+"SN"
+],
+"BRU-FNC": [
+"SN"
+],
+"BRU-FRA": [
+"LH",
+"SN"
+],
+"BRU-FUE": [
+"SN"
+],
+"BRU-GDN": [
+"LO"
+],
+"BRU-GOT": [
+"SN"
+],
+"BRU-GVA": [
+"LX",
+"SN"
+],
+"BRU-HAM": [
+"SN"
+],
+"BRU-HER": [
+"SN"
+],
+"BRU-HRG": [
+"SN"
+],
+"BRU-IAD": [
+"SN",
+"UA"
+],
+"BRU-IBZ": [
+"SN"
+],
+"BRU-INN": [
+"OS"
+],
+"BRU-IST": [
+"TK"
+],
+"BRU-JFK": [
+"SN"
+],
+"BRU-JRO": [
+"SN"
+],
+"BRU-KGL": [
+"SN"
+],
+"BRU-KGS": [
+"SN"
+],
+"BRU-KRK": [
+"SN"
+],
+"BRU-LCA": [
+"A3"
+],
+"BRU-LFW": [
+"SN"
+],
+"BRU-LHR": [
+"SN"
+],
+"BRU-LIN": [
+"AZ",
+"SN"
+],
+"BRU-LIS": [
+"SN",
+"TP"
+],
+"BRU-LJU": [
+"SN"
+],
+"BRU-LPA": [
+"SN"
+],
+"BRU-LYS": [
+"SN"
+],
+"BRU-MAD": [
+"SN"
+],
+"BRU-MAN": [
+"SN"
+],
+"BRU-MIR": [
+"SN"
+],
+"BRU-MJT": [
+"SN"
+],
+"BRU-MRS": [
+"SN"
+],
+"BRU-MUC": [
+"LH",
+"SN"
+],
+"BRU-MXP": [
+"SN"
+],
+"BRU-NAP": [
+"SN"
+],
+"BRU-NBO": [
+"SN"
+],
+"BRU-NCE": [
+"SN"
+],
+"BRU-NDR": [
+"SN"
+],
+"BRU-NRT": [
+"NH"
+],
+"BRU-NSI": [
+"SN"
+],
+"BRU-OLB": [
+"SN"
+],
+"BRU-OPO": [
+"SN"
+],
+"BRU-ORD": [
+"UA"
+],
+"BRU-OSL": [
+"SN"
+],
+"BRU-OUA": [
+"SN"
+],
+"BRU-OUD": [
+"SN"
+],
+"BRU-PEK": [
+"CA"
+],
+"BRU-PMI": [
+"SN"
+],
+"BRU-PRG": [
+"SN"
+],
+"BRU-PVG": [
+"HO"
+],
+"BRU-RAK": [
+"SN"
+],
+"BRU-RBA": [
+"SN"
+],
+"BRU-RHO": [
+"SN"
+],
+"BRU-ROB": [
+"SN"
+],
+"BRU-SIN": [
+"SQ"
+],
+"BRU-SKG": [
+"A3"
+],
+"BRU-SMI": [
+"SN"
+],
+"BRU-SPU": [
+"SN"
+],
+"BRU-SSH": [
+"SN"
+],
+"BRU-TFS": [
+"SN"
+],
+"BRU-TFU": [
+"CA"
+],
+"BRU-TLS": [
+"SN"
+],
+"BRU-TLV": [
+"SN"
+],
+"BRU-TNG": [
+"SN"
+],
+"BRU-VCE": [
+"SN"
+],
+"BRU-VIE": [
+"OS",
+"SN"
+],
+"BRU-VLC": [
+"SN"
+],
+"BRU-VNO": [
+"SN"
+],
+"BRU-WAW": [
+"LO",
+"SN"
+],
+"BRU-YHZ": [
+"AC"
+],
+"BRU-YUL": [
+"AC"
+],
+"BRU-YYZ": [
+"AC"
+],
+"BRU-ZAD": [
+"SN"
+],
+"BRU-ZAG": [
+"OU"
+],
+"BRU-ZRH": [
+"LX",
+"SN"
+],
+"BRU-ZTH": [
+"SN"
+],
+"BSB-LIS": [
+"TP"
+],
+"BSB-PTY": [
+"CM"
+],
+"BSL-FRA": [
+"LH"
+],
+"BSL-IST": [
+"TK"
+],
+"BSL-MUC": [
+"LH"
+],
+"BSL-PMI": [
+"EW"
+],
+"BSR-IST": [
+"TK"
+],
+"BSZ-IST": [
+"TK"
+],
+"BSZ-PEK": [
+"CA"
+],
+"BTV-DEN": [
+"UA"
+],
+"BTV-EWR": [
+"UA"
+],
+"BTV-ORD": [
+"UA"
+],
+"BUD-CAI": [
+"MS"
+],
+"BUD-CGN": [
+"EW"
+],
+"BUD-CKG": [
+"CA"
+],
+"BUD-DUS": [
+"EW"
+],
+"BUD-FRA": [
+"LH"
+],
+"BUD-HAM": [
+"EW"
+],
+"BUD-HRG": [
+"MS"
+],
+"BUD-ICN": [
+"OZ"
+],
+"BUD-IST": [
+"TK"
+],
+"BUD-MUC": [
+"LH"
+],
+"BUD-PEK": [
+"CA"
+],
+"BUD-STR": [
+"EW"
+],
+"BUD-VIE": [
+"OS"
+],
+"BUD-WAW": [
+"LO"
+],
+"BUD-YYZ": [
+"AC"
+],
+"BUD-ZRH": [
+"LX"
+],
+"BUF-DEN": [
+"UA"
+],
+"BUF-EWR": [
+"UA"
+],
+"BUF-ORD": [
+"UA"
+],
+"BUR-DEN": [
+"UA"
+],
+"BUR-SFO": [
+"UA"
+],
+"BUS-IST": [
+"TK"
+],
+"BVC-LIS": [
+"TP"
+],
+"BWI-DEN": [
+"UA"
+],
+"BWI-IAH": [
+"UA"
+],
+"BWI-ORD": [
+"UA"
+],
+"BWI-PTY": [
+"CM"
+],
+"BWI-SFO": [
+"UA"
+],
+"BWK-GRZ": [
+"OU"
+],
+"BWK-ZAG": [
+"OU"
+],
+"BWN-SIN": [
+"SQ"
+],
+"BZE-DEN": [
+"UA"
+],
+"BZE-EWR": [
+"UA"
+],
+"BZE-IAH": [
+"UA"
+],
+"BZE-LAX": [
+"UA"
+],
+"BZE-ORD": [
+"UA"
+],
+"BZE-PTY": [
+"CM"
+],
+"BZE-SFO": [
+"UA"
+],
+"BZG-FRA": [
+"LH"
+],
+"BZG-KRK": [
+"LO"
+],
+"BZG-WAW": [
+"LO"
+],
+"BZN-DEN": [
+"UA"
+],
+"BZN-EWR": [
+"UA"
+],
+"BZN-IAD": [
+"UA"
+],
+"BZN-IAH": [
+"UA"
+],
+"BZN-LAX": [
+"UA"
+],
+"BZN-ORD": [
+"UA"
+],
+"BZN-SFO": [
+"UA"
+],
+"BZX-CTU": [
+"CA"
+],
+"BZX-PKX": [
+"CA"
+],
+"BZX-PVG": [
+"CA"
+],
+"BZX-SZX": [
+"ZH"
+],
+"CAG-DUS": [
+"EW"
+],
+"CAG-FRA": [
+"LH"
+],
+"CAG-HAM": [
+"EW"
+],
+"CAG-MUC": [
+"LH"
+],
+"CAG-STR": [
+"EW"
+],
+"CAG-SZG": [
+"EW"
+],
+"CAG-VIE": [
+"OS"
+],
+"CAH-SGN": [
+"VN"
+],
+"CAI-CDG": [
+"MS"
+],
+"CAI-CGK": [
+"MS"
+],
+"CAI-CMN": [
+"MS"
+],
+"CAI-CPH": [
+"MS"
+],
+"CAI-DAC": [
+"MS"
+],
+"CAI-DAR": [
+"MS"
+],
+"CAI-DEL": [
+"MS"
+],
+"CAI-DLA": [
+"MS"
+],
+"CAI-DME": [
+"MS"
+],
+"CAI-DMM": [
+"MS"
+],
+"CAI-DOH": [
+"MS"
+],
+"CAI-DUB": [
+"MS"
+],
+"CAI-DUS": [
+"EW",
+"MS"
+],
+"CAI-DXB": [
+"MS"
+],
+"CAI-EBB": [
+"MS"
+],
+"CAI-EBL": [
+"MS"
+],
+"CAI-ELQ": [
+"MS"
+],
+"CAI-EWR": [
+"MS"
+],
+"CAI-FCO": [
+"AZ",
+"MS"
+],
+"CAI-FIH": [
+"MS"
+],
+"CAI-FRA": [
+"LH",
+"MS"
+],
+"CAI-GVA": [
+"MS"
+],
+"CAI-HBE": [
+"MS"
+],
+"CAI-HGH": [
+"MS"
+],
+"CAI-HMB": [
+"MS"
+],
+"CAI-HRG": [
+"MS"
+],
+"CAI-IAD": [
+"MS"
+],
+"CAI-IST": [
+"MS",
+"TK"
+],
+"CAI-JED": [
+"MS"
+],
+"CAI-JFK": [
+"MS"
+],
+"CAI-JIB": [
+"MS"
+],
+"CAI-JNB": [
+"MS"
+],
+"CAI-KAN": [
+"MS"
+],
+"CAI-KGL": [
+"MS"
+],
+"CAI-KRT": [
+"MS"
+],
+"CAI-KWI": [
+"MS"
+],
+"CAI-LAX": [
+"MS"
+],
+"CAI-LCA": [
+"MS"
+],
+"CAI-LHR": [
+"MS"
+],
+"CAI-LOS": [
+"MS"
+],
+"CAI-LXR": [
+"MS"
+],
+"CAI-MAD": [
+"MS"
+],
+"CAI-MAN": [
+"MS"
+],
+"CAI-MCT": [
+"MS"
+],
+"CAI-MGQ": [
+"MS"
+],
+"CAI-MUC": [
+"LH",
+"MS"
+],
+"CAI-MXP": [
+"MS"
+],
+"CAI-NBO": [
+"MS"
+],
+"CAI-NDJ": [
+"MS"
+],
+"CAI-NRT": [
+"MS"
+],
+"CAI-ORD": [
+"MS"
+],
+"CAI-PEK": [
+"CA",
+"MS"
+],
+"CAI-PRG": [
+"MS"
+],
+"CAI-PVG": [
+"MS"
+],
+"CAI-PZU": [
+"MS"
+],
+"CAI-RMF": [
+"MS"
+],
+"CAI-RUH": [
+"MS"
+],
+"CAI-SHJ": [
+"MS"
+],
+"CAI-SSH": [
+"MS"
+],
+"CAI-TCP": [
+"MS"
+],
+"CAI-TIF": [
+"MS"
+],
+"CAI-TUN": [
+"MS"
+],
+"CAI-TUU": [
+"MS"
+],
+"CAI-VCE": [
+"MS"
+],
+"CAI-VIE": [
+"MS",
+"OS"
+],
+"CAI-WAW": [
+"LO"
+],
+"CAI-YYZ": [
+"MS"
+],
+"CAI-ZRH": [
+"LX",
+"MS"
+],
+"CAN-CKG": [
+"CA",
+"ZH"
+],
+"CAN-CTU": [
+"CA"
+],
+"CAN-CZX": [
+"ZH"
+],
+"CAN-DLC": [
+"ZH"
+],
+"CAN-DZH": [
+"CA"
+],
+"CAN-GYS": [
+"CA"
+],
+"CAN-HAN": [
+"VN"
+],
+"CAN-HET": [
+"CA"
+],
+"CAN-HFE": [
+"ZH"
+],
+"CAN-HGH": [
+"CA",
+"ZH"
+],
+"CAN-HND": [
+"NH"
+],
+"CAN-HRB": [
+"ZH"
+],
+"CAN-HYN": [
+"ZH"
+],
+"CAN-ICN": [
+"OZ"
+],
+"CAN-IST": [
+"TK"
+],
+"CAN-JDZ": [
+"ZH"
+],
+"CAN-KMG": [
+"ZH"
+],
+"CAN-LHW": [
+"ZH"
+],
+"CAN-LYI": [
+"ZH"
+],
+"CAN-LZO": [
+"CA"
+],
+"CAN-NGB": [
+"CA"
+],
+"CAN-NTG": [
+"ZH"
+],
+"CAN-PEK": [
+"ZH"
+],
+"CAN-PKX": [
+"CA"
+],
+"CAN-PVG": [
+"CA",
+"HO",
+"ZH"
+],
+"CAN-SGN": [
+"VN"
+],
+"CAN-SHA": [
+"CA",
+"HO",
+"ZH"
+],
+"CAN-SIN": [
+"SQ"
+],
+"CAN-TFU": [
+"CA",
+"ZH"
+],
+"CAN-TNA": [
+"ZH"
+],
+"CAN-TNH": [
+"CA"
+],
+"CAN-TPE": [
+"BR"
+],
+"CAN-TSN": [
+"CA"
+],
+"CAN-URC": [
+"CA"
+],
+"CAN-WNZ": [
+"CA",
+"ZH"
+],
+"CAN-WUH": [
+"CA"
+],
+"CAN-WUX": [
+"ZH"
+],
+"CAN-WXN": [
+"CA"
+],
+"CAN-XIY": [
+"ZH"
+],
+"CAN-YCU": [
+"CA"
+],
+"CAN-YNT": [
+"ZH"
+],
+"CAN-YTY": [
+"ZH"
+],
+"CBR-DPS": [
+"VA"
+],
+"CBR-MEL": [
+"VA"
+],
+"CBR-OOL": [
+"VA"
+],
+"CBR-SYD": [
+"VA"
+],
+"CCS-IAH": [
+"UA"
+],
+"CCS-IST": [
+"TK"
+],
+"CCS-LIS": [
+"TP"
+],
+"CCS-PTY": [
+"CM"
+],
+"CCU-DEL": [
+"AI"
+],
+"CCU-SIN": [
+"SQ"
+],
+"CDG-DBV": [
+"OU"
+],
+"CDG-DEL": [
+"AI"
+],
+"CDG-EWR": [
+"UA"
+],
+"CDG-FCO": [
+"AZ"
+],
+"CDG-FRA": [
+"LH"
+],
+"CDG-HAM": [
+"EW"
+],
+"CDG-HAN": [
+"VN"
+],
+"CDG-HER": [
+"A3"
+],
+"CDG-HND": [
+"NH"
+],
+"CDG-IAD": [
+"UA"
+],
+"CDG-ICN": [
+"OZ"
+],
+"CDG-IST": [
+"TK"
+],
+"CDG-LIN": [
+"AZ"
+],
+"CDG-MUC": [
+"LH"
+],
+"CDG-ORD": [
+"UA"
+],
+"CDG-PEK": [
+"CA"
+],
+"CDG-SFO": [
+"UA"
+],
+"CDG-SGN": [
+"VN"
+],
+"CDG-SIN": [
+"SQ"
+],
+"CDG-SKG": [
+"A3"
+],
+"CDG-SPU": [
+"OU"
+],
+"CDG-TFU": [
+"CA"
+],
+"CDG-TPE": [
+"BR"
+],
+"CDG-VIE": [
+"OS"
+],
+"CDG-WAW": [
+"LO"
+],
+"CDG-YUL": [
+"AC"
+],
+"CDG-YYZ": [
+"AC"
+],
+"CDG-ZAG": [
+"OU"
+],
+"CDG-ZRH": [
+"LX"
+],
+"CEB-HAN": [
+"VN"
+],
+"CEB-KIX": [
+"PR"
+],
+"CEB-MNL": [
+"PR"
+],
+"CEB-NRT": [
+"PR",
+"UA"
+],
+"CEB-SIN": [
+"SQ"
+],
+"CEB-TPE": [
+"BR"
+],
+"CFU-CGN": [
+"EW"
+],
+"CFU-DUS": [
+"EW"
+],
+"CFU-FCO": [
+"AZ"
+],
+"CFU-GRZ": [
+"EW"
+],
+"CFU-GVA": [
+"LX"
+],
+"CFU-HAM": [
+"EW"
+],
+"CFU-HER": [
+"A3"
+],
+"CFU-STR": [
+"EW"
+],
+"CFU-SZG": [
+"EW"
+],
+"CFU-VIE": [
+"OS"
+],
+"CGK-HAN": [
+"VN"
+],
+"CGK-HND": [
+"NH"
+],
+"CGK-ICN": [
+"OZ"
+],
+"CGK-IST": [
+"TK"
+],
+"CGK-MNL": [
+"PR"
+],
+"CGK-NRT": [
+"NH"
+],
+"CGK-PEK": [
+"CA"
+],
+"CGK-SGN": [
+"VN"
+],
+"CGK-SIN": [
+"SQ"
+],
+"CGK-TFU": [
+"CA"
+],
+"CGK-TPE": [
+"BR"
+],
+"CGN-CTA": [
+"EW"
+],
+"CGN-DBV": [
+"EW"
+],
+"CGN-DWC": [
+"EW"
+],
+"CGN-EBL": [
+"EW"
+],
+"CGN-EDI": [
+"EW"
+],
+"CGN-EVN": [
+"EW"
+],
+"CGN-FAO": [
+"EW"
+],
+"CGN-FCO": [
+"EW"
+],
+"CGN-FNC": [
+"EW"
+],
+"CGN-FUE": [
+"EW"
+],
+"CGN-HAM": [
+"EW"
+],
+"CGN-HER": [
+"EW"
+],
+"CGN-HRG": [
+"EW"
+],
+"CGN-IBZ": [
+"EW"
+],
+"CGN-IST": [
+"TK"
+],
+"CGN-JED": [
+"EW"
+],
+"CGN-JTR": [
+"EW"
+],
+"CGN-KGS": [
+"EW"
+],
+"CGN-KLU": [
+"EW"
+],
+"CGN-KVA": [
+"EW"
+],
+"CGN-LCA": [
+"EW"
+],
+"CGN-LGW": [
+"EW"
+],
+"CGN-LIS": [
+"EW"
+],
+"CGN-LPA": [
+"EW"
+],
+"CGN-MAH": [
+"EW"
+],
+"CGN-MIR": [
+"EW"
+],
+"CGN-MUC": [
+"EW",
+"LH"
+],
+"CGN-MXP": [
+"EW"
+],
+"CGN-NAP": [
+"EW"
+],
+"CGN-NCE": [
+"EW"
+],
+"CGN-NDR": [
+"EW"
+],
+"CGN-OLB": [
+"EW"
+],
+"CGN-OPO": [
+"EW"
+],
+"CGN-PMI": [
+"EW"
+],
+"CGN-PMO": [
+"EW"
+],
+"CGN-PRG": [
+"EW"
+],
+"CGN-PSA": [
+"EW"
+],
+"CGN-PUY": [
+"EW"
+],
+"CGN-RHO": [
+"EW"
+],
+"CGN-RJK": [
+"EW"
+],
+"CGN-RMF": [
+"EW"
+],
+"CGN-RMO": [
+"EW"
+],
+"CGN-SJJ": [
+"EW"
+],
+"CGN-SKG": [
+"A3",
+"EW"
+],
+"CGN-SPU": [
+"EW"
+],
+"CGN-SUF": [
+"EW"
+],
+"CGN-SZF": [
+"EW"
+],
+"CGN-SZG": [
+"EW"
+],
+"CGN-TFS": [
+"EW"
+],
+"CGN-TIA": [
+"EW"
+],
+"CGN-TNG": [
+"EW"
+],
+"CGN-TUN": [
+"EW"
+],
+"CGN-VAR": [
+"EW"
+],
+"CGN-VCE": [
+"EW"
+],
+"CGN-VIE": [
+"EW",
+"OS"
+],
+"CGN-VLC": [
+"EW"
+],
+"CGN-VRN": [
+"EW"
+],
+"CGN-ZAD": [
+"EW"
+],
+"CGN-ZAG": [
+"EW"
+],
+"CGN-ZRH": [
+"EW"
+],
+"CGO-CKG": [
+"CA"
+],
+"CGO-CTU": [
+"CA"
+],
+"CGO-DLC": [
+"ZH"
+],
+"CGO-HAK": [
+"ZH"
+],
+"CGO-HGH": [
+"CA",
+"HO"
+],
+"CGO-HRB": [
+"ZH"
+],
+"CGO-HSN": [
+"ZH"
+],
+"CGO-HUZ": [
+"ZH"
+],
+"CGO-INC": [
+"ZH"
+],
+"CGO-JJN": [
+"ZH"
+],
+"CGO-KMG": [
+"ZH"
+],
+"CGO-LHW": [
+"ZH"
+],
+"CGO-MXP": [
+"HO"
+],
+"CGO-NNG": [
+"ZH"
+],
+"CGO-PEK": [
+"CA"
+],
+"CGO-PVG": [
+"HO"
+],
+"CGO-RLK": [
+"HO"
+],
+"CGO-SHE": [
+"ZH"
+],
+"CGO-SZX": [
+"ZH"
+],
+"CGO-TFU": [
+"CA"
+],
+"CGO-WGN": [
+"CA"
+],
+"CGO-WNZ": [
+"ZH"
+],
+"CGO-WUA": [
+"HO"
+],
+"CGO-XMN": [
+"CA"
+],
+"CGQ-CKG": [
+"CA"
+],
+"CGQ-CZX": [
+"ZH"
+],
+"CGQ-HET": [
+"CA"
+],
+"CGQ-HFE": [
+"ZH"
+],
+"CGQ-HGH": [
+"CA"
+],
+"CGQ-ICN": [
+"OZ"
+],
+"CGQ-JJN": [
+"ZH"
+],
+"CGQ-NNG": [
+"HO",
+"ZH"
+],
+"CGQ-PKX": [
+"CA"
+],
+"CGQ-PVG": [
+"CA",
+"HO"
+],
+"CGQ-SZX": [
+"ZH"
+],
+"CGQ-TFU": [
+"CA"
+],
+"CGQ-TSN": [
+"CA"
+],
+"CGQ-WUH": [
+"CA"
+],
+"CGQ-WUX": [
+"HO"
+],
+"CGQ-YTY": [
+"ZH"
+],
+"CGY-MNL": [
+"PR"
+],
+"CHC-DUD": [
+"NZ"
+],
+"CHC-HKK": [
+"NZ"
+],
+"CHC-HLZ": [
+"NZ"
+],
+"CHC-IVC": [
+"NZ"
+],
+"CHC-MEL": [
+"NZ"
+],
+"CHC-NPE": [
+"NZ"
+],
+"CHC-NPL": [
+"NZ"
+],
+"CHC-NSN": [
+"NZ"
+],
+"CHC-OOL": [
+"NZ"
+],
+"CHC-PMR": [
+"NZ"
+],
+"CHC-RAR": [
+"NZ"
+],
+"CHC-ROT": [
+"NZ"
+],
+"CHC-SFO": [
+"UA"
+],
+"CHC-SIN": [
+"SQ"
+],
+"CHC-SYD": [
+"NZ"
+],
+"CHC-TRG": [
+"NZ"
+],
+"CHC-WLG": [
+"NZ"
+],
+"CHC-ZQN": [
+"NZ"
+],
+"CHQ-DUS": [
+"EW"
+],
+"CHQ-GOT": [
+"A3"
+],
+"CHQ-GRZ": [
+"EW"
+],
+"CHQ-HAM": [
+"EW"
+],
+"CHQ-OUL": [
+"A3"
+],
+"CHQ-RHO": [
+"A3"
+],
+"CHQ-SKG": [
+"A3"
+],
+"CHQ-STR": [
+"EW"
+],
+"CHQ-TRD": [
+"A3"
+],
+"CHQ-VIE": [
+"OS"
+],
+"CHS-DEN": [
+"UA"
+],
+"CHS-EWR": [
+"UA"
+],
+"CHS-IAD": [
+"UA"
+],
+"CHS-IAH": [
+"UA"
+],
+"CHS-ORD": [
+"UA"
+],
+"CID-DEN": [
+"UA"
+],
+"CID-ORD": [
+"UA"
+],
+"CIF-CSX": [
+"HO"
+],
+"CIF-HET": [
+"CA"
+],
+"CIF-HGH": [
+"HO"
+],
+"CIF-KWE": [
+"HO"
+],
+"CIF-NKG": [
+"HO"
+],
+"CIF-PVG": [
+"HO"
+],
+"CIF-TAO": [
+"HO"
+],
+"CIF-WNZ": [
+"HO"
+],
+"CIH-PEK": [
+"CA"
+],
+"CIH-PVG": [
+"HO"
+],
+"CIH-WUX": [
+"HO"
+],
+"CIX-PTY": [
+"CM"
+],
+"CJB-DEL": [
+"AI"
+],
+"CJJ-CJU": [
+"OZ"
+],
+"CJU-GMP": [
+"OZ"
+],
+"CJU-KWJ": [
+"OZ"
+],
+"CJU-MNL": [
+"PR"
+],
+"CJU-NKG": [
+"HO"
+],
+"CJU-PEK": [
+"CA"
+],
+"CJU-PKX": [
+"HO"
+],
+"CJU-PVG": [
+"HO"
+],
+"CJU-RSU": [
+"OZ"
+],
+"CJU-SZX": [
+"ZH"
+],
+"CJU-TAE": [
+"OZ"
+],
+"CJU-WNZ": [
+"CA"
+],
+"CJU-WUX": [
+"HO"
+],
+"CKG-CSX": [
+"CA"
+],
+"CKG-DLU": [
+"CA"
+],
+"CKG-DXB": [
+"CA"
+],
+"CKG-FOC": [
+"CA"
+],
+"CKG-HAK": [
+"CA"
+],
+"CKG-HET": [
+"CA"
+],
+"CKG-HFE": [
+"CA"
+],
+"CKG-HGH": [
+"CA"
+],
+"CKG-HKG": [
+"CA"
+],
+"CKG-HLD": [
+"CA"
+],
+"CKG-HRB": [
+"CA"
+],
+"CKG-ICN": [
+"CA",
+"OZ"
+],
+"CKG-INC": [
+"CA"
+],
+"CKG-KHN": [
+"CA",
+"ZH"
+],
+"CKG-LXA": [
+"CA"
+],
+"CKG-MNL": [
+"CA"
+],
+"CKG-NGB": [
+"CA"
+],
+"CKG-NKG": [
+"CA",
+"HO",
+"ZH"
+],
+"CKG-NNG": [
+"ZH"
+],
+"CKG-NRT": [
+"CA"
+],
+"CKG-NTG": [
+"ZH"
+],
+"CKG-PEK": [
+"CA"
+],
+"CKG-PKX": [
+"CA"
+],
+"CKG-PVG": [
+"CA",
+"HO"
+],
+"CKG-SGN": [
+"CA"
+],
+"CKG-SHA": [
+"CA",
+"HO"
+],
+"CKG-SHE": [
+"CA"
+],
+"CKG-SIN": [
+"CA",
+"SQ"
+],
+"CKG-SYX": [
+"CA"
+],
+"CKG-SZX": [
+"CA",
+"ZH"
+],
+"CKG-TAS": [
+"CA"
+],
+"CKG-TPE": [
+"CA"
+],
+"CKG-TSA": [
+"CA"
+],
+"CKG-TSN": [
+"CA"
+],
+"CKG-URC": [
+"CA"
+],
+"CKG-WNZ": [
+"CA"
+],
+"CKG-WUH": [
+"CA"
+],
+"CKG-WUX": [
+"HO",
+"ZH"
+],
+"CKG-XMN": [
+"CA"
+],
+"CKG-YCU": [
+"CA"
+],
+"CKG-ZHA": [
+"CA"
+],
+"CKG-ZUH": [
+"CA"
+],
+"CKY-IST": [
+"TK"
+],
+"CKY-OUA": [
+"ET",
+"TK"
+],
+"CKZ-IST": [
+"TK"
+],
+"CLE-CUN": [
+"UA"
+],
+"CLE-DEN": [
+"UA"
+],
+"CLE-EWR": [
+"UA"
+],
+"CLE-IAD": [
+"UA"
+],
+"CLE-IAH": [
+"UA"
+],
+"CLE-LAS": [
+"UA"
+],
+"CLE-MCO": [
+"UA"
+],
+"CLE-MIA": [
+"UA"
+],
+"CLE-ORD": [
+"UA"
+],
+"CLE-SFO": [
+"UA"
+],
+"CLE-TPA": [
+"UA"
+],
+"CLJ-IST": [
+"TK"
+],
+"CLJ-MUC": [
+"LH"
+],
+"CLJ-WAW": [
+"LO"
+],
+"CLJ-ZRH": [
+"LX"
+],
+"CLO-CTG": [
+"AV"
+],
+"CLO-FLL": [
+"AV"
+],
+"CLO-JFK": [
+"AV"
+],
+"CLO-MAD": [
+"AV"
+],
+"CLO-MDE": [
+"AV"
+],
+"CLO-MIA": [
+"AV"
+],
+"CLO-PSO": [
+"AV"
+],
+"CLO-PTY": [
+"CM"
+],
+"CLO-SMR": [
+"AV"
+],
+"CLT-DEN": [
+"UA"
+],
+"CLT-EWR": [
+"UA"
+],
+"CLT-IAD": [
+"UA"
+],
+"CLT-IAH": [
+"UA"
+],
+"CLT-MUC": [
+"LH"
+],
+"CLT-ORD": [
+"UA"
+],
+"CLY-SZG": [
+"EW"
+],
+"CLY-VIE": [
+"OS"
+],
+"CMB-DEL": [
+"AI"
+],
+"CMB-IST": [
+"TK"
+],
+"CMB-SIN": [
+"SQ"
+],
+"CMB-TFU": [
+"CA"
+],
+"CMH-DEN": [
+"UA"
+],
+"CMH-IAD": [
+"UA"
+],
+"CMH-IAH": [
+"UA"
+],
+"CMH-ORD": [
+"UA"
+],
+"CMH-SFO": [
+"UA"
+],
+"CMN-DUS": [
+"EW"
+],
+"CMN-FRA": [
+"LH"
+],
+"CMN-IST": [
+"TK"
+],
+"CMN-LIS": [
+"TP"
+],
+"CMN-YUL": [
+"AC"
+],
+"CND-IST": [
+"TK"
+],
+"CNF-LIS": [
+"TP"
+],
+"CNF-PTY": [
+"CM"
+],
+"CNS-MEL": [
+"VA"
+],
+"CNS-SIN": [
+"SQ"
+],
+"CNS-SYD": [
+"VA"
+],
+"CNX-PEK": [
+"CA"
+],
+"CNX-TPE": [
+"BR"
+],
+"COK-DEL": [
+"AI"
+],
+"COK-SIN": [
+"SQ"
+],
+"COO-IST": [
+"TK"
+],
+"COR-PTY": [
+"CM"
+],
+"COS-DEN": [
+"UA"
+],
+"COS-ORD": [
+"UA"
+],
+"COV-DUS": [
+"EW"
+],
+"COV-HAM": [
+"EW"
+],
+"COV-IST": [
+"TK"
+],
+"COV-STR": [
+"EW"
+],
+"CPH-DEL": [
+"AI"
+],
+"CPH-DUS": [
+"EW"
+],
+"CPH-FRA": [
+"LH"
+],
+"CPH-GVA": [
+"LX"
+],
+"CPH-INN": [
+"EW",
+"OS"
+],
+"CPH-IST": [
+"TK"
+],
+"CPH-KEF": [
+"CA"
+],
+"CPH-LIS": [
+"TP"
+],
+"CPH-MUC": [
+"LH"
+],
+"CPH-PRG": [
+"EW"
+],
+"CPH-SGN": [
+"VN"
+],
+"CPH-SIN": [
+"SQ"
+],
+"CPH-SPU": [
+"OU"
+],
+"CPH-SZG": [
+"EW"
+],
+"CPH-VIE": [
+"ET",
+"OS"
+],
+"CPH-VRN": [
+"EW"
+],
+"CPH-WAW": [
+"LO"
+],
+"CPH-YUL": [
+"AC"
+],
+"CPH-YYZ": [
+"AC"
+],
+"CPH-ZAG": [
+"OU"
+],
+"CPH-ZRH": [
+"LX"
+],
+"CPT-EWR": [
+"UA"
+],
+"CPT-FRA": [
+"LH"
+],
+"CPT-GRU": [
+"SA"
+],
+"CPT-IAD": [
+"UA"
+],
+"CPT-IST": [
+"TK"
+],
+"CPT-JNB": [
+"SA"
+],
+"CPT-LHR": [
+"VS"
+],
+"CPT-MRU": [
+"SA"
+],
+"CPT-MUC": [
+"LH"
+],
+"CPT-SIN": [
+"SQ"
+],
+"CRK-ICN": [
+"OZ",
+"PR"
+],
+"CRK-TPE": [
+"BR"
+],
+"CSX-CTU": [
+"CA"
+],
+"CSX-DLC": [
+"CA"
+],
+"CSX-HRB": [
+"ZH"
+],
+"CSX-ICN": [
+"OZ"
+],
+"CSX-PKX": [
+"CA"
+],
+"CSX-PVG": [
+"HO"
+],
+"CSX-SHA": [
+"HO"
+],
+"CSX-TAO": [
+"HO"
+],
+"CSX-TFU": [
+"CA",
+"HO"
+],
+"CSX-TNA": [
+"CA"
+],
+"CSX-TSN": [
+"CA"
+],
+"CSX-YNT": [
+"ZH"
+],
+"CTA-DUS": [
+"EW"
+],
+"CTA-FCO": [
+"AZ"
+],
+"CTA-FRA": [
+"LH"
+],
+"CTA-GVA": [
+"LX"
+],
+"CTA-HAM": [
+"EW"
+],
+"CTA-IST": [
+"TK"
+],
+"CTA-LIN": [
+"AZ"
+],
+"CTA-MUC": [
+"LH"
+],
+"CTA-STR": [
+"EW"
+],
+"CTA-VIE": [
+"OS"
+],
+"CTA-YUL": [
+"AC"
+],
+"CTG-IAD": [
+"UA"
+],
+"CTG-IAH": [
+"UA"
+],
+"CTG-JFK": [
+"AV"
+],
+"CTG-MDE": [
+"AV"
+],
+"CTG-MIA": [
+"AV"
+],
+"CTG-PEI": [
+"AV"
+],
+"CTG-PTY": [
+"CM"
+],
+"CTG-SCL": [
+"AV"
+],
+"CTG-YUL": [
+"AC"
+],
+"CTG-YYZ": [
+"AC"
+],
+"CTS-FUK": [
+"NH"
+],
+"CTS-HIJ": [
+"NH"
+],
+"CTS-HND": [
+"NH"
+],
+"CTS-ICN": [
+"OZ"
+],
+"CTS-ITM": [
+"NH"
+],
+"CTS-KMQ": [
+"NH"
+],
+"CTS-MNL": [
+"PR"
+],
+"CTS-NRT": [
+"NH"
+],
+"CTS-PVG": [
+"HO"
+],
+"CTS-SFO": [
+"UA"
+],
+"CTS-SIN": [
+"SQ"
+],
+"CTS-TPE": [
+"BR"
+],
+"CTS-UKB": [
+"NH"
+],
+"CTU-DCY": [
+"CA"
+],
+"CTU-DDR": [
+"CA",
+"ZH"
+],
+"CTU-DLC": [
+"CA"
+],
+"CTU-FOC": [
+"CA"
+],
+"CTU-FUG": [
+"CA"
+],
+"CTU-HAK": [
+"CA"
+],
+"CTU-HET": [
+"CA"
+],
+"CTU-HFE": [
+"CA"
+],
+"CTU-HGH": [
+"CA"
+],
+"CTU-HKG": [
+"CA"
+],
+"CTU-INC": [
+"CA"
+],
+"CTU-KHN": [
+"CA"
+],
+"CTU-KMG": [
+"CA"
+],
+"CTU-LHW": [
+"CA"
+],
+"CTU-LXA": [
+"CA"
+],
+"CTU-NGB": [
+"CA"
+],
+"CTU-NKG": [
+"CA"
+],
+"CTU-PEK": [
+"CA"
+],
+"CTU-PVG": [
+"CA"
+],
+"CTU-PZI": [
+"CA"
+],
+"CTU-SHA": [
+"CA"
+],
+"CTU-SYX": [
+"CA"
+],
+"CTU-SZX": [
+"CA",
+"ZH"
+],
+"CTU-TAO": [
+"CA"
+],
+"CTU-TPE": [
+"BR",
+"CA"
+],
+"CTU-TSN": [
+"CA"
+],
+"CTU-URC": [
+"CA"
+],
+"CTU-WNZ": [
+"CA"
+],
+"CTU-WUH": [
+"CA"
+],
+"CTU-XMN": [
+"CA"
+],
+"CTU-XNN": [
+"CA"
+],
+"CTU-YTY": [
+"CA"
+],
+"CUC-MDE": [
+"AV"
+],
+"CUC-PTY": [
+"CM"
+],
+"CUN-DEN": [
+"UA"
+],
+"CUN-EWR": [
+"UA"
+],
+"CUN-IAD": [
+"UA"
+],
+"CUN-IAH": [
+"UA"
+],
+"CUN-IST": [
+"TK"
+],
+"CUN-KTW": [
+"LO"
+],
+"CUN-LAX": [
+"UA"
+],
+"CUN-LHR": [
+"VS"
+],
+"CUN-LIS": [
+"TP"
+],
+"CUN-MDE": [
+"AV"
+],
+"CUN-ORD": [
+"UA"
+],
+"CUN-PTY": [
+"CM"
+],
+"CUN-SFO": [
+"UA"
+],
+"CUN-VIE": [
+"OS"
+],
+"CUN-WAW": [
+"LO"
+],
+"CUN-YOW": [
+"AC"
+],
+"CUN-YQB": [
+"AC"
+],
+"CUN-YUL": [
+"AC"
+],
+"CUN-YYZ": [
+"AC"
+],
+"CUR-EWR": [
+"UA"
+],
+"CUR-PTY": [
+"CM"
+],
+"CUR-YUL": [
+"AC"
+],
+"CUZ-LPB": [
+"AV"
+],
+"CVG-DEN": [
+"UA"
+],
+"CVG-IAH": [
+"UA"
+],
+"CVG-ORD": [
+"UA"
+],
+"CVG-SFO": [
+"UA"
+],
+"CWB-LIS": [
+"TP"
+],
+"CXR-DAD": [
+"VN"
+],
+"CXR-HAN": [
+"VN"
+],
+"CXR-HPH": [
+"VN"
+],
+"CXR-ICN": [
+"OZ",
+"VN"
+],
+"CXR-NKG": [
+"VN"
+],
+"CXR-PEK": [
+"VN"
+],
+"CXR-PUS": [
+"VN"
+],
+"CXR-PVG": [
+"VN"
+],
+"CXR-SGN": [
+"VN"
+],
+"CXR-SIN": [
+"VN"
+],
+"CXR-TSN": [
+"VN"
+],
+"CXR-VII": [
+"VN"
+],
+"CZL-IST": [
+"TK"
+],
+"CZM-DEN": [
+"UA"
+],
+"CZM-IAH": [
+"UA"
+],
+"CZM-ORD": [
+"UA"
+],
+"CZM-YUL": [
+"AC"
+],
+"CZM-YYZ": [
+"AC"
+],
+"CZX-DLC": [
+"ZH"
+],
+"CZX-HAK": [
+"ZH"
+],
+"CZX-HRB": [
+"ZH"
+],
+"CZX-JJN": [
+"ZH"
+],
+"CZX-NNG": [
+"ZH"
+],
+"CZX-PEK": [
+"CA"
+],
+"CZX-SHE": [
+"ZH"
+],
+"CZX-SZX": [
+"ZH"
+],
+"CZX-TFU": [
+"CA"
+],
+"DAC-DEL": [
+"AI"
+],
+"DAC-IST": [
+"TK"
+],
+"DAC-PEK": [
+"CA"
+],
+"DAC-SIN": [
+"SQ"
+],
+"DAD-DLI": [
+"VN"
+],
+"DAD-HAN": [
+"VN"
+],
+"DAD-ICN": [
+"OZ",
+"VN"
+],
+"DAD-KIX": [
+"VN"
+],
+"DAD-MNL": [
+"PR"
+],
+"DAD-NRT": [
+"VN"
+],
+"DAD-PQC": [
+"VN"
+],
+"DAD-PUS": [
+"OZ"
+],
+"DAD-PVG": [
+"VN"
+],
+"DAD-SGN": [
+"VN"
+],
+"DAD-SIN": [
+"SQ",
+"VN"
+],
+"DAD-TFU": [
+"VN"
+],
+"DAD-THD": [
+"VN"
+],
+"DAD-TPE": [
+"BR"
+],
+"DAD-VDO": [
+"VN"
+],
+"DAM-IST": [
+"TK"
+],
+"DAR-IST": [
+"TK"
+],
+"DAR-JNB": [
+"SA"
+],
+"DAT-SHA": [
+"HO"
+],
+"DAV-PTY": [
+"CM"
+],
+"DAY-DEN": [
+"UA"
+],
+"DAY-ORD": [
+"UA"
+],
+"DBV-DUS": [
+"EW"
+],
+"DBV-EWR": [
+"UA"
+],
+"DBV-FRA": [
+"OU"
+],
+"DBV-IST": [
+"TK"
+],
+"DBV-MUC": [
+"LH",
+"OU"
+],
+"DBV-OSI": [
+"OU"
+],
+"DBV-PRG": [
+"OU"
+],
+"DBV-SKG": [
+"A3"
+],
+"DBV-STR": [
+"EW",
+"OU"
+],
+"DBV-VIE": [
+"OS"
+],
+"DBV-WAW": [
+"LO"
+],
+"DBV-ZAG": [
+"OU"
+],
+"DBV-ZRH": [
+"LX",
+"OU"
+],
+"DCA-DEN": [
+"UA"
+],
+"DCA-IAH": [
+"UA"
+],
+"DCA-ORD": [
+"UA"
+],
+"DCA-SFO": [
+"UA"
+],
+"DCY-TFU": [
+"CA"
+],
+"DDG-PEK": [
+"CA"
+],
+"DDR-LXA": [
+"CA"
+],
+"DEB-MUC": [
+"LH"
+],
+"DED-DEL": [
+"AI"
+],
+"DEL-DOH": [
+"AI"
+],
+"DEL-DPS": [
+"AI"
+],
+"DEL-DXB": [
+"AI"
+],
+"DEL-EWR": [
+"AI",
+"UA"
+],
+"DEL-FCO": [
+"AI",
+"AZ"
+],
+"DEL-FRA": [
+"AI",
+"LH"
+],
+"DEL-GAU": [
+"AI"
+],
+"DEL-GAY": [
+"AI"
+],
+"DEL-GOI": [
+"AI"
+],
+"DEL-GOX": [
+"AI"
+],
+"DEL-HAN": [
+"AI",
+"VN"
+],
+"DEL-HKG": [
+"AI"
+],
+"DEL-HKT": [
+"AI"
+],
+"DEL-HND": [
+"AI",
+"NH"
+],
+"DEL-HSR": [
+"AI"
+],
+"DEL-HWR": [
+"AI"
+],
+"DEL-HYD": [
+"AI"
+],
+"DEL-ICN": [
+"AI"
+],
+"DEL-IDR": [
+"AI"
+],
+"DEL-IST": [
+"TK"
+],
+"DEL-IXC": [
+"AI"
+],
+"DEL-IXD": [
+"AI"
+],
+"DEL-IXJ": [
+"AI"
+],
+"DEL-IXL": [
+"AI"
+],
+"DEL-IXU": [
+"AI"
+],
+"DEL-IXZ": [
+"AI"
+],
+"DEL-JAI": [
+"AI"
+],
+"DEL-JDH": [
+"AI"
+],
+"DEL-JED": [
+"AI"
+],
+"DEL-JFK": [
+"AI"
+],
+"DEL-JSA": [
+"AI"
+],
+"DEL-KTM": [
+"AI"
+],
+"DEL-KUL": [
+"AI"
+],
+"DEL-LHR": [
+"AI",
+"VS"
+],
+"DEL-LKO": [
+"AI"
+],
+"DEL-MAA": [
+"AI"
+],
+"DEL-MEL": [
+"AI"
+],
+"DEL-MLE": [
+"AI"
+],
+"DEL-MNL": [
+"AI"
+],
+"DEL-MUC": [
+"LH"
+],
+"DEL-MXP": [
+"AI"
+],
+"DEL-NAG": [
+"AI"
+],
+"DEL-ORD": [
+"AI"
+],
+"DEL-PAT": [
+"AI"
+],
+"DEL-PEK": [
+"CA"
+],
+"DEL-PNQ": [
+"AI"
+],
+"DEL-PVG": [
+"AI"
+],
+"DEL-RGN": [
+"AI"
+],
+"DEL-RPR": [
+"AI"
+],
+"DEL-RUH": [
+"AI"
+],
+"DEL-SFO": [
+"AI"
+],
+"DEL-SGN": [
+"AI",
+"VN"
+],
+"DEL-SIN": [
+"AI",
+"SQ"
+],
+"DEL-SXR": [
+"AI"
+],
+"DEL-SYD": [
+"AI"
+],
+"DEL-TIR": [
+"AI"
+],
+"DEL-TLV": [
+"AI"
+],
+"DEL-TRV": [
+"AI"
+],
+"DEL-UDR": [
+"AI"
+],
+"DEL-VGA": [
+"AI"
+],
+"DEL-VIE": [
+"AI"
+],
+"DEL-VNS": [
+"AI"
+],
+"DEL-VTZ": [
+"AI"
+],
+"DEL-WAW": [
+"LO"
+],
+"DEL-YUL": [
+"AC"
+],
+"DEL-YVR": [
+"AI"
+],
+"DEL-YYZ": [
+"AC",
+"AI"
+],
+"DEL-ZRH": [
+"AI",
+"LX"
+],
+"DEM-JIM": [
+"ET"
+],
+"DEN-DFW": [
+"UA"
+],
+"DEN-DRO": [
+"UA"
+],
+"DEN-DSM": [
+"UA"
+],
+"DEN-DTW": [
+"UA"
+],
+"DEN-ECP": [
+"UA"
+],
+"DEN-EGE": [
+"UA"
+],
+"DEN-ELP": [
+"UA"
+],
+"DEN-EUG": [
+"UA"
+],
+"DEN-EWR": [
+"UA"
+],
+"DEN-FAI": [
+"UA"
+],
+"DEN-FAR": [
+"UA"
+],
+"DEN-FAT": [
+"UA"
+],
+"DEN-FCA": [
+"UA"
+],
+"DEN-FCO": [
+"UA"
+],
+"DEN-FLL": [
+"UA"
+],
+"DEN-FRA": [
+"LH",
+"UA"
+],
+"DEN-FSD": [
+"UA"
+],
+"DEN-GEG": [
+"UA"
+],
+"DEN-GJT": [
+"UA"
+],
+"DEN-GRR": [
+"UA"
+],
+"DEN-GSP": [
+"UA"
+],
+"DEN-GTF": [
+"UA"
+],
+"DEN-HDN": [
+"UA"
+],
+"DEN-HNL": [
+"UA"
+],
+"DEN-IAD": [
+"UA"
+],
+"DEN-IAH": [
+"UA"
+],
+"DEN-ICT": [
+"UA"
+],
+"DEN-IND": [
+"UA"
+],
+"DEN-IST": [
+"TK"
+],
+"DEN-JAC": [
+"UA"
+],
+"DEN-JAX": [
+"UA"
+],
+"DEN-KOA": [
+"UA"
+],
+"DEN-LAS": [
+"UA"
+],
+"DEN-LAX": [
+"UA"
+],
+"DEN-LGA": [
+"UA"
+],
+"DEN-LHR": [
+"UA"
+],
+"DEN-LIH": [
+"UA"
+],
+"DEN-LIR": [
+"UA"
+],
+"DEN-LIT": [
+"UA"
+],
+"DEN-MBJ": [
+"UA"
+],
+"DEN-MCI": [
+"UA"
+],
+"DEN-MCO": [
+"UA"
+],
+"DEN-MEM": [
+"UA"
+],
+"DEN-MEX": [
+"UA"
+],
+"DEN-MFR": [
+"UA"
+],
+"DEN-MIA": [
+"UA"
+],
+"DEN-MKE": [
+"UA"
+],
+"DEN-MSN": [
+"UA"
+],
+"DEN-MSO": [
+"UA"
+],
+"DEN-MSP": [
+"UA"
+],
+"DEN-MSY": [
+"UA"
+],
+"DEN-MTJ": [
+"UA"
+],
+"DEN-MUC": [
+"LH",
+"UA"
+],
+"DEN-MYR": [
+"UA"
+],
+"DEN-NAS": [
+"UA"
+],
+"DEN-NRT": [
+"UA"
+],
+"DEN-OGG": [
+"UA"
+],
+"DEN-OKC": [
+"UA"
+],
+"DEN-OMA": [
+"UA"
+],
+"DEN-ONT": [
+"UA"
+],
+"DEN-ORD": [
+"UA"
+],
+"DEN-ORF": [
+"UA"
+],
+"DEN-PBI": [
+"UA"
+],
+"DEN-PDX": [
+"UA"
+],
+"DEN-PHL": [
+"UA"
+],
+"DEN-PHX": [
+"UA"
+],
+"DEN-PIT": [
+"UA"
+],
+"DEN-PNS": [
+"UA"
+],
+"DEN-PSC": [
+"UA"
+],
+"DEN-PSP": [
+"UA"
+],
+"DEN-PTY": [
+"CM"
+],
+"DEN-PUJ": [
+"UA"
+],
+"DEN-PVR": [
+"UA"
+],
+"DEN-PWM": [
+"UA"
+],
+"DEN-RAP": [
+"UA"
+],
+"DEN-RDM": [
+"UA"
+],
+"DEN-RDU": [
+"UA"
+],
+"DEN-RIC": [
+"UA"
+],
+"DEN-RNO": [
+"UA"
+],
+"DEN-RSW": [
+"UA"
+],
+"DEN-RTB": [
+"UA"
+],
+"DEN-SAN": [
+"UA"
+],
+"DEN-SAT": [
+"UA"
+],
+"DEN-SAV": [
+"UA"
+],
+"DEN-SBA": [
+"UA"
+],
+"DEN-SBP": [
+"UA"
+],
+"DEN-SDF": [
+"UA"
+],
+"DEN-SEA": [
+"UA"
+],
+"DEN-SFO": [
+"UA"
+],
+"DEN-SJC": [
+"UA"
+],
+"DEN-SJD": [
+"UA"
+],
+"DEN-SJO": [
+"UA"
+],
+"DEN-SJU": [
+"UA"
+],
+"DEN-SLC": [
+"UA"
+],
+"DEN-SMF": [
+"UA"
+],
+"DEN-SNA": [
+"UA"
+],
+"DEN-SRQ": [
+"UA"
+],
+"DEN-STL": [
+"UA"
+],
+"DEN-SYR": [
+"UA"
+],
+"DEN-TPA": [
+"UA"
+],
+"DEN-TUL": [
+"UA"
+],
+"DEN-TUS": [
+"UA"
+],
+"DEN-TVC": [
+"UA"
+],
+"DEN-TYS": [
+"UA"
+],
+"DEN-XNA": [
+"UA"
+],
+"DEN-YEG": [
+"UA"
+],
+"DEN-YUL": [
+"AC"
+],
+"DEN-YVR": [
+"UA"
+],
+"DEN-YYC": [
+"UA"
+],
+"DEN-YYZ": [
+"AC",
+"UA"
+],
+"DFW-EWR": [
+"UA"
+],
+"DFW-FRA": [
+"LH"
+],
+"DFW-IAD": [
+"UA"
+],
+"DFW-IAH": [
+"UA"
+],
+"DFW-IST": [
+"TK"
+],
+"DFW-ORD": [
+"UA"
+],
+"DFW-SFO": [
+"UA"
+],
+"DFW-TPE": [
+"BR"
+],
+"DFW-YUL": [
+"AC"
+],
+"DFW-YYZ": [
+"AC"
+],
+"DIN-HAN": [
+"VN"
+],
+"DIN-SGN": [
+"VN"
+],
+"DIR-GDE": [
+"ET"
+],
+"DIR-JIB": [
+"ET"
+],
+"DIY-IST": [
+"TK"
+],
+"DJE-GVA": [
+"LX"
+],
+"DLA-IST": [
+"TK"
+],
+"DLA-SSG": [
+"ET"
+],
+"DLC-DYG": [
+"HO"
+],
+"DLC-FUK": [
+"CA"
+],
+"DLC-HAK": [
+"CA"
+],
+"DLC-HIJ": [
+"CA"
+],
+"DLC-HKG": [
+"CA"
+],
+"DLC-HLD": [
+"HO"
+],
+"DLC-ICN": [
+"OZ"
+],
+"DLC-KHN": [
+"ZH"
+],
+"DLC-KMG": [
+"CA"
+],
+"DLC-KWE": [
+"CA"
+],
+"DLC-LZH": [
+"HO"
+],
+"DLC-NKG": [
+"HO"
+],
+"DLC-NRT": [
+"CA",
+"NH"
+],
+"DLC-NTG": [
+"ZH"
+],
+"DLC-PEK": [
+"CA"
+],
+"DLC-PVG": [
+"HO"
+],
+"DLC-SDJ": [
+"CA"
+],
+"DLC-SZX": [
+"ZH"
+],
+"DLC-TFU": [
+"CA",
+"ZH"
+],
+"DLC-TNA": [
+"CA"
+],
+"DLC-TSN": [
+"CA"
+],
+"DLC-WDS": [
+"CA"
+],
+"DLC-WUH": [
+"HO"
+],
+"DLI-HAN": [
+"VN"
+],
+"DLI-HPH": [
+"VN"
+],
+"DLI-SGN": [
+"VN"
+],
+"DLI-THD": [
+"VN"
+],
+"DLI-VCA": [
+"VN"
+],
+"DLI-VII": [
+"VN"
+],
+"DLM-IST": [
+"TK"
+],
+"DLM-LED": [
+"TK"
+],
+"DLM-VIE": [
+"OS"
+],
+"DLM-VKO": [
+"TK"
+],
+"DLM-WAW": [
+"LO"
+],
+"DLU-PEK": [
+"CA"
+],
+"DLU-TFU": [
+"CA"
+],
+"DME-HRG": [
+"MS"
+],
+"DME-SSH": [
+"MS"
+],
+"DMK-LHW": [
+"HO"
+],
+"DMM-FRA": [
+"LH"
+],
+"DMM-HBE": [
+"MS"
+],
+"DMM-IST": [
+"TK"
+],
+"DNH-LHW": [
+"CA"
+],
+"DNH-PEK": [
+"CA"
+],
+"DNH-WUH": [
+"CA"
+],
+"DNZ-IST": [
+"TK"
+],
+"DOH-IST": [
+"TK"
+],
+"DOH-MEL": [
+"VA"
+],
+"DOH-MNL": [
+"PR"
+],
+"DOH-PER": [
+"VA"
+],
+"DOH-SYD": [
+"VA"
+],
+"DOH-SZX": [
+"ZH"
+],
+"DOL-HER": [
+"A3"
+],
+"DOM-EWR": [
+"UA"
+],
+"DOY-HRB": [
+"CA"
+],
+"DOY-TFU": [
+"CA"
+],
+"DPS-IST": [
+"TK"
+],
+"DPS-MEL": [
+"VA"
+],
+"DPS-MNL": [
+"PR"
+],
+"DPS-OOL": [
+"VA"
+],
+"DPS-PVG": [
+"HO"
+],
+"DPS-SGN": [
+"VN"
+],
+"DPS-SIN": [
+"SQ"
+],
+"DPS-SYD": [
+"VA"
+],
+"DPS-TPE": [
+"BR"
+],
+"DPS-WAW": [
+"LO"
+],
+"DQA-HGH": [
+"CA"
+],
+"DQA-PEK": [
+"CA"
+],
+"DQA-PKX": [
+"CA"
+],
+"DQA-PVG": [
+"CA"
+],
+"DRO-IAH": [
+"UA"
+],
+"DRS-DUS": [
+"EW"
+],
+"DRS-FRA": [
+"LH"
+],
+"DRS-MUC": [
+"LH"
+],
+"DRS-PMI": [
+"EW"
+],
+"DRS-ZRH": [
+"LX"
+],
+"DRW-MEL": [
+"VA"
+],
+"DRW-PER": [
+"VA"
+],
+"DRW-SIN": [
+"SQ"
+],
+"DRW-SYD": [
+"VA"
+],
+"DSM-IAH": [
+"UA"
+],
+"DSM-ORD": [
+"UA"
+],
+"DSN-HGH": [
+"CA"
+],
+"DSN-PEK": [
+"CA"
+],
+"DSN-TFU": [
+"CA"
+],
+"DSN-TSN": [
+"CA"
+],
+"DSS-FCO": [
+"AZ"
+],
+"DSS-IST": [
+"TK"
+],
+"DSS-LIS": [
+"TP"
+],
+"DSS-OXB": [
+"TK"
+],
+"DTM-PMI": [
+"EW"
+],
+"DTW-EWR": [
+"UA"
+],
+"DTW-FRA": [
+"LH"
+],
+"DTW-IAH": [
+"UA"
+],
+"DTW-IST": [
+"TK"
+],
+"DTW-ORD": [
+"UA"
+],
+"DTW-SFO": [
+"UA"
+],
+"DUB-DUS": [
+"EW"
+],
+"DUB-EWR": [
+"UA"
+],
+"DUB-FRA": [
+"LH"
+],
+"DUB-GVA": [
+"LX"
+],
+"DUB-IAD": [
+"UA"
+],
+"DUB-IST": [
+"TK"
+],
+"DUB-LIS": [
+"TP"
+],
+"DUB-MUC": [
+"LH"
+],
+"DUB-OMO": [
+"OU"
+],
+"DUB-ORD": [
+"UA"
+],
+"DUB-SPU": [
+"OU"
+],
+"DUB-STR": [
+"EW"
+],
+"DUB-YUL": [
+"AC"
+],
+"DUB-YVR": [
+"AC"
+],
+"DUB-YYZ": [
+"AC"
+],
+"DUB-ZRH": [
+"LX"
+],
+"DUD-WLG": [
+"NZ"
+],
+"DUR-IST": [
+"TK"
+],
+"DUR-JNB": [
+"SA"
+],
+"DUS-EBL": [
+"EW"
+],
+"DUS-EDI": [
+"EW"
+],
+"DUS-EVN": [
+"EW"
+],
+"DUS-FAO": [
+"EW"
+],
+"DUS-FCO": [
+"EW"
+],
+"DUS-FLR": [
+"EW"
+],
+"DUS-FNC": [
+"EW"
+],
+"DUS-FRA": [
+"LH"
+],
+"DUS-FUE": [
+"EW"
+],
+"DUS-GDN": [
+"EW"
+],
+"DUS-GOA": [
+"EW"
+],
+"DUS-GOT": [
+"EW"
+],
+"DUS-GRZ": [
+"EW"
+],
+"DUS-GVA": [
+"EW"
+],
+"DUS-GWT": [
+"EW"
+],
+"DUS-HAM": [
+"EW"
+],
+"DUS-HER": [
+"EW"
+],
+"DUS-HRG": [
+"EW"
+],
+"DUS-IAS": [
+"EW"
+],
+"DUS-IBZ": [
+"EW"
+],
+"DUS-INN": [
+"EW"
+],
+"DUS-IST": [
+"TK"
+],
+"DUS-IVL": [
+"EW"
+],
+"DUS-JMK": [
+"EW"
+],
+"DUS-JTR": [
+"EW"
+],
+"DUS-KAO": [
+"EW"
+],
+"DUS-KEF": [
+"EW"
+],
+"DUS-KGS": [
+"EW"
+],
+"DUS-KLX": [
+"EW"
+],
+"DUS-KRK": [
+"EW"
+],
+"DUS-KRN": [
+"EW"
+],
+"DUS-KTT": [
+"EW"
+],
+"DUS-KVA": [
+"EW"
+],
+"DUS-KZR": [
+"EW"
+],
+"DUS-LCA": [
+"EW"
+],
+"DUS-LHR": [
+"EW"
+],
+"DUS-LIN": [
+"AZ",
+"EW"
+],
+"DUS-LIS": [
+"EW",
+"TP"
+],
+"DUS-LPA": [
+"EW"
+],
+"DUS-LYS": [
+"EW"
+],
+"DUS-MAD": [
+"EW"
+],
+"DUS-MAH": [
+"EW"
+],
+"DUS-MAN": [
+"EW"
+],
+"DUS-MIR": [
+"EW"
+],
+"DUS-MLA": [
+"EW"
+],
+"DUS-MRS": [
+"EW"
+],
+"DUS-MUC": [
+"EW",
+"LH"
+],
+"DUS-MXP": [
+"EW"
+],
+"DUS-NAP": [
+"EW"
+],
+"DUS-NCE": [
+"EW"
+],
+"DUS-NCL": [
+"EW"
+],
+"DUS-NDR": [
+"EW"
+],
+"DUS-NQY": [
+"EW"
+],
+"DUS-OLB": [
+"EW"
+],
+"DUS-OMO": [
+"EW"
+],
+"DUS-OPO": [
+"EW"
+],
+"DUS-OTP": [
+"EW"
+],
+"DUS-PDL": [
+"EW"
+],
+"DUS-PMI": [
+"EW"
+],
+"DUS-PMO": [
+"EW"
+],
+"DUS-PRG": [
+"EW"
+],
+"DUS-PUY": [
+"EW"
+],
+"DUS-PVK": [
+"EW"
+],
+"DUS-RAK": [
+"EW"
+],
+"DUS-RHO": [
+"EW"
+],
+"DUS-RJK": [
+"EW"
+],
+"DUS-RMF": [
+"EW"
+],
+"DUS-RVN": [
+"EW"
+],
+"DUS-SKG": [
+"A3",
+"EW"
+],
+"DUS-SMI": [
+"EW"
+],
+"DUS-SOF": [
+"EW"
+],
+"DUS-SPC": [
+"EW"
+],
+"DUS-SPU": [
+"EW",
+"OU"
+],
+"DUS-SUF": [
+"EW"
+],
+"DUS-SVQ": [
+"EW"
+],
+"DUS-SZF": [
+"EW"
+],
+"DUS-SZG": [
+"EW"
+],
+"DUS-TBS": [
+"EW"
+],
+"DUS-TFS": [
+"EW"
+],
+"DUS-TIA": [
+"EW"
+],
+"DUS-TIV": [
+"EW"
+],
+"DUS-TLL": [
+"EW"
+],
+"DUS-TLV": [
+"EW"
+],
+"DUS-TUN": [
+"EW"
+],
+"DUS-VAR": [
+"EW"
+],
+"DUS-VCE": [
+"EW"
+],
+"DUS-VIE": [
+"EW",
+"OS"
+],
+"DUS-VLC": [
+"EW"
+],
+"DUS-VOL": [
+"EW"
+],
+"DUS-VRN": [
+"EW"
+],
+"DUS-WAW": [
+"EW",
+"LO"
+],
+"DUS-XRY": [
+"EW"
+],
+"DUS-ZAD": [
+"EW"
+],
+"DUS-ZRH": [
+"EW",
+"LX"
+],
+"DUS-ZTH": [
+"EW"
+],
+"DVO-MNL": [
+"PR"
+],
+"DWC-HAJ": [
+"EW"
+],
+"DXB-EWR": [
+"UA"
+],
+"DXB-FRA": [
+"LH"
+],
+"DXB-HBE": [
+"MS"
+],
+"DXB-HGH": [
+"CA"
+],
+"DXB-IST": [
+"TK"
+],
+"DXB-MNL": [
+"PR"
+],
+"DXB-MUC": [
+"LH"
+],
+"DXB-PEK": [
+"CA"
+],
+"DXB-SIN": [
+"SQ"
+],
+"DXB-STR": [
+"EW"
+],
+"DXB-VIE": [
+"OS"
+],
+"DXB-WAW": [
+"LO"
+],
+"DXB-YYZ": [
+"AC"
+],
+"DXB-ZRH": [
+"LX"
+],
+"DYG-NKG": [
+"HO"
+],
+"DYG-PEK": [
+"CA"
+],
+"DYG-PKX": [
+"CA"
+],
+"DYG-PVG": [
+"HO"
+],
+"DYG-TFU": [
+"CA"
+],
+"DYU-IST": [
+"TK"
+],
+"DZH-PEK": [
+"CA"
+],
+"DZH-SHE": [
+"ZH"
+],
+"DZH-SZX": [
+"CA"
+],
+"DZH-WUH": [
+"CA"
+],
+"DZH-ZUH": [
+"CA"
+],
+"EBB-IST": [
+"TK"
+],
+"EBL-FRA": [
+"LH"
+],
+"EBL-HAJ": [
+"EW"
+],
+"EBL-HAM": [
+"EW"
+],
+"EBL-IST": [
+"TK"
+],
+"EBL-NUE": [
+"EW"
+],
+"EBL-STR": [
+"EW"
+],
+"EBL-VIE": [
+"OS"
+],
+"ECN-IST": [
+"TK"
+],
+"ECP-ORD": [
+"UA"
+],
+"EDI-EWR": [
+"UA"
+],
+"EDI-FRA": [
+"LH"
+],
+"EDI-IAD": [
+"UA"
+],
+"EDI-IST": [
+"TK"
+],
+"EDI-MCO": [
+"VS"
+],
+"EDI-MUC": [
+"LH"
+],
+"EDI-ORD": [
+"UA"
+],
+"EDI-STR": [
+"EW"
+],
+"EDI-VIE": [
+"OS"
+],
+"EDI-YUL": [
+"AC"
+],
+"EDI-YYZ": [
+"AC"
+],
+"EDI-ZRH": [
+"LX"
+],
+"EDO-IST": [
+"TK"
+],
+"EFL-FCO": [
+"AZ"
+],
+"EFL-LIN": [
+"AZ"
+],
+"EFL-VIE": [
+"OS"
+],
+"EGE-EWR": [
+"UA"
+],
+"EGE-IAD": [
+"UA"
+],
+"EGE-IAH": [
+"UA"
+],
+"EGE-ORD": [
+"UA"
+],
+"ELQ-IST": [
+"TK"
+],
+"ELQ-RZV": [
+"TK"
+],
+"ENY-PEK": [
+"CA"
+],
+"ERC-IST": [
+"TK"
+],
+"ERF-PMI": [
+"EW"
+],
+"ERZ-IST": [
+"TK"
+],
+"ESB-IST": [
+"TK"
+],
+"ETZ-HER": [
+"A3"
+],
+"EUG-ORD": [
+"UA"
+],
+"EUG-SFO": [
+"UA"
+],
+"EVE-VIE": [
+"OS"
+],
+"EVN-FRA": [
+"LH"
+],
+"EVN-IST": [
+"TK"
+],
+"EVN-LCA": [
+"A3"
+],
+"EVN-SKG": [
+"A3"
+],
+"EVN-VIE": [
+"OS"
+],
+"EVN-WAW": [
+"LO"
+],
+"EWR-EYW": [
+"UA"
+],
+"EWR-FAO": [
+"UA"
+],
+"EWR-FCA": [
+"UA"
+],
+"EWR-FCO": [
+"UA"
+],
+"EWR-FLL": [
+"UA"
+],
+"EWR-FNC": [
+"UA"
+],
+"EWR-FRA": [
+"LH",
+"UA"
+],
+"EWR-GCM": [
+"UA"
+],
+"EWR-GLA": [
+"UA"
+],
+"EWR-GOH": [
+"UA"
+],
+"EWR-GRU": [
+"UA"
+],
+"EWR-GUA": [
+"UA"
+],
+"EWR-GVA": [
+"UA"
+],
+"EWR-HDN": [
+"UA"
+],
+"EWR-HND": [
+"UA"
+],
+"EWR-HNL": [
+"UA"
+],
+"EWR-IAD": [
+"UA"
+],
+"EWR-IAH": [
+"UA"
+],
+"EWR-ICN": [
+"UA"
+],
+"EWR-IST": [
+"TK"
+],
+"EWR-JAC": [
+"UA"
+],
+"EWR-JAX": [
+"UA"
+],
+"EWR-JNB": [
+"UA"
+],
+"EWR-KEF": [
+"UA"
+],
+"EWR-KRK": [
+"LO"
+],
+"EWR-LAS": [
+"UA"
+],
+"EWR-LAX": [
+"UA"
+],
+"EWR-LFW": [
+"ET"
+],
+"EWR-LHR": [
+"UA"
+],
+"EWR-LIM": [
+"UA"
+],
+"EWR-LIR": [
+"UA"
+],
+"EWR-LIS": [
+"TP",
+"UA"
+],
+"EWR-MAD": [
+"UA"
+],
+"EWR-MBJ": [
+"UA"
+],
+"EWR-MCI": [
+"UA"
+],
+"EWR-MCO": [
+"UA"
+],
+"EWR-MEX": [
+"UA"
+],
+"EWR-MIA": [
+"UA"
+],
+"EWR-MSP": [
+"UA"
+],
+"EWR-MSY": [
+"UA"
+],
+"EWR-MTJ": [
+"UA"
+],
+"EWR-MUC": [
+"LH",
+"UA"
+],
+"EWR-MXP": [
+"UA"
+],
+"EWR-MYR": [
+"UA"
+],
+"EWR-NAP": [
+"UA"
+],
+"EWR-NAS": [
+"UA"
+],
+"EWR-NCE": [
+"UA"
+],
+"EWR-NRT": [
+"UA"
+],
+"EWR-OPO": [
+"TP",
+"UA"
+],
+"EWR-ORD": [
+"UA"
+],
+"EWR-PBI": [
+"UA"
+],
+"EWR-PDL": [
+"UA"
+],
+"EWR-PDX": [
+"UA"
+],
+"EWR-PHX": [
+"UA"
+],
+"EWR-PLS": [
+"UA"
+],
+"EWR-PMI": [
+"UA"
+],
+"EWR-PMO": [
+"UA"
+],
+"EWR-POP": [
+"UA"
+],
+"EWR-POS": [
+"UA"
+],
+"EWR-PSP": [
+"UA"
+],
+"EWR-PTY": [
+"UA"
+],
+"EWR-PUJ": [
+"UA"
+],
+"EWR-PVR": [
+"UA"
+],
+"EWR-PWM": [
+"UA"
+],
+"EWR-RAK": [
+"UA"
+],
+"EWR-RDU": [
+"UA"
+],
+"EWR-RSW": [
+"UA"
+],
+"EWR-RZE": [
+"LO"
+],
+"EWR-SAL": [
+"UA"
+],
+"EWR-SAN": [
+"UA"
+],
+"EWR-SAP": [
+"UA"
+],
+"EWR-SAT": [
+"UA"
+],
+"EWR-SAV": [
+"UA"
+],
+"EWR-SCQ": [
+"UA"
+],
+"EWR-SDQ": [
+"UA"
+],
+"EWR-SEA": [
+"UA"
+],
+"EWR-SFO": [
+"UA"
+],
+"EWR-SIN": [
+"SQ"
+],
+"EWR-SJD": [
+"UA"
+],
+"EWR-SJO": [
+"UA"
+],
+"EWR-SJU": [
+"UA"
+],
+"EWR-SKB": [
+"UA"
+],
+"EWR-SLC": [
+"UA"
+],
+"EWR-SMF": [
+"UA"
+],
+"EWR-SNA": [
+"UA"
+],
+"EWR-SNN": [
+"UA"
+],
+"EWR-SPU": [
+"UA"
+],
+"EWR-SRQ": [
+"UA"
+],
+"EWR-STI": [
+"UA"
+],
+"EWR-STL": [
+"UA"
+],
+"EWR-STT": [
+"UA"
+],
+"EWR-STX": [
+"UA"
+],
+"EWR-SXM": [
+"UA"
+],
+"EWR-TLV": [
+"UA"
+],
+"EWR-TPA": [
+"UA"
+],
+"EWR-TQO": [
+"UA"
+],
+"EWR-UVF": [
+"UA"
+],
+"EWR-VCE": [
+"UA"
+],
+"EWR-VIE": [
+"OS"
+],
+"EWR-WAW": [
+"LO"
+],
+"EWR-YVR": [
+"AC",
+"UA"
+],
+"EWR-YYC": [
+"AC"
+],
+"EWR-YYZ": [
+"AC"
+],
+"EWR-ZRH": [
+"LX",
+"UA"
+],
+"EYW-ORD": [
+"UA"
+],
+"EZE-FCO": [
+"AZ"
+],
+"EZE-FRA": [
+"LH"
+],
+"EZE-GRU": [
+"AC",
+"ET",
+"LX",
+"TK"
+],
+"EZE-IAH": [
+"UA"
+],
+"EZE-IST": [
+"TK"
+],
+"EZE-MDE": [
+"AV"
+],
+"EZE-PTY": [
+"CM"
+],
+"EZE-YYZ": [
+"AC"
+],
+"EZE-ZRH": [
+"LX"
+],
+"EZS-FRA": [
+"TK"
+],
+"EZS-IST": [
+"TK"
+],
+"FAI-ORD": [
+"UA"
+],
+"FAO-FNC": [
+"TP"
+],
+"FAO-FRA": [
+"LH"
+],
+"FAO-GVA": [
+"LX"
+],
+"FAO-HAJ": [
+"EW"
+],
+"FAO-HAM": [
+"EW"
+],
+"FAO-KTW": [
+"LO"
+],
+"FAO-LIS": [
+"TP"
+],
+"FAO-MUC": [
+"LH"
+],
+"FAO-PRG": [
+"EW"
+],
+"FAO-STR": [
+"EW"
+],
+"FAT-ORD": [
+"UA"
+],
+"FBM-JNB": [
+"SA"
+],
+"FCA-IAH": [
+"UA"
+],
+"FCA-ORD": [
+"UA"
+],
+"FCO-FDF": [
+"AZ"
+],
+"FCO-FLR": [
+"AZ"
+],
+"FCO-FRA": [
+"AZ",
+"LH"
+],
+"FCO-GIG": [
+"AZ"
+],
+"FCO-GOA": [
+"AZ"
+],
+"FCO-GRU": [
+"AZ"
+],
+"FCO-GVA": [
+"AZ"
+],
+"FCO-HAJ": [
+"EW"
+],
+"FCO-HAM": [
+"EW"
+],
+"FCO-HER": [
+"A3",
+"AZ"
+],
+"FCO-HND": [
+"AZ"
+],
+"FCO-IAD": [
+"AZ",
+"UA"
+],
+"FCO-IAH": [
+"AZ"
+],
+"FCO-IBZ": [
+"AZ"
+],
+"FCO-ICN": [
+"OZ"
+],
+"FCO-IST": [
+"TK"
+],
+"FCO-JFK": [
+"AZ"
+],
+"FCO-JMK": [
+"AZ"
+],
+"FCO-KRK": [
+"LO"
+],
+"FCO-LAX": [
+"AZ"
+],
+"FCO-LCA": [
+"A3"
+],
+"FCO-LHR": [
+"AZ"
+],
+"FCO-LIN": [
+"AZ"
+],
+"FCO-LIS": [
+"TP"
+],
+"FCO-MAD": [
+"AZ"
+],
+"FCO-MAH": [
+"AZ"
+],
+"FCO-MIA": [
+"AZ"
+],
+"FCO-MLA": [
+"AZ"
+],
+"FCO-MLE": [
+"AZ"
+],
+"FCO-MRS": [
+"AZ"
+],
+"FCO-MRU": [
+"AZ"
+],
+"FCO-MUC": [
+"AZ",
+"LH"
+],
+"FCO-NAP": [
+"AZ"
+],
+"FCO-NCE": [
+"AZ"
+],
+"FCO-NUE": [
+"EW"
+],
+"FCO-ORD": [
+"AZ",
+"UA"
+],
+"FCO-PMI": [
+"AZ"
+],
+"FCO-PMO": [
+"AZ"
+],
+"FCO-PNL": [
+"AZ"
+],
+"FCO-PRG": [
+"EW"
+],
+"FCO-REG": [
+"AZ"
+],
+"FCO-RHO": [
+"AZ"
+],
+"FCO-RUH": [
+"AZ"
+],
+"FCO-SFO": [
+"AZ",
+"UA"
+],
+"FCO-SIN": [
+"SQ"
+],
+"FCO-SKG": [
+"A3"
+],
+"FCO-SPU": [
+"OU"
+],
+"FCO-SSH": [
+"AZ"
+],
+"FCO-STR": [
+"EW"
+],
+"FCO-SUF": [
+"AZ"
+],
+"FCO-TIA": [
+"AZ"
+],
+"FCO-TLV": [
+"AZ"
+],
+"FCO-TPS": [
+"AZ"
+],
+"FCO-TRN": [
+"AZ"
+],
+"FCO-TRS": [
+"AZ"
+],
+"FCO-TUN": [
+"AZ"
+],
+"FCO-VCE": [
+"AZ"
+],
+"FCO-VIE": [
+"OS"
+],
+"FCO-VLC": [
+"AZ"
+],
+"FCO-WAW": [
+"LO"
+],
+"FCO-YUL": [
+"AC"
+],
+"FCO-YYZ": [
+"AC",
+"AZ"
+],
+"FCO-ZAG": [
+"OU"
+],
+"FCO-ZRH": [
+"AZ",
+"LX"
+],
+"FCO-ZTH": [
+"AZ"
+],
+"FDF-YQB": [
+"AC"
+],
+"FDF-YUL": [
+"AC"
+],
+"FDF-YYZ": [
+"AC"
+],
+"FDH-HER": [
+"A3"
+],
+"FDH-RHO": [
+"A3"
+],
+"FEG-IST": [
+"TK"
+],
+"FIH-IST": [
+"TK"
+],
+"FIH-JNB": [
+"SA"
+],
+"FKB-PMI": [
+"EW"
+],
+"FLL-IAD": [
+"UA"
+],
+"FLL-IAH": [
+"UA"
+],
+"FLL-MDE": [
+"AV"
+],
+"FLL-ORD": [
+"UA"
+],
+"FLL-PTY": [
+"CM"
+],
+"FLL-SFO": [
+"UA"
+],
+"FLL-YOW": [
+"AC"
+],
+"FLL-YQB": [
+"AC"
+],
+"FLL-YUL": [
+"AC"
+],
+"FLL-YYZ": [
+"AC"
+],
+"FLN-LIS": [
+"TP"
+],
+"FLN-PTY": [
+"CM"
+],
+"FLR-LIS": [
+"TP"
+],
+"FLR-VIE": [
+"OS"
+],
+"FLR-ZRH": [
+"LX"
+],
+"FMM-HER": [
+"A3"
+],
+"FMM-PMI": [
+"EW"
+],
+"FMM-RHO": [
+"A3"
+],
+"FMO-HER": [
+"A3"
+],
+"FMO-MUC": [
+"LH"
+],
+"FMO-PMI": [
+"EW"
+],
+"FNA-IST": [
+"TK"
+],
+"FNA-OUA": [
+"TK"
+],
+"FNA-ROB": [
+"ET",
+"SN"
+],
+"FNC-FRA": [
+"LH"
+],
+"FNC-GVA": [
+"LX"
+],
+"FNC-HAJ": [
+"EW"
+],
+"FNC-HAM": [
+"EW"
+],
+"FNC-LIS": [
+"TP"
+],
+"FNC-OPO": [
+"TP"
+],
+"FNC-PRG": [
+"EW"
+],
+"FNC-STR": [
+"EW"
+],
+"FNC-VIE": [
+"OS"
+],
+"FOC-NKG": [
+"ZH"
+],
+"FOC-NNG": [
+"ZH"
+],
+"FOC-PEK": [
+"CA"
+],
+"FOC-SHE": [
+"ZH"
+],
+"FOR-LIS": [
+"TP"
+],
+"FRA-GDN": [
+"LH"
+],
+"FRA-GIG": [
+"LH"
+],
+"FRA-GLA": [
+"LH"
+],
+"FRA-GOT": [
+"LH"
+],
+"FRA-GRU": [
+"LH"
+],
+"FRA-GRZ": [
+"LH"
+],
+"FRA-GVA": [
+"LX"
+],
+"FRA-GWT": [
+"LH"
+],
+"FRA-GYD": [
+"LH"
+],
+"FRA-HAJ": [
+"LH"
+],
+"FRA-HAM": [
+"LH"
+],
+"FRA-HAN": [
+"VN"
+],
+"FRA-HDF": [
+"LH"
+],
+"FRA-HEL": [
+"LH"
+],
+"FRA-HER": [
+"A3",
+"LH"
+],
+"FRA-HKG": [
+"LH"
+],
+"FRA-HND": [
+"LH",
+"NH"
+],
+"FRA-HYD": [
+"LH"
+],
+"FRA-IAD": [
+"LH",
+"UA"
+],
+"FRA-IAH": [
+"LH",
+"UA"
+],
+"FRA-IBZ": [
+"LH"
+],
+"FRA-ICN": [
+"LH",
+"OZ"
+],
+"FRA-IKA": [
+"LH"
+],
+"FRA-IST": [
+"LH",
+"TK"
+],
+"FRA-IVL": [
+"LH"
+],
+"FRA-JFK": [
+"LH",
+"SQ"
+],
+"FRA-JNB": [
+"LH"
+],
+"FRA-KAO": [
+"LH"
+],
+"FRA-KEF": [
+"LH"
+],
+"FRA-KGS": [
+"LH"
+],
+"FRA-KRK": [
+"LH"
+],
+"FRA-KTW": [
+"LH"
+],
+"FRA-LAD": [
+"LH"
+],
+"FRA-LAX": [
+"LH"
+],
+"FRA-LEJ": [
+"LH"
+],
+"FRA-LHR": [
+"LH"
+],
+"FRA-LIN": [
+"LH"
+],
+"FRA-LIS": [
+"LH",
+"TP"
+],
+"FRA-LJU": [
+"LH"
+],
+"FRA-LOS": [
+"LH"
+],
+"FRA-LUX": [
+"LH"
+],
+"FRA-LWO": [
+"LH"
+],
+"FRA-LYS": [
+"LH"
+],
+"FRA-MAA": [
+"LH"
+],
+"FRA-MAD": [
+"LH"
+],
+"FRA-MAN": [
+"LH"
+],
+"FRA-MEX": [
+"LH"
+],
+"FRA-MIA": [
+"LH"
+],
+"FRA-MLA": [
+"LH"
+],
+"FRA-MRS": [
+"LH"
+],
+"FRA-MUC": [
+"LH"
+],
+"FRA-MXP": [
+"LH"
+],
+"FRA-NAP": [
+"LH"
+],
+"FRA-NBJ": [
+"LH"
+],
+"FRA-NBO": [
+"LH"
+],
+"FRA-NCE": [
+"LH"
+],
+"FRA-NCL": [
+"LH"
+],
+"FRA-NQZ": [
+"LH"
+],
+"FRA-NTE": [
+"LH"
+],
+"FRA-NUE": [
+"LH"
+],
+"FRA-OLB": [
+"LH"
+],
+"FRA-OPO": [
+"LH"
+],
+"FRA-ORD": [
+"LH",
+"UA"
+],
+"FRA-ORK": [
+"LH"
+],
+"FRA-OSL": [
+"LH"
+],
+"FRA-OTP": [
+"LH"
+],
+"FRA-OVD": [
+"LH"
+],
+"FRA-PDL": [
+"LH"
+],
+"FRA-PEK": [
+"CA"
+],
+"FRA-PHC": [
+"LH"
+],
+"FRA-PKX": [
+"CA"
+],
+"FRA-PMI": [
+"LH"
+],
+"FRA-PMO": [
+"LH"
+],
+"FRA-POZ": [
+"LH"
+],
+"FRA-PRG": [
+"LH"
+],
+"FRA-PUY": [
+"LH"
+],
+"FRA-PVG": [
+"CA",
+"LH"
+],
+"FRA-RDU": [
+"LH"
+],
+"FRA-RIX": [
+"LH"
+],
+"FRA-RJK": [
+"LH"
+],
+"FRA-RMO": [
+"LH"
+],
+"FRA-RUH": [
+"LH"
+],
+"FRA-RVN": [
+"LH"
+],
+"FRA-RZE": [
+"LH"
+],
+"FRA-SCQ": [
+"LH"
+],
+"FRA-SEA": [
+"LH"
+],
+"FRA-SFO": [
+"LH",
+"UA"
+],
+"FRA-SGN": [
+"VN"
+],
+"FRA-SIN": [
+"LH",
+"SQ"
+],
+"FRA-SJJ": [
+"LH"
+],
+"FRA-SJO": [
+"LH"
+],
+"FRA-SKG": [
+"A3",
+"LH"
+],
+"FRA-SOF": [
+"LH"
+],
+"FRA-SPU": [
+"OU"
+],
+"FRA-SSG": [
+"LH"
+],
+"FRA-STL": [
+"LH"
+],
+"FRA-STR": [
+"LH"
+],
+"FRA-SUF": [
+"LH"
+],
+"FRA-SVG": [
+"LH"
+],
+"FRA-SVQ": [
+"LH"
+],
+"FRA-SXB": [
+"LH"
+],
+"FRA-SZG": [
+"LH"
+],
+"FRA-SZX": [
+"CA"
+],
+"FRA-TFU": [
+"CA"
+],
+"FRA-TIA": [
+"LH"
+],
+"FRA-TIV": [
+"LH"
+],
+"FRA-TLL": [
+"LH"
+],
+"FRA-TLV": [
+"LH"
+],
+"FRA-TOS": [
+"LH"
+],
+"FRA-TRD": [
+"LH"
+],
+"FRA-TUN": [
+"LH"
+],
+"FRA-VCE": [
+"LH"
+],
+"FRA-VIE": [
+"LH",
+"OS"
+],
+"FRA-VLC": [
+"LH"
+],
+"FRA-VNO": [
+"LH"
+],
+"FRA-WAW": [
+"LH",
+"LO"
+],
+"FRA-WRO": [
+"LH"
+],
+"FRA-YUL": [
+"AC",
+"LH"
+],
+"FRA-YVR": [
+"AC",
+"LH"
+],
+"FRA-YYZ": [
+"AC",
+"LH"
+],
+"FRA-ZAG": [
+"LH",
+"OU"
+],
+"FRA-ZRH": [
+"LH",
+"LX"
+],
+"FSD-ORD": [
+"UA"
+],
+"FUE-HAM": [
+"EW"
+],
+"FUE-LIS": [
+"TP"
+],
+"FUE-NUE": [
+"EW"
+],
+"FUE-PRG": [
+"EW"
+],
+"FUE-STR": [
+"EW"
+],
+"FUG-PEK": [
+"CA"
+],
+"FUK-HAN": [
+"VN"
+],
+"FUK-HND": [
+"NH"
+],
+"FUK-ICN": [
+"OZ"
+],
+"FUK-KHH": [
+"BR"
+],
+"FUK-MMY": [
+"NH"
+],
+"FUK-MNL": [
+"PR"
+],
+"FUK-NGO": [
+"NH"
+],
+"FUK-OKA": [
+"NH"
+],
+"FUK-PVG": [
+"CA",
+"HO"
+],
+"FUK-SGN": [
+"VN"
+],
+"FUK-SIN": [
+"SQ"
+],
+"FUK-TPE": [
+"BR"
+],
+"FYJ-HRB": [
+"CA"
+],
+"FYJ-PEK": [
+"CA"
+],
+"GBE-JNB": [
+"SA"
+],
+"GCM-IAD": [
+"UA"
+],
+"GCM-IAH": [
+"UA"
+],
+"GCM-ORD": [
+"UA"
+],
+"GDE-JIJ": [
+"ET"
+],
+"GDL-IAH": [
+"UA"
+],
+"GDL-PTY": [
+"CM"
+],
+"GDL-YYZ": [
+"AC"
+],
+"GDN-IST": [
+"LO"
+],
+"GDN-KRK": [
+"LO"
+],
+"GDN-MUC": [
+"LH"
+],
+"GDN-OSL": [
+"LO"
+],
+"GDN-RZE": [
+"LO"
+],
+"GDN-WAW": [
+"LO"
+],
+"GDN-ZRH": [
+"LX"
+],
+"GDQ-SZE": [
+"ET"
+],
+"GEG-IAH": [
+"UA"
+],
+"GEG-SFO": [
+"UA"
+],
+"GEO-IAH": [
+"UA"
+],
+"GEO-PTY": [
+"CM"
+],
+"GES-MNL": [
+"PR"
+],
+"GGT-YYZ": [
+"AC"
+],
+"GIG-IAH": [
+"UA"
+],
+"GIG-LIS": [
+"TP"
+],
+"GIG-OPO": [
+"TP"
+],
+"GIG-PTY": [
+"CM"
+],
+"GIG-YYZ": [
+"AC"
+],
+"GIS-WLG": [
+"NZ"
+],
+"GLA-HAJ": [
+"EW"
+],
+"GMP-HND": [
+"NH",
+"OZ"
+],
+"GMP-KIX": [
+"OZ"
+],
+"GMP-KWJ": [
+"OZ"
+],
+"GMP-PEK": [
+"CA",
+"OZ"
+],
+"GMP-RSU": [
+"OZ"
+],
+"GMP-SHA": [
+"OZ"
+],
+"GMP-TSA": [
+"BR"
+],
+"GND-LHR": [
+"VS"
+],
+"GND-YYZ": [
+"AC"
+],
+"GNJ-IST": [
+"TK"
+],
+"GNY-IST": [
+"TK"
+],
+"GOA-OLB": [
+"AZ"
+],
+"GOT-GVA": [
+"LX"
+],
+"GOT-INN": [
+"EW"
+],
+"GOT-IST": [
+"TK"
+],
+"GOT-MUC": [
+"LH"
+],
+"GOT-RHO": [
+"A3"
+],
+"GOT-VIE": [
+"OS"
+],
+"GOT-WAW": [
+"LO"
+],
+"GOT-ZRH": [
+"LX"
+],
+"GOX-HYD": [
+"AI"
+],
+"GPA-VIE": [
+"OS"
+],
+"GRO-KTW": [
+"LO"
+],
+"GRO-WAW": [
+"LO"
+],
+"GRR-ORD": [
+"UA"
+],
+"GRU-IAD": [
+"UA"
+],
+"GRU-IAH": [
+"UA"
+],
+"GRU-IST": [
+"TK"
+],
+"GRU-JNB": [
+"SA"
+],
+"GRU-LIS": [
+"TP"
+],
+"GRU-MAD": [
+"CA"
+],
+"GRU-MUC": [
+"LH"
+],
+"GRU-OPO": [
+"TP"
+],
+"GRU-ORD": [
+"UA"
+],
+"GRU-PEK": [
+"CA"
+],
+"GRU-PTY": [
+"CM"
+],
+"GRU-SCL": [
+"TK"
+],
+"GRU-YUL": [
+"AC"
+],
+"GRU-YYZ": [
+"AC"
+],
+"GRU-ZRH": [
+"LX"
+],
+"GRZ-HAM": [
+"EW"
+],
+"GRZ-HER": [
+"EW"
+],
+"GRZ-HRG": [
+"EW"
+],
+"GRZ-KGS": [
+"EW"
+],
+"GRZ-LCA": [
+"EW"
+],
+"GRZ-LPA": [
+"EW"
+],
+"GRZ-MUC": [
+"LH"
+],
+"GRZ-OLB": [
+"EW"
+],
+"GRZ-PMI": [
+"EW"
+],
+"GRZ-RHO": [
+"EW"
+],
+"GRZ-SZG": [
+"EW"
+],
+"GRZ-TFS": [
+"EW"
+],
+"GRZ-VIE": [
+"OS"
+],
+"GRZ-ZRH": [
+"LX"
+],
+"GSP-IAH": [
+"UA"
+],
+"GSP-ORD": [
+"UA"
+],
+"GUA-IAD": [
+"UA"
+],
+"GUA-IAH": [
+"UA"
+],
+"GUA-LAX": [
+"UA"
+],
+"GUA-MGA": [
+"CM"
+],
+"GUA-ORD": [
+"UA"
+],
+"GUA-PTY": [
+"CM"
+],
+"GUA-SJO": [
+"CM"
+],
+"GUA-YUL": [
+"AC"
+],
+"GUM-HND": [
+"UA"
+],
+"GUM-HNL": [
+"UA"
+],
+"GUM-KIX": [
+"UA"
+],
+"GUM-KSA": [
+"UA"
+],
+"GUM-KWA": [
+"UA"
+],
+"GUM-MAJ": [
+"UA"
+],
+"GUM-MNL": [
+"PR",
+"UA"
+],
+"GUM-NGO": [
+"UA"
+],
+"GUM-NRT": [
+"UA"
+],
+"GUM-PNI": [
+"UA"
+],
+"GUM-ROR": [
+"UA"
+],
+"GUM-SPN": [
+"UA"
+],
+"GUM-TKK": [
+"UA"
+],
+"GUM-TPE": [
+"UA"
+],
+"GUM-YAP": [
+"UA"
+],
+"GVA-HAM": [
+"LX"
+],
+"GVA-HER": [
+"LX"
+],
+"GVA-HRG": [
+"LX"
+],
+"GVA-IAD": [
+"UA"
+],
+"GVA-IBZ": [
+"LX"
+],
+"GVA-IST": [
+"TK"
+],
+"GVA-JFK": [
+"LX"
+],
+"GVA-JMK": [
+"LX"
+],
+"GVA-JTR": [
+"LX"
+],
+"GVA-KGS": [
+"LX"
+],
+"GVA-KLX": [
+"LX"
+],
+"GVA-LCA": [
+"LX"
+],
+"GVA-LGW": [
+"LX"
+],
+"GVA-LHR": [
+"LX"
+],
+"GVA-LIS": [
+"LX",
+"TP"
+],
+"GVA-LYS": [
+"ET"
+],
+"GVA-MAH": [
+"LX"
+],
+"GVA-MAN": [
+"ET"
+],
+"GVA-MUC": [
+"LH",
+"LX"
+],
+"GVA-NCE": [
+"LX"
+],
+"GVA-OLB": [
+"LX"
+],
+"GVA-OPO": [
+"LX",
+"TP"
+],
+"GVA-ORK": [
+"LX"
+],
+"GVA-OSL": [
+"LX"
+],
+"GVA-PEK": [
+"CA"
+],
+"GVA-PMI": [
+"LX"
+],
+"GVA-PRG": [
+"EW"
+],
+"GVA-RAK": [
+"LX"
+],
+"GVA-RHO": [
+"LX"
+],
+"GVA-SKG": [
+"LX"
+],
+"GVA-VIE": [
+"LX",
+"OS"
+],
+"GVA-VLC": [
+"LX"
+],
+"GVA-WAW": [
+"LO"
+],
+"GVA-YUL": [
+"AC"
+],
+"GVA-ZRH": [
+"LX"
+],
+"GVA-ZTH": [
+"LX"
+],
+"GWT-MUC": [
+"LH"
+],
+"GWT-STR": [
+"EW"
+],
+"GWT-VIE": [
+"OS"
+],
+"GWT-ZRH": [
+"LX"
+],
+"GYD-IST": [
+"TK"
+],
+"GYD-WAW": [
+"LO"
+],
+"GYE-PTY": [
+"CM"
+],
+"GYS-HGH": [
+"CA"
+],
+"GYS-PEK": [
+"CA"
+],
+"GYU-PVG": [
+"HO"
+],
+"GYU-XIY": [
+"HO"
+],
+"GZP-IST": [
+"TK"
+],
+"GZT-IST": [
+"TK"
+],
+"HAC-HND": [
+"NH"
+],
+"HAH-IST": [
+"TK"
+],
+"HAJ-HRG": [
+"EW"
+],
+"HAJ-IST": [
+"TK"
+],
+"HAJ-LIS": [
+"EW"
+],
+"HAJ-LPA": [
+"EW"
+],
+"HAJ-MUC": [
+"LH"
+],
+"HAJ-MXP": [
+"EW"
+],
+"HAJ-NCE": [
+"EW"
+],
+"HAJ-OLB": [
+"EW"
+],
+"HAJ-PMI": [
+"EW"
+],
+"HAJ-PUY": [
+"EW"
+],
+"HAJ-RAK": [
+"EW"
+],
+"HAJ-SKG": [
+"A3",
+"EW"
+],
+"HAJ-SUF": [
+"EW"
+],
+"HAJ-TFS": [
+"EW"
+],
+"HAJ-VIE": [
+"OS"
+],
+"HAJ-ZRH": [
+"LX"
+],
+"HAK-HAN": [
+"VN"
+],
+"HAK-HET": [
+"CA"
+],
+"HAK-HGH": [
+"CA"
+],
+"HAK-HRB": [
+"ZH"
+],
+"HAK-HUZ": [
+"HO"
+],
+"HAK-KHN": [
+"ZH"
+],
+"HAK-NKG": [
+"HO",
+"ZH"
+],
+"HAK-PEK": [
+"CA"
+],
+"HAK-PKX": [
+"CA"
+],
+"HAK-PVG": [
+"CA",
+"HO"
+],
+"HAK-SGN": [
+"VN"
+],
+"HAK-SHA": [
+"HO"
+],
+"HAK-SHE": [
+"ZH"
+],
+"HAK-SZX": [
+"ZH"
+],
+"HAK-TFU": [
+"CA",
+"ZH"
+],
+"HAK-TSN": [
+"CA"
+],
+"HAK-WUH": [
+"CA"
+],
+"HAK-WUX": [
+"HO"
+],
+"HAK-XIY": [
+"HO"
+],
+"HAK-YCU": [
+"ZH"
+],
+"HAM-HER": [
+"EW"
+],
+"HAM-HRG": [
+"EW"
+],
+"HAM-IBZ": [
+"EW"
+],
+"HAM-INN": [
+"EW"
+],
+"HAM-IST": [
+"TK"
+],
+"HAM-JMK": [
+"EW"
+],
+"HAM-JTR": [
+"EW"
+],
+"HAM-KGS": [
+"EW"
+],
+"HAM-KLU": [
+"OS"
+],
+"HAM-KTT": [
+"EW"
+],
+"HAM-LCA": [
+"EW"
+],
+"HAM-LHR": [
+"EW"
+],
+"HAM-LIN": [
+"AZ"
+],
+"HAM-LIS": [
+"EW",
+"TP"
+],
+"HAM-LPA": [
+"EW"
+],
+"HAM-MAN": [
+"EW"
+],
+"HAM-MLA": [
+"EW"
+],
+"HAM-MUC": [
+"EW",
+"LH"
+],
+"HAM-MXP": [
+"EW"
+],
+"HAM-NAP": [
+"EW"
+],
+"HAM-NCE": [
+"EW"
+],
+"HAM-OLB": [
+"EW"
+],
+"HAM-OPO": [
+"EW"
+],
+"HAM-PMI": [
+"EW"
+],
+"HAM-RAK": [
+"EW"
+],
+"HAM-RHO": [
+"EW"
+],
+"HAM-RJK": [
+"EW"
+],
+"HAM-RMF": [
+"EW"
+],
+"HAM-RVN": [
+"EW"
+],
+"HAM-SKG": [
+"A3",
+"EW"
+],
+"HAM-SPC": [
+"EW"
+],
+"HAM-SPU": [
+"EW"
+],
+"HAM-STR": [
+"EW"
+],
+"HAM-SZG": [
+"EW"
+],
+"HAM-TFS": [
+"EW"
+],
+"HAM-TLV": [
+"EW"
+],
+"HAM-TOS": [
+"EW"
+],
+"HAM-VAR": [
+"EW"
+],
+"HAM-VCE": [
+"EW"
+],
+"HAM-VIE": [
+"EW",
+"OS"
+],
+"HAM-VLC": [
+"EW"
+],
+"HAM-VRN": [
+"EW"
+],
+"HAM-WAW": [
+"LO"
+],
+"HAM-XRY": [
+"EW"
+],
+"HAM-ZAD": [
+"EW"
+],
+"HAM-ZAG": [
+"OU"
+],
+"HAM-ZRH": [
+"EW",
+"LX"
+],
+"HAM-ZTH": [
+"EW"
+],
+"HAN-HGH": [
+"CA"
+],
+"HAN-HKG": [
+"VN"
+],
+"HAN-HND": [
+"VN"
+],
+"HAN-HUI": [
+"VN"
+],
+"HAN-HYD": [
+"VN"
+],
+"HAN-ICN": [
+"OZ",
+"VN"
+],
+"HAN-IST": [
+"TK"
+],
+"HAN-KHH": [
+"VN"
+],
+"HAN-KIX": [
+"VN"
+],
+"HAN-KTI": [
+"VN"
+],
+"HAN-KUL": [
+"VN"
+],
+"HAN-LHR": [
+"VN"
+],
+"HAN-LPQ": [
+"VN"
+],
+"HAN-MEL": [
+"VN"
+],
+"HAN-MNL": [
+"PR",
+"VN"
+],
+"HAN-MUC": [
+"VN"
+],
+"HAN-MXP": [
+"VN"
+],
+"HAN-NGO": [
+"VN"
+],
+"HAN-NRT": [
+"NH",
+"VN"
+],
+"HAN-PEK": [
+"CA",
+"VN"
+],
+"HAN-PKX": [
+"VN"
+],
+"HAN-PQC": [
+"VN"
+],
+"HAN-PUS": [
+"VN"
+],
+"HAN-PVG": [
+"CA",
+"HO",
+"VN"
+],
+"HAN-RGN": [
+"VN"
+],
+"HAN-SAI": [
+"VN"
+],
+"HAN-SGN": [
+"VN"
+],
+"HAN-SIN": [
+"SQ",
+"VN"
+],
+"HAN-SVO": [
+"VN"
+],
+"HAN-SYD": [
+"VN"
+],
+"HAN-SZX": [
+"VN",
+"ZH"
+],
+"HAN-TBB": [
+"VN"
+],
+"HAN-TFU": [
+"VN"
+],
+"HAN-TPE": [
+"BR",
+"VN"
+],
+"HAN-UIH": [
+"VN"
+],
+"HAN-VCA": [
+"VN"
+],
+"HAN-VCL": [
+"VN"
+],
+"HAN-VDH": [
+"VN"
+],
+"HAN-VII": [
+"VN"
+],
+"HAN-VTE": [
+"VN"
+],
+"HAV-MAD": [
+"CA"
+],
+"HAV-PEK": [
+"CA"
+],
+"HAV-PTY": [
+"CM"
+],
+"HBA-MEL": [
+"VA"
+],
+"HBA-PER": [
+"VA"
+],
+"HBA-SYD": [
+"VA"
+],
+"HBE-HRG": [
+"MS"
+],
+"HBE-IST": [
+"TK"
+],
+"HBE-JED": [
+"MS"
+],
+"HBE-KWI": [
+"MS"
+],
+"HBE-MED": [
+"MS"
+],
+"HBE-RUH": [
+"MS"
+],
+"HBE-SSH": [
+"MS"
+],
+"HCZ-PVG": [
+"HO"
+],
+"HDF-ZRH": [
+"LX"
+],
+"HDN-IAD": [
+"UA"
+],
+"HDN-ORD": [
+"UA"
+],
+"HEL-IST": [
+"TK"
+],
+"HEL-MUC": [
+"LH"
+],
+"HEL-PVG": [
+"HO"
+],
+"HER-INN": [
+"EW"
+],
+"HER-IST": [
+"A3"
+],
+"HER-JMK": [
+"A3"
+],
+"HER-JNX": [
+"A3"
+],
+"HER-JSY": [
+"A3"
+],
+"HER-JTR": [
+"A3"
+],
+"HER-KGS": [
+"A3"
+],
+"HER-KLX": [
+"A3"
+],
+"HER-KTW": [
+"LO"
+],
+"HER-LCA": [
+"A3"
+],
+"HER-LIL": [
+"A3"
+],
+"HER-LYS": [
+"A3"
+],
+"HER-MJT": [
+"A3"
+],
+"HER-MUC": [
+"A3",
+"LH"
+],
+"HER-NTE": [
+"A3"
+],
+"HER-NUE": [
+"EW"
+],
+"HER-PAS": [
+"A3"
+],
+"HER-PRG": [
+"EW"
+],
+"HER-RHO": [
+"A3"
+],
+"HER-SKG": [
+"A3"
+],
+"HER-STR": [
+"EW"
+],
+"HER-SZG": [
+"EW"
+],
+"HER-TIA": [
+"A3"
+],
+"HER-TLS": [
+"A3"
+],
+"HER-TLV": [
+"A3"
+],
+"HER-VIE": [
+"OS"
+],
+"HER-WAW": [
+"LO"
+],
+"HER-ZRH": [
+"A3"
+],
+"HET-HGH": [
+"CA"
+],
+"HET-HLD": [
+"CA"
+],
+"HET-HLH": [
+"CA"
+],
+"HET-INC": [
+"CA"
+],
+"HET-KWE": [
+"CA"
+],
+"HET-NZH": [
+"CA"
+],
+"HET-PEK": [
+"CA"
+],
+"HET-PVG": [
+"CA",
+"HO"
+],
+"HET-RLK": [
+"CA"
+],
+"HET-SHE": [
+"CA"
+],
+"HET-SJW": [
+"CA"
+],
+"HET-SZX": [
+"ZH"
+],
+"HET-TFU": [
+"CA"
+],
+"HET-TGO": [
+"CA"
+],
+"HET-TSN": [
+"CA"
+],
+"HET-UBN": [
+"CA"
+],
+"HET-WUH": [
+"CA",
+"HO"
+],
+"HET-XIL": [
+"CA"
+],
+"HET-XIY": [
+"CA"
+],
+"HFE-HRB": [
+"ZH"
+],
+"HFE-JJN": [
+"ZH"
+],
+"HFE-MIG": [
+"ZH"
+],
+"HFE-NNG": [
+"ZH"
+],
+"HFE-PEK": [
+"CA"
+],
+"HFE-SHE": [
+"ZH"
+],
+"HFE-SZX": [
+"ZH"
+],
+"HFE-TFU": [
+"CA",
+"ZH"
+],
+"HFE-TYN": [
+"ZH"
+],
+"HFE-XIY": [
+"ZH"
+],
+"HFE-YBP": [
+"ZH"
+],
+"HGH-HIA": [
+"HO"
+],
+"HGH-HKG": [
+"CA"
+],
+"HGH-HKT": [
+"CA"
+],
+"HGH-HRB": [
+"CA",
+"HO"
+],
+"HGH-HUZ": [
+"HO"
+],
+"HGH-ICN": [
+"CA",
+"OZ"
+],
+"HGH-INC": [
+"CA"
+],
+"HGH-KIX": [
+"CA"
+],
+"HGH-KMG": [
+"CA",
+"HO"
+],
+"HGH-KRL": [
+"CA"
+],
+"HGH-KWE": [
+"CA",
+"HO"
+],
+"HGH-LFQ": [
+"HO"
+],
+"HGH-LHW": [
+"CA"
+],
+"HGH-LJG": [
+"CA"
+],
+"HGH-NNG": [
+"CA"
+],
+"HGH-NRT": [
+"CA",
+"NH"
+],
+"HGH-PEK": [
+"CA"
+],
+"HGH-PKX": [
+"CA"
+],
+"HGH-SIN": [
+"SQ"
+],
+"HGH-SWA": [
+"CA"
+],
+"HGH-SZX": [
+"CA",
+"ZH"
+],
+"HGH-TAO": [
+"HO"
+],
+"HGH-TFU": [
+"CA"
+],
+"HGH-TPE": [
+"BR",
+"CA"
+],
+"HGH-TSN": [
+"CA"
+],
+"HGH-URC": [
+"CA"
+],
+"HGH-UYN": [
+"HO"
+],
+"HGH-WEH": [
+"CA"
+],
+"HGH-WUA": [
+"HO"
+],
+"HGH-XIY": [
+"CA"
+],
+"HGH-XNN": [
+"CA"
+],
+"HGH-YCU": [
+"CA",
+"ZH"
+],
+"HGH-YNT": [
+"CA"
+],
+"HGH-ZHA": [
+"CA"
+],
+"HIJ-HND": [
+"NH"
+],
+"HIJ-OKA": [
+"NH"
+],
+"HKD-HND": [
+"NH"
+],
+"HKD-ITM": [
+"NH"
+],
+"HKD-NGO": [
+"NH"
+],
+"HKG-HND": [
+"NH"
+],
+"HKG-ICN": [
+"OZ"
+],
+"HKG-INC": [
+"CA"
+],
+"HKG-IST": [
+"TK"
+],
+"HKG-KHH": [
+"BR"
+],
+"HKG-LAX": [
+"UA"
+],
+"HKG-MNL": [
+"PR"
+],
+"HKG-NKG": [
+"HO"
+],
+"HKG-NNG": [
+"ZH"
+],
+"HKG-NRT": [
+"NH"
+],
+"HKG-NTG": [
+"ZH"
+],
+"HKG-PEK": [
+"CA"
+],
+"HKG-PKX": [
+"CA"
+],
+"HKG-PVG": [
+"HO"
+],
+"HKG-SFO": [
+"UA"
+],
+"HKG-SGN": [
+"UA",
+"VN"
+],
+"HKG-SIN": [
+"SQ"
+],
+"HKG-TFU": [
+"CA",
+"ZH"
+],
+"HKG-TPE": [
+"BR"
+],
+"HKG-TSN": [
+"CA"
+],
+"HKG-WUX": [
+"ZH"
+],
+"HKG-YVR": [
+"AC"
+],
+"HKG-ZRH": [
+"LX"
+],
+"HKT-ICN": [
+"OZ"
+],
+"HKT-IST": [
+"TK"
+],
+"HKT-KTW": [
+"LO"
+],
+"HKT-PEK": [
+"CA"
+],
+"HKT-PVG": [
+"HO"
+],
+"HKT-SGN": [
+"VN"
+],
+"HKT-SIN": [
+"SQ"
+],
+"HKT-SZX": [
+"ZH"
+],
+"HKT-TFU": [
+"CA"
+],
+"HKT-WAW": [
+"LO"
+],
+"HLD-HTA": [
+"CA"
+],
+"HLD-PEK": [
+"CA"
+],
+"HLD-PVG": [
+"HO"
+],
+"HLD-SHA": [
+"HO"
+],
+"HLD-SHE": [
+"HO"
+],
+"HLH-PEK": [
+"CA"
+],
+"HLH-PVG": [
+"HO"
+],
+"HLZ-WLG": [
+"NZ"
+],
+"HMI-PEK": [
+"CA"
+],
+"HMI-TFU": [
+"CA"
+],
+"HND-HNL": [
+"NH"
+],
+"HND-HSG": [
+"NH"
+],
+"HND-IAD": [
+"NH",
+"UA"
+],
+"HND-IAH": [
+"NH"
+],
+"HND-ICN": [
+"OZ"
+],
+"HND-ISG": [
+"NH"
+],
+"HND-IST": [
+"NH",
+"TK"
+],
+"HND-ITM": [
+"NH"
+],
+"HND-IWJ": [
+"NH"
+],
+"HND-IWK": [
+"NH"
+],
+"HND-JFK": [
+"NH"
+],
+"HND-KCZ": [
+"NH"
+],
+"HND-KIX": [
+"NH"
+],
+"HND-KMI": [
+"NH"
+],
+"HND-KMJ": [
+"NH"
+],
+"HND-KMQ": [
+"NH"
+],
+"HND-KOJ": [
+"NH"
+],
+"HND-KUH": [
+"NH"
+],
+"HND-KUL": [
+"NH"
+],
+"HND-LAX": [
+"NH",
+"UA"
+],
+"HND-LHR": [
+"NH"
+],
+"HND-MBE": [
+"NH"
+],
+"HND-MMY": [
+"NH"
+],
+"HND-MNL": [
+"NH",
+"PR"
+],
+"HND-MUC": [
+"LH",
+"NH"
+],
+"HND-MXP": [
+"NH"
+],
+"HND-MYJ": [
+"NH"
+],
+"HND-NGO": [
+"NH"
+],
+"HND-NGS": [
+"NH"
+],
+"HND-NTQ": [
+"NH"
+],
+"HND-OIT": [
+"NH"
+],
+"HND-OKA": [
+"NH"
+],
+"HND-OKJ": [
+"NH"
+],
+"HND-ONJ": [
+"NH"
+],
+"HND-ORD": [
+"NH",
+"UA"
+],
+"HND-PEK": [
+"CA",
+"NH"
+],
+"HND-PVG": [
+"HO",
+"NH"
+],
+"HND-SEA": [
+"NH"
+],
+"HND-SFO": [
+"NH",
+"UA"
+],
+"HND-SGN": [
+"NH"
+],
+"HND-SHA": [
+"NH"
+],
+"HND-SHB": [
+"NH"
+],
+"HND-SIN": [
+"NH",
+"SQ"
+],
+"HND-SYD": [
+"NH"
+],
+"HND-SYO": [
+"NH"
+],
+"HND-SZX": [
+"NH"
+],
+"HND-TAK": [
+"NH"
+],
+"HND-TAO": [
+"NH"
+],
+"HND-TKS": [
+"NH"
+],
+"HND-TOY": [
+"NH"
+],
+"HND-TSA": [
+"BR",
+"NH"
+],
+"HND-TTJ": [
+"NH"
+],
+"HND-UBJ": [
+"NH"
+],
+"HND-UKB": [
+"NH"
+],
+"HND-VIE": [
+"NH"
+],
+"HND-WKJ": [
+"NH"
+],
+"HND-YGJ": [
+"NH"
+],
+"HND-YVR": [
+"NH"
+],
+"HND-YYZ": [
+"AC"
+],
+"HNL-IAD": [
+"UA"
+],
+"HNL-IAH": [
+"UA"
+],
+"HNL-KSA": [
+"UA"
+],
+"HNL-MAJ": [
+"UA"
+],
+"HNL-MNL": [
+"PR"
+],
+"HNL-NRT": [
+"NH"
+],
+"HNL-ORD": [
+"UA"
+],
+"HNL-PNI": [
+"UA"
+],
+"HNL-SFO": [
+"UA"
+],
+"HNL-TKK": [
+"UA"
+],
+"HNL-YVR": [
+"AC"
+],
+"HNL-YYZ": [
+"AC"
+],
+"HNY-LJG": [
+"HO"
+],
+"HNY-PEK": [
+"CA"
+],
+"HNY-TFU": [
+"CA"
+],
+"HNY-WNZ": [
+"HO"
+],
+"HPH-PQC": [
+"VN"
+],
+"HPH-SGN": [
+"VN"
+],
+"HPH-SZX": [
+"ZH"
+],
+"HPH-VCA": [
+"VN"
+],
+"HRB-HUZ": [
+"HO"
+],
+"HRB-ICN": [
+"OZ"
+],
+"HRB-JSJ": [
+"CA"
+],
+"HRB-KHN": [
+"ZH"
+],
+"HRB-KMG": [
+"CA",
+"ZH"
+],
+"HRB-KWE": [
+"ZH"
+],
+"HRB-LYI": [
+"ZH"
+],
+"HRB-NGB": [
+"ZH"
+],
+"HRB-NKG": [
+"HO",
+"ZH"
+],
+"HRB-NNG": [
+"ZH"
+],
+"HRB-NTG": [
+"ZH"
+],
+"HRB-PEK": [
+"CA"
+],
+"HRB-PKX": [
+"CA"
+],
+"HRB-PVG": [
+"CA",
+"HO"
+],
+"HRB-SIN": [
+"ZH"
+],
+"HRB-SYX": [
+"HO",
+"ZH"
+],
+"HRB-SZX": [
+"ZH"
+],
+"HRB-TFU": [
+"CA",
+"ZH"
+],
+"HRB-TSN": [
+"CA"
+],
+"HRB-WEH": [
+"CA"
+],
+"HRB-WNZ": [
+"ZH"
+],
+"HRB-WUH": [
+"CA",
+"ZH"
+],
+"HRB-WUX": [
+"HO"
+],
+"HRB-XMN": [
+"ZH"
+],
+"HRB-YCU": [
+"ZH"
+],
+"HRB-YNT": [
+"ZH"
+],
+"HRB-YTY": [
+"ZH"
+],
+"HRE-JNB": [
+"SA"
+],
+"HRG-IST": [
+"TK"
+],
+"HRG-KTW": [
+"LO"
+],
+"HRG-MXP": [
+"AZ"
+],
+"HRG-PRG": [
+"EW",
+"MS"
+],
+"HRG-SSH": [
+"MS"
+],
+"HRG-STR": [
+"EW"
+],
+"HRG-SZG": [
+"EW"
+],
+"HRG-VIE": [
+"OS"
+],
+"HSA-IST": [
+"TK"
+],
+"HSC-PVG": [
+"HO"
+],
+"HSN-JJN": [
+"ZH"
+],
+"HTA-PEK": [
+"CA"
+],
+"HTI-MEL": [
+"VA"
+],
+"HTI-SYD": [
+"VA"
+],
+"HTN-PEK": [
+"CA"
+],
+"HTN-TFU": [
+"CA"
+],
+"HTN-URC": [
+"CA"
+],
+"HTY-IST": [
+"TK"
+],
+"HUE-MQX": [
+"ET"
+],
+"HUI-SGN": [
+"VN"
+],
+"HUX-YVR": [
+"AC"
+],
+"HUX-YYZ": [
+"AC"
+],
+"HUZ-KWE": [
+"HO"
+],
+"HUZ-NKG": [
+"HO",
+"ZH"
+],
+"HUZ-PEK": [
+"CA"
+],
+"HUZ-PVG": [
+"CA",
+"HO"
+],
+"HUZ-SHE": [
+"HO"
+],
+"HUZ-TFU": [
+"CA"
+],
+"HUZ-WUH": [
+"CA"
+],
+"HUZ-WUX": [
+"HO",
+"ZH"
+],
+"HUZ-XIY": [
+"HO",
+"ZH"
+],
+"HYD-SIN": [
+"SQ"
+],
+"HYD-TIR": [
+"AI"
+],
+"HYN-PEK": [
+"CA"
+],
+"HYN-PKX": [
+"CA"
+],
+"HYN-SZX": [
+"ZH"
+],
+"HZG-PEK": [
+"CA"
+],
+"HZG-PVG": [
+"HO"
+],
+"IAD-IAH": [
+"UA"
+],
+"IAD-IST": [
+"TK"
+],
+"IAD-JAC": [
+"UA"
+],
+"IAD-JAX": [
+"UA"
+],
+"IAD-KEF": [
+"UA"
+],
+"IAD-LAS": [
+"UA"
+],
+"IAD-LAX": [
+"UA"
+],
+"IAD-LFW": [
+"ET"
+],
+"IAD-LHR": [
+"UA",
+"VS"
+],
+"IAD-LIS": [
+"TP",
+"UA"
+],
+"IAD-LOS": [
+"UA"
+],
+"IAD-MAD": [
+"UA"
+],
+"IAD-MBJ": [
+"UA"
+],
+"IAD-MCO": [
+"UA"
+],
+"IAD-MEX": [
+"UA"
+],
+"IAD-MIA": [
+"UA"
+],
+"IAD-MSY": [
+"UA"
+],
+"IAD-MUC": [
+"LH",
+"UA"
+],
+"IAD-MYR": [
+"UA"
+],
+"IAD-NAS": [
+"UA"
+],
+"IAD-NCE": [
+"UA"
+],
+"IAD-ORD": [
+"UA"
+],
+"IAD-ORF": [
+"UA"
+],
+"IAD-PBI": [
+"UA"
+],
+"IAD-PDX": [
+"UA"
+],
+"IAD-PEK": [
+"CA"
+],
+"IAD-PHX": [
+"UA"
+],
+"IAD-PIT": [
+"UA"
+],
+"IAD-PLS": [
+"UA"
+],
+"IAD-PSP": [
+"UA"
+],
+"IAD-PTY": [
+"CM"
+],
+"IAD-PUJ": [
+"UA"
+],
+"IAD-PWM": [
+"UA"
+],
+"IAD-RDU": [
+"UA"
+],
+"IAD-RSW": [
+"UA"
+],
+"IAD-SAL": [
+"UA"
+],
+"IAD-SAN": [
+"UA"
+],
+"IAD-SAT": [
+"UA"
+],
+"IAD-SEA": [
+"UA"
+],
+"IAD-SFO": [
+"UA"
+],
+"IAD-SJD": [
+"UA"
+],
+"IAD-SJO": [
+"UA"
+],
+"IAD-SJU": [
+"UA"
+],
+"IAD-SLC": [
+"UA"
+],
+"IAD-SMF": [
+"UA"
+],
+"IAD-SNA": [
+"UA"
+],
+"IAD-STT": [
+"UA"
+],
+"IAD-SXM": [
+"UA"
+],
+"IAD-TPA": [
+"UA"
+],
+"IAD-TPE": [
+"BR"
+],
+"IAD-VCE": [
+"UA"
+],
+"IAD-VIE": [
+"OS"
+],
+"IAD-YVR": [
+"UA"
+],
+"IAD-YYC": [
+"UA"
+],
+"IAD-YYZ": [
+"AC"
+],
+"IAD-ZRH": [
+"LX",
+"UA"
+],
+"IAH-ICT": [
+"UA"
+],
+"IAH-IND": [
+"UA"
+],
+"IAH-IST": [
+"TK"
+],
+"IAH-JAC": [
+"UA"
+],
+"IAH-JAX": [
+"UA"
+],
+"IAH-LAS": [
+"UA"
+],
+"IAH-LAX": [
+"UA"
+],
+"IAH-LGA": [
+"UA"
+],
+"IAH-LHR": [
+"UA"
+],
+"IAH-LIM": [
+"UA"
+],
+"IAH-LIR": [
+"UA"
+],
+"IAH-MAF": [
+"UA"
+],
+"IAH-MBJ": [
+"UA"
+],
+"IAH-MCI": [
+"UA"
+],
+"IAH-MCO": [
+"UA"
+],
+"IAH-MDE": [
+"UA"
+],
+"IAH-MEM": [
+"UA"
+],
+"IAH-MEX": [
+"UA"
+],
+"IAH-MFE": [
+"UA"
+],
+"IAH-MGA": [
+"UA"
+],
+"IAH-MIA": [
+"UA"
+],
+"IAH-MID": [
+"UA"
+],
+"IAH-MSP": [
+"UA"
+],
+"IAH-MSY": [
+"UA"
+],
+"IAH-MTJ": [
+"UA"
+],
+"IAH-MTY": [
+"UA"
+],
+"IAH-MUC": [
+"UA"
+],
+"IAH-MZT": [
+"UA"
+],
+"IAH-NAS": [
+"UA"
+],
+"IAH-NRT": [
+"UA"
+],
+"IAH-OKC": [
+"UA"
+],
+"IAH-OMA": [
+"UA"
+],
+"IAH-ONT": [
+"UA"
+],
+"IAH-ORD": [
+"UA"
+],
+"IAH-ORF": [
+"UA"
+],
+"IAH-PBI": [
+"UA"
+],
+"IAH-PDX": [
+"UA"
+],
+"IAH-PHL": [
+"UA"
+],
+"IAH-PHX": [
+"UA"
+],
+"IAH-PIT": [
+"UA"
+],
+"IAH-PLS": [
+"UA"
+],
+"IAH-PNS": [
+"UA"
+],
+"IAH-POS": [
+"UA"
+],
+"IAH-PTY": [
+"UA"
+],
+"IAH-PUJ": [
+"UA"
+],
+"IAH-PVR": [
+"UA"
+],
+"IAH-QRO": [
+"UA"
+],
+"IAH-RDU": [
+"UA"
+],
+"IAH-RIC": [
+"UA"
+],
+"IAH-RNO": [
+"UA"
+],
+"IAH-RSW": [
+"UA"
+],
+"IAH-RTB": [
+"UA"
+],
+"IAH-SAL": [
+"UA"
+],
+"IAH-SAN": [
+"UA"
+],
+"IAH-SAP": [
+"UA"
+],
+"IAH-SAT": [
+"UA"
+],
+"IAH-SCL": [
+"UA"
+],
+"IAH-SDQ": [
+"UA"
+],
+"IAH-SEA": [
+"UA"
+],
+"IAH-SFO": [
+"UA"
+],
+"IAH-SJC": [
+"UA"
+],
+"IAH-SJD": [
+"UA"
+],
+"IAH-SJO": [
+"UA"
+],
+"IAH-SJU": [
+"UA"
+],
+"IAH-SLC": [
+"UA"
+],
+"IAH-SLP": [
+"UA"
+],
+"IAH-SMF": [
+"UA"
+],
+"IAH-SNA": [
+"UA"
+],
+"IAH-STL": [
+"UA"
+],
+"IAH-STT": [
+"UA"
+],
+"IAH-SYD": [
+"UA"
+],
+"IAH-TAM": [
+"UA"
+],
+"IAH-TPA": [
+"UA"
+],
+"IAH-TPE": [
+"BR"
+],
+"IAH-TQO": [
+"UA"
+],
+"IAH-TUL": [
+"UA"
+],
+"IAH-TUS": [
+"UA"
+],
+"IAH-UIO": [
+"UA"
+],
+"IAH-VER": [
+"UA"
+],
+"IAH-XPL": [
+"UA"
+],
+"IAH-YEG": [
+"UA"
+],
+"IAH-YUL": [
+"AC"
+],
+"IAH-YVR": [
+"AC",
+"UA"
+],
+"IAH-YYC": [
+"UA"
+],
+"IAH-YYZ": [
+"AC",
+"UA"
+],
+"IAS-STR": [
+"EW"
+],
+"IAS-VIE": [
+"OS"
+],
+"IBZ-LIN": [
+"AZ"
+],
+"IBZ-LIS": [
+"TP"
+],
+"IBZ-STR": [
+"EW"
+],
+"IBZ-SZG": [
+"EW"
+],
+"IBZ-VIE": [
+"OS"
+],
+"ICN-IST": [
+"OZ",
+"TK"
+],
+"ICN-JFK": [
+"OZ"
+],
+"ICN-KHH": [
+"BR"
+],
+"ICN-KIX": [
+"OZ"
+],
+"ICN-KLO": [
+"PR"
+],
+"ICN-KMI": [
+"OZ"
+],
+"ICN-KTI": [
+"OZ"
+],
+"ICN-LAX": [
+"OZ"
+],
+"ICN-LHR": [
+"OZ",
+"VS"
+],
+"ICN-MNL": [
+"OZ",
+"PR"
+],
+"ICN-MUC": [
+"LH"
+],
+"ICN-MXP": [
+"OZ"
+],
+"ICN-NGO": [
+"OZ"
+],
+"ICN-NKG": [
+"OZ"
+],
+"ICN-NRT": [
+"ET",
+"OZ"
+],
+"ICN-OKA": [
+"OZ"
+],
+"ICN-PEK": [
+"OZ"
+],
+"ICN-PKX": [
+"CA"
+],
+"ICN-PRG": [
+"OZ"
+],
+"ICN-PVG": [
+"OZ"
+],
+"ICN-SAI": [
+"OZ"
+],
+"ICN-SDJ": [
+"OZ"
+],
+"ICN-SEA": [
+"OZ"
+],
+"ICN-SFO": [
+"OZ",
+"UA"
+],
+"ICN-SGN": [
+"OZ",
+"VN"
+],
+"ICN-SIN": [
+"OZ",
+"SQ"
+],
+"ICN-SPN": [
+"OZ"
+],
+"ICN-SYD": [
+"OZ"
+],
+"ICN-SZX": [
+"OZ",
+"ZH"
+],
+"ICN-TAG": [
+"OZ"
+],
+"ICN-TAS": [
+"OZ"
+],
+"ICN-TFU": [
+"CA",
+"OZ"
+],
+"ICN-TPE": [
+"BR",
+"OZ"
+],
+"ICN-TSN": [
+"CA",
+"OZ"
+],
+"ICN-UBN": [
+"OZ"
+],
+"ICN-WAW": [
+"LO"
+],
+"ICN-WNZ": [
+"CA"
+],
+"ICN-WRO": [
+"LO"
+],
+"ICN-WUX": [
+"ZH"
+],
+"ICN-XIY": [
+"OZ"
+],
+"ICN-YNJ": [
+"CA",
+"OZ"
+],
+"ICN-YNZ": [
+"OZ"
+],
+"ICN-YUL": [
+"AC"
+],
+"ICN-YVR": [
+"AC"
+],
+"ICN-YYZ": [
+"AC"
+],
+"ICN-ZRH": [
+"LX"
+],
+"ICT-ORD": [
+"UA"
+],
+"IEG-LWO": [
+"LO"
+],
+"IEG-WAW": [
+"LO"
+],
+"IGD-IST": [
+"TK"
+],
+"IKT-PEK": [
+"CA"
+],
+"ILO-MNL": [
+"PR"
+],
+"INC-NKG": [
+"ZH"
+],
+"INC-PEK": [
+"CA"
+],
+"INC-PKX": [
+"CA"
+],
+"INC-PVG": [
+"CA"
+],
+"INC-SZX": [
+"ZH"
+],
+"INC-TFU": [
+"CA"
+],
+"INC-TSN": [
+"CA"
+],
+"IND-ORD": [
+"UA"
+],
+"IND-SFO": [
+"UA"
+],
+"INI-ZRH": [
+"LX"
+],
+"INN-KGS": [
+"EW"
+],
+"INN-PMI": [
+"EW"
+],
+"INN-RHO": [
+"EW"
+],
+"INN-SUF": [
+"EW"
+],
+"INN-VIE": [
+"OS"
+],
+"INN-WAW": [
+"OS"
+],
+"IQN-LHW": [
+"HO"
+],
+"IQN-PVG": [
+"HO"
+],
+"ISB-IST": [
+"TK"
+],
+"ISB-PEK": [
+"CA"
+],
+"ISE-IST": [
+"TK"
+],
+"ISG-NGO": [
+"NH"
+],
+"IST-ISU": [
+"TK"
+],
+"IST-JED": [
+"TK"
+],
+"IST-JFK": [
+"TK"
+],
+"IST-JIB": [
+"TK"
+],
+"IST-JMK": [
+"A3"
+],
+"IST-JNB": [
+"TK"
+],
+"IST-JRO": [
+"TK"
+],
+"IST-JTR": [
+"A3"
+],
+"IST-KBL": [
+"TK"
+],
+"IST-KCM": [
+"TK"
+],
+"IST-KFS": [
+"TK"
+],
+"IST-KGL": [
+"TK"
+],
+"IST-KHE": [
+"TK"
+],
+"IST-KHI": [
+"TK"
+],
+"IST-KIK": [
+"TK"
+],
+"IST-KIX": [
+"TK"
+],
+"IST-KRK": [
+"LO",
+"TK"
+],
+"IST-KRT": [
+"TK"
+],
+"IST-KSY": [
+"TK"
+],
+"IST-KTI": [
+"TK"
+],
+"IST-KTM": [
+"TK"
+],
+"IST-KUL": [
+"TK"
+],
+"IST-KWI": [
+"TK"
+],
+"IST-KYA": [
+"TK"
+],
+"IST-KZN": [
+"TK"
+],
+"IST-KZR": [
+"TK"
+],
+"IST-LAX": [
+"TK"
+],
+"IST-LBV": [
+"TK"
+],
+"IST-LED": [
+"TK"
+],
+"IST-LEJ": [
+"TK"
+],
+"IST-LGW": [
+"TK"
+],
+"IST-LHE": [
+"TK"
+],
+"IST-LHR": [
+"TK"
+],
+"IST-LIS": [
+"TK"
+],
+"IST-LJU": [
+"TK"
+],
+"IST-LOS": [
+"TK"
+],
+"IST-LUN": [
+"TK"
+],
+"IST-LUX": [
+"TK"
+],
+"IST-LWO": [
+"TK"
+],
+"IST-LYS": [
+"TK"
+],
+"IST-MAD": [
+"TK"
+],
+"IST-MAN": [
+"TK"
+],
+"IST-MBA": [
+"TK"
+],
+"IST-MCT": [
+"TK"
+],
+"IST-MED": [
+"TK"
+],
+"IST-MEL": [
+"TK"
+],
+"IST-MEX": [
+"TK"
+],
+"IST-MGQ": [
+"TK"
+],
+"IST-MIA": [
+"TK"
+],
+"IST-MLA": [
+"TK"
+],
+"IST-MLE": [
+"TK"
+],
+"IST-MLX": [
+"TK"
+],
+"IST-MNL": [
+"TK"
+],
+"IST-MPM": [
+"TK"
+],
+"IST-MQM": [
+"TK"
+],
+"IST-MRS": [
+"TK"
+],
+"IST-MRU": [
+"TK"
+],
+"IST-MSR": [
+"TK"
+],
+"IST-MUC": [
+"LH",
+"TK"
+],
+"IST-MXP": [
+"TK"
+],
+"IST-MZH": [
+"TK"
+],
+"IST-NAJ": [
+"TK"
+],
+"IST-NAP": [
+"TK"
+],
+"IST-NAV": [
+"TK"
+],
+"IST-NBJ": [
+"TK"
+],
+"IST-NBO": [
+"TK"
+],
+"IST-NCE": [
+"TK"
+],
+"IST-NDJ": [
+"TK"
+],
+"IST-NIM": [
+"TK"
+],
+"IST-NJF": [
+"TK"
+],
+"IST-NKC": [
+"TK"
+],
+"IST-NKT": [
+"TK"
+],
+"IST-NOP": [
+"TK"
+],
+"IST-NQZ": [
+"TK"
+],
+"IST-NRT": [
+"TK"
+],
+"IST-NSI": [
+"TK"
+],
+"IST-NUE": [
+"TK"
+],
+"IST-OGU": [
+"TK"
+],
+"IST-OHD": [
+"TK"
+],
+"IST-ONQ": [
+"TK"
+],
+"IST-OPO": [
+"TK"
+],
+"IST-ORD": [
+"TK"
+],
+"IST-ORN": [
+"TK"
+],
+"IST-OSL": [
+"TK"
+],
+"IST-OTP": [
+"TK"
+],
+"IST-OUA": [
+"TK"
+],
+"IST-OXB": [
+"TK"
+],
+"IST-PEK": [
+"CA",
+"TK"
+],
+"IST-PMO": [
+"TK"
+],
+"IST-PNR": [
+"TK"
+],
+"IST-PRG": [
+"TK"
+],
+"IST-PTY": [
+"TK"
+],
+"IST-PVG": [
+"TK"
+],
+"IST-PZU": [
+"TK"
+],
+"IST-RAK": [
+"TK"
+],
+"IST-RHO": [
+"A3"
+],
+"IST-RIX": [
+"TK"
+],
+"IST-RMO": [
+"TK"
+],
+"IST-ROB": [
+"TK"
+],
+"IST-ROV": [
+"TK"
+],
+"IST-RUH": [
+"TK"
+],
+"IST-RVN": [
+"TK"
+],
+"IST-RZV": [
+"TK"
+],
+"IST-SCL": [
+"TK"
+],
+"IST-SCO": [
+"TK"
+],
+"IST-SEA": [
+"TK"
+],
+"IST-SEZ": [
+"TK"
+],
+"IST-SFO": [
+"TK"
+],
+"IST-SGN": [
+"TK"
+],
+"IST-SHJ": [
+"TK"
+],
+"IST-SIN": [
+"SQ",
+"TK"
+],
+"IST-SJJ": [
+"TK"
+],
+"IST-SKD": [
+"TK"
+],
+"IST-SKG": [
+"A3",
+"TK"
+],
+"IST-SKP": [
+"TK"
+],
+"IST-SOF": [
+"TK"
+],
+"IST-SPU": [
+"OU"
+],
+"IST-SSH": [
+"TK"
+],
+"IST-STN": [
+"TK"
+],
+"IST-STR": [
+"TK"
+],
+"IST-SVQ": [
+"TK"
+],
+"IST-SXB": [
+"TK"
+],
+"IST-SYD": [
+"TK"
+],
+"IST-SYZ": [
+"TK"
+],
+"IST-SZF": [
+"TK"
+],
+"IST-SZG": [
+"TK"
+],
+"IST-TAS": [
+"TK"
+],
+"IST-TBS": [
+"TK"
+],
+"IST-TGD": [
+"TK"
+],
+"IST-TIA": [
+"TK"
+],
+"IST-TIF": [
+"TK"
+],
+"IST-TIV": [
+"TK"
+],
+"IST-TJK": [
+"TK"
+],
+"IST-TLL": [
+"TK"
+],
+"IST-TLS": [
+"TK"
+],
+"IST-TNR": [
+"TK"
+],
+"IST-TPE": [
+"TK"
+],
+"IST-TRN": [
+"TK"
+],
+"IST-TSR": [
+"TK"
+],
+"IST-TUN": [
+"TK"
+],
+"IST-TZX": [
+"TK"
+],
+"IST-UBN": [
+"TK"
+],
+"IST-UGC": [
+"TK"
+],
+"IST-VAN": [
+"TK"
+],
+"IST-VAR": [
+"TK"
+],
+"IST-VAS": [
+"TK"
+],
+"IST-VCE": [
+"TK"
+],
+"IST-VIE": [
+"TK"
+],
+"IST-VKO": [
+"TK"
+],
+"IST-VLC": [
+"TK"
+],
+"IST-VNO": [
+"TK"
+],
+"IST-VOZ": [
+"TK"
+],
+"IST-WAW": [
+"LO",
+"TK"
+],
+"IST-XIY": [
+"TK"
+],
+"IST-YKO": [
+"TK"
+],
+"IST-YNB": [
+"TK"
+],
+"IST-YUL": [
+"TK"
+],
+"IST-YVR": [
+"TK"
+],
+"IST-YYZ": [
+"TK"
+],
+"IST-ZAG": [
+"TK"
+],
+"IST-ZNZ": [
+"TK"
+],
+"IST-ZRH": [
+"TK"
+],
+"ITM-IWJ": [
+"NH"
+],
+"ITM-KIJ": [
+"NH"
+],
+"ITM-KMI": [
+"NH"
+],
+"ITM-KMJ": [
+"NH"
+],
+"ITM-KOJ": [
+"NH"
+],
+"ITM-MYJ": [
+"NH"
+],
+"ITM-NRT": [
+"NH"
+],
+"ITM-OKA": [
+"NH"
+],
+"ITM-SDJ": [
+"NH"
+],
+"IVL-VIE": [
+"OS"
+],
+"IWK-OKA": [
+"NH"
+],
+"IXC-IXL": [
+"AI"
+],
+"IXJ-IXL": [
+"AI"
+],
+"IXJ-SXR": [
+"AI"
+],
+"IXL-SXR": [
+"AI"
+],
+"IXM-MAA": [
+"AI"
+],
+"JAC-LAX": [
+"UA"
+],
+"JAC-ORD": [
+"UA"
+],
+"JAC-SFO": [
+"UA"
+],
+"JAX-ORD": [
+"UA"
+],
+"JAX-YYZ": [
+"AC"
+],
+"JDZ-PEK": [
+"CA"
+],
+"JDZ-PKX": [
+"CA"
+],
+"JDZ-SHA": [
+"ZH"
+],
+"JDZ-SZX": [
+"ZH"
+],
+"JED-RZV": [
+"TK"
+],
+"JED-SSH": [
+"MS"
+],
+"JED-STR": [
+"EW"
+],
+"JFK-LHR": [
+"VS"
+],
+"JFK-LIS": [
+"TP"
+],
+"JFK-MAN": [
+"VS"
+],
+"JFK-MDE": [
+"AV"
+],
+"JFK-MNL": [
+"PR"
+],
+"JFK-MUC": [
+"LH"
+],
+"JFK-PEI": [
+"AV"
+],
+"JFK-PEK": [
+"CA"
+],
+"JFK-PTY": [
+"CM"
+],
+"JFK-SIN": [
+"SQ"
+],
+"JFK-TPE": [
+"BR"
+],
+"JFK-VIE": [
+"OS"
+],
+"JFK-WAW": [
+"LO"
+],
+"JFK-ZRH": [
+"LX"
+],
+"JGS-PEK": [
+"CA"
+],
+"JHG-PVG": [
+"HO"
+],
+"JHG-TFU": [
+"CA"
+],
+"JIB-MGQ": [
+"MS"
+],
+"JIC-LHW": [
+"HO"
+],
+"JIC-PVG": [
+"HO"
+],
+"JJN-LYG": [
+"ZH"
+],
+"JJN-MNL": [
+"PR"
+],
+"JJN-NKG": [
+"ZH"
+],
+"JJN-NNG": [
+"ZH"
+],
+"JJN-NTG": [
+"ZH"
+],
+"JJN-PEK": [
+"ZH"
+],
+"JJN-SHE": [
+"ZH"
+],
+"JJN-TFU": [
+"CA",
+"ZH"
+],
+"JJN-TSN": [
+"ZH"
+],
+"JJN-TYN": [
+"ZH"
+],
+"JJN-WUH": [
+"ZH"
+],
+"JJN-WUX": [
+"ZH"
+],
+"JJN-XIY": [
+"ZH"
+],
+"JJN-YBP": [
+"ZH"
+],
+"JJN-YCU": [
+"ZH"
+],
+"JJN-YTY": [
+"ZH"
+],
+"JJN-ZHA": [
+"ZH"
+],
+"JMK-MUC": [
+"LH"
+],
+"JMK-RHO": [
+"A3"
+],
+"JMK-SKG": [
+"A3"
+],
+"JMK-STR": [
+"EW"
+],
+"JMK-VIE": [
+"OS"
+],
+"JMU-PEK": [
+"CA"
+],
+"JMU-PKX": [
+"CA"
+],
+"JMU-PVG": [
+"CA"
+],
+"JNB-LHR": [
+"VS"
+],
+"JNB-LOS": [
+"SA"
+],
+"JNB-LUN": [
+"SA"
+],
+"JNB-MRU": [
+"SA"
+],
+"JNB-MUC": [
+"LH"
+],
+"JNB-PER": [
+"SA"
+],
+"JNB-PLZ": [
+"SA"
+],
+"JNB-SIN": [
+"SQ"
+],
+"JNB-SZX": [
+"CA"
+],
+"JNB-VFA": [
+"SA"
+],
+"JNB-WDH": [
+"SA"
+],
+"JNB-ZRH": [
+"LX"
+],
+"JNX-RHO": [
+"A3"
+],
+"JNX-SKG": [
+"A3"
+],
+"JSI-VIE": [
+"OS"
+],
+"JSJ-PEK": [
+"CA"
+],
+"JSY-SKG": [
+"A3"
+],
+"JTR-MUC": [
+"LH"
+],
+"JTR-RHO": [
+"A3"
+],
+"JTR-SKG": [
+"A3"
+],
+"JTR-STR": [
+"EW"
+],
+"JTR-VIE": [
+"OS"
+],
+"JUH-LHW": [
+"HO"
+],
+"JUH-SHA": [
+"HO"
+],
+"JUH-SZX": [
+"ZH"
+],
+"JUZ-PEK": [
+"CA"
+],
+"JUZ-PKX": [
+"CA"
+],
+"JUZ-TFU": [
+"CA"
+],
+"JZH-PEK": [
+"CA"
+],
+"JZH-TFU": [
+"CA"
+],
+"KBV-WAW": [
+"LO"
+],
+"KCA-TFU": [
+"CA"
+],
+"KEF-ORD": [
+"UA"
+],
+"KEF-PEK": [
+"CA"
+],
+"KEF-VIE": [
+"OS"
+],
+"KEF-WAW": [
+"LO"
+],
+"KEF-YUL": [
+"AC"
+],
+"KEF-YYZ": [
+"AC"
+],
+"KGI-PER": [
+"VA"
+],
+"KGS-LNZ": [
+"EW"
+],
+"KGS-NUE": [
+"EW"
+],
+"KGS-SKG": [
+"A3"
+],
+"KGS-STR": [
+"EW"
+],
+"KGS-SZG": [
+"EW"
+],
+"KGS-VIE": [
+"OS"
+],
+"KHG-PEK": [
+"CA"
+],
+"KHG-TFU": [
+"CA"
+],
+"KHG-URC": [
+"CA"
+],
+"KHH-KIX": [
+"BR"
+],
+"KHH-MFM": [
+"BR"
+],
+"KHH-NRT": [
+"BR",
+"UA"
+],
+"KHH-PVG": [
+"BR",
+"HO"
+],
+"KHH-SGN": [
+"VN"
+],
+"KHI-PEK": [
+"CA"
+],
+"KHN-KMG": [
+"ZH"
+],
+"KHN-LYI": [
+"ZH"
+],
+"KHN-NNG": [
+"ZH"
+],
+"KHN-PEK": [
+"CA"
+],
+"KHN-PKX": [
+"CA"
+],
+"KHN-SHE": [
+"ZH"
+],
+"KHN-SZX": [
+"ZH"
+],
+"KHN-TFU": [
+"CA",
+"ZH"
+],
+"KHN-TSN": [
+"ZH"
+],
+"KHN-TYN": [
+"ZH"
+],
+"KHN-YCU": [
+"ZH"
+],
+"KIN-PTY": [
+"CM"
+],
+"KIX-MNL": [
+"PR"
+],
+"KIX-MUC": [
+"LH"
+],
+"KIX-NKG": [
+"HO"
+],
+"KIX-PEK": [
+"NH"
+],
+"KIX-PVG": [
+"HO",
+"NH"
+],
+"KIX-SFO": [
+"UA"
+],
+"KIX-SGN": [
+"VN"
+],
+"KIX-SIN": [
+"SQ"
+],
+"KIX-SZX": [
+"ZH"
+],
+"KIX-TAO": [
+"HO"
+],
+"KIX-TPE": [
+"BR"
+],
+"KIX-WUX": [
+"ZH"
+],
+"KIX-YVR": [
+"AC"
+],
+"KIX-YYZ": [
+"AC"
+],
+"KLU-VIE": [
+"OS"
+],
+"KLX-MUC": [
+"A3"
+],
+"KLX-SKG": [
+"A3"
+],
+"KLX-STR": [
+"EW"
+],
+"KLX-VIE": [
+"OS"
+],
+"KMG-NKG": [
+"HO"
+],
+"KMG-PEK": [
+"CA"
+],
+"KMG-PKX": [
+"CA"
+],
+"KMG-PVG": [
+"CA",
+"HO"
+],
+"KMG-RGN": [
+"CA"
+],
+"KMG-SGN": [
+"VN"
+],
+"KMG-SHA": [
+"HO"
+],
+"KMG-SHE": [
+"CA"
+],
+"KMG-SZX": [
+"ZH"
+],
+"KMG-TFU": [
+"CA"
+],
+"KMG-TSN": [
+"CA"
+],
+"KMG-WDS": [
+"CA"
+],
+"KMQ-TPE": [
+"BR"
+],
+"KNO-SIN": [
+"SQ"
+],
+"KNX-PER": [
+"VA"
+],
+"KOA-LAX": [
+"UA"
+],
+"KOA-ORD": [
+"UA"
+],
+"KOA-SFO": [
+"UA"
+],
+"KOA-YVR": [
+"AC"
+],
+"KOW-PEK": [
+"CA"
+],
+"KRK-MAD": [
+"LO"
+],
+"KRK-MUC": [
+"LH"
+],
+"KRK-ORD": [
+"LO"
+],
+"KRK-ORY": [
+"LO"
+],
+"KRK-STR": [
+"EW"
+],
+"KRK-SZY": [
+"LO"
+],
+"KRK-TLV": [
+"LO"
+],
+"KRK-VIE": [
+"OS"
+],
+"KRK-WAW": [
+"LO"
+],
+"KRK-ZRH": [
+"LX"
+],
+"KRL-LHW": [
+"CA"
+],
+"KRL-PEK": [
+"CA"
+],
+"KRL-TFU": [
+"CA"
+],
+"KRL-URC": [
+"ZH"
+],
+"KRL-WUH": [
+"CA"
+],
+"KRS-RHO": [
+"A3"
+],
+"KRY-PEK": [
+"CA"
+],
+"KRY-TFU": [
+"CA"
+],
+"KRY-YIN": [
+"CA"
+],
+"KSA-KWA": [
+"UA"
+],
+"KSA-MAJ": [
+"UA"
+],
+"KSA-PNI": [
+"UA"
+],
+"KSA-TKK": [
+"UA"
+],
+"KSC-VIE": [
+"OS"
+],
+"KSC-WAW": [
+"LO"
+],
+"KSC-ZRH": [
+"LX"
+],
+"KTA-PER": [
+"VA"
+],
+"KTI-PEK": [
+"CA"
+],
+"KTI-SGN": [
+"VN"
+],
+"KTI-SIN": [
+"SQ"
+],
+"KTI-SZX": [
+"ZH"
+],
+"KTI-TPE": [
+"BR"
+],
+"KTI-VTE": [
+"VN"
+],
+"KTM-SIN": [
+"SQ"
+],
+"KTM-TFU": [
+"CA"
+],
+"KTT-MUC": [
+"LH"
+],
+"KTT-VIE": [
+"OS"
+],
+"KTW-MLE": [
+"LO"
+],
+"KTW-PFO": [
+"LO"
+],
+"KTW-PMI": [
+"LO"
+],
+"KTW-POP": [
+"LO"
+],
+"KTW-PQC": [
+"LO"
+],
+"KTW-PUJ": [
+"LO"
+],
+"KTW-RHO": [
+"LO"
+],
+"KTW-RMF": [
+"LO"
+],
+"KTW-SSH": [
+"LO"
+],
+"KTW-TIA": [
+"LO"
+],
+"KTW-VAR": [
+"LO"
+],
+"KTW-VRA": [
+"LO"
+],
+"KTW-ZTH": [
+"LO"
+],
+"KUL-MNL": [
+"PR"
+],
+"KUL-NRT": [
+"NH"
+],
+"KUL-PEK": [
+"CA"
+],
+"KUL-PVG": [
+"HO"
+],
+"KUL-SGN": [
+"VN"
+],
+"KUL-SIN": [
+"ET",
+"SQ"
+],
+"KUL-SZX": [
+"ZH"
+],
+"KUL-TFU": [
+"CA"
+],
+"KUL-TPE": [
+"BR"
+],
+"KUL-WUX": [
+"HO"
+],
+"KUL-YTY": [
+"ZH"
+],
+"KUO-RHO": [
+"A3"
+],
+"KVA-STR": [
+"EW"
+],
+"KVA-VIE": [
+"OS"
+],
+"KWA-MAJ": [
+"UA"
+],
+"KWA-PNI": [
+"UA"
+],
+"KWA-TKK": [
+"UA"
+],
+"KWE-LHW": [
+"HO"
+],
+"KWE-NKG": [
+"HO",
+"ZH"
+],
+"KWE-NTG": [
+"ZH"
+],
+"KWE-PEK": [
+"CA"
+],
+"KWE-PKX": [
+"CA"
+],
+"KWE-PVG": [
+"CA",
+"HO"
+],
+"KWE-SHA": [
+"HO"
+],
+"KWE-SZX": [
+"CA"
+],
+"KWE-TFU": [
+"CA"
+],
+"KWE-TSN": [
+"CA"
+],
+"KWE-WNZ": [
+"CA"
+],
+"KWE-WUH": [
+"CA"
+],
+"KWE-WUX": [
+"ZH"
+],
+"KWE-XIY": [
+"HO"
+],
+"KWE-XMN": [
+"CA"
+],
+"KWE-YCU": [
+"CA"
+],
+"KWL-NKG": [
+"HO"
+],
+"KWL-PEK": [
+"CA"
+],
+"KWL-PKX": [
+"CA"
+],
+"KWL-PVG": [
+"CA",
+"HO"
+],
+"KWL-TFU": [
+"CA"
+],
+"KWL-TSN": [
+"CA"
+],
+"LAD-LBV": [
+"TK"
+],
+"LAD-OPO": [
+"TP"
+],
+"LAS-LAX": [
+"UA"
+],
+"LAS-LHR": [
+"VS"
+],
+"LAS-MAN": [
+"VS"
+],
+"LAS-ORD": [
+"UA"
+],
+"LAS-PTY": [
+"CM"
+],
+"LAS-SFO": [
+"UA"
+],
+"LAS-YUL": [
+"AC"
+],
+"LAS-YVR": [
+"AC"
+],
+"LAS-YYZ": [
+"AC"
+],
+"LAX-LHR": [
+"UA",
+"VS"
+],
+"LAX-LIH": [
+"UA"
+],
+"LAX-LIR": [
+"UA"
+],
+"LAX-LIS": [
+"TP"
+],
+"LAX-MCO": [
+"UA"
+],
+"LAX-MEL": [
+"UA"
+],
+"LAX-MNL": [
+"PR"
+],
+"LAX-MUC": [
+"LH"
+],
+"LAX-NRT": [
+"NH",
+"SQ"
+],
+"LAX-OGG": [
+"UA"
+],
+"LAX-ORD": [
+"UA"
+],
+"LAX-PEK": [
+"UA"
+],
+"LAX-PHX": [
+"UA"
+],
+"LAX-PIT": [
+"UA"
+],
+"LAX-PTY": [
+"CM"
+],
+"LAX-PVG": [
+"UA"
+],
+"LAX-PVR": [
+"UA"
+],
+"LAX-PWM": [
+"UA"
+],
+"LAX-RNO": [
+"UA"
+],
+"LAX-SAL": [
+"UA"
+],
+"LAX-SAN": [
+"UA"
+],
+"LAX-SEA": [
+"UA"
+],
+"LAX-SFO": [
+"UA"
+],
+"LAX-SGN": [
+"UA"
+],
+"LAX-SIN": [
+"SQ"
+],
+"LAX-SJD": [
+"UA"
+],
+"LAX-SJO": [
+"UA"
+],
+"LAX-SYD": [
+"UA"
+],
+"LAX-SZX": [
+"CA"
+],
+"LAX-TPA": [
+"UA"
+],
+"LAX-TPE": [
+"BR"
+],
+"LAX-VIE": [
+"OS"
+],
+"LAX-WAW": [
+"LO"
+],
+"LAX-YUL": [
+"AC"
+],
+"LAX-YVR": [
+"AC"
+],
+"LAX-YYZ": [
+"AC"
+],
+"LAX-ZRH": [
+"LX"
+],
+"LBV-NSI": [
+"ET"
+],
+"LBV-SSG": [
+"ET"
+],
+"LCA-PRG": [
+"EW"
+],
+"LCA-RHO": [
+"A3"
+],
+"LCA-SKG": [
+"A3"
+],
+"LCA-STR": [
+"EW"
+],
+"LCA-SZG": [
+"EW"
+],
+"LCA-TLV": [
+"A3"
+],
+"LCA-VIE": [
+"OS"
+],
+"LCA-WAW": [
+"LO"
+],
+"LCX-PVG": [
+"HO"
+],
+"LCY-LIN": [
+"AZ"
+],
+"LCY-ZRH": [
+"LX"
+],
+"LEJ-PMI": [
+"EW"
+],
+"LEJ-VIE": [
+"OS"
+],
+"LFQ-NKG": [
+"HO"
+],
+"LFQ-PEK": [
+"CA"
+],
+"LFQ-PVG": [
+"HO"
+],
+"LFQ-WUH": [
+"CA"
+],
+"LGA-ORD": [
+"UA"
+],
+"LGA-YUL": [
+"AC"
+],
+"LGA-YYZ": [
+"AC"
+],
+"LGK-WAW": [
+"LO"
+],
+"LGW-LIS": [
+"TP"
+],
+"LGW-OPO": [
+"TP"
+],
+"LGW-PEK": [
+"CA"
+],
+"LGW-PVG": [
+"CA"
+],
+"LGW-SIN": [
+"SQ"
+],
+"LGW-SPU": [
+"OU"
+],
+"LGW-STR": [
+"EW"
+],
+"LGW-TFU": [
+"CA"
+],
+"LGW-ZRH": [
+"LX"
+],
+"LHR-LIS": [
+"TP"
+],
+"LHR-LOS": [
+"VS"
+],
+"LHR-LXR": [
+"MS"
+],
+"LHR-MBJ": [
+"VS"
+],
+"LHR-MCO": [
+"VS"
+],
+"LHR-MIA": [
+"VS"
+],
+"LHR-MLE": [
+"VS"
+],
+"LHR-MUC": [
+"LH"
+],
+"LHR-ORD": [
+"UA"
+],
+"LHR-PEK": [
+"CA"
+],
+"LHR-SEA": [
+"VS"
+],
+"LHR-SFO": [
+"UA",
+"VS"
+],
+"LHR-SGN": [
+"VN"
+],
+"LHR-SIN": [
+"SQ"
+],
+"LHR-SPU": [
+"OU"
+],
+"LHR-STR": [
+"EW"
+],
+"LHR-SVD": [
+"VS"
+],
+"LHR-SZG": [
+"LH"
+],
+"LHR-SZX": [
+"ZH"
+],
+"LHR-TFU": [
+"CA"
+],
+"LHR-TPA": [
+"VS"
+],
+"LHR-TPE": [
+"BR"
+],
+"LHR-VIE": [
+"OS"
+],
+"LHR-WAW": [
+"LO"
+],
+"LHR-YHZ": [
+"AC"
+],
+"LHR-YOW": [
+"AC"
+],
+"LHR-YUL": [
+"AC"
+],
+"LHR-YVR": [
+"AC"
+],
+"LHR-YYC": [
+"AC"
+],
+"LHR-YYZ": [
+"AC",
+"VS"
+],
+"LHR-ZAG": [
+"OU"
+],
+"LHR-ZRH": [
+"LX"
+],
+"LHW-LNL": [
+"HO"
+],
+"LHW-NKG": [
+"ZH"
+],
+"LHW-PEK": [
+"CA"
+],
+"LHW-PKX": [
+"CA"
+],
+"LHW-PVG": [
+"CA",
+"HO"
+],
+"LHW-SHA": [
+"HO"
+],
+"LHW-SZX": [
+"ZH"
+],
+"LHW-TFU": [
+"CA",
+"ZH"
+],
+"LHW-TSN": [
+"CA"
+],
+"LHW-URC": [
+"ZH"
+],
+"LHW-VTE": [
+"HO"
+],
+"LHW-WMT": [
+"ZH"
+],
+"LHW-WUH": [
+"CA",
+"ZH"
+],
+"LHW-WUX": [
+"ZH"
+],
+"LHW-YZY": [
+"HO"
+],
+"LIH-SFO": [
+"UA"
+],
+"LIM-PTY": [
+"CM"
+],
+"LIM-YUL": [
+"AC"
+],
+"LIM-YYZ": [
+"AC"
+],
+"LIN-LMP": [
+"AZ"
+],
+"LIN-MAH": [
+"AZ"
+],
+"LIN-MLA": [
+"AZ"
+],
+"LIN-MUC": [
+"AZ",
+"LH"
+],
+"LIN-NAP": [
+"AZ"
+],
+"LIN-ORY": [
+"AZ"
+],
+"LIN-PMI": [
+"AZ"
+],
+"LIN-PMO": [
+"AZ"
+],
+"LIN-PNL": [
+"AZ"
+],
+"LIN-REG": [
+"AZ"
+],
+"LIN-RHO": [
+"AZ"
+],
+"LIN-STR": [
+"EW"
+],
+"LIN-SUF": [
+"AZ"
+],
+"LIN-VIE": [
+"OS"
+],
+"LIR-ORD": [
+"UA"
+],
+"LIR-SFO": [
+"UA"
+],
+"LIR-YUL": [
+"AC"
+],
+"LIR-YYZ": [
+"AC"
+],
+"LIS-LPA": [
+"TP"
+],
+"LIS-LUX": [
+"TP"
+],
+"LIS-LYS": [
+"TP"
+],
+"LIS-MAD": [
+"TP"
+],
+"LIS-MAH": [
+"TP"
+],
+"LIS-MAN": [
+"TP"
+],
+"LIS-MAO": [
+"TP"
+],
+"LIS-MCO": [
+"TP"
+],
+"LIS-MCZ": [
+"TP"
+],
+"LIS-MIA": [
+"TP"
+],
+"LIS-MPM": [
+"TP"
+],
+"LIS-MRS": [
+"TP"
+],
+"LIS-MUC": [
+"LH",
+"TP"
+],
+"LIS-MXP": [
+"TP"
+],
+"LIS-NAP": [
+"TP"
+],
+"LIS-NAT": [
+"TP"
+],
+"LIS-NBE": [
+"TP"
+],
+"LIS-NBJ": [
+"TP"
+],
+"LIS-NCE": [
+"TP"
+],
+"LIS-OPO": [
+"TP"
+],
+"LIS-ORD": [
+"TP"
+],
+"LIS-ORY": [
+"TP"
+],
+"LIS-OSL": [
+"TP"
+],
+"LIS-OXB": [
+"TP"
+],
+"LIS-PDL": [
+"TP"
+],
+"LIS-PMI": [
+"TP"
+],
+"LIS-POA": [
+"TP"
+],
+"LIS-PRG": [
+"TP"
+],
+"LIS-PXO": [
+"TP"
+],
+"LIS-RAI": [
+"TP"
+],
+"LIS-RAK": [
+"TP"
+],
+"LIS-REC": [
+"TP"
+],
+"LIS-SFO": [
+"TP"
+],
+"LIS-SID": [
+"TP"
+],
+"LIS-SSA": [
+"TP"
+],
+"LIS-STR": [
+"EW"
+],
+"LIS-SVQ": [
+"TP"
+],
+"LIS-TER": [
+"TP"
+],
+"LIS-TFS": [
+"TP"
+],
+"LIS-TLS": [
+"TP"
+],
+"LIS-TMS": [
+"TP"
+],
+"LIS-TNG": [
+"TP"
+],
+"LIS-VCE": [
+"TP"
+],
+"LIS-VIE": [
+"TP"
+],
+"LIS-VLC": [
+"TP"
+],
+"LIS-VXE": [
+"TP"
+],
+"LIS-WAW": [
+"LO",
+"TP"
+],
+"LIS-YUL": [
+"AC",
+"TP"
+],
+"LIS-YYZ": [
+"AC",
+"TP"
+],
+"LIS-ZRH": [
+"LX",
+"TP"
+],
+"LJG-NKG": [
+"HO",
+"ZH"
+],
+"LJG-PEK": [
+"CA"
+],
+"LJG-PVG": [
+"HO"
+],
+"LJG-SZX": [
+"HO",
+"ZH"
+],
+"LJG-TFU": [
+"CA",
+"ZH"
+],
+"LJG-WUH": [
+"HO"
+],
+"LJU-MUC": [
+"LH"
+],
+"LJU-WAW": [
+"LO"
+],
+"LJU-ZRH": [
+"LX"
+],
+"LLV-PEK": [
+"CA"
+],
+"LNL-PVG": [
+"HO"
+],
+"LNZ-PMI": [
+"EW"
+],
+"LOS-SSG": [
+"LH"
+],
+"LPA-PRG": [
+"EW"
+],
+"LPA-STR": [
+"EW"
+],
+"LPA-SZG": [
+"EW"
+],
+"LPA-VIE": [
+"OS"
+],
+"LPF-PEK": [
+"CA"
+],
+"LPQ-SAI": [
+"VN"
+],
+"LRM-YUL": [
+"AC"
+],
+"LST-MEL": [
+"VA"
+],
+"LST-SYD": [
+"VA"
+],
+"LUM-TFU": [
+"CA"
+],
+"LUX-MUC": [
+"LH"
+],
+"LUX-OPO": [
+"TP"
+],
+"LUX-WAW": [
+"LO"
+],
+"LUX-ZRH": [
+"LX"
+],
+"LUZ-WAW": [
+"LO"
+],
+"LWO-VIE": [
+"OS"
+],
+"LWO-WAW": [
+"LO"
+],
+"LXA-PEK": [
+"CA"
+],
+"LXA-TFU": [
+"CA"
+],
+"LXR-MXP": [
+"MS"
+],
+"LXR-SSH": [
+"MS"
+],
+"LXS-VIE": [
+"OS"
+],
+"LYG-NNG": [
+"ZH"
+],
+"LYG-PEK": [
+"CA"
+],
+"LYG-TFU": [
+"CA"
+],
+"LYI-NGB": [
+"ZH"
+],
+"LYI-NNG": [
+"ZH"
+],
+"LYI-SHE": [
+"ZH"
+],
+"LYI-SZX": [
+"ZH"
+],
+"LYI-TFU": [
+"CA"
+],
+"LYI-WNZ": [
+"ZH"
+],
+"LYI-XIY": [
+"ZH"
+],
+"LYS-MUC": [
+"LH"
+],
+"LYS-SPU": [
+"OU"
+],
+"LYS-VIE": [
+"OS"
+],
+"LYS-WAW": [
+"LO"
+],
+"LYS-YUL": [
+"AC"
+],
+"LZH-NKG": [
+"HO"
+],
+"LZH-PEK": [
+"CA"
+],
+"LZY-PEK": [
+"CA"
+],
+"LZY-TFU": [
+"CA"
+],
+"LZY-WUH": [
+"CA"
+],
+"MAA-SIN": [
+"SQ"
+],
+"MAD-MDE": [
+"AV"
+],
+"MAD-MUC": [
+"LH"
+],
+"MAD-PEK": [
+"CA"
+],
+"MAD-YUL": [
+"AC"
+],
+"MAD-YYZ": [
+"AC"
+],
+"MAD-ZAG": [
+"OU"
+],
+"MAD-ZRH": [
+"LX"
+],
+"MAH-MUC": [
+"LH"
+],
+"MAH-VIE": [
+"OS"
+],
+"MAJ-PNI": [
+"UA"
+],
+"MAJ-TKK": [
+"UA"
+],
+"MAN-MCO": [
+"VS"
+],
+"MAN-MUC": [
+"LH"
+],
+"MAN-PVG": [
+"HO"
+],
+"MAN-SIN": [
+"SQ"
+],
+"MAN-STR": [
+"EW"
+],
+"MAN-YYZ": [
+"AC"
+],
+"MAN-ZRH": [
+"LX"
+],
+"MAO-PTY": [
+"CM"
+],
+"MAR-PTY": [
+"CM"
+],
+"MBJ-ORD": [
+"UA"
+],
+"MBJ-PTY": [
+"CM"
+],
+"MBJ-YHZ": [
+"AC"
+],
+"MBJ-YOW": [
+"AC"
+],
+"MBJ-YUL": [
+"AC"
+],
+"MBJ-YYZ": [
+"AC"
+],
+"MCI-ORD": [
+"UA"
+],
+"MCI-SFO": [
+"UA"
+],
+"MCO-MDE": [
+"AV"
+],
+"MCO-ORD": [
+"UA"
+],
+"MCO-PTY": [
+"CM"
+],
+"MCO-SFO": [
+"UA"
+],
+"MCO-YOW": [
+"AC"
+],
+"MCO-YQB": [
+"AC"
+],
+"MCO-YYZ": [
+"AC"
+],
+"MCY-MEL": [
+"VA"
+],
+"MCY-SYD": [
+"VA"
+],
+"MDE-MEX": [
+"AV"
+],
+"MDE-MIA": [
+"AV"
+],
+"MDE-MTR": [
+"AV"
+],
+"MDE-PEI": [
+"AV"
+],
+"MDE-PSO": [
+"AV"
+],
+"MDE-PTY": [
+"CM"
+],
+"MDE-PUJ": [
+"AV"
+],
+"MDE-RCH": [
+"AV"
+],
+"MDE-SJU": [
+"AV"
+],
+"MDE-SMR": [
+"AV"
+],
+"MDG-PEK": [
+"CA"
+],
+"MDT-ORD": [
+"UA"
+],
+"MDZ-PTY": [
+"CM"
+],
+"MEC-PTY": [
+"CM"
+],
+"MED-MNL": [
+"PR"
+],
+"MEL-MNL": [
+"PR"
+],
+"MEL-NAN": [
+"VA"
+],
+"MEL-OOL": [
+"VA"
+],
+"MEL-PEK": [
+"CA"
+],
+"MEL-PER": [
+"VA"
+],
+"MEL-PVG": [
+"HO"
+],
+"MEL-SFO": [
+"UA"
+],
+"MEL-SGN": [
+"VN"
+],
+"MEL-SIN": [
+"SQ",
+"TK"
+],
+"MEL-SYD": [
+"VA"
+],
+"MEL-SZX": [
+"ZH"
+],
+"MEL-WLG": [
+"NZ"
+],
+"MEL-ZQN": [
+"NZ",
+"VA"
+],
+"MEM-ORD": [
+"UA"
+],
+"MEX-MUC": [
+"LH"
+],
+"MEX-NRT": [
+"NH"
+],
+"MEX-ORD": [
+"UA"
+],
+"MEX-PTY": [
+"CM"
+],
+"MEX-SFO": [
+"UA"
+],
+"MEX-YUL": [
+"AC"
+],
+"MEX-YVR": [
+"AC"
+],
+"MEX-YYZ": [
+"AC"
+],
+"MFM-NTG": [
+"ZH"
+],
+"MFM-TPE": [
+"BR"
+],
+"MFM-WUH": [
+"CA"
+],
+"MFM-WUX": [
+"ZH"
+],
+"MFR-SFO": [
+"UA"
+],
+"MGA-PTY": [
+"CM"
+],
+"MGA-SJO": [
+"CM"
+],
+"MIA-MUC": [
+"LH"
+],
+"MIA-ORD": [
+"UA"
+],
+"MIA-PTY": [
+"CM"
+],
+"MIA-SFO": [
+"UA"
+],
+"MIA-WAW": [
+"LO"
+],
+"MIA-YVR": [
+"AC"
+],
+"MIA-YYZ": [
+"AC"
+],
+"MIA-ZRH": [
+"LX"
+],
+"MID-YYZ": [
+"AC"
+],
+"MIG-PEK": [
+"CA"
+],
+"MIG-PKX": [
+"CA"
+],
+"MIG-SZX": [
+"ZH"
+],
+"MIR-VIE": [
+"OS"
+],
+"MIR-ZAG": [
+"OU"
+],
+"MJT-SKG": [
+"A3"
+],
+"MJT-VIE": [
+"OS"
+],
+"MLA-MUC": [
+"LH"
+],
+"MLA-STR": [
+"EW"
+],
+"MLA-WAW": [
+"LO"
+],
+"MLA-ZRH": [
+"LX"
+],
+"MLE-SIN": [
+"SQ"
+],
+"MLE-VIE": [
+"OS"
+],
+"MLE-WAW": [
+"LO"
+],
+"MLO-RHO": [
+"A3"
+],
+"MLO-SKG": [
+"A3"
+],
+"MMY-NGO": [
+"NH"
+],
+"MMY-OKA": [
+"NH"
+],
+"MNL-NGO": [
+"PR"
+],
+"MNL-NRT": [
+"NH",
+"PR"
+],
+"MNL-ORD": [
+"PR"
+],
+"MNL-PEK": [
+"CA",
+"PR"
+],
+"MNL-PER": [
+"PR"
+],
+"MNL-POM": [
+"PR"
+],
+"MNL-PPS": [
+"PR"
+],
+"MNL-PUS": [
+"PR"
+],
+"MNL-PVG": [
+"HO",
+"PR"
+],
+"MNL-ROR": [
+"PR",
+"UA"
+],
+"MNL-RUH": [
+"PR"
+],
+"MNL-SEA": [
+"PR"
+],
+"MNL-SFO": [
+"PR",
+"UA"
+],
+"MNL-SGN": [
+"PR",
+"VN"
+],
+"MNL-SIN": [
+"PR",
+"SQ"
+],
+"MNL-SYD": [
+"PR"
+],
+"MNL-SZX": [
+"ZH"
+],
+"MNL-TFU": [
+"CA"
+],
+"MNL-TPE": [
+"BR",
+"PR"
+],
+"MNL-XMN": [
+"PR"
+],
+"MNL-YVR": [
+"AC",
+"PR"
+],
+"MNL-YYZ": [
+"PR"
+],
+"MPL-ZRH": [
+"LX"
+],
+"MQX-SHC": [
+"ET"
+],
+"MQX-SZE": [
+"ET"
+],
+"MRS-MUC": [
+"LH"
+],
+"MRS-VIE": [
+"OS"
+],
+"MRS-ZRH": [
+"LX"
+],
+"MRU-VIE": [
+"OS"
+],
+"MRU-WAW": [
+"LO"
+],
+"MRY-ORD": [
+"UA"
+],
+"MSN-ORD": [
+"UA"
+],
+"MSO-ORD": [
+"UA"
+],
+"MSP-ORD": [
+"UA"
+],
+"MSP-SFO": [
+"UA"
+],
+"MSP-YUL": [
+"AC"
+],
+"MSP-YYZ": [
+"AC"
+],
+"MSQ-PEK": [
+"CA"
+],
+"MSQ-XIY": [
+"CA"
+],
+"MSY-ORD": [
+"UA"
+],
+"MSY-SFO": [
+"UA"
+],
+"MSY-YYZ": [
+"AC"
+],
+"MTJ-ORD": [
+"UA"
+],
+"MTY-PTY": [
+"CM"
+],
+"MTY-SFO": [
+"UA"
+],
+"MTY-YVR": [
+"AC"
+],
+"MTY-YYZ": [
+"AC"
+],
+"MUB-NLA": [
+"ET"
+],
+"MUC-MXP": [
+"LH"
+],
+"MUC-NAP": [
+"LH"
+],
+"MUC-NCE": [
+"LH"
+],
+"MUC-NTE": [
+"LH"
+],
+"MUC-OGU": [
+"TK"
+],
+"MUC-OLB": [
+"LH"
+],
+"MUC-OMR": [
+"LH"
+],
+"MUC-OPO": [
+"LH"
+],
+"MUC-ORD": [
+"LH",
+"UA"
+],
+"MUC-OSI": [
+"OU"
+],
+"MUC-OSL": [
+"LH"
+],
+"MUC-OTP": [
+"LH"
+],
+"MUC-PEK": [
+"CA",
+"LH"
+],
+"MUC-PFO": [
+"LH"
+],
+"MUC-PMI": [
+"EW",
+"LH"
+],
+"MUC-PMO": [
+"LH"
+],
+"MUC-POZ": [
+"LH"
+],
+"MUC-PRG": [
+"LH"
+],
+"MUC-PUY": [
+"LH"
+],
+"MUC-PVG": [
+"CA",
+"LH"
+],
+"MUC-PVK": [
+"LH"
+],
+"MUC-RHO": [
+"A3",
+"LH"
+],
+"MUC-RJK": [
+"LH",
+"OU"
+],
+"MUC-RMF": [
+"LH"
+],
+"MUC-RUH": [
+"LH"
+],
+"MUC-RZE": [
+"LH"
+],
+"MUC-SAN": [
+"LH"
+],
+"MUC-SBZ": [
+"LH"
+],
+"MUC-SEA": [
+"LH"
+],
+"MUC-SFO": [
+"LH",
+"UA"
+],
+"MUC-SGN": [
+"VN"
+],
+"MUC-SIN": [
+"LH",
+"SQ"
+],
+"MUC-SKG": [
+"A3",
+"LH"
+],
+"MUC-SOF": [
+"LH"
+],
+"MUC-SPU": [
+"LH",
+"OU"
+],
+"MUC-STN": [
+"LH"
+],
+"MUC-STR": [
+"LH"
+],
+"MUC-TBS": [
+"LH"
+],
+"MUC-TIA": [
+"LH"
+],
+"MUC-TIV": [
+"LH"
+],
+"MUC-TLS": [
+"LH"
+],
+"MUC-TLV": [
+"LH"
+],
+"MUC-TOS": [
+"LH"
+],
+"MUC-TPE": [
+"BR"
+],
+"MUC-TRD": [
+"LH"
+],
+"MUC-TUN": [
+"LH"
+],
+"MUC-TZX": [
+"TK"
+],
+"MUC-VIE": [
+"LH",
+"OS"
+],
+"MUC-VLC": [
+"LH"
+],
+"MUC-WAW": [
+"LH",
+"LO"
+],
+"MUC-WRO": [
+"LH"
+],
+"MUC-YUL": [
+"LH"
+],
+"MUC-YVR": [
+"LH"
+],
+"MUC-YYZ": [
+"AC"
+],
+"MUC-ZAD": [
+"LH"
+],
+"MUC-ZAG": [
+"OU"
+],
+"MUC-ZRH": [
+"LH",
+"LX"
+],
+"MVD-PTY": [
+"CM"
+],
+"MXP-ORD": [
+"UA"
+],
+"MXP-PEK": [
+"CA"
+],
+"MXP-PKX": [
+"CA"
+],
+"MXP-PVG": [
+"CA"
+],
+"MXP-SIN": [
+"SQ"
+],
+"MXP-SKG": [
+"A3"
+],
+"MXP-SPU": [
+"OU"
+],
+"MXP-STR": [
+"EW"
+],
+"MXP-TFU": [
+"CA"
+],
+"MXP-TPE": [
+"BR"
+],
+"MXP-WAW": [
+"LO"
+],
+"MXP-YUL": [
+"AC"
+],
+"MXP-YYZ": [
+"AC"
+],
+"MXP-ZRH": [
+"ET",
+"LX"
+],
+"MYJ-OKA": [
+"NH"
+],
+"MYJ-TPE": [
+"BR"
+],
+"MYR-ORD": [
+"UA"
+],
+"NAN-SYD": [
+"VA"
+],
+"NAO-WNZ": [
+"CA"
+],
+"NAP-STR": [
+"EW"
+],
+"NAP-VIE": [
+"OS"
+],
+"NAP-YUL": [
+"AC"
+],
+"NAP-ZRH": [
+"LX"
+],
+"NAS-ORD": [
+"UA"
+],
+"NAS-PTY": [
+"CM"
+],
+"NAS-YHZ": [
+"AC"
+],
+"NAS-YOW": [
+"AC"
+],
+"NAS-YUL": [
+"AC"
+],
+"NAS-YYZ": [
+"AC"
+],
+"NBJ-OPO": [
+"TP"
+],
+"NCE-PRG": [
+"EW"
+],
+"NCE-STR": [
+"EW"
+],
+"NCE-VIE": [
+"OS"
+],
+"NCE-WAW": [
+"LO"
+],
+"NCE-YUL": [
+"AC"
+],
+"NCE-ZRH": [
+"LX"
+],
+"NDG-PEK": [
+"CA"
+],
+"NDG-PKX": [
+"CA"
+],
+"NDJ-NIM": [
+"TK"
+],
+"NGB-PEK": [
+"CA"
+],
+"NGB-PKX": [
+"CA"
+],
+"NGB-SZX": [
+"ZH"
+],
+"NGB-TFU": [
+"CA"
+],
+"NGB-YCU": [
+"ZH"
+],
+"NGO-NRT": [
+"NH"
+],
+"NGO-PVG": [
+"HO"
+],
+"NGO-SGN": [
+"VN"
+],
+"NGO-SIN": [
+"SQ"
+],
+"NGO-YCU": [
+"ZH"
+],
+"NIM-OUA": [
+"ET"
+],
+"NKG-NNG": [
+"HO",
+"ZH"
+],
+"NKG-PKX": [
+"CA"
+],
+"NKG-SHE": [
+"ZH"
+],
+"NKG-SYX": [
+"HO"
+],
+"NKG-SZX": [
+"ZH"
+],
+"NKG-TFU": [
+"CA",
+"HO",
+"ZH"
+],
+"NKG-TYN": [
+"HO",
+"ZH"
+],
+"NKG-UKB": [
+"HO"
+],
+"NKG-URC": [
+"HO"
+],
+"NKG-UYN": [
+"HO"
+],
+"NKG-XIY": [
+"HO",
+"ZH"
+],
+"NKG-XMN": [
+"HO"
+],
+"NKG-YCU": [
+"ZH"
+],
+"NKG-YKH": [
+"HO"
+],
+"NKG-YNT": [
+"ZH"
+],
+"NKG-ZHA": [
+"ZH"
+],
+"NKG-ZUH": [
+"ZH"
+],
+"NNG-NTG": [
+"ZH"
+],
+"NNG-PEK": [
+"CA",
+"ZH"
+],
+"NNG-PKX": [
+"CA"
+],
+"NNG-PVG": [
+"HO"
+],
+"NNG-SHA": [
+"HO"
+],
+"NNG-SZX": [
+"ZH"
+],
+"NNG-TFU": [
+"CA",
+"ZH"
+],
+"NNG-TSN": [
+"CA"
+],
+"NNG-TYN": [
+"ZH"
+],
+"NNG-WUH": [
+"ZH"
+],
+"NNG-WUX": [
+"HO",
+"ZH"
+],
+"NNG-XIY": [
+"ZH"
+],
+"NNG-YCU": [
+"ZH"
+],
+"NNG-YNT": [
+"ZH"
+],
+"NOS-WAW": [
+"LO"
+],
+"NPE-WLG": [
+"NZ"
+],
+"NPL-WLG": [
+"NZ"
+],
+"NQZ-PEK": [
+"CA"
+],
+"NQZ-WAW": [
+"LO"
+],
+"NQZ-XIY": [
+"CA"
+],
+"NRT-ORD": [
+"NH",
+"UA"
+],
+"NRT-PEK": [
+"CA"
+],
+"NRT-PER": [
+"NH"
+],
+"NRT-PVG": [
+"CA",
+"HO",
+"NH"
+],
+"NRT-ROR": [
+"UA"
+],
+"NRT-SFO": [
+"NH",
+"UA"
+],
+"NRT-SGN": [
+"NH",
+"VN"
+],
+"NRT-SIN": [
+"NH",
+"SQ"
+],
+"NRT-SPN": [
+"UA"
+],
+"NRT-SZX": [
+"ZH"
+],
+"NRT-TFU": [
+"CA"
+],
+"NRT-TPE": [
+"BR"
+],
+"NRT-TSN": [
+"CA"
+],
+"NRT-UBN": [
+"UA"
+],
+"NRT-VIE": [
+"OS"
+],
+"NRT-WAW": [
+"LO"
+],
+"NRT-YUL": [
+"AC"
+],
+"NRT-YVR": [
+"AC",
+"NH"
+],
+"NRT-YYZ": [
+"AC"
+],
+"NRT-ZRH": [
+"LX"
+],
+"NSN-WLG": [
+"NZ"
+],
+"NTE-SPU": [
+"OU"
+],
+"NTE-YUL": [
+"AC"
+],
+"NTG-PEK": [
+"CA",
+"ZH"
+],
+"NTG-PKX": [
+"CA"
+],
+"NTG-SHE": [
+"ZH"
+],
+"NTG-SYX": [
+"ZH"
+],
+"NTG-SZX": [
+"ZH"
+],
+"NTG-TFU": [
+"CA",
+"ZH"
+],
+"NTG-TSN": [
+"ZH"
+],
+"NTG-TYN": [
+"ZH"
+],
+"NTG-XIY": [
+"ZH"
+],
+"NTG-XMN": [
+"ZH"
+],
+"NTG-YNT": [
+"ZH"
+],
+"NTG-ZUH": [
+"ZH"
+],
+"NUE-PMI": [
+"EW"
+],
+"NUE-RHO": [
+"EW"
+],
+"NUE-SKG": [
+"A3"
+],
+"OGG-ORD": [
+"UA"
+],
+"OGG-SFO": [
+"UA"
+],
+"OGG-YVR": [
+"AC"
+],
+"OHD-VIE": [
+"OS"
+],
+"OKA-SDJ": [
+"NH"
+],
+"OKA-TAK": [
+"NH"
+],
+"OKA-TPE": [
+"BR"
+],
+"OLB-STR": [
+"EW"
+],
+"OLB-SZG": [
+"EW"
+],
+"OLB-TRN": [
+"AZ"
+],
+"OLB-VIE": [
+"OS"
+],
+"OMA-ORD": [
+"UA"
+],
+"OMA-SFO": [
+"UA"
+],
+"OMO-STR": [
+"EW"
+],
+"OMO-ZAG": [
+"OU"
+],
+"OMR-WAW": [
+"LO"
+],
+"ONT-ORD": [
+"UA"
+],
+"ONT-SFO": [
+"UA"
+],
+"OOL-SYD": [
+"VA"
+],
+"OPO-ORY": [
+"TP"
+],
+"OPO-RAI": [
+"TP"
+],
+"OPO-SID": [
+"TP"
+],
+"OPO-STR": [
+"EW"
+],
+"OPO-TER": [
+"TP"
+],
+"OPO-VIE": [
+"OS"
+],
+"OPO-WAW": [
+"LO"
+],
+"OPO-YUL": [
+"AC"
+],
+"OPO-ZRH": [
+"LX",
+"TP"
+],
+"ORD-ORF": [
+"UA"
+],
+"ORD-PBI": [
+"UA"
+],
+"ORD-PDX": [
+"UA"
+],
+"ORD-PHL": [
+"UA"
+],
+"ORD-PHX": [
+"UA"
+],
+"ORD-PIT": [
+"UA"
+],
+"ORD-PLS": [
+"UA"
+],
+"ORD-PNS": [
+"UA"
+],
+"ORD-PSP": [
+"UA"
+],
+"ORD-PTY": [
+"CM"
+],
+"ORD-PUJ": [
+"UA"
+],
+"ORD-PVD": [
+"UA"
+],
+"ORD-PVR": [
+"UA"
+],
+"ORD-PWM": [
+"UA"
+],
+"ORD-RAP": [
+"UA"
+],
+"ORD-RDU": [
+"UA"
+],
+"ORD-RIC": [
+"UA"
+],
+"ORD-RNO": [
+"UA"
+],
+"ORD-ROC": [
+"UA"
+],
+"ORD-RSW": [
+"UA"
+],
+"ORD-SAN": [
+"UA"
+],
+"ORD-SAT": [
+"UA"
+],
+"ORD-SAV": [
+"UA"
+],
+"ORD-SBA": [
+"UA"
+],
+"ORD-SEA": [
+"UA"
+],
+"ORD-SFO": [
+"UA"
+],
+"ORD-SJC": [
+"UA"
+],
+"ORD-SJD": [
+"UA"
+],
+"ORD-SJO": [
+"UA"
+],
+"ORD-SJU": [
+"UA"
+],
+"ORD-SLC": [
+"UA"
+],
+"ORD-SMF": [
+"UA"
+],
+"ORD-SNA": [
+"UA"
+],
+"ORD-SNN": [
+"UA"
+],
+"ORD-SRQ": [
+"UA"
+],
+"ORD-STL": [
+"UA"
+],
+"ORD-STT": [
+"UA"
+],
+"ORD-SXM": [
+"UA"
+],
+"ORD-SYR": [
+"UA"
+],
+"ORD-TLV": [
+"UA"
+],
+"ORD-TPA": [
+"UA"
+],
+"ORD-TPE": [
+"BR"
+],
+"ORD-TUS": [
+"UA"
+],
+"ORD-TVC": [
+"UA"
+],
+"ORD-TYS": [
+"UA"
+],
+"ORD-UVF": [
+"UA"
+],
+"ORD-VIE": [
+"OS"
+],
+"ORD-WAW": [
+"LO"
+],
+"ORD-YEG": [
+"UA"
+],
+"ORD-YOW": [
+"UA"
+],
+"ORD-YUL": [
+"AC",
+"UA"
+],
+"ORD-YVR": [
+"AC",
+"UA"
+],
+"ORD-YYC": [
+"UA"
+],
+"ORD-YYZ": [
+"AC",
+"UA"
+],
+"ORD-ZIH": [
+"UA"
+],
+"ORD-ZRH": [
+"LX",
+"UA"
+],
+"OSI-SPU": [
+"OU"
+],
+"OSL-RHO": [
+"A3"
+],
+"OSL-SPU": [
+"OU"
+],
+"OSL-VIE": [
+"OS"
+],
+"OSL-WAW": [
+"LO"
+],
+"OSL-ZRH": [
+"LX"
+],
+"OSR-WAW": [
+"LO"
+],
+"OTP-STR": [
+"EW"
+],
+"OTP-VIE": [
+"OS"
+],
+"OTP-WAW": [
+"LO"
+],
+"OTP-ZRH": [
+"LX"
+],
+"OUL-RHO": [
+"A3"
+],
+"PAD-PMI": [
+"EW"
+],
+"PAD-RHO": [
+"A3"
+],
+"PAS-SKG": [
+"A3"
+],
+"PBI-SFO": [
+"UA"
+],
+"PBI-YUL": [
+"AC"
+],
+"PBI-YYZ": [
+"AC"
+],
+"PBM-PTY": [
+"CM"
+],
+"PDL-YYZ": [
+"AC"
+],
+"PDX-SFO": [
+"UA"
+],
+"PEI-PTY": [
+"CM"
+],
+"PEI-SMR": [
+"AV"
+],
+"PEK-PUS": [
+"CA"
+],
+"PEK-PVG": [
+"CA"
+],
+"PEK-RGN": [
+"CA"
+],
+"PEK-RLK": [
+"CA"
+],
+"PEK-RUH": [
+"CA"
+],
+"PEK-SFO": [
+"CA",
+"UA"
+],
+"PEK-SGN": [
+"CA"
+],
+"PEK-SHA": [
+"CA"
+],
+"PEK-SHE": [
+"CA"
+],
+"PEK-SIN": [
+"CA",
+"SQ"
+],
+"PEK-SQD": [
+"CA"
+],
+"PEK-SVO": [
+"CA"
+],
+"PEK-SWA": [
+"CA"
+],
+"PEK-SYD": [
+"CA"
+],
+"PEK-SYX": [
+"CA"
+],
+"PEK-SZX": [
+"CA",
+"ZH"
+],
+"PEK-TAS": [
+"CA"
+],
+"PEK-TFU": [
+"CA",
+"ZH"
+],
+"PEK-TGO": [
+"CA"
+],
+"PEK-TNH": [
+"CA"
+],
+"PEK-TPE": [
+"BR",
+"CA"
+],
+"PEK-TWC": [
+"CA"
+],
+"PEK-TXN": [
+"CA"
+],
+"PEK-TYN": [
+"CA"
+],
+"PEK-UBN": [
+"CA"
+],
+"PEK-URC": [
+"CA"
+],
+"PEK-VCE": [
+"CA"
+],
+"PEK-VIE": [
+"CA"
+],
+"PEK-VVO": [
+"CA"
+],
+"PEK-WAW": [
+"CA"
+],
+"PEK-WDS": [
+"CA"
+],
+"PEK-WEH": [
+"CA"
+],
+"PEK-WGN": [
+"CA"
+],
+"PEK-WMT": [
+"CA"
+],
+"PEK-WNZ": [
+"CA"
+],
+"PEK-WUH": [
+"CA"
+],
+"PEK-WUX": [
+"ZH"
+],
+"PEK-XFN": [
+"ZH"
+],
+"PEK-XIC": [
+"CA"
+],
+"PEK-XIL": [
+"CA"
+],
+"PEK-XIY": [
+"CA"
+],
+"PEK-XMN": [
+"CA"
+],
+"PEK-XNN": [
+"CA"
+],
+"PEK-YBP": [
+"CA"
+],
+"PEK-YCU": [
+"CA"
+],
+"PEK-YIC": [
+"ZH"
+],
+"PEK-YIH": [
+"CA"
+],
+"PEK-YIN": [
+"CA"
+],
+"PEK-YIW": [
+"CA"
+],
+"PEK-YNJ": [
+"CA"
+],
+"PEK-YNT": [
+"CA"
+],
+"PEK-YNZ": [
+"CA"
+],
+"PEK-YTY": [
+"CA"
+],
+"PEK-YVR": [
+"AC",
+"CA"
+],
+"PEK-YYZ": [
+"CA"
+],
+"PEK-ZHA": [
+"CA"
+],
+"PEK-ZUH": [
+"CA"
+],
+"PEN-PVG": [
+"HO"
+],
+"PEN-SIN": [
+"SQ"
+],
+"PEN-SZX": [
+"ZH"
+],
+"PER-PHE": [
+"VA"
+],
+"PER-SGN": [
+"VN"
+],
+"PER-SIN": [
+"SQ"
+],
+"PER-SYD": [
+"VA"
+],
+"PER-ZNE": [
+"VA"
+],
+"PFO-RHO": [
+"A3"
+],
+"PFO-WAW": [
+"LO"
+],
+"PHL-SFO": [
+"UA"
+],
+"PHL-YUL": [
+"AC"
+],
+"PHL-YYZ": [
+"AC"
+],
+"PHX-SFO": [
+"UA"
+],
+"PHX-YUL": [
+"AC"
+],
+"PHX-YVR": [
+"AC"
+],
+"PHX-YYZ": [
+"AC"
+],
+"PIT-SFO": [
+"UA"
+],
+"PKX-PVG": [
+"CA",
+"HO"
+],
+"PKX-RLK": [
+"CA"
+],
+"PKX-SGN": [
+"VN"
+],
+"PKX-SHA": [
+"HO"
+],
+"PKX-SHE": [
+"CA"
+],
+"PKX-SIN": [
+"SQ"
+],
+"PKX-SWA": [
+"CA"
+],
+"PKX-SZX": [
+"CA"
+],
+"PKX-TFU": [
+"CA"
+],
+"PKX-TGO": [
+"CA"
+],
+"PKX-WDS": [
+"CA"
+],
+"PKX-WEH": [
+"CA"
+],
+"PKX-WNZ": [
+"CA"
+],
+"PKX-WUA": [
+"CA"
+],
+"PKX-WUH": [
+"CA"
+],
+"PKX-XIL": [
+"CA"
+],
+"PKX-XIY": [
+"CA"
+],
+"PKX-XMN": [
+"CA"
+],
+"PKX-YBP": [
+"CA"
+],
+"PKX-YCU": [
+"CA"
+],
+"PKX-YIH": [
+"CA"
+],
+"PKX-YNJ": [
+"CA"
+],
+"PKX-YNZ": [
+"CA"
+],
+"PKX-YTY": [
+"CA"
+],
+"PKX-ZUH": [
+"CA"
+],
+"PLS-YUL": [
+"AC"
+],
+"PLS-YYZ": [
+"AC"
+],
+"PMI-POZ": [
+"LO"
+],
+"PMI-PRG": [
+"EW"
+],
+"PMI-SCN": [
+"EW"
+],
+"PMI-STR": [
+"EW"
+],
+"PMI-SZG": [
+"EW"
+],
+"PMI-VIE": [
+"OS"
+],
+"PMI-WAW": [
+"LO"
+],
+"PMI-YUL": [
+"AC"
+],
+"PMI-ZRH": [
+"EW",
+"LX"
+],
+"PMO-SSH": [
+"MS"
+],
+"PMO-STR": [
+"EW"
+],
+"PMO-VIE": [
+"OS"
+],
+"PMO-WAW": [
+"LO"
+],
+"PMO-ZRH": [
+"LX"
+],
+"PMV-WAW": [
+"LO"
+],
+"PNI-TKK": [
+"UA"
+],
+"POA-PTY": [
+"CM"
+],
+"POP-PTY": [
+"CM"
+],
+"POP-WAW": [
+"LO"
+],
+"POP-YUL": [
+"AC"
+],
+"POP-YYZ": [
+"AC"
+],
+"POS-PTY": [
+"CM"
+],
+"POS-YYZ": [
+"AC"
+],
+"POZ-ZRH": [
+"LX"
+],
+"PPT-SFO": [
+"UA"
+],
+"PQC-SGN": [
+"VN"
+],
+"PQC-VCA": [
+"VN"
+],
+"PQC-VII": [
+"VN"
+],
+"PQC-WAW": [
+"LO"
+],
+"PRG-RAK": [
+"EW"
+],
+"PRG-SKG": [
+"A3"
+],
+"PRG-SPU": [
+"OU"
+],
+"PRG-TFS": [
+"EW"
+],
+"PRG-TLL": [
+"EW"
+],
+"PRG-VIE": [
+"OS"
+],
+"PRG-VLC": [
+"EW"
+],
+"PRG-WAW": [
+"LO"
+],
+"PRG-YYZ": [
+"AC"
+],
+"PRG-ZAG": [
+"OU"
+],
+"PRG-ZNZ": [
+"LO"
+],
+"PRG-ZRH": [
+"LX"
+],
+"PSP-SFO": [
+"UA"
+],
+"PSP-YVR": [
+"AC"
+],
+"PSP-YYZ": [
+"AC"
+],
+"PTP-YQB": [
+"AC"
+],
+"PTP-YUL": [
+"AC"
+],
+"PTP-YYZ": [
+"AC"
+],
+"PTY-PUJ": [
+"CM"
+],
+"PTY-RDU": [
+"CM"
+],
+"PTY-ROS": [
+"CM"
+],
+"PTY-SAL": [
+"CM"
+],
+"PTY-SAN": [
+"CM"
+],
+"PTY-SAP": [
+"CM"
+],
+"PTY-SCL": [
+"CM"
+],
+"PTY-SDQ": [
+"CM"
+],
+"PTY-SFO": [
+"CM"
+],
+"PTY-SJD": [
+"CM"
+],
+"PTY-SJO": [
+"CM"
+],
+"PTY-SJU": [
+"CM"
+],
+"PTY-SLA": [
+"CM"
+],
+"PTY-SMR": [
+"CM"
+],
+"PTY-SSA": [
+"CM"
+],
+"PTY-STI": [
+"CM"
+],
+"PTY-SXM": [
+"CM"
+],
+"PTY-TPA": [
+"CM"
+],
+"PTY-TUC": [
+"CM"
+],
+"PTY-UIO": [
+"CM"
+],
+"PTY-VLN": [
+"CM"
+],
+"PTY-VVI": [
+"CM"
+],
+"PTY-XPL": [
+"CM"
+],
+"PTY-YUL": [
+"CM"
+],
+"PTY-YYZ": [
+"CM"
+],
+"PUJ-WAW": [
+"LO"
+],
+"PUJ-YHZ": [
+"AC"
+],
+"PUJ-YOW": [
+"AC"
+],
+"PUJ-YQB": [
+"AC"
+],
+"PUJ-YUL": [
+"AC"
+],
+"PUJ-YYZ": [
+"AC"
+],
+"PUS-SGN": [
+"VN"
+],
+"PUS-SIN": [
+"SQ"
+],
+"PUS-TPE": [
+"BR"
+],
+"PUY-STR": [
+"EW"
+],
+"PUY-ZAD": [
+"OU"
+],
+"PUY-ZAG": [
+"OU"
+],
+"PVG-RLK": [
+"HO"
+],
+"PVG-SDJ": [
+"CA"
+],
+"PVG-SFO": [
+"UA"
+],
+"PVG-SGN": [
+"HO",
+"VN"
+],
+"PVG-SHE": [
+"CA",
+"HO"
+],
+"PVG-SIN": [
+"CA",
+"HO",
+"SQ"
+],
+"PVG-SYD": [
+"HO"
+],
+"PVG-SYX": [
+"HO"
+],
+"PVG-SZH": [
+"HO"
+],
+"PVG-SZX": [
+"CA",
+"HO",
+"ZH"
+],
+"PVG-TAO": [
+"HO"
+],
+"PVG-TEN": [
+"HO"
+],
+"PVG-TFU": [
+"CA",
+"HO"
+],
+"PVG-TPE": [
+"BR",
+"CA",
+"HO"
+],
+"PVG-TSN": [
+"CA",
+"HO"
+],
+"PVG-TWU": [
+"HO"
+],
+"PVG-TYN": [
+"HO"
+],
+"PVG-URC": [
+"CA",
+"HO"
+],
+"PVG-UYN": [
+"HO"
+],
+"PVG-VIE": [
+"OS"
+],
+"PVG-VVO": [
+"HO"
+],
+"PVG-WNZ": [
+"CA",
+"HO"
+],
+"PVG-WUH": [
+"HO"
+],
+"PVG-XIL": [
+"CA"
+],
+"PVG-XIY": [
+"CA",
+"HO"
+],
+"PVG-XMN": [
+"HO"
+],
+"PVG-XNN": [
+"CA"
+],
+"PVG-YKH": [
+"HO"
+],
+"PVG-YLX": [
+"HO"
+],
+"PVG-YVR": [
+"AC"
+],
+"PVG-YYZ": [
+"AC"
+],
+"PVG-YZY": [
+"HO"
+],
+"PVG-ZHA": [
+"CA"
+],
+"PVG-ZHY": [
+"HO"
+],
+"PVG-ZRH": [
+"LX"
+],
+"PVG-ZUH": [
+"CA",
+"HO"
+],
+"PVK-RDO": [
+"LO"
+],
+"PVK-STR": [
+"EW"
+],
+"PVK-VIE": [
+"OS"
+],
+"PVR-SFO": [
+"UA"
+],
+"PVR-YUL": [
+"AC"
+],
+"PVR-YVR": [
+"AC"
+],
+"PVR-YYZ": [
+"AC"
+],
+"PWM-SFO": [
+"UA"
+],
+"RAK-STR": [
+"EW"
+],
+"RAK-VIE": [
+"OS"
+],
+"RAK-WAW": [
+"LO"
+],
+"RDM-SFO": [
+"UA"
+],
+"RDU-SFO": [
+"UA"
+],
+"RDU-YYZ": [
+"AC"
+],
+"RGN-SIN": [
+"SQ"
+],
+"RHO-SCN": [
+"A3"
+],
+"RHO-SKG": [
+"A3"
+],
+"RHO-STR": [
+"EW"
+],
+"RHO-SZG": [
+"EW"
+],
+"RHO-TIA": [
+"A3"
+],
+"RHO-TKU": [
+"A3"
+],
+"RHO-TLV": [
+"A3"
+],
+"RHO-TMP": [
+"A3"
+],
+"RHO-TRD": [
+"A3"
+],
+"RHO-VIE": [
+"OS"
+],
+"RHO-WAW": [
+"LO"
+],
+"RIX-WAW": [
+"LO"
+],
+"RJK-STR": [
+"EW"
+],
+"RJK-ZRH": [
+"LX"
+],
+"RMF-STR": [
+"EW"
+],
+"RMF-SZG": [
+"EW"
+],
+"RMF-VIE": [
+"OS"
+],
+"RMO-STR": [
+"EW"
+],
+"RMO-VIE": [
+"OS"
+],
+"RMO-WAW": [
+"LO"
+],
+"RNO-SFO": [
+"UA"
+],
+"ROT-WLG": [
+"NZ"
+],
+"RSW-SFO": [
+"UA"
+],
+"RTB-YUL": [
+"AC"
+],
+"RTB-YYZ": [
+"AC"
+],
+"RUH-RZV": [
+"TK"
+],
+"RUH-WAW": [
+"LO"
+],
+"RVN-STR": [
+"EW"
+],
+"RVN-VIE": [
+"OS"
+],
+"RVN-WAW": [
+"LO"
+],
+"RZE-WAW": [
+"LO"
+],
+"SAI-SGN": [
+"VN"
+],
+"SAI-SIN": [
+"SQ"
+],
+"SAN-SFO": [
+"UA"
+],
+"SAN-YUL": [
+"AC"
+],
+"SAN-YYZ": [
+"AC"
+],
+"SAT-SFO": [
+"UA"
+],
+"SAT-YYZ": [
+"AC"
+],
+"SBA-SFO": [
+"UA"
+],
+"SBP-SFO": [
+"UA"
+],
+"SBZ-VIE": [
+"OS"
+],
+"SCL-YUL": [
+"AC"
+],
+"SCL-YYZ": [
+"AC"
+],
+"SDJ-TPE": [
+"BR"
+],
+"SDQ-YUL": [
+"AC"
+],
+"SEA-SFO": [
+"UA"
+],
+"SEA-SIN": [
+"SQ"
+],
+"SEA-TPE": [
+"BR"
+],
+"SEA-YUL": [
+"AC"
+],
+"SEA-YYZ": [
+"AC"
+],
+"SFO-SGN": [
+"VN"
+],
+"SFO-SIN": [
+"SQ",
+"UA"
+],
+"SFO-SJD": [
+"UA"
+],
+"SFO-SJO": [
+"UA"
+],
+"SFO-SLC": [
+"UA"
+],
+"SFO-SNA": [
+"UA"
+],
+"SFO-STL": [
+"UA"
+],
+"SFO-SYD": [
+"UA"
+],
+"SFO-TER": [
+"TP"
+],
+"SFO-TPA": [
+"UA"
+],
+"SFO-TPE": [
+"BR",
+"UA"
+],
+"SFO-WAW": [
+"LO"
+],
+"SFO-YUL": [
+"AC",
+"UA"
+],
+"SFO-YVR": [
+"AC",
+"UA"
+],
+"SFO-YYC": [
+"UA"
+],
+"SFO-YYZ": [
+"AC",
+"UA"
+],
+"SFO-ZRH": [
+"LX",
+"UA"
+],
+"SGN-SIN": [
+"SQ",
+"VN"
+],
+"SGN-SYD": [
+"VN"
+],
+"SGN-SZX": [
+"VN",
+"ZH"
+],
+"SGN-TBB": [
+"VN"
+],
+"SGN-THD": [
+"VN"
+],
+"SGN-TPE": [
+"BR",
+"VN"
+],
+"SGN-UIH": [
+"VN"
+],
+"SGN-VCL": [
+"VN"
+],
+"SGN-VCS": [
+"VN"
+],
+"SGN-VDH": [
+"VN"
+],
+"SGN-VDO": [
+"VN"
+],
+"SGN-VII": [
+"VN"
+],
+"SGN-VKG": [
+"VN"
+],
+"SGN-VTE": [
+"VN"
+],
+"SHA-SYX": [
+"HO"
+],
+"SHA-SZX": [
+"HO",
+"ZH"
+],
+"SHA-TFU": [
+"HO"
+],
+"SHA-TSA": [
+"BR",
+"CA"
+],
+"SHA-TSN": [
+"CA"
+],
+"SHA-TYN": [
+"HO"
+],
+"SHA-URC": [
+"HO"
+],
+"SHA-WUH": [
+"HO"
+],
+"SHA-XFN": [
+"HO"
+],
+"SHA-XIY": [
+"HO"
+],
+"SHA-XMN": [
+"HO"
+],
+"SHA-ZUH": [
+"HO"
+],
+"SHC-SZE": [
+"ET"
+],
+"SHE-SYX": [
+"ZH"
+],
+"SHE-SZX": [
+"ZH"
+],
+"SHE-TFU": [
+"CA",
+"ZH"
+],
+"SHE-TYN": [
+"ZH"
+],
+"SHE-WNZ": [
+"ZH"
+],
+"SHE-WUH": [
+"CA",
+"ZH"
+],
+"SHE-WUX": [
+"ZH"
+],
+"SHE-XFN": [
+"ZH"
+],
+"SHE-XIY": [
+"ZH"
+],
+"SHE-XMN": [
+"ZH"
+],
+"SHE-XNN": [
+"ZH"
+],
+"SHE-YBP": [
+"ZH"
+],
+"SHE-YCU": [
+"CA"
+],
+"SHE-YIH": [
+"ZH"
+],
+"SHE-YNT": [
+"ZH"
+],
+"SHE-YTY": [
+"ZH"
+],
+"SHE-ZUH": [
+"ZH"
+],
+"SHJ-VNS": [
+"AI"
+],
+"SIN-SUB": [
+"SQ"
+],
+"SIN-SYD": [
+"SQ"
+],
+"SIN-SZX": [
+"SQ",
+"ZH"
+],
+"SIN-TFU": [
+"CA",
+"SQ"
+],
+"SIN-TPE": [
+"BR",
+"SQ"
+],
+"SIN-WUX": [
+"HO"
+],
+"SIN-XMN": [
+"SQ"
+],
+"SIN-YVR": [
+"AC"
+],
+"SIN-ZRH": [
+"LX",
+"SQ"
+],
+"SJD-YUL": [
+"AC"
+],
+"SJD-YVR": [
+"AC"
+],
+"SJD-YYZ": [
+"AC"
+],
+"SJJ-STR": [
+"EW"
+],
+"SJJ-VIE": [
+"OS"
+],
+"SJJ-WAW": [
+"LO"
+],
+"SJJ-ZAG": [
+"OU"
+],
+"SJJ-ZRH": [
+"LX"
+],
+"SJO-YUL": [
+"AC"
+],
+"SJO-YYZ": [
+"AC"
+],
+"SJW-SZX": [
+"ZH"
+],
+"SJW-TFU": [
+"CA"
+],
+"SKG-STR": [
+"A3",
+"EW"
+],
+"SKG-TLV": [
+"A3"
+],
+"SKG-VCE": [
+"A3"
+],
+"SKG-VIE": [
+"OS"
+],
+"SKG-WAW": [
+"LO"
+],
+"SKG-ZRH": [
+"A3",
+"LX"
+],
+"SKG-ZTH": [
+"A3"
+],
+"SKP-VIE": [
+"OS"
+],
+"SKP-WAW": [
+"LO"
+],
+"SKP-ZAG": [
+"OU"
+],
+"SKU-VIE": [
+"OS"
+],
+"SMF-YYZ": [
+"AC"
+],
+"SMI-VIE": [
+"OS"
+],
+"SNA-YVR": [
+"AC"
+],
+"SOF-VIE": [
+"OS"
+],
+"SOF-WAW": [
+"LO"
+],
+"SOF-ZRH": [
+"LX"
+],
+"SPC-STR": [
+"EW"
+],
+"SPU-STR": [
+"EW"
+],
+"SPU-VIE": [
+"OS",
+"OU"
+],
+"SPU-WAW": [
+"LO"
+],
+"SPU-ZAG": [
+"OU"
+],
+"SPU-ZRH": [
+"OU"
+],
+"SRQ-YYZ": [
+"AC"
+],
+"STL-YUL": [
+"AC"
+],
+"STL-YYZ": [
+"AC"
+],
+"STR-SUF": [
+"EW"
+],
+"STR-TBS": [
+"EW"
+],
+"STR-TFS": [
+"EW"
+],
+"STR-TIA": [
+"EW"
+],
+"STR-TIV": [
+"EW"
+],
+"STR-TOS": [
+"EW"
+],
+"STR-TSR": [
+"EW"
+],
+"STR-TUN": [
+"EW"
+],
+"STR-VAR": [
+"EW"
+],
+"STR-VCE": [
+"EW"
+],
+"STR-VIE": [
+"EW",
+"OS"
+],
+"STR-VLC": [
+"EW"
+],
+"STR-WAW": [
+"LO"
+],
+"STR-ZAD": [
+"EW"
+],
+"STR-ZAG": [
+"EW"
+],
+"STR-ZRH": [
+"LX"
+],
+"STR-ZTH": [
+"EW"
+],
+"SUF-SZG": [
+"EW"
+],
+"SUF-VIE": [
+"OS"
+],
+"SVD-YYZ": [
+"AC"
+],
+"SVG-WAW": [
+"LO"
+],
+"SVO-URC": [
+"CA"
+],
+"SVQ-VIE": [
+"OS"
+],
+"SWA-TFU": [
+"CA"
+],
+"SWA-WUH": [
+"CA"
+],
+"SXB-WAW": [
+"LO"
+],
+"SXM-YUL": [
+"AC"
+],
+"SXM-YYZ": [
+"AC"
+],
+"SYD-WLG": [
+"NZ"
+],
+"SYD-YVR": [
+"AC"
+],
+"SYD-YYZ": [
+"AC"
+],
+"SYD-ZQN": [
+"NZ",
+"VA"
+],
+"SYX-SZX": [
+"ZH"
+],
+"SYX-TFU": [
+"CA"
+],
+"SYX-UBN": [
+"HO"
+],
+"SYX-WNZ": [
+"ZH"
+],
+"SYX-WUX": [
+"HO"
+],
+"SYX-YCU": [
+"ZH"
+],
+"SZF-VIE": [
+"TK"
+],
+"SZG-TFS": [
+"EW"
+],
+"SZG-ZTH": [
+"EW"
+],
+"SZX-TAO": [
+"ZH"
+],
+"SZX-TFU": [
+"CA",
+"ZH"
+],
+"SZX-TNA": [
+"ZH"
+],
+"SZX-TPE": [
+"ZH"
+],
+"SZX-TSN": [
+"CA",
+"ZH"
+],
+"SZX-TYN": [
+"ZH"
+],
+"SZX-URC": [
+"ZH"
+],
+"SZX-WGN": [
+"ZH"
+],
+"SZX-WHA": [
+"ZH"
+],
+"SZX-WNZ": [
+"ZH"
+],
+"SZX-WUH": [
+"CA",
+"ZH"
+],
+"SZX-WUX": [
+"ZH"
+],
+"SZX-XFN": [
+"ZH"
+],
+"SZX-XIY": [
+"ZH"
+],
+"SZX-XNN": [
+"ZH"
+],
+"SZX-YBP": [
+"ZH"
+],
+"SZX-YCU": [
+"ZH"
+],
+"SZX-YIC": [
+"ZH"
+],
+"SZX-YIH": [
+"ZH"
+],
+"SZX-YNT": [
+"ZH"
+],
+"SZX-YTY": [
+"ZH"
+],
+"SZX-ZHA": [
+"ZH"
+],
+"SZZ-WAW": [
+"LO"
+],
+"TAO-WNZ": [
+"HO"
+],
+"TAO-WUH": [
+"CA"
+],
+"TAO-WUX": [
+"HO"
+],
+"TAS-URC": [
+"CA"
+],
+"TAS-WAW": [
+"LO"
+],
+"TBS-URC": [
+"CA"
+],
+"TBS-VIE": [
+"OS"
+],
+"TBS-WAW": [
+"LO"
+],
+"TCP-WAW": [
+"LO"
+],
+"TFS-VIE": [
+"OS"
+],
+"TFS-WAW": [
+"LO"
+],
+"TFS-YYZ": [
+"AC"
+],
+"TFU-TNA": [
+"CA"
+],
+"TFU-TSN": [
+"CA"
+],
+"TFU-TYN": [
+"CA"
+],
+"TFU-URC": [
+"CA"
+],
+"TFU-WGN": [
+"ZH"
+],
+"TFU-WNZ": [
+"CA"
+],
+"TFU-WUH": [
+"CA",
+"ZH"
+],
+"TFU-WUS": [
+"CA"
+],
+"TFU-WUX": [
+"HO",
+"ZH"
+],
+"TFU-XIC": [
+"CA"
+],
+"TFU-XMN": [
+"CA"
+],
+"TFU-XNN": [
+"CA"
+],
+"TFU-YCU": [
+"CA"
+],
+"TFU-YIN": [
+"CA"
+],
+"TFU-YIW": [
+"CA"
+],
+"TFU-YNT": [
+"CA",
+"ZH"
+],
+"TFU-ZHA": [
+"CA"
+],
+"TFU-ZUH": [
+"CA"
+],
+"TGD-VIE": [
+"OS"
+],
+"TGD-WAW": [
+"LO"
+],
+"TIA-VIE": [
+"OS"
+],
+"TIA-WAW": [
+"LO"
+],
+"TIA-ZRH": [
+"LX"
+],
+"TIU-WLG": [
+"NZ"
+],
+"TIV-VIE": [
+"OS"
+],
+"TIV-WAW": [
+"LO"
+],
+"TLL-WAW": [
+"LO"
+],
+"TLL-ZRH": [
+"LX"
+],
+"TLS-YUL": [
+"AC"
+],
+"TLV-VIE": [
+"OS"
+],
+"TLV-WAW": [
+"LO"
+],
+"TLV-YUL": [
+"AC"
+],
+"TLV-YYZ": [
+"AC"
+],
+"TLV-ZAG": [
+"OU"
+],
+"TLV-ZRH": [
+"LX"
+],
+"TNH-TSN": [
+"CA"
+],
+"TOS-VIE": [
+"OS"
+],
+"TPE-TSN": [
+"BR"
+],
+"TPE-UKB": [
+"BR"
+],
+"TPE-VIE": [
+"BR"
+],
+"TPE-YVR": [
+"BR"
+],
+"TPE-YYZ": [
+"BR"
+],
+"TQO-YUL": [
+"AC"
+],
+"TQO-YYZ": [
+"AC"
+],
+"TRG-WLG": [
+"NZ"
+],
+"TSN-TYN": [
+"CA"
+],
+"TSN-URC": [
+"CA"
+],
+"TSN-WNZ": [
+"CA"
+],
+"TSN-WUH": [
+"CA"
+],
+"TSN-XIY": [
+"CA"
+],
+"TSN-XMN": [
+"CA"
+],
+"TSN-XNN": [
+"CA"
+],
+"TSN-ZUH": [
+"CA"
+],
+"TYN-WNZ": [
+"CA"
+],
+"TYN-WUH": [
+"ZH"
+],
+"TYN-WUX": [
+"ZH"
+],
+"TYN-XNN": [
+"CA"
+],
+"TYN-YIH": [
+"ZH"
+],
+"UIO-YUL": [
+"AC"
+],
+"UIO-YYZ": [
+"AC"
+],
+"URC-WUH": [
+"CA"
+],
+"URC-XNN": [
+"CA"
+],
+"URC-YCU": [
+"CA"
+],
+"UYN-XIY": [
+"HO"
+],
+"VAR-VIE": [
+"OS"
+],
+"VAR-WAW": [
+"LO"
+],
+"VCA-VCS": [
+"VN"
+],
+"VCA-VII": [
+"VN"
+],
+"VCE-VIE": [
+"OS"
+],
+"VCE-WAW": [
+"LO"
+],
+"VCE-YUL": [
+"AC"
+],
+"VCE-YYZ": [
+"AC"
+],
+"VCE-ZRH": [
+"LX"
+],
+"VIE-VLC": [
+"OS"
+],
+"VIE-VNO": [
+"OS"
+],
+"VIE-VOL": [
+"OS"
+],
+"VIE-WAW": [
+"LO",
+"OS"
+],
+"VIE-YUL": [
+"OS"
+],
+"VIE-YYZ": [
+"AC"
+],
+"VIE-ZAD": [
+"OS"
+],
+"VIE-ZAG": [
+"OS",
+"OU"
+],
+"VIE-ZRH": [
+"OS"
+],
+"VIE-ZTH": [
+"OS"
+],
+"VLC-ZRH": [
+"LX"
+],
+"VNO-WAW": [
+"LO"
+],
+"VNO-ZRH": [
+"LX"
+],
+"VTE-XIY": [
+"HO"
+],
+"WAW-WRO": [
+"LO"
+],
+"WAW-YYZ": [
+"LO"
+],
+"WAW-ZAG": [
+"LO"
+],
+"WAW-ZNZ": [
+"LO"
+],
+"WAW-ZRH": [
+"LO",
+"LX"
+],
+"WLG-ZQN": [
+"NZ"
+],
+"WNZ-XIY": [
+"CA",
+"ZH"
+],
+"WNZ-YBP": [
+"ZH"
+],
+"WNZ-YCU": [
+"ZH"
+],
+"WRO-ZRH": [
+"LX"
+],
+"WUH-XIY": [
+"CA"
+],
+"WUH-XMN": [
+"CA"
+],
+"WUH-YCU": [
+"ZH"
+],
+"WUH-ZUH": [
+"CA"
+],
+"WUX-XIY": [
+"ZH"
+],
+"WUX-YCU": [
+"ZH"
+],
+"WUX-ZUH": [
+"ZH"
+],
+"XFN-ZUH": [
+"ZH"
+],
+"XIY-XNN": [
+"ZH"
+],
+"XIY-YNT": [
+"ZH"
+],
+"XIY-YTY": [
+"ZH"
+],
+"XIY-ZHY": [
+"HO"
+],
+"XMN-YTY": [
+"ZH"
+],
+"YCD-YYZ": [
+"AC"
+],
+"YCU-ZUH": [
+"ZH"
+],
+"YEG-YUL": [
+"AC"
+],
+"YEG-YYZ": [
+"AC"
+],
+"YFC-YYZ": [
+"AC"
+],
+"YHZ-YUL": [
+"AC"
+],
+"YHZ-YVR": [
+"AC"
+],
+"YHZ-YYZ": [
+"AC"
+],
+"YLW-YUL": [
+"AC"
+],
+"YLW-YVR": [
+"AC"
+],
+"YLW-YYZ": [
+"AC"
+],
+"YMM-YYZ": [
+"AC"
+],
+"YOW-YUL": [
+"AC"
+],
+"YOW-YVR": [
+"AC"
+],
+"YOW-YYC": [
+"AC"
+],
+"YOW-YYZ": [
+"AC"
+],
+"YQB-YUL": [
+"AC"
+],
+"YQB-YVR": [
+"AC"
+],
+"YQB-YYZ": [
+"AC"
+],
+"YQM-YUL": [
+"AC"
+],
+"YQM-YYZ": [
+"AC"
+],
+"YQR-YVR": [
+"AC"
+],
+"YQR-YYZ": [
+"AC"
+],
+"YQT-YYZ": [
+"AC"
+],
+"YSJ-YYZ": [
+"AC"
+],
+"YUL-YVR": [
+"AC"
+],
+"YUL-YWG": [
+"AC"
+],
+"YUL-YYC": [
+"AC"
+],
+"YUL-YYG": [
+"AC"
+],
+"YUL-YYJ": [
+"AC"
+],
+"YUL-YYT": [
+"AC"
+],
+"YUL-YYZ": [
+"AC"
+],
+"YUL-ZIH": [
+"AC"
+],
+"YUL-ZRH": [
+"LX"
+],
+"YVR-YWG": [
+"AC"
+],
+"YVR-YXE": [
+"AC"
+],
+"YVR-YXY": [
+"AC"
+],
+"YVR-YYZ": [
+"AC"
+],
+"YVR-ZIH": [
+"AC"
+],
+"YWG-YYZ": [
+"AC"
+],
+"YXE-YYZ": [
+"AC"
+],
+"YYC-YYZ": [
+"AC"
+],
+"YYJ-YYZ": [
+"AC"
+],
+"YYT-YYZ": [
+"AC"
+],
+"YYZ-YZF": [
+"AC"
+],
+"YYZ-ZIH": [
+"AC"
+],
+"YYZ-ZRH": [
+"AC",
+"LX"
+],
+"ZAD-ZAG": [
+"OU"
+],
+"ZAG-ZRH": [
+"OU"
+]
+}
+}

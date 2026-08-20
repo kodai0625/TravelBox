@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mile Board">
+<meta name="theme-color" content="#241a2e">
+<!-- ホーム画面に追加したときのアイコン／ブラウザのタブのアイコン -->
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/app-icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/app-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/app-icon-512.png">
+<title>Mile Board</title>
+<script>
+/* 画面が描かれる前に明暗を決めます。
+   ここを後回しにすると、暗い設定の端末で一瞬だけ白い画面が出てしまいます。 */
+(function () {
+  try {
+    var pref = localStorage.getItem('mile-board-v1:theme') || 'auto';
+    var dark = pref === 'dark' ||
+               (pref === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  } catch (e) {
+    document.documentElement.dataset.theme = 'light';
+  }
+})();
+</script>
+<!-- ★ ?v= は「読み込み直させるための版番号」です。
+     css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
+     上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
+<link rel="stylesheet" href="css/style.css?v=20260821g">
+<link rel="stylesheet" href="css/design.css?v=20260821g">
+</head>
+<body>
+
+<!-- しるしのもと。形をここに1回だけ書いて、下から <use href="#i-○○"> で呼び出します。 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 家。旅の道具箱（玄関）へ戻る -->
+    <symbol id="i-home" viewBox="0 0 24 24">
+      <path d="M3 11 12 3l9 8" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M5.5 9.5V20h13V9.5" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- ぐるりと回る矢印。最新版に更新 -->
+    <symbol id="i-refresh" viewBox="0 0 24 24">
+      <path d="M20 12a8 8 0 1 1-2.6-5.9" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round"/>
+      <path d="M20 3.5V9h-5.5" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="app-head">
+  <!-- 旅の道具箱（玄関）へ戻る。玄関を通さず直接開いたときも押せます。 -->
+  <a class="head-icon" href="../"
+     title="旅の道具箱に戻る" aria-label="旅の道具箱に戻る">
+    <svg class="head-icon__i" aria-hidden="true"><use href="#i-home"/></svg>
+  </a>
+  <div class="app-head-main">
+    <h1 class="app-title">Mile Board</h1>
+    <p class="app-sub">マイルの周遊旅程をつくる</p>
+  </div>
+  <!-- 手動での更新。ふだんは sw.js が自動で新しくしますが、
+       古い画面のままのときはここを押します（js/update.js） -->
+  <button type="button" class="head-icon" id="updateBtn"
+          title="最新版に更新" aria-label="最新版に更新">
+    <svg class="head-icon__i" aria-hidden="true"><use href="#i-refresh"/></svg>
+  </button>
+  <button class="theme-btn" id="themeBtn" type="button" title="明るさを切り替え">◐</button>
+</header>
+
+<main id="main" hidden>
+
+  <!-- ===== 旅程の形 ===== -->
+  <div class="modes" id="modes" role="group" aria-label="旅程の形"></div>
+
+  <!-- ===== 判定 ===== -->
+  <div class="verdict" id="verdict" role="status" aria-live="polite">
+    <span class="verdict-mark" id="verdictMark">…</span>
+    <span class="verdict-text" id="verdictText">目的地を選んでください</span>
+  </div>
+  <ul class="msg-list" id="msgList"></ul>
+
+  <!-- ===== 目的地 ===== -->
+  <section class="card">
+    <h2 class="card-title"><span class="step">1</span>どこへ行きますか</h2>
+    <div class="picker" id="destPicker"></div>
+    <p class="hint" id="destHint"></p>
+  </section>
+
+  <!-- ===== 必要マイル ===== -->
+  <section class="card" id="milesCard">
+    <h2 class="card-title"><span class="step">2</span>必要マイル数</h2>
+    <div class="miles" id="milesBox"></div>
+    <p class="hint" id="milesHint"></p>
+    <p class="hint">
+      <a id="officialLink" href="https://www.ana.co.jp/ja/jp/guide/amc/award/tk/zone/"
+         target="_blank" rel="noopener">ANA公式のチャートで確かめる →</a>
+    </p>
+  </section>
+
+  <!-- ===== 往路 ===== -->
+  <section class="card">
+    <h2 class="card-title"><span class="step">3</span>行きの道すじ</h2>
+    <div class="leg" id="legOut"></div>
+  </section>
+
+  <!-- ===== 復路 ===== -->
+  <section class="card" id="backCard">
+    <h2 class="card-title"><span class="step">4</span>帰りの道すじ</h2>
+    <div class="leg" id="legBack"></div>
+  </section>
+
+  <!-- ===== ストップオーバー ===== -->
+  <section class="card" id="stopCard">
+    <h2 class="card-title"><span class="step">5</span>24時間以上とまる街</h2>
+    <p class="hint">目的地のほかに、ひとつだけ選べます。日本国内では選べません。</p>
+    <div class="chips" id="stopChips"></div>
+  </section>
+
+  <!-- ===== 旅程 ===== -->
+  <section class="card" id="itinCard" hidden>
+    <h2 class="card-title"><span class="step">6</span>できあがった旅程</h2>
+    <ol class="segs" id="segs"></ol>
+    <div class="actions">
+      <button type="button" class="btn" id="copyBtn">コピーする</button>
+      <button type="button" class="btn" id="saveBtn">テキストで保存</button>
+      <button type="button" class="btn btn-quiet" id="resetBtn">まっさらに戻す</button>
+    </div>
+    <p class="hint" id="segHint"></p>
+  </section>
+
+  <footer class="app-foot">
+    <p>このアプリはANA（全日本空輸株式会社）とは関係のない、個人が作った道具です。</p>
+    <p>判定と必要マイル数は目安です。<strong>予約できるかどうかは、必ずANA公式サイトでご確認ください。</strong></p>
+    <p class="src" id="sources"></p>
+  </footer>
+</main>
+
+<div class="loading" id="loading">読み込んでいます…</div>
+
+<script src="js/update.js?v=20260821g"></script>
+<script src="js/config.js?v=20260821g"></script>
+<script src="js/rules.js?v=20260821g"></script>
+<script src="js/data.js?v=20260821g"></script>
+<script src="js/app.js?v=20260821g"></script>
+</body>
+</html>
