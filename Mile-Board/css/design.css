@@ -113,7 +113,16 @@ body {
 .row-label { color: var(--ink-2); }
 
 .mile { background: var(--panel-2); }
+.ana-box { background: var(--panel-2); border-color: var(--line); }
+.ana-title { color: var(--ink); }
+.ana-season { background: var(--accent-bg); color: var(--accent); }
+.ana-row-cls { color: var(--ink-2); }
+.ana-note { color: var(--ink-2); }
+.ana-diff.down { color: var(--ok); }
+.ana-diff.up { color: var(--ng); }
+.ana-diff.same { color: var(--ink-3); }
 .mile-cls { color: var(--ink-2); }
+.miles-lead { color: var(--ink-2); }
 
 .chip { border-color: var(--line); color: var(--ink-2); }
 .chip.on { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }

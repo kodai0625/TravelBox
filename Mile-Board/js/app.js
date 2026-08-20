@@ -14,6 +14,7 @@ const trip = {
   back: ['', '', ''],
   to: '',
   stopover: '',
+  date: '',            // 行きの搭乗日。シーズンを決めるのに使います
 
   /* どの欄でどの国を選んだか。
      ★これを覚えていないと、国を選んだ瞬間に画面を描き直したときに
@@ -222,6 +223,7 @@ function renderModes() {
  * ---------------------------------------------------------- */
 function refresh() {
   renderModes();
+  $('dateIn').value = trip.date || '';
   const oneway = trip.mode === 'oneway';
   $('backCard').hidden = oneway;
   $('stopCard').hidden = oneway;
@@ -242,7 +244,9 @@ function refresh() {
 
   const r = judge(trip);
   renderVerdict(r);
+  renderSeasonHint(r);
   renderMiles(r);
+  renderAnaBox(r);
   renderItinerary(r);
   save();
 }
@@ -287,6 +291,7 @@ function renderMiles(r) {
   const card = $('milesCard');
   card.hidden = false;
   if (!r.ready || !r.miles) {
+    $('milesLead').textContent = '';
     $('milesBox').innerHTML =
       '<div class="mile mile-empty"><span class="mile-cls">目的地を選ぶと、ここに出ます</span></div>';
     $('milesHint').textContent = '';
@@ -294,6 +299,9 @@ function renderMiles(r) {
   }
 
   const names = { Y: 'エコノミー', PY: 'プレミアムエコノミー', C: 'ビジネス', F: 'ファースト' };
+  /* ★どちらの表の数字かを必ず書きます。
+     ANA便だけで組むかどうかで、まったく別の表になるためです。 */
+  $('milesLead').textContent = 'スターアライアンス便を1便でも使うとき';
   $('milesBox').innerHTML = Object.entries(r.miles)
     .map(([k, v]) => `<div class="mile"><span class="mile-cls">${names[k] || k}</span>` +
                      `<span class="mile-val"><span class="mile-num">${v.toLocaleString()}</span>` +
@@ -315,6 +323,88 @@ function renderMiles(r) {
   } else {
     hint.textContent = '';
   }
+}
+
+/* 搭乗日から、その旅程のシーズンを画面に出す */
+function renderSeasonHint(r) {
+  const el = $('seasonHint');
+  if (!trip.date) {
+    el.textContent = '日を入れると、ANA便だけで組んだときのマイル数も出ます。';
+    return;
+  }
+  const a = r.ready && r.anaOnly;
+  if (a && a.season) {
+    const [y, m, d] = trip.date.split('-');
+    el.textContent = `${Number(y)}年${Number(m)}月${Number(d)}日は ${a.seasonName} です（行き先で区切りが変わります）。`;
+  } else if (r.ready) {
+    el.textContent = 'この日のシーズンは、ANA公式にまだ出ていません。';
+  } else {
+    el.textContent = '目的地を選ぶと、その日のシーズンが出ます。';
+  }
+}
+
+/* ANA運航便だけで組んだときとの見くらべ */
+function renderAnaBox(r) {
+  const box = $('anaBox');
+  box.innerHTML = '';
+  const a = r.ready && r.anaOnly;
+  if (!a || !r.miles) return;
+
+  const names = { Y: 'エコノミー', PY: 'プレエコ', C: 'ビジネス', F: 'ファースト' };
+  const el = document.createElement('div');
+  el.className = 'ana-box';
+
+  if (!a.hasChart) {
+    el.innerHTML = '<div class="ana-title">ANA便だけでは行けません</div>' +
+      `<p class="ana-note">${MB.labels[r.destZone]}へは、ANAの自社便が飛んでいません。` +
+      'スタアラ便を使う旅程になります。</p>';
+    box.appendChild(el);
+    return;
+  }
+  if (!a.possible) {
+    el.innerHTML = '<div class="ana-title">ANA便だけでは組めません</div>' +
+      `<p class="ana-note">${a.noAna.join('・')} にANA便が見つかりません。` +
+      '1区間でもスタアラ便が入ると、上のマイル数になります。</p>';
+    box.appendChild(el);
+    return;
+  }
+  if (!a.miles) {
+    el.innerHTML = '<div class="ana-title">ANA便だけで組めます</div>' +
+      '<p class="ana-note">上の「行きの搭乗日」を入れると、そのときのマイル数が出ます。' +
+      'ANA便だけの特典はシーズンで値段が変わるためです。</p>';
+    box.appendChild(el);
+    return;
+  }
+
+  const rows = Object.entries(a.miles)
+    .filter(([cls]) => r.miles[cls] != null)
+    .map(([cls, v]) => {
+      const diff = v - r.miles[cls];
+      const kind = diff < 0 ? 'down' : diff > 0 ? 'up' : 'same';
+      const word = diff < 0 ? `${Math.abs(diff).toLocaleString()} 安い`
+                 : diff > 0 ? `${diff.toLocaleString()} 高い` : '同じ';
+      return `<div class="ana-row"><span class="ana-row-cls">${names[cls] || cls}</span>` +
+             `<span class="ana-row-num">${v.toLocaleString()}</span>` +
+             `<span class="ana-diff ${kind}">${word}</span></div>`;
+    }).join('');
+
+  const pairs = Object.entries(a.miles).filter(([cls]) => r.miles[cls] != null);
+  const cheaper = pairs.some(([cls, v]) => v < r.miles[cls]);
+  const same = pairs.every(([cls, v]) => v === r.miles[cls]);
+
+  el.innerHTML =
+    `<div class="ana-title">ANA便だけで組むと` +
+    `<span class="ana-season">${a.seasonName}</span></div>` +
+    `<div class="ana-rows">${rows}</div>` +
+    `<p class="ana-note">${
+      same ? 'この日は、どちらで組んでも必要マイル数は同じです。'
+             + '乗りたい会社や空席のあるほうで選べます。'
+    : cheaper ? 'この日は、全部ANA便で組んだほうが安くなります。'
+                + 'ただしANA便に特典の空席があることが要ります。'
+    : 'この日は、スターアライアンス便を1便でも入れたほうが安くなります。'
+      + 'ANA便だけの特典はシーズンで高くなりますが、'
+      + 'スターアライアンス便が入る特典にはシーズンがないためです。'}</p>`;
+  box.appendChild(el);
 }
 
 function renderStopChips() {
@@ -376,6 +466,7 @@ function renderItinerary(r) {
 function asText() {
   const r = judge(trip);
   const lines = [`旅程の形：${MODES[trip.mode].label}`, `目的地：${trip.dest}`];
+  if (trip.date) lines.push(`搭乗日：${trip.date}` + (r.anaOnly && r.anaOnly.seasonName ? `（${r.anaOnly.seasonName}）` : ''));
   if (r.miles) {
     lines.push(`必要マイル：` + Object.entries(r.miles)
       .map(([k, v]) => `${{ Y: 'エコノミー', PY: 'プレエコ', C: 'ビジネス', F: 'ファースト' }[k]} ${v.toLocaleString()}`)
@@ -444,10 +535,12 @@ function load() {
   $('resetBtn').addEventListener('click', () => {
     Object.assign(trip, {
       mode: 'roundtrip', from: APP.homeCity, out: ['', '', ''], dest: '',
-      ret: '', back: ['', '', ''], to: APP.homeCity, stopover: '', countries: {},
+      ret: '', back: ['', '', ''], to: APP.homeCity, stopover: '', date: '', countries: {},
     });
     refresh();
   });
+
+  $('dateIn').addEventListener('change', () => { trip.date = $('dateIn').value; refresh(); });
 
   $('themeBtn').addEventListener('click', () => {
     const now = document.documentElement.dataset.theme;

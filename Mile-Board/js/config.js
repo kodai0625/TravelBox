@@ -28,6 +28,7 @@ const DATA_FILES = {
   zones:    'data/zones.json',    // ゾーン区分（tools/build_zones.py）
   cities:   'data/cities.json',   // 国と都市（tools/build_cities.py）
   segments: 'data/segments.json', // 区間ごとの就航会社（tools/build_cities.py）
+  milesAna: 'data/miles-ana.json', // ANA運航便だけのときの表（tools/build_miles_ana.py）
 };
 
 /* ------------------------------------------------------------

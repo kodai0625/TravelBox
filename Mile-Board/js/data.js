@@ -25,12 +25,22 @@ const countryName = (() => {
 })();
 
 async function loadAll() {
-  const [miles, zones, cities, segments] = await Promise.all([
+  const [miles, zones, cities, segments, ana] = await Promise.all([
     fetchJson(DATA_FILES.miles),
     fetchJson(DATA_FILES.zones),
     fetchJson(DATA_FILES.cities),
     fetchJson(DATA_FILES.segments),
+    fetchJson(DATA_FILES.milesAna),
   ]);
+
+  /* ANA運航便だけで組んだときの表。こちらはシーズンで変わります。 */
+  MB.ana = {
+    miles: ana.miles,
+    milesOneway: ana.milesOneway || {},
+    zoneGroup: ana.zoneGroup,
+    calendar: ana.calendar,
+    seasonNames: ana.meta.seasons,
+  };
 
   MB.miles = miles.miles;
   MB.milesOneway = miles.milesOneway || {};

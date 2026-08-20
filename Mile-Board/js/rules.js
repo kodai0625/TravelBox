@@ -62,6 +62,60 @@ function milesFor(fromZone, destZone, oneway) {
   return table[`${fromZone}|${destZone}`] || table[`${destZone}|${fromZone}`] || null;
 }
 
+/* 搭乗日から、その旅程のシーズンを決める。
+   シーズンの区切りは行き先によって3組に分かれているので、
+   目的地のゾーンから、どの組の暦を見るかを選びます。
+   日が入っていない、または暦の載っていない年なら null です。 */
+function seasonOf(date, destZone) {
+  if (!date || !MB.ana) return null;
+  const group = MB.ana.zoneGroup[destZone];
+  const year = date.slice(0, 4);
+  const cal = group && MB.ana.calendar[group] && MB.ana.calendar[group][year];
+  if (!cal) return null;
+  for (const key of ['L', 'R', 'H']) {
+    for (const [from, to] of cal[key]) {
+      if (date >= from && date <= to) return key;
+    }
+  }
+  return null;
+}
+
+/* ANA運航便だけで組めるか、組めるならいくらか。
+
+   この特典には2つの表があります。
+     ・スタアラ便が1便でも入る → 提携航空会社特典航空券（シーズンなし）
+     ・ANA運航便だけ           → ANA国際線特典航空券（シーズンあり）
+   どちらが安いかは、シーズンと行き先でひっくり返ります。
+   ハイシーズンの欧州ビジネスだと、スタアラ便を混ぜたほうが
+   59,000マイルも安くなります。 */
+function anaOnlyPlan(segments, destZone, fromZone, date, oneway) {
+  if (fromZone !== '1' && !String(fromZone).startsWith('1-')) return null;  // 日本発だけ
+  const flights = segments.filter((s) => !s.gap);
+  if (!flights.length) return null;
+
+  const noAna = flights.filter((s) => !s.airlines.includes('NH'));
+  const season = seasonOf(date, destZone);
+  const table = oneway ? MB.ana.milesOneway : MB.ana.miles;
+  const row = table[`1|${destZone}`];
+  const order = { L: 0, R: 1, H: 2 };
+
+  let miles = null;
+  if (row && season) {
+    miles = {};
+    for (const [cls, v] of Object.entries(row)) {
+      if (v[order[season]] != null) miles[cls] = v[order[season]];
+    }
+  }
+  return {
+    possible: noAna.length === 0,
+    noAna: noAna.map((s) => `${s.from}→${s.to}`),
+    season,
+    seasonName: season ? MB.ana.seasonNames[season] : '',
+    miles,
+    hasChart: !!row,
+  };
+}
+
 /* そのゾーンがどのエリアに属するか。 */
 function areaOf(zone) {
   for (const [area, list] of Object.entries(AREAS)) {
@@ -276,10 +330,14 @@ function judge(trip) {
     notes.push(`${unknown.map((s) => `${s.from}→${s.to}`).join('・')} は、この特典で乗れる会社の直行便が見つかりませんでした。乗り継ぎが必要か、路線データに載っていない可能性があります。`);
   }
 
+  /* ANA運航便だけで組んだ場合との見くらべ */
+  const anaOnly = anaOnlyPlan(segments, destC.zone, fromZone, trip.date, oneway);
+
   return {
     ok: errors.length === 0,
     ready: true,
     mode,
+    anaOnly,
     errors,
     notes,
     fromZone,

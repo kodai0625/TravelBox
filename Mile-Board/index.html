@@ -30,8 +30,8 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/style.css?v=20260821k">
-<link rel="stylesheet" href="css/design.css?v=20260821k">
+<link rel="stylesheet" href="css/style.css?v=20260821n">
+<link rel="stylesheet" href="css/design.css?v=20260821n">
 </head>
 <body>
 
@@ -91,13 +91,20 @@
     <h2 class="card-title"><span class="step">1</span>どこへ行きますか</h2>
     <div class="picker" id="destPicker"></div>
     <p class="hint" id="destHint"></p>
+    <div class="dateline">
+      <label class="row-label" for="dateIn">行きの搭乗日</label>
+      <input type="date" id="dateIn" class="sel">
+    </div>
+    <p class="hint" id="seasonHint">日を入れると、ANA便だけで組んだときのマイル数も出ます。</p>
   </section>
 
   <!-- ===== 必要マイル ===== -->
   <section class="card" id="milesCard">
     <h2 class="card-title"><span class="step">2</span>必要マイル数</h2>
+    <p class="miles-lead" id="milesLead"></p>
     <div class="miles" id="milesBox"></div>
     <p class="hint" id="milesHint"></p>
+    <div id="anaBox"></div>
     <p class="hint">
       <a id="officialLink" href="https://www.ana.co.jp/ja/jp/guide/amc/award/tk/zone/"
          target="_blank" rel="noopener">ANA公式のチャートで確かめる →</a>
@@ -144,10 +151,10 @@
 
 <div class="loading" id="loading">読み込んでいます…</div>
 
-<script src="js/update.js?v=20260821k"></script>
-<script src="js/config.js?v=20260821k"></script>
-<script src="js/rules.js?v=20260821k"></script>
-<script src="js/data.js?v=20260821k"></script>
-<script src="js/app.js?v=20260821k"></script>
+<script src="js/update.js?v=20260821n"></script>
+<script src="js/config.js?v=20260821n"></script>
+<script src="js/rules.js?v=20260821n"></script>
+<script src="js/data.js?v=20260821n"></script>
+<script src="js/app.js?v=20260821n"></script>
 </body>
 </html>

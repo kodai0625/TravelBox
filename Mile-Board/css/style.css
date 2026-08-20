@@ -171,6 +171,7 @@ body {
 .seg-gap .seg-route { opacity: .75; }
 
 /* ===== 必要マイル ===== */
+.miles-lead { font-size: 11px; font-weight: 700; margin-bottom: 7px; }
 .miles { display: flex; flex-wrap: wrap; gap: 8px; }
 .mile {
   flex: 1 1 130px;
@@ -185,6 +186,26 @@ body {
 .mile-val { display: flex; align-items: baseline; gap: 4px; }
 .mile-num { font-size: 21px; font-weight: 800; letter-spacing: -.01em; }
 .mile-unit { font-size: 10px; }
+
+/* 搭乗日 */
+.dateline { display: grid; grid-template-columns: 84px 1fr; align-items: center; gap: 10px; margin-top: 10px; }
+.dateline .sel { background-image: none; }
+
+/* ANA便だけで組んだときの見くらべ */
+.ana-box {
+  margin-top: 11px;
+  padding: 11px 13px 12px;
+  border-radius: 12px;
+  border: 1px solid;
+}
+.ana-title { font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.ana-season { font-size: 10px; padding: 1px 7px; border-radius: 999px; font-weight: 700; }
+.ana-rows { display: grid; gap: 3px; margin-top: 8px; }
+.ana-row { display: flex; align-items: baseline; gap: 8px; font-size: 13px; }
+.ana-row-cls { font-size: 11px; width: 74px; flex: none; }
+.ana-row-num { font-weight: 700; }
+.ana-diff { font-size: 11px; font-weight: 700; margin-left: auto; }
+.ana-note { font-size: 11px; line-height: 1.6; margin-top: 8px; }
 
 /* ===== ちいさなボタン ===== */
 .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
