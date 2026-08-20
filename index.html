@@ -91,6 +91,23 @@
     </g>
   </symbol>
 
+  <!-- Rate Board のしるし。横長のお札に円記号。
+       円記号は線だけで描いてあるので、書体の無い端末でも同じ形になります。
+       ★ Entry Board のパスポートも「四角の中に何か」ですが、
+          あちらは縦長、こちらは横長にして見分けが付くようにしています。
+       ★ 線と線のすきまは 1.5 以上を保ってください。
+          これより詰めると、34px で描いたとき線どうしがくっついて
+          記号に見えなくなります（実際に一度そうなりました）。 -->
+  <symbol id="i-rate" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.5"
+       stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2.6" y="5" width="18.8" height="14" rx="2.6"/>
+      <path d="M8.9 7.8 L12 11.2 L15.1 7.8"/>
+      <path d="M12 11.2 V16.4"/>
+      <path d="M9.4 12.7h5.2M9.4 14.6h5.2"/>
+    </g>
+  </symbol>
+
   <symbol id="i-case" viewBox="0 0 24 24">
     <g fill="none" stroke="currentColor" stroke-width="1.5"
        stroke-linecap="round" stroke-linejoin="round">
@@ -187,12 +204,29 @@
       <span class="app__chev" aria-hidden="true">›</span>
     </a>
 
+    <!-- ★ リンク先が他の4つと違います。
+         外貨計算アプリの実体は ~/Coding/外貨計算/ にあり、Travel Box の中には
+         置いていません（あちらは単独のアプリとしても公開しているためです）。
+         組み立てのとき「Rate-Board/index.html」に書き換わります。
+         配布用には web-haifu/、私用には web/ が入ります。 -->
+    <a class="app app--rate" href="Rate-Board/index.html">
+      <span class="app__icon" aria-hidden="true">
+        <svg class="app__mark"><use href="#i-rate"/></svg>
+      </span>
+      <span class="app__body">
+        <span class="app__name">Rate Board</span>
+        <span class="app__desc">払う額を見くらべる</span>
+        <span class="app__detail">カードの支払総額・両替レート・世界410都市の両替所</span>
+      </span>
+      <span class="app__chev" aria-hidden="true">›</span>
+    </a>
+
   </nav>
 
 
   <footer class="foot">
     <svg class="foot__mark" aria-hidden="true"><use href="#i-case"/></svg>
-    <p>ホーム画面にはこの1つだけを追加すれば、中の4つを行き来できます。</p>
+    <p>ホーム画面にはこの1つだけを追加すれば、中の5つを行き来できます。</p>
   </footer>
 
 </main>

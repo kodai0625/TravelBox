@@ -27,12 +27,14 @@
   --flight:    #8f7016;
   --pack:      #2f7d5b;
   --entry:     #8a3a52;   /* あずき。白地で 7.5 : 1 */
+  --rate:      #5a3a7a;   /* 藤紫。白地で 9.1 : 1。他の4色と色味がいちばん離れています */
   /* しるしを置く四角の地。アプリの色を薄く敷いて、
      2枚のカードがひと目で別のものだと分かるようにしています。 */
   --tile-trip:   #e7f0f7;
   --tile-flight: #f6efd9;
   --tile-pack:   #e6f1eb;
   --tile-entry:  #f3e5e9;
+  --tile-rate:   #eee7f4;
   --radius:    16px;
   --shadow:    0 1px 3px rgba(30, 28, 20, .07);
 }
@@ -54,10 +56,12 @@
   --flight:    #c9a227;
   --pack:      #5fbf92;
   --entry:     #e8a0b4;   /* 暗い地の上なので明るく反転 */
+  --rate:      #c3a4e2;   /* 暗い地で 8.1 : 1 */
   --tile-trip:   #1d2c37;
   --tile-flight: #2a2718;
   --tile-pack:   #1b2b23;
   --tile-entry:  #2c1a20;
+  --tile-rate:   #241c2e;
   --shadow:    none;
 }
 
@@ -206,6 +210,7 @@ body {
 .app--flight::before { color: var(--flight); }
 .app--pack::before { color: var(--pack); }
 .app--entry::before { color: var(--entry); }
+.app--rate::before { color: var(--rate); }
 
 .app__icon {
   flex: 0 0 auto;
@@ -229,6 +234,7 @@ body {
 .app--flight .app__icon { color: var(--flight); --tile: var(--tile-flight); }
 .app--pack .app__icon { color: var(--pack); --tile: var(--tile-pack); }
 .app--entry .app__icon { color: var(--entry); --tile: var(--tile-entry); }
+.app--rate .app__icon { color: var(--rate); --tile: var(--tile-rate); }
 
 .app__body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
 

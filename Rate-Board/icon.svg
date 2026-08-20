@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#7A2B34"/><stop offset="1" stop-color="#3A1218"/>
+  </linearGradient></defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- 紋章の光 -->
+  <g stroke="#E8C46A" stroke-width="14" stroke-linecap="round" opacity=".38">
+    <path d="M256 36v34M256 442v34M36 256h34M442 256h34"/>
+    <path d="M99 99l26 26M387 387l26 26M413 99l-26 26M125 387l-26 26"/>
+  </g>
+
+  <!-- 地球儀 -->
+  <g fill="none" stroke="#E8C46A" stroke-width="9" opacity=".30">
+    <circle cx="256" cy="256" r="116"/>
+    <ellipse cx="256" cy="256" rx="116" ry="45"/>
+    <ellipse cx="256" cy="256" rx="45" ry="116"/>
+    <path d="M140 256h232"/>
+  </g>
+
+  <!-- 航路 -->
+  <g fill="none" stroke="#F5C542" stroke-width="28" stroke-linecap="round" stroke-dasharray="13 36">
+    <path d="M256 74a182 182 0 0 1 172 120"/>
+    <path d="M256 438A182 182 0 0 1 84 318"/>
+  </g>
+  <path d="M84 318l64 19-24 42z" fill="#F5C542"/>
+
+  <!-- 飛行機 -->
+  <g transform="translate(430,196) rotate(-48) scale(4.5)" fill="#F5C542">
+    <path d="M0 0 L-19 -6 L-19 -2 L-6 1.4 L-11 8 L-15 8 L-16.5 11 L-11.5 12 L-9 15.5
+             L-6.5 12.6 L-2.5 5.2 L9 8.4 Q13.5 8.6 13.5 5.2 Q13.5 1.8 9 1.6 Z"/>
+  </g>
+
+  <!-- 円記号 -->
+  <text x="256" y="338" font-family="Helvetica,Arial,sans-serif" font-size="232"
+        font-weight="700" fill="#F5C542" text-anchor="middle">&#165;</text>
+</svg>
