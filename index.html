@@ -32,9 +32,11 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css を直したら、ここを1つ上げてください。 -->
-<link rel="stylesheet" href="css/entry.css?v=20260821a">
+<link rel="stylesheet" href="css/entry.css?v=20260822a">
+<!-- 旅の道具箱 共通デザイン。着せ替えなので、いちばん後ろで読みます -->
+<link rel="stylesheet" href="css/travel.css?v=20260822a">
 </head>
-<body>
+<body class="paper">
 
 <!-- ===== しるしのもと =====
      形をここに1回だけ書いて、下から <use> で呼び出します。
@@ -133,27 +135,29 @@
 </svg>
 
 <header class="hero">
-  <!-- 上の帯の絵。地球とその周りを回る点線が、中の2つのアプリ
-       （行き先を選ぶ／飛び方を調べる）をそのまま表しています。
-       文字より薄くしてあるので、見出しの読みやすさは変わりません。 -->
-  <svg class="hero__art" viewBox="0 0 200 150" aria-hidden="true" focusable="false">
-    <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-      <circle cx="120" cy="76" r="46"/>
-      <ellipse cx="120" cy="76" rx="20" ry="46"/>
-      <path d="M74 76h92M82.5 53h75M82.5 99h75"/>
-      <ellipse cx="120" cy="76" rx="68" ry="27"
-               transform="rotate(-26 120 76)" stroke-dasharray="4 7"/>
+  <!-- 板の上に薄く描く飾り。航路・地球・飛行機・雲。
+       道具箱の中の全アプリで同じ形にそろえてあります。
+       ここは玄関なので、いちばん高い板になります。 -->
+  <svg class="masthead-art" viewBox="0 0 400 130" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-10 116 Q 130 66 250 92 T 420 40" fill="none" stroke="#f2b33d"
+          stroke-width="1.4" stroke-dasharray="4 6" opacity=".38"/>
+  </svg>
+  <svg class="masthead-art" viewBox="0 0 400 130" aria-hidden="true">
+    <g transform="translate(326,88)" opacity=".24">
+      <circle r="21" fill="none" stroke="#95a2c0" stroke-width="1.3"/>
+      <ellipse rx="21" ry="8" fill="none" stroke="#95a2c0" stroke-width="1"/>
+      <ellipse rx="8" ry="21" fill="none" stroke="#95a2c0" stroke-width="1"/>
+      <path d="M-21 0h42" stroke="#95a2c0" stroke-width="1"/>
     </g>
-    <path fill="currentColor" transform="translate(179 45) rotate(58) scale(1.25)"
-          d="M0-9c.9 0 1.5 1.1 1.5 2.5v2.5l6.1 3.6v1.8L1.5 4.5V8l1.9 1.4v1.4L0 10l-3.4.8
-             v-1.4L-1.5 8V4.5l-6.1 1.9V4.6l6.1-3.6v-2.5C-1.5-7.9-.9-9 0-9z"/>
+    <g transform="translate(362,62) rotate(-24)" fill="#f2b33d" opacity=".85">
+      <path d="M0 0 L-19 -6 L-19 -2 L-6 1.4 L-11 8 L-15 8 L-16.5 11 L-11.5 12 L-9 15.5 L-6.5 12.6 L-2.5 5.2 L9 8.4 Q13.5 8.6 13.5 5.2 Q13.5 1.8 9 1.6 Z"/>
+    </g>
+    <g fill="#95a2c0" opacity=".13">
+      <ellipse cx="62" cy="102" rx="26" ry="7"/>
+      <ellipse cx="78" cy="97" rx="16" ry="5.5"/>
+    </g>
   </svg>
 
-  <div class="hero__inner">
-    <p class="hero__kicker">TRAVEL BOX</p>
-    <h1 class="hero__title">旅の道具箱</h1>
-    <p class="hero__sub" id="heroSub">読み込み中…</p>
-  </div>
   <div class="hero__btns">
     <!-- 手動での更新。ふだんは sw.js が自動で新しくしますが、
          古い画面のままのときはここを押します（js/update.js） -->
@@ -162,6 +166,11 @@
       <svg class="head-icon__i" aria-hidden="true"><use href="#i-refresh"/></svg>
     </button>
     <button type="button" class="theme-btn" id="themeBtn">自動</button>
+  </div>
+  <div class="hero__inner">
+    <h1 class="hero__title">Travel Box</h1>
+    <p class="hero__kicker">旅の道具箱</p>
+    <p class="hero__sub" id="heroSub">読み込み中…</p>
   </div>
 </header>
 
@@ -307,7 +316,7 @@
   } catch (e) { /* 保存できなくてもリンクは働きます */ }
 })();
 </script>
-<script src="js/update.js?v=20260821a"></script>
+<script src="js/update.js?v=20260822a"></script>
 
 <script>
 /* 世話係の登録。これが無いと sw.js は働きません。

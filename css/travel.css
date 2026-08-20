@@ -1,0 +1,454 @@
+/* ============================================================
+ *  旅の道具箱 共通デザイン
+ *
+ *  Rate Board（外貨計算）の見た目を、道具箱の中の全アプリに
+ *  そろえるための土台です。もとになっている考え方は
+ *  「空港の発着案内板」で、
+ *
+ *    ・見出しは濃紺の板に、琥珀色の反転フラップ文字
+ *    ・本体はクリーム色の紙に、生成りの札
+ *    ・文字は等幅を混ぜて、案内板らしく字間を広く
+ *
+ *  ★このファイルは道具箱の中の全アプリに、まったく同じ中身で
+ *    置いてあります。直すときは全部そろえてください。
+ *    ずれていないかは「公開用を作る.py」が毎回検算します。
+ *
+ *  各アプリの design.css は、このファイルの色を
+ *  自分の名前に読み替えるだけにしてあります。
+ * ============================================================ */
+
+:root {
+  /* ---- 案内板（見出しの濃紺と、反転フラップの琥珀）---- */
+  --board:     #0b1020;
+  --board-2:   #16203c;
+  --flap:      #f2b33d;
+  --board-ink: #efe9dc;   /* 板の上にのせる文字 */
+  --board-sub: #95a2c0;   /* 板の上の、小さい文字 */
+
+  /* ---- 紙（本体）---- */
+  --paper:     #efe9dc;
+  --surface:   #fbf7ee;
+  --surface-2: #f1eadb;
+  --field:     #fffdf7;
+  --line:      #d8cdb6;
+  --line-soft: #e6ddc9;
+
+  /* ---- 文字 ---- */
+  --text:      #241e15;
+  --text-2:    #5c5343;
+  --text-3:    #8b806c;
+
+  /* ---- しるしの色 ---- */
+  --good:      #2f7d5f;
+  --good-bg:   #e4f2ea;
+  --bad:       #b5382c;
+  --bad-bg:    #fbeae7;
+  --warn:      #8a5a12;
+  --warn-bg:   #f8eeda;
+  --info:      #2e5b9a;
+  --info-bg:   #e6eef9;
+
+  --shadow: 0 1px 2px rgba(36,30,21,.07), 0 10px 26px -14px rgba(36,30,21,.30);
+
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, "DejaVu Sans Mono", monospace;
+  --sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "Yu Gothic",
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+}
+
+/* 暗い画面。紙を夜の色に落としますが、
+   案内板と琥珀はそのままです（あそこが目印なので）。 */
+:root[data-theme="dark"] {
+  --paper:     #10131c;
+  --surface:   #171c28;
+  --surface-2: #1e2432;
+  --field:     #141926;
+  --line:      #2c3345;
+  --line-soft: #242a3a;
+
+  --text:      #ece7dc;
+  --text-2:    #a9a596;
+  --text-3:    #7d7a6d;
+
+  --good:      #6fd79b;
+  --good-bg:   #16301f;
+  --bad:       #ff9b9b;
+  --bad-bg:    #331a1c;
+  --warn:      #e7c97a;
+  --warn-bg:   #2f2716;
+  --info:      #8fbdf0;
+  --info-bg:   #1a2740;
+
+  --shadow: 0 1px 2px rgba(0,0,0,.30), 0 10px 26px -14px rgba(0,0,0,.60);
+}
+
+/* ============================================================
+ *  ほかのアプリが使っている色の名前を、紙の色に読み替える
+ *
+ *  Trip / Flight / Entry / Pack の4つは、同じ名前を使っています。
+ *  ここで一度に読み替えるので、各アプリの design.css は
+ *  そのアプリだけの色（差し色や、そのアプリ独自の意味の色）に
+ *  専念できます。
+ * ========================================================== */
+
+:root {
+  --bg:        var(--paper);
+  --line-2:    var(--line-soft);
+  --text-sub:  var(--text-2);
+  --text-weak: var(--text-3);
+  --header-bg: var(--board);
+  --on-accent: #fffdf7;
+  --danger:    var(--bad);
+}
+
+:root[data-theme="dark"] {
+  --bg:        var(--paper);
+  --line-2:    var(--line-soft);
+  --text-sub:  var(--text-2);
+  --text-weak: var(--text-3);
+  --header-bg: var(--board);
+  --on-accent: #10131c;
+  --danger:    var(--bad);
+}
+
+/* ============================================================
+ *  見出しの板
+ * ========================================================== */
+
+.masthead {
+  position: relative;
+  overflow: hidden;
+  padding: calc(14px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right))
+           17px calc(18px + env(safe-area-inset-left));
+  /* 横に細い線を重ねて、案内板の走査線に見せています */
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.20) 0 1px, transparent 1px 10px),
+    linear-gradient(160deg, var(--board-2) 0%, var(--board) 100%);
+  color: var(--board-ink);
+  border-bottom: 3px solid var(--edge, var(--flap));
+}
+
+/* 板の上に薄く描く飾り（航路・地球・飛行機・雲） */
+.masthead-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.masthead-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.masthead-text { flex: 1 1 auto; min-width: 0; }
+
+.masthead h1 {
+  margin: 0 -.16em 0 0;
+  font-family: var(--mono);
+  font-size: clamp(1.55rem, 7.6vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  white-space: nowrap;
+  color: var(--flap);
+  line-height: 1.05;
+  text-shadow: 0 2px 0 rgba(0,0,0,.55);
+}
+
+.masthead .sub {
+  margin: 5px 0 0;
+  font-family: var(--mono);
+  font-size: clamp(.62rem, 2.5vw, .74rem);
+  letter-spacing: .18em;
+  color: var(--board-sub);
+}
+
+/* 板の上のボタン（道具箱へ戻る・更新・明るさ） */
+.board-btns { position: relative; display: flex; align-items: center; gap: 7px; margin-bottom: 9px; }
+.board-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 11px;
+  border: 1px solid color-mix(in srgb, var(--edge, var(--flap)) 55%, transparent);
+  color: var(--edge, var(--flap));
+  background: color-mix(in srgb, var(--edge, var(--flap)) 12%, transparent);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.board-btn:active { background: color-mix(in srgb, var(--edge, var(--flap)) 26%, transparent); }
+.board-btn svg { width: 17px; height: 17px; display: block; }
+.board-btn--icon { padding: 7px 9px; }
+.board-btn.is-busy { pointer-events: none; }
+.board-btn.is-busy svg { animation: board-spin .9s linear infinite; }
+@keyframes board-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .board-btn.is-busy svg { animation: none; opacity: .5; }
+}
+.board-spacer { flex: 1 1 auto; }
+
+/* ============================================================
+ *  紙の本体
+ * ========================================================== */
+
+body.paper {
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--sans);
+}
+
+/* 札（カード） */
+.sheet {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* 見出しの番号や小見出しに使う、案内板ふうの小さな文字 */
+.tag {
+  font-family: var(--mono);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  color: var(--text-3);
+}
+
+/* 数字は等幅で。桁がそろって案内板らしく見えます */
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* 下から出る知らせ */
+.toast {
+  position: fixed;
+  left: 50%; bottom: calc(20px + env(safe-area-inset-bottom));
+  transform: translate(-50%, 14px);
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--board);
+  color: var(--board-ink);
+  border: 1px solid var(--flap);
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity .3s, transform .3s;
+  z-index: 30;
+  pointer-events: none;
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+
+/* ============================================================
+ *  ほかのアプリの見出しを、案内板に着せ替える
+ *
+ *  Trip / Flight / Entry / Pack の4つは、見出しの作りが同じです。
+ *    <header class="app-header">
+ *      <div class="app-header__inner">
+ *        <a class="home-link">      … 旅の道具箱へ戻る
+ *        <button class="app-title"> … 題字（__main と __sub）
+ *        <div class="head-btns">    … 更新・明るさ
+ *
+ *  HTMLは触らず、ここで見た目だけ着せ替えます。
+ *  そのため、このファイルは各アプリの style.css / design.css より
+ *  「あと」に読んでください。
+ *
+ *  ★板のふちの色（--edge）だけ、アプリごとに変えています。
+ *    題字はどれも琥珀でそろえ、板の下の線と「旅の道具箱」ボタンだけ
+ *    そのアプリの色にする、という決めです。
+ * ========================================================== */
+
+.app-header {
+  position: relative;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.20) 0 1px, transparent 1px 10px),
+    linear-gradient(160deg, var(--board-2) 0%, var(--board) 100%) !important;
+  color: var(--board-ink);
+  border-bottom: 3px solid var(--edge, var(--flap)) !important;
+  box-shadow: none;
+}
+
+.app-header__inner {
+  position: relative;
+  /* ★2段にします。上の段にボタン、下の段に題字。
+     1段に押し込むと、名前の長いアプリ（FLIGHT BOARD）で
+     題字が「FLIGHT BOA…」と切れてしまうためです。
+     並べ替えは order でやっているので、HTMLは触っていません。 */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  padding: calc(12px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right))
+           13px calc(16px + env(safe-area-inset-left));
+  background: none;
+}
+
+/* 題字 */
+.app-header .app-title {
+  order: 3;
+  flex: 1 0 100%;
+  min-width: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none !important;
+  border: 0 !important;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.app-header .app-title__mark { display: none; }   /* しるしは玄関のカードに任せます */
+.app-header .app-title__text { display: block; min-width: 0; }
+.app-header .app-title__main {
+  display: block;
+  font-family: var(--mono);
+  font-size: clamp(1.45rem, 7.2vw, 2.3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  white-space: nowrap;
+  color: var(--flap) !important;
+  line-height: 1.05;
+  text-shadow: 0 2px 0 rgba(0,0,0,.55);
+}
+.app-header .app-title__sub {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: clamp(.56rem, 2.3vw, .68rem);
+  letter-spacing: .14em;
+  color: var(--board-sub) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 板の上のボタン */
+.app-header .home-link,
+.app-header .head-icon,
+.app-header .head-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--edge, var(--flap)) 55%, transparent) !important;
+  color: var(--edge, var(--flap)) !important;
+  background: color-mix(in srgb, var(--edge, var(--flap)) 12%, transparent) !important;
+  font-family: var(--mono);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.app-header .home-link,
+.app-header .head-icon { width: 34px; height: 34px; padding: 0; }
+.app-header .head-btn { padding: 7px 11px; font-size: 11px; letter-spacing: .06em; }
+.app-header .home-link svg,
+.app-header .head-icon svg { width: 17px; height: 17px; display: block; }
+.app-header .home-link:active,
+.app-header .head-icon:active,
+.app-header .head-btn:active {
+  background: color-mix(in srgb, var(--edge, var(--flap)) 26%, transparent) !important;
+}
+.app-header .head-icon::after { display: none; }
+.app-header .home-link { order: 1; }
+.app-header .head-btns { order: 2; display: flex; align-items: center; gap: 6px; margin-left: auto; }
+
+/* タブ（Trip Board と Flight Board にあります）。
+   板の下につくので、板と同じ濃紺のまま少しだけ明るくします。 */
+.app-header .tabs {
+  position: relative;
+  background: rgba(255,255,255,.04);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.app-header .tabs__btn {
+  color: var(--board-sub) !important;
+  font-family: var(--sans);
+}
+.app-header .tabs__btn.is-active {
+  color: var(--flap) !important;
+  border-bottom-color: var(--flap) !important;
+  background: rgba(242,179,61,.10) !important;
+}
+
+
+/* ============================================================
+ *  玄関（Travel Box）の見出しを、案内板に着せ替える
+ *
+ *  玄関だけ作りが違います。
+ *    <header class="hero">
+ *      <div class="hero__btns">  … 更新・明るさ
+ *      <div class="hero__inner"> … 題字（__title）と副題（__kicker / __sub）
+ *  戻るボタンはありません（ここが戻り先なので）。
+ * ========================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* 板は画面の端まで、角も落とさずに。ほかのアプリとそろえます */
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: calc(14px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right))
+           17px calc(18px + env(safe-area-inset-left)) !important;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.20) 0 1px, transparent 1px 10px),
+    linear-gradient(160deg, var(--board-2) 0%, var(--board) 100%) !important;
+  color: var(--board-ink);
+  border-bottom: 3px solid var(--edge, var(--flap)) !important;
+}
+
+.hero__btns { position: relative; display: flex; justify-content: flex-end; gap: 7px; margin-bottom: 9px; }
+.hero .head-icon,
+.hero .theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--edge, var(--flap)) 55%, transparent) !important;
+  color: var(--edge, var(--flap)) !important;
+  background: color-mix(in srgb, var(--edge, var(--flap)) 12%, transparent) !important;
+  font-family: var(--mono);
+  -webkit-tap-highlight-color: transparent;
+}
+.hero .head-icon { width: 34px; height: 34px; padding: 0; }
+.hero .theme-btn { padding: 7px 11px; font-size: 11px; letter-spacing: .06em; }
+.hero .head-icon svg { width: 17px; height: 17px; display: block; }
+.hero .head-icon::after { display: none; }
+
+.hero__inner { position: relative; }
+.hero .hero__title {
+  margin: 0 -.16em 0 0;
+  font-family: var(--mono);
+  font-size: clamp(1.55rem, 7.6vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  white-space: nowrap;
+  color: var(--flap) !important;
+  line-height: 1.05;
+  text-shadow: 0 2px 0 rgba(0,0,0,.55);
+}
+.hero .hero__kicker,
+.hero .hero__sub {
+  margin: 5px 0 0;
+  font-family: var(--mono);
+  font-size: clamp(.62rem, 2.5vw, .74rem);
+  letter-spacing: .18em;
+  color: var(--board-sub) !important;
+  background: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  text-transform: none;
+}
+.hero .hero__sub { letter-spacing: .1em; opacity: .82; }
+.hero .hero__sub a { color: var(--flap) !important; text-decoration-color: color-mix(in srgb, var(--flap) 50%, transparent); }

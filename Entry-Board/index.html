@@ -28,11 +28,13 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。 -->
-<link rel="stylesheet" href="css/style.css?v=20260817d">
+<link rel="stylesheet" href="css/style.css?v=20260822a">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260817d">
+<link rel="stylesheet" href="css/design.css?v=20260822a">
+<!-- 旅の道具箱 共通デザイン。着せ替えなので、いちばん後ろで読みます -->
+<link rel="stylesheet" href="css/travel.css?v=20260822a">
 </head>
-<body>
+<body class="paper">
 
 <!-- ===== しるしのもと =====
      形をここに1回だけ書いて、下や js から <use href="#i-○○"> で呼び出します。
@@ -107,6 +109,23 @@
 
 <!-- ===== ヘッダー ===== -->
 <header class="app-header">
+  <!-- 板の上に薄く描く飾り。航路・地球・飛行機・雲。
+       道具箱の中の全アプリで同じ形にそろえてあります。 -->
+  <svg class="masthead-art" viewBox="0 0 400 130" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-10 116 Q 130 66 250 92 T 420 40" fill="none" stroke="#f2b33d"
+          stroke-width="1.4" stroke-dasharray="4 6" opacity=".34"/>
+  </svg>
+  <svg class="masthead-art" viewBox="0 0 400 130" aria-hidden="true">
+    <!-- ★このアプリは見出しが1行しかないので、地球と飛行機は置いていません。
+         置くとボタンや題字と重なってしまうためです。
+         Mile Board のように見出しが高いアプリには入れてあります。 -->
+    <g fill="#95a2c0" opacity=".13">
+      <ellipse cx="132" cy="40" rx="26" ry="6.5"/>
+      <ellipse cx="150" cy="35" rx="16" ry="5"/>
+      <ellipse cx="286" cy="96" rx="22" ry="6"/>
+    </g>
+  </svg>
+
   <div class="app-header__inner">
     <!-- 旅の道具箱（玄関）へ戻る。4つのアプリで同じ形・同じ大きさです -->
     <a class="home-link" href="../"
@@ -195,8 +214,8 @@
   <div class="sheet__body" id="sheetBody"></div>
 </aside>
 
-<script src="js/config.js?v=20260817d"></script>
-<script src="js/app.js?v=20260817d"></script>
-<script src="js/update.js?v=20260817d"></script>
+<script src="js/config.js?v=20260822a"></script>
+<script src="js/app.js?v=20260822a"></script>
+<script src="js/update.js?v=20260822a"></script>
 </body>
 </html>
