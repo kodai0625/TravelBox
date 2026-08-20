@@ -80,7 +80,17 @@ function allowedTransits(trip, leg, index) {
     if (!info) continue;
     if (nextNb && !nextNb.has(c)) continue;    // その先へ飛べない街は外します
     if (!zoneAllowedAsTransit(info.zone, fromZone, destC.zone, oneway)) continue;
-    if (next && detour(prev, [c], next) > 2.2) continue;
+    /* 遠回りの見かた。
+       倍率だけで見ると、ブリュッセル→パリ（260km）のような短い区間では
+       何を挟んでも倍率が跳ね上がり、候補が0件になってしまいます。
+       そこで「倍率がゆるい」か「増えるぶんが1,500kmまで」のどちらかで通します。 */
+    if (next) {
+      const direct = distanceKm(prev, next);
+      const via = pathKm([prev, c, next]);
+      const ratioOk = !direct || via / direct <= 2.2;
+      const addOk = via - direct <= 1500;
+      if (!ratioOk && !addOk) continue;
+    }
     out.add(c);
   }
   return out;
