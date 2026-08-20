@@ -133,6 +133,12 @@ body {
 .mile-cls { color: var(--ink-2); }
 .miles-lead { color: var(--ink-2); }
 
+.onlyline { color: var(--ink); }
+.onlyline-note { color: var(--ink-2); }
+.reach-head { color: var(--ink-2); }
+.chip-reach { background: var(--panel-2); }
+.chip-more { color: var(--accent); border-color: var(--accent); }
+
 .plan { background: var(--panel-2); border-color: var(--line); color: var(--ink); }
 .plan-sub { color: var(--ink-2); }
 .plan-stop { color: var(--long); }

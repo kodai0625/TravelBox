@@ -105,7 +105,7 @@ async function loadAll() {
 
 /* 選べる都市の一覧を作る。
    used に入っている都市は、もう使われているので外します。 */
-function cityOptions({ japanOnly = false, overseasOnly = false, used = [] } = {}) {
+function cityOptions({ japanOnly = false, overseasOnly = false, used = [], only = null } = {}) {
   const groups = [];
   for (const c of MB.countryList) {
     if (japanOnly && c.code !== 'JP') continue;
@@ -114,6 +114,8 @@ function cityOptions({ japanOnly = false, overseasOnly = false, used = [] } = {}
        ここで並べ直すと、せっかくそろえた順がこわれます。
        日本だけ、よく使う空港を先頭に引き上げます。 */
     let names = Object.keys(MB.cities[c.code].cities).filter((n) => !used.includes(n));
+    // only が渡されているときは、そこに入っている街だけにします
+    if (only) names = names.filter((n) => only.has(n));
     if (c.code === 'JP') {
       const first = APP.japanFirst.filter((n) => names.includes(n));
       names = [...first, ...names.filter((n) => !first.includes(n))];

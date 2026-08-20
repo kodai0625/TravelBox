@@ -15,6 +15,7 @@ const trip = {
   to: '',
   stopover: '',
   date: '',            // 行きの搭乗日。シーズンを決めるのに使います
+  onlyReachable: true, // 行けるところだけ出すか
 
   /* どの欄でどの国を選んだか。
      ★これを覚えていないと、国を選んだ瞬間に画面を描き直したときに
@@ -59,11 +60,11 @@ function usedCities(field) {
 /* ------------------------------------------------------------
  *  部品：国と都市の2段プルダウン
  * ---------------------------------------------------------- */
-function makePicker({ key, value, japanOnly, overseasOnly, used, placeholder, onChange }) {
+function makePicker({ key, value, japanOnly, overseasOnly, used, only, placeholder, onChange }) {
   const wrap = document.createElement('div');
   wrap.className = 'picker';
 
-  const groups = cityOptions({ japanOnly, overseasOnly, used });
+  const groups = cityOptions({ japanOnly, overseasOnly, used, only });
 
   /* 日本の中から選ぶときは、国を選ぶ意味がないので都市の1段だけにします。 */
   if (japanOnly) {
@@ -181,9 +182,12 @@ function renderLeg(box, dir) {
   list.forEach((v, i) => {
     box.appendChild(row(`乗継 ${i + 1}`, makePicker({
       key: `${dir}${i}`, value: v, used: usedCities(`${dir}${i}`),
+      only: trip.onlyReachable ? allowedTransits(trip, dir, i) : null,
       placeholder: '乗り継ぐ都市', onChange: (nv) => { list[i] = nv; tidy(list); refresh(); },
     })));
   });
+
+  renderReachChips(box, dir);
 
   if (isOut) {
     const goal = document.createElement('div');
@@ -196,6 +200,53 @@ function renderLeg(box, dir) {
       placeholder: '帰り着く都市', onChange: (v) => { trip.to = v; refresh(); },
     }), true));
   }
+}
+
+/* 押すだけで乗継地を足せる候補。
+   プルダウンを開いて転がすより、これのほうが速く選べます。 */
+function renderReachChips(box, dir) {
+  if (!trip.onlyReachable || !trip.dest || !trip.from) return;
+  const list = dir === 'out' ? trip.out : trip.back;
+  const at = list.findIndex((v) => !v);
+  if (at < 0) return;                     // 空き枠がない
+
+  const set = allowedTransits(trip, dir, at);
+  if (!set) return;
+  const near = at > 0 && list[at - 1] ? list[at - 1] : trip.from;
+  const names = sortCities(set, near);
+
+  const wrap = document.createElement('div');
+  wrap.className = 'reach';
+  const head = document.createElement('p');
+  head.className = 'reach-head';
+  head.textContent = names.length
+    ? `ここに入れられる街　${names.length}`
+    : 'ここに入れられる街がありません';
+  wrap.appendChild(head);
+
+  if (names.length) {
+    const chips = document.createElement('div');
+    chips.className = 'chips';
+    const show = trip.reachOpen === dir ? names : names.slice(0, 12);
+    show.forEach((n) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip chip-reach';
+      b.textContent = n;
+      b.addEventListener('click', () => { list[at] = n; tidy(list); refresh(); });
+      chips.appendChild(b);
+    });
+    if (names.length > show.length) {
+      const more = document.createElement('button');
+      more.type = 'button';
+      more.className = 'chip chip-more';
+      more.textContent = `ほか ${names.length - show.length}`;
+      more.addEventListener('click', () => { trip.reachOpen = dir; refresh(); });
+      chips.appendChild(more);
+    }
+    wrap.appendChild(chips);
+  }
+  box.appendChild(wrap);
 }
 
 /* 空いた枠を後ろに詰める（乗継1を消したら2が繰り上がる） */
@@ -279,6 +330,7 @@ function renderModes() {
 function refresh() {
   renderModes();
   $('dateIn').value = trip.date || '';
+  $('onlyReach').checked = trip.onlyReachable !== false;
   const oneway = trip.mode === 'oneway';
   $('backCard').hidden = oneway;
   $('stopCard').hidden = oneway;
@@ -286,6 +338,7 @@ function refresh() {
   $('destPicker').replaceChildren(makePicker({
     key: 'dest', value: trip.dest,
     used: usedCities('dest'),
+    only: trip.onlyReachable ? allowedDestinations(trip) : null,
     placeholder: '行きたい都市', onChange: (v) => { trip.dest = v; renderSuggests(null); refresh(); },
   }));
   const d = trip.dest && cityInfo(trip.dest);
@@ -548,6 +601,7 @@ function load() {
     const s = JSON.parse(localStorage.getItem(APP.storageKey + ':trip') || 'null');
     if (s) Object.assign(trip, s);
     if (!trip.countries) trip.countries = {};   // 前の版の記録には入っていません
+    if (trip.onlyReachable === undefined) trip.onlyReachable = true;
     trip.out = fitSlots(trip.out);              // 枠の数が変わっていることがあります
     trip.back = fitSlots(trip.back);
   } catch (e) {}
@@ -601,6 +655,13 @@ function load() {
   });
 
   $('dateIn').addEventListener('change', () => { trip.date = $('dateIn').value; refresh(); });
+
+  $('onlyReach').addEventListener('change', () => {
+    trip.onlyReachable = $('onlyReach').checked;
+    trip.reachOpen = '';
+    trip.countries = {};   // 候補が変わるので、覚えていた国は選び直しになります
+    refresh();
+  });
 
   $('suggestBtn').addEventListener('click', () => {
     const btn = $('suggestBtn');

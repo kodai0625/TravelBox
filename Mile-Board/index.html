@@ -30,8 +30,8 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/style.css?v=20260821u">
-<link rel="stylesheet" href="css/design.css?v=20260821u">
+<link rel="stylesheet" href="css/style.css?v=20260821w">
+<link rel="stylesheet" href="css/design.css?v=20260821w">
 </head>
 <body>
 
@@ -78,6 +78,11 @@
 
   <!-- ===== 旅程の形 ===== -->
   <div class="modes" id="modes" role="group" aria-label="旅程の形"></div>
+  <label class="onlyline">
+    <input type="checkbox" id="onlyReach" checked>
+    <span>行けるところだけ出す</span>
+    <span class="onlyline-note">きまりに合って、実際に便がある街だけを候補にします</span>
+  </label>
 
   <!-- ===== 判定 ===== -->
   <div class="verdict" id="verdict" role="status" aria-live="polite">
@@ -154,12 +159,13 @@
 
 <div class="loading" id="loading">読み込んでいます…</div>
 
-<script src="js/update.js?v=20260821u"></script>
-<script src="js/config.js?v=20260821u"></script>
-<script src="js/rules.js?v=20260821u"></script>
-<script src="js/diagram.js?v=20260821u"></script>
-<script src="js/suggest.js?v=20260821u"></script>
-<script src="js/data.js?v=20260821u"></script>
-<script src="js/app.js?v=20260821u"></script>
+<script src="js/update.js?v=20260821w"></script>
+<script src="js/config.js?v=20260821w"></script>
+<script src="js/rules.js?v=20260821w"></script>
+<script src="js/diagram.js?v=20260821w"></script>
+<script src="js/reach.js?v=20260821w"></script>
+<script src="js/suggest.js?v=20260821w"></script>
+<script src="js/data.js?v=20260821w"></script>
+<script src="js/app.js?v=20260821w"></script>
 </body>
 </html>
