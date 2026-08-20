@@ -1,7 +1,7 @@
 {
   "name": "Travel Box",
   "short_name": "Travel Box",
-  "description": "旅の道具箱。Trip Board と Flight Board の入口",
+  "description": "旅の道具箱。行き先・飛び方・入国手続き・持ち物・払う額を調べる5つの入口",
   "start_url": "./index.html",
   "scope": "../",
   "display": "standalone",
