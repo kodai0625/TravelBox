@@ -3,13 +3,25 @@
 "title": "国と都市の選択肢",
 "note": "tools/build_cities.py で生成しています。手で編集しないでください。 この特典で乗れる会社が就航している空港だけを載せています。"
 },
+"regionOrder": [
+"日本",
+"東アジア",
+"東南アジア",
+"南アジア",
+"中央アジア",
+"中東",
+"ヨーロッパ",
+"アフリカ",
+"北米",
+"中米・カリブ",
+"南米",
+"オセアニア"
+],
 "countries": {
 "AE": {
 "zone": "8",
+"region": "中東",
 "cities": {
-"Al Ain": [
-"AAN"
-],
 "アブダビ": [
 "AUH"
 ],
@@ -17,11 +29,15 @@
 "DWC",
 "DXB",
 "SHJ"
+],
+"Al Ain": [
+"AAN"
 ]
 }
 },
 "AF": {
 "zone": "4",
+"region": "南アジア",
 "cities": {
 "Kabul": [
 "KBL"
@@ -30,6 +46,7 @@
 },
 "AG": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Osbourn": [
 "ANU"
@@ -38,6 +55,7 @@
 },
 "AL": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Rinas": [
 "TIA"
@@ -46,6 +64,7 @@
 },
 "AM": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Yerevan": [
 "EVN"
@@ -54,6 +73,7 @@
 },
 "AO": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Luanda": [
 "LAD",
@@ -63,7 +83,12 @@
 },
 "AR": {
 "zone": "9",
+"region": "南米",
 "cities": {
+"ブエノスアイレス": [
+"AEP",
+"EZE"
+],
 "Cordoba": [
 "COR"
 ],
@@ -78,16 +103,16 @@
 ],
 "San Miguel de Tucumán": [
 "TUC"
-],
-"ブエノスアイレス": [
-"AEP",
-"EZE"
 ]
 }
 },
 "AT": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"ウィーン": [
+"VIE"
+],
 "Feldkirchen bei Graz": [
 "GRZ"
 ],
@@ -102,15 +127,28 @@
 ],
 "Salzburg": [
 "SZG"
-],
-"ウィーン": [
-"VIE"
 ]
 }
 },
 "AU": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
+"ケアンズ": [
+"CNS"
+],
+"シドニー": [
+"SYD"
+],
+"パース": [
+"PER"
+],
+"ブリスベン": [
+"BNE"
+],
+"メルボルン": [
+"MEL"
+],
 "Adelaide": [
 "ADL"
 ],
@@ -179,26 +217,12 @@
 ],
 "Townsville": [
 "TSV"
-],
-"ケアンズ": [
-"CNS"
-],
-"シドニー": [
-"SYD"
-],
-"パース": [
-"PER"
-],
-"ブリスベン": [
-"BNE"
-],
-"メルボルン": [
-"MEL"
 ]
 }
 },
 "AW": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Oranjestad": [
 "AUA"
@@ -207,6 +231,7 @@
 },
 "AZ": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Baku": [
 "GYD"
@@ -221,6 +246,7 @@
 },
 "BA": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Mahovljani": [
 "BNX"
@@ -235,6 +261,7 @@
 },
 "BB": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Bridgetown": [
 "BGI"
@@ -243,6 +270,7 @@
 },
 "BD": {
 "zone": "4",
+"region": "南アジア",
 "cities": {
 "ダッカ": [
 "DAC"
@@ -251,6 +279,7 @@
 },
 "BE": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "ブリュッセル": [
 "BRU"
@@ -259,6 +288,7 @@
 },
 "BF": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Ouagadougou": [
 "OUA"
@@ -267,6 +297,7 @@
 },
 "BG": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Burgas": [
 "BOJ"
@@ -281,6 +312,7 @@
 },
 "BH": {
 "zone": "8",
+"region": "中東",
 "cities": {
 "バーレーン": [
 "BAH"
@@ -289,6 +321,7 @@
 },
 "BI": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Bujumbura": [
 "BJM"
@@ -297,6 +330,7 @@
 },
 "BJ": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Cotonou": [
 "COO"
@@ -305,6 +339,7 @@
 },
 "BM": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Hamilton": [
 "BDA"
@@ -313,6 +348,7 @@
 },
 "BN": {
 "zone": "4",
+"region": "東南アジア",
 "cities": {
 "バンダルスリブガワン": [
 "BWN"
@@ -321,6 +357,7 @@
 },
 "BO": {
 "zone": "9",
+"region": "南米",
 "cities": {
 "La Paz / El Alto": [
 "LPB"
@@ -332,7 +369,14 @@
 },
 "BR": {
 "zone": "9",
+"region": "南米",
 "cities": {
+"サンパウロ": [
+"GRU"
+],
+"リオデジャネイロ": [
+"GIG"
+],
 "Belo Horizonte": [
 "CNF"
 ],
@@ -368,17 +412,12 @@
 ],
 "Salvador": [
 "SSA"
-],
-"サンパウロ": [
-"GRU"
-],
-"リオデジャネイロ": [
-"GIG"
 ]
 }
 },
 "BS": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Moss Town": [
 "GGT"
@@ -390,6 +429,7 @@
 },
 "BW": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Gaborone": [
 "GBE"
@@ -401,6 +441,7 @@
 },
 "BY": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Minsk": [
 "MSQ"
@@ -409,6 +450,7 @@
 },
 "BZ": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Belize City": [
 "BZE"
@@ -417,7 +459,22 @@
 },
 "CA": {
 "zone": "6",
+"region": "北米",
 "cities": {
+"カルガリー": [
+"YYC"
+],
+"トロント": [
+"YYZ"
+],
+"バンクーバー": [
+"YVR",
+"YYJ",
+"YCD"
+],
+"モントリオール": [
+"YUL"
+],
 "Charlottetown": [
 "YYG"
 ],
@@ -468,25 +525,12 @@
 ],
 "Yellowknife": [
 "YZF"
-],
-"カルガリー": [
-"YYC"
-],
-"トロント": [
-"YYZ"
-],
-"バンクーバー": [
-"YVR",
-"YYJ",
-"YCD"
-],
-"モントリオール": [
-"YUL"
 ]
 }
 },
 "CD": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Goma": [
 "GOM"
@@ -504,6 +548,7 @@
 },
 "CF": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Bangui": [
 "BGF"
@@ -512,6 +557,7 @@
 },
 "CG": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Brazzaville": [
 "BZV"
@@ -523,17 +569,19 @@
 },
 "CH": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
-"Geneva": [
-"GVA"
-],
 "チューリッヒ": [
 "ZRH"
+],
+"Geneva": [
+"GVA"
 ]
 }
 },
 "CI": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Abidjan": [
 "ABJ"
@@ -542,6 +590,7 @@
 },
 "CK": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "Avarua": [
 "RAR"
@@ -550,6 +599,7 @@
 },
 "CL": {
 "zone": "9",
+"region": "南米",
 "cities": {
 "サンティアゴ": [
 "SCL"
@@ -558,6 +608,7 @@
 },
 "CM": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Douala": [
 "DLA"
@@ -569,7 +620,101 @@
 },
 "CN": {
 "zone": "3",
+"region": "東アジア",
 "cities": {
+"ハルビン": [
+"HRB"
+],
+"上海": [
+"PVG",
+"SHA"
+],
+"北京": [
+"PEK",
+"PKX"
+],
+"南京": [
+"NKG",
+"WHA"
+],
+"厦門": [
+"JJN",
+"XMN"
+],
+"大連": [
+"DLC"
+],
+"天津": [
+"TSN"
+],
+"寧波": [
+"NGB"
+],
+"広州": [
+"CAN"
+],
+"成都": [
+"CTU",
+"TFU"
+],
+"昆明": [
+"KMG"
+],
+"杭州": [
+"HGH"
+],
+"武漢": [
+"WUH"
+],
+"海口": [
+"HAK"
+],
+"深圳": [
+"SZX"
+],
+"済南": [
+"TNA"
+],
+"瀋陽": [
+"SHE"
+],
+"無錫": [
+"WUX",
+"CZX"
+],
+"煙台": [
+"YNT"
+],
+"石家荘": [
+"SJW"
+],
+"福州": [
+"FOC"
+],
+"蘭州": [
+"LHW"
+],
+"西安": [
+"XIY"
+],
+"運城": [
+"YCU"
+],
+"鄭州": [
+"CGO"
+],
+"重慶": [
+"CKG"
+],
+"長春": [
+"CGQ"
+],
+"長沙": [
+"CSX"
+],
+"青島": [
+"TAO"
+],
 "Aksu": [
 "AKU"
 ],
@@ -921,105 +1066,16 @@
 ],
 "Ürümqi": [
 "URC"
-],
-"ハルビン": [
-"HRB"
-],
-"上海": [
-"PVG",
-"SHA"
-],
-"北京": [
-"PEK",
-"PKX"
-],
-"南京": [
-"NKG",
-"WHA"
-],
-"厦門": [
-"JJN",
-"XMN"
-],
-"大連": [
-"DLC"
-],
-"天津": [
-"TSN"
-],
-"寧波": [
-"NGB"
-],
-"広州": [
-"CAN"
-],
-"成都": [
-"CTU",
-"TFU"
-],
-"昆明": [
-"KMG"
-],
-"杭州": [
-"HGH"
-],
-"武漢": [
-"WUH"
-],
-"海口": [
-"HAK"
-],
-"深圳": [
-"SZX"
-],
-"済南": [
-"TNA"
-],
-"瀋陽": [
-"SHE"
-],
-"無錫": [
-"WUX",
-"CZX"
-],
-"煙台": [
-"YNT"
-],
-"石家荘": [
-"SJW"
-],
-"福州": [
-"FOC"
-],
-"蘭州": [
-"LHW"
-],
-"西安": [
-"XIY"
-],
-"運城": [
-"YCU"
-],
-"鄭州": [
-"CGO"
-],
-"重慶": [
-"CKG"
-],
-"長春": [
-"CGQ"
-],
-"長沙": [
-"CSX"
-],
-"青島": [
-"TAO"
 ]
 }
 },
 "CO": {
 "zone": "9",
+"region": "南米",
 "cities": {
+"ボゴタ": [
+"BOG"
+],
 "Arauca": [
 "AUC"
 ],
@@ -1097,14 +1153,12 @@
 ],
 "Yopal": [
 "EYP"
-],
-"ボゴタ": [
-"BOG"
 ]
 }
 },
 "CR": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Liberia": [
 "LIR"
@@ -1116,6 +1170,7 @@
 },
 "CU": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Havana": [
 "HAV"
@@ -1127,6 +1182,7 @@
 },
 "CV": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Espargos": [
 "SID"
@@ -1144,6 +1200,7 @@
 },
 "CW": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Willemstad": [
 "CUR"
@@ -1152,6 +1209,7 @@
 },
 "CY": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Larnaca": [
 "LCA"
@@ -1166,18 +1224,26 @@
 },
 "CZ": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
-"Mošnov": [
-"OSR"
-],
 "プラハ": [
 "PRG"
+],
+"Mošnov": [
+"OSR"
 ]
 }
 },
 "DE": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"フランクフルト": [
+"FRA"
+],
+"ミュンヘン": [
+"MUC"
+],
 "Berlin": [
 "BER"
 ],
@@ -1237,17 +1303,12 @@
 ],
 "Zirchow": [
 "HDF"
-],
-"フランクフルト": [
-"FRA"
-],
-"ミュンヘン": [
-"MUC"
 ]
 }
 },
 "DJ": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Djibouti City": [
 "JIB"
@@ -1256,20 +1317,22 @@
 },
 "DK": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"コペンハーゲン": [
+"CPH"
+],
 "Aarhus": [
 "AAR"
 ],
 "Billund": [
 "BLL"
-],
-"コペンハーゲン": [
-"CPH"
 ]
 }
 },
 "DM": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Marigot": [
 "DOM"
@@ -1278,6 +1341,7 @@
 },
 "DO": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "La Romana": [
 "LRM"
@@ -1301,6 +1365,7 @@
 },
 "DZ": {
 "zone": "7",
+"region": "アフリカ",
 "cities": {
 "Algiers": [
 "ALG"
@@ -1315,6 +1380,7 @@
 },
 "EC": {
 "zone": "9",
+"region": "南米",
 "cities": {
 "Guayaquil": [
 "GYE"
@@ -1329,6 +1395,7 @@
 },
 "EE": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Tallinn": [
 "TLL"
@@ -1337,7 +1404,11 @@
 },
 "EG": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
+"カイロ": [
+"CAI"
+],
 "Abu Simbel": [
 "ABS"
 ],
@@ -1370,14 +1441,12 @@
 ],
 "Taba": [
 "TCP"
-],
-"カイロ": [
-"CAI"
 ]
 }
 },
 "ER": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Asmara": [
 "ASM"
@@ -1386,7 +1455,14 @@
 },
 "ES": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"バルセロナ": [
+"BCN"
+],
+"マドリード": [
+"MAD"
+],
 "Alicante": [
 "ALC"
 ],
@@ -1437,18 +1513,16 @@
 ],
 "Valencia": [
 "VLC"
-],
-"バルセロナ": [
-"BCN"
-],
-"マドリード": [
-"MAD"
 ]
 }
 },
 "ET": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
+"アディスアベバ": [
+"ADD"
+],
 "Akwi": [
 "HUE"
 ],
@@ -1505,15 +1579,16 @@
 ],
 "Shire Inda Selassie": [
 "SHC"
-],
-"アディスアベバ": [
-"ADD"
 ]
 }
 },
 "FI": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"ヘルシンキ": [
+"HEL"
+],
 "Ivalo": [
 "IVL"
 ],
@@ -1537,14 +1612,12 @@
 ],
 "Turku": [
 "TKU"
-],
-"ヘルシンキ": [
-"HEL"
 ]
 }
 },
 "FJ": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "ナンディ": [
 "NAN"
@@ -1553,6 +1626,7 @@
 },
 "FM": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "Okat": [
 "KSA"
@@ -1570,7 +1644,12 @@
 },
 "FR": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"パリ": [
+"CDG",
+"ORY"
+],
 "Bastia": [
 "BIA"
 ],
@@ -1618,15 +1697,12 @@
 ],
 "Toulouse/Blagnac": [
 "TLS"
-],
-"パリ": [
-"CDG",
-"ORY"
 ]
 }
 },
 "GA": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Libreville": [
 "LBV"
@@ -1635,16 +1711,8 @@
 },
 "GB": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
-"Birmingham, West Midlands": [
-"BHX"
-],
-"Newcastle upon Tyne, Tyne and Wear": [
-"NCL"
-],
-"Newquay": [
-"NQY"
-],
 "エディンバラ": [
 "EDI",
 "GLA"
@@ -1657,11 +1725,21 @@
 "LHR",
 "STN",
 "LCY"
+],
+"Birmingham, West Midlands": [
+"BHX"
+],
+"Newcastle upon Tyne, Tyne and Wear": [
+"NCL"
+],
+"Newquay": [
+"NQY"
 ]
 }
 },
 "GD": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Saint George's": [
 "GND"
@@ -1670,6 +1748,7 @@
 },
 "GE": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Batumi": [
 "BUS"
@@ -1681,6 +1760,7 @@
 },
 "GH": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Accra": [
 "ACC"
@@ -1689,6 +1769,7 @@
 },
 "GL": {
 "zone": "7",
+"region": "北米",
 "cities": {
 "Nuuk": [
 "GOH"
@@ -1697,6 +1778,7 @@
 },
 "GM": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Banjul": [
 "BJL"
@@ -1705,6 +1787,7 @@
 },
 "GN": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Conakry": [
 "CKY"
@@ -1713,6 +1796,7 @@
 },
 "GP": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Pointe-à-Pitre": [
 "PTP"
@@ -1721,6 +1805,7 @@
 },
 "GQ": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Malabo": [
 "SSG"
@@ -1729,7 +1814,11 @@
 },
 "GR": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"アテネ": [
+"ATH"
+],
 "Alexandroupolis": [
 "AXD"
 ],
@@ -1813,14 +1902,12 @@
 ],
 "Zakynthos": [
 "ZTH"
-],
-"アテネ": [
-"ATH"
 ]
 }
 },
 "GT": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Guatemala City": [
 "GUA"
@@ -1829,6 +1916,7 @@
 },
 "GU": {
 "zone": "3",
+"region": "オセアニア",
 "cities": {
 "グアム": [
 "GUM"
@@ -1837,6 +1925,7 @@
 },
 "GW": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Bissau": [
 "OXB"
@@ -1845,6 +1934,7 @@
 },
 "GY": {
 "zone": "9",
+"region": "南米",
 "cities": {
 "Georgetown": [
 "GEO"
@@ -1853,6 +1943,7 @@
 },
 "HK": {
 "zone": "3",
+"region": "東アジア",
 "cities": {
 "香港": [
 "HKG"
@@ -1861,6 +1952,7 @@
 },
 "HN": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Coxen Hole": [
 "RTB"
@@ -1875,6 +1967,7 @@
 },
 "HR": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Dubrovnik": [
 "DBV"
@@ -1904,48 +1997,52 @@
 },
 "HU": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
-"Debrecen": [
-"DEB"
-],
 "ブダペスト": [
 "BUD"
+],
+"Debrecen": [
+"DEB"
 ]
 }
 },
 "ID": {
 "zone": "4",
+"region": "東南アジア",
 "cities": {
-"Beringin": [
-"KNO"
-],
-"Surabaya": [
-"SUB"
-],
 "ジャカルタ": [
 "CGK"
 ],
 "バリ島": [
 "DPS"
+],
+"Beringin": [
+"KNO"
+],
+"Surabaya": [
+"SUB"
 ]
 }
 },
 "IE": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"ダブリン": [
+"DUB"
+],
 "Cork": [
 "ORK"
 ],
 "Shannon": [
 "SNN"
-],
-"ダブリン": [
-"DUB"
 ]
 }
 },
 "IL": {
 "zone": "8",
+"region": "中東",
 "cities": {
 "テルアビブ": [
 "TLV"
@@ -1954,7 +2051,26 @@
 },
 "IN": {
 "zone": "4",
+"region": "南アジア",
 "cities": {
+"コルカタ": [
+"CCU"
+],
+"チェンナイ": [
+"MAA"
+],
+"デリー": [
+"DEL"
+],
+"ハイデラバード": [
+"HYD"
+],
+"ベンガルール": [
+"BLR"
+],
+"ムンバイ": [
+"BOM"
+],
 "": [
 "JSA"
 ],
@@ -2074,29 +2190,12 @@
 ],
 "Visakhapatnam": [
 "VTZ"
-],
-"コルカタ": [
-"CCU"
-],
-"チェンナイ": [
-"MAA"
-],
-"デリー": [
-"DEL"
-],
-"ハイデラバード": [
-"HYD"
-],
-"ベンガルール": [
-"BLR"
-],
-"ムンバイ": [
-"BOM"
 ]
 }
 },
 "IQ": {
 "zone": "8",
+"region": "中東",
 "cities": {
 "Arbil": [
 "EBL"
@@ -2120,6 +2219,7 @@
 },
 "IR": {
 "zone": "8",
+"region": "中東",
 "cities": {
 "Shiraz": [
 "SYZ"
@@ -2131,6 +2231,7 @@
 },
 "IS": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Reykjavík": [
 "KEF"
@@ -2139,7 +2240,16 @@
 },
 "IT": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"ミラノ": [
+"BGY",
+"LIN",
+"MXP"
+],
+"ローマ": [
+"FCO"
+],
 "Alghero": [
 "AHO"
 ],
@@ -2202,19 +2312,12 @@
 ],
 "Venezia": [
 "VCE"
-],
-"ミラノ": [
-"BGY",
-"LIN",
-"MXP"
-],
-"ローマ": [
-"FCO"
 ]
 }
 },
 "JM": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Kingston": [
 "KIN"
@@ -2226,6 +2329,7 @@
 },
 "JO": {
 "zone": "8",
+"region": "中東",
 "cities": {
 "Amman": [
 "AMM"
@@ -2237,6 +2341,7 @@
 },
 "JP": {
 "zone": "1",
+"region": "日本",
 "cities": {
 "青森": [
 "AOJ"
@@ -2367,17 +2472,19 @@
 },
 "KE": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
-"Mombasa": [
-"MBA"
-],
 "ナイロビ": [
 "NBO"
+],
+"Mombasa": [
+"MBA"
 ]
 }
 },
 "KG": {
 "zone": "4",
+"region": "中央アジア",
 "cities": {
 "Bishkek": [
 "BSZ"
@@ -2386,6 +2493,7 @@
 },
 "KH": {
 "zone": "4",
+"region": "東南アジア",
 "cities": {
 "シェムリアップ": [
 "SAI"
@@ -2397,6 +2505,7 @@
 },
 "KM": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Moroni": [
 "HAH"
@@ -2405,6 +2514,7 @@
 },
 "KN": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Basseterre": [
 "SKB"
@@ -2413,13 +2523,8 @@
 },
 "KR": {
 "zone": "2",
+"region": "東アジア",
 "cities": {
-"Gwangju": [
-"KWJ"
-],
-"Yeosu": [
-"RSU"
-],
 "ソウル": [
 "GMP",
 "ICN"
@@ -2435,11 +2540,18 @@
 ],
 "釜山": [
 "PUS"
+],
+"Gwangju": [
+"KWJ"
+],
+"Yeosu": [
+"RSU"
 ]
 }
 },
 "KW": {
 "zone": "8",
+"region": "中東",
 "cities": {
 "クウェート": [
 "KWI"
@@ -2448,6 +2560,7 @@
 },
 "KY": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "George Town": [
 "GCM"
@@ -2456,6 +2569,7 @@
 },
 "KZ": {
 "zone": "4",
+"region": "中央アジア",
 "cities": {
 "Aktau": [
 "SCO"
@@ -2473,17 +2587,19 @@
 },
 "LA": {
 "zone": "4",
+"region": "東南アジア",
 "cities": {
-"Luang Phabang": [
-"LPQ"
-],
 "ビエンチャン": [
 "VTE"
+],
+"Luang Phabang": [
+"LPQ"
 ]
 }
 },
 "LB": {
 "zone": "8",
+"region": "中東",
 "cities": {
 "Beirut": [
 "BEY"
@@ -2492,6 +2608,7 @@
 },
 "LC": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Vieux Fort": [
 "UVF"
@@ -2500,6 +2617,7 @@
 },
 "LK": {
 "zone": "4",
+"region": "南アジア",
 "cities": {
 "コロンボ": [
 "CMB"
@@ -2508,6 +2626,7 @@
 },
 "LR": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Monrovia": [
 "ROB"
@@ -2516,6 +2635,7 @@
 },
 "LT": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Vilnius": [
 "VNO"
@@ -2524,6 +2644,7 @@
 },
 "LU": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Luxembourg": [
 "LUX"
@@ -2532,6 +2653,7 @@
 },
 "LV": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Riga": [
 "RIX"
@@ -2540,7 +2662,11 @@
 },
 "MA": {
 "zone": "7",
+"region": "アフリカ",
 "cities": {
+"カサブランカ": [
+"CMN"
+],
 "Agadir": [
 "AGA"
 ],
@@ -2558,14 +2684,12 @@
 ],
 "Tangier": [
 "TNG"
-],
-"カサブランカ": [
-"CMN"
 ]
 }
 },
 "MD": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Chişinău": [
 "RMO"
@@ -2574,6 +2698,7 @@
 },
 "ME": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Podgorica": [
 "TGD"
@@ -2585,6 +2710,7 @@
 },
 "MG": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Antananarivo": [
 "TNR"
@@ -2596,6 +2722,7 @@
 },
 "MH": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "Kwajalein": [
 "KWA"
@@ -2607,6 +2734,7 @@
 },
 "MK": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Ilinden": [
 "SKP"
@@ -2618,6 +2746,7 @@
 },
 "ML": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Bamako": [
 "BKO"
@@ -2626,6 +2755,7 @@
 },
 "MM": {
 "zone": "4",
+"region": "東南アジア",
 "cities": {
 "ヤンゴン": [
 "RGN"
@@ -2634,6 +2764,7 @@
 },
 "MN": {
 "zone": "4",
+"region": "東アジア",
 "cities": {
 "ウランバートル": [
 "UBN"
@@ -2642,6 +2773,7 @@
 },
 "MO": {
 "zone": "3",
+"region": "東アジア",
 "cities": {
 "マカオ": [
 "MFM"
@@ -2650,6 +2782,7 @@
 },
 "MP": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "サイパン": [
 "SPN"
@@ -2658,6 +2791,7 @@
 },
 "MQ": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Fort-de-France": [
 "FDF"
@@ -2666,6 +2800,7 @@
 },
 "MR": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Nouakchott": [
 "NKC"
@@ -2674,6 +2809,7 @@
 },
 "MT": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Valletta": [
 "MLA"
@@ -2682,6 +2818,7 @@
 },
 "MU": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Plaine Magnien": [
 "MRU"
@@ -2690,6 +2827,7 @@
 },
 "MV": {
 "zone": "4",
+"region": "南アジア",
 "cities": {
 "マレ": [
 "MLE"
@@ -2698,6 +2836,7 @@
 },
 "MW": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Blantyre": [
 "BLZ"
@@ -2709,7 +2848,18 @@
 },
 "MX": {
 "zone": "6",
+"region": "中米・カリブ",
 "cities": {
+"カンクン": [
+"CUN",
+"CZM"
+],
+"メキシコシティ": [
+"MEX"
+],
+"モンテレイ": [
+"MTY"
+],
 "Ciudad Madero": [
 "TAM"
 ],
@@ -2748,22 +2898,19 @@
 ],
 "Veracruz": [
 "VER"
-],
-"カンクン": [
-"CUN",
-"CZM"
-],
-"メキシコシティ": [
-"MEX"
-],
-"モンテレイ": [
-"MTY"
 ]
 }
 },
 "MY": {
 "zone": "4",
+"region": "東南アジア",
 "cities": {
+"クアラルンプール": [
+"KUL"
+],
+"コタキナバル": [
+"BKI"
+],
 "Langkawi": [
 "LGK"
 ],
@@ -2772,17 +2919,12 @@
 ],
 "Tawau": [
 "TWU"
-],
-"クアラルンプール": [
-"KUL"
-],
-"コタキナバル": [
-"BKI"
 ]
 }
 },
 "MZ": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Beira": [
 "BEW"
@@ -2794,6 +2936,7 @@
 },
 "NA": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Windhoek": [
 "WDH"
@@ -2802,6 +2945,7 @@
 },
 "NC": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "Nouméa": [
 "NOU"
@@ -2810,6 +2954,7 @@
 },
 "NE": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Niamey": [
 "NIM"
@@ -2818,7 +2963,11 @@
 },
 "NG": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
+"ラゴス": [
+"LOS"
+],
 "Abuja": [
 "ABV"
 ],
@@ -2830,14 +2979,12 @@
 ],
 "Port Harcourt": [
 "PHC"
-],
-"ラゴス": [
-"LOS"
 ]
 }
 },
 "NI": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Managua": [
 "MGA"
@@ -2846,6 +2993,7 @@
 },
 "NL": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "アムステルダム": [
 "AMS"
@@ -2854,7 +3002,11 @@
 },
 "NO": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"オスロ": [
+"OSL"
+],
 "Alta": [
 "ALF"
 ],
@@ -2875,14 +3027,12 @@
 ],
 "Trondheim": [
 "TRD"
-],
-"オスロ": [
-"OSL"
 ]
 }
 },
 "NP": {
 "zone": "4",
+"region": "南アジア",
 "cities": {
 "カトマンズ": [
 "KTM"
@@ -2891,6 +3041,7 @@
 },
 "NU": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "Alofi": [
 "IUE"
@@ -2899,7 +3050,14 @@
 },
 "NZ": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
+"オークランド": [
+"AKL"
+],
+"クライストチャーチ": [
+"CHC"
+],
 "": [
 "HKK",
 "TIU"
@@ -2951,53 +3109,51 @@
 ],
 "Whangarei": [
 "WRE"
-],
-"オークランド": [
-"AKL"
-],
-"クライストチャーチ": [
-"CHC"
 ]
 }
 },
 "OM": {
 "zone": "8",
+"region": "中東",
 "cities": {
-"Salalah": [
-"SLL"
-],
 "マスカット": [
 "MCT"
+],
+"Salalah": [
+"SLL"
 ]
 }
 },
 "PA": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
-"David": [
-"DAV"
-],
 "パナマシティ": [
 "PTY"
+],
+"David": [
+"DAV"
 ]
 }
 },
 "PE": {
 "zone": "9",
+"region": "南米",
 "cities": {
+"リマ": [
+"LIM"
+],
 "Chiclayo": [
 "CIX"
 ],
 "Cusco": [
 "CUZ"
-],
-"リマ": [
-"LIM"
 ]
 }
 },
 "PF": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "タヒチ": [
 "PPT"
@@ -3006,6 +3162,7 @@
 },
 "PG": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "ポートモレスビー": [
 "POM"
@@ -3014,7 +3171,20 @@
 },
 "PH": {
 "zone": "3",
+"region": "東南アジア",
 "cities": {
+"クラーク": [
+"CRK"
+],
+"セブ": [
+"CEB"
+],
+"パングラオ": [
+"TAG"
+],
+"マニラ": [
+"MNL"
+],
 "Cabatuan": [
 "ILO"
 ],
@@ -3032,23 +3202,12 @@
 ],
 "Puerto Princesa": [
 "PPS"
-],
-"クラーク": [
-"CRK"
-],
-"セブ": [
-"CEB"
-],
-"パングラオ": [
-"TAG"
-],
-"マニラ": [
-"MNL"
 ]
 }
 },
 "PK": {
 "zone": "4",
+"region": "南アジア",
 "cities": {
 "Attock": [
 "ISB"
@@ -3066,7 +3225,11 @@
 },
 "PL": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"ワルシャワ": [
+"WAW"
+],
 "Balice": [
 "KRK"
 ],
@@ -3102,14 +3265,12 @@
 ],
 "Wrocław": [
 "WRO"
-],
-"ワルシャワ": [
-"WAW"
 ]
 }
 },
 "PR": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Aguadilla": [
 "BQN"
@@ -3121,7 +3282,11 @@
 },
 "PT": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"リスボン": [
+"LIS"
+],
 "Faro": [
 "FAO"
 ],
@@ -3139,14 +3304,12 @@
 ],
 "Vila Baleira": [
 "PXO"
-],
-"リスボン": [
-"LIS"
 ]
 }
 },
 "PW": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "パラオ": [
 "ROR"
@@ -3155,6 +3318,7 @@
 },
 "PY": {
 "zone": "9",
+"region": "南米",
 "cities": {
 "Asunción": [
 "ASU"
@@ -3163,6 +3327,7 @@
 },
 "QA": {
 "zone": "8",
+"region": "中東",
 "cities": {
 "ドーハ": [
 "DOH"
@@ -3171,6 +3336,7 @@
 },
 "RO": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Cluj-Napoca": [
 "CLJ"
@@ -3197,6 +3363,7 @@
 },
 "RS": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Belgrade": [
 "BEG"
@@ -3208,7 +3375,13 @@
 },
 "RU": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"モスクワ": [
+"DME",
+"SVO",
+"VKO"
+],
 "Artyom": [
 "VVO"
 ],
@@ -3235,16 +3408,12 @@
 ],
 "Voronezh": [
 "VOZ"
-],
-"モスクワ": [
-"DME",
-"SVO",
-"VKO"
 ]
 }
 },
 "RW": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Kigali": [
 "KGL"
@@ -3253,7 +3422,14 @@
 },
 "SA": {
 "zone": "8",
+"region": "中東",
 "cities": {
+"ジッダ": [
+"JED"
+],
+"リヤド": [
+"RUH"
+],
 "Abha": [
 "AHB"
 ],
@@ -3277,17 +3453,12 @@
 ],
 "Yanbu": [
 "YNB"
-],
-"ジッダ": [
-"JED"
-],
-"リヤド": [
-"RUH"
 ]
 }
 },
 "SC": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Victoria": [
 "SEZ"
@@ -3296,6 +3467,7 @@
 },
 "SD": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Khartoum": [
 "KRT"
@@ -3307,7 +3479,11 @@
 },
 "SE": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
+"ストックホルム": [
+"ARN"
+],
 "Arvidsjaur": [
 "AJR"
 ],
@@ -3316,14 +3492,12 @@
 ],
 "Kiruna": [
 "KRN"
-],
-"ストックホルム": [
-"ARN"
 ]
 }
 },
 "SG": {
 "zone": "4",
+"region": "東南アジア",
 "cities": {
 "シンガポール": [
 "SIN"
@@ -3332,6 +3506,7 @@
 },
 "SI": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Zgornji Brnik": [
 "LJU"
@@ -3340,6 +3515,7 @@
 },
 "SK": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Košice": [
 "KSC"
@@ -3348,6 +3524,7 @@
 },
 "SL": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Freetown": [
 "FNA"
@@ -3356,6 +3533,7 @@
 },
 "SN": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Dakar": [
 "DSS"
@@ -3364,6 +3542,7 @@
 },
 "SO": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Bosaso": [
 "BSA"
@@ -3381,6 +3560,7 @@
 },
 "SR": {
 "zone": "9",
+"region": "南米",
 "cities": {
 "Paramaribo": [
 "PBM"
@@ -3389,6 +3569,7 @@
 },
 "ST": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "São Tomé": [
 "TMS"
@@ -3397,6 +3578,7 @@
 },
 "SV": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "San Salvador": [
 "SAL"
@@ -3405,6 +3587,7 @@
 },
 "SX": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Sint Maarten": [
 "SXM"
@@ -3413,6 +3596,7 @@
 },
 "SY": {
 "zone": "8",
+"region": "中東",
 "cities": {
 "Aleppo": [
 "ALP"
@@ -3424,6 +3608,7 @@
 },
 "TC": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Providenciales": [
 "PLS"
@@ -3432,6 +3617,7 @@
 },
 "TD": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "N'Djamena": [
 "NDJ"
@@ -3440,6 +3626,7 @@
 },
 "TG": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Lomé": [
 "LFW"
@@ -3448,7 +3635,19 @@
 },
 "TH": {
 "zone": "4",
+"region": "東南アジア",
 "cities": {
+"チェンマイ": [
+"CNX"
+],
+"バンコク": [
+"BKK",
+"DMK"
+],
+"プーケット": [
+"HKT",
+"KBV"
+],
 "Chiang Rai": [
 "CEI"
 ],
@@ -3463,22 +3662,12 @@
 ],
 "Udon Thani": [
 "UTH"
-],
-"チェンマイ": [
-"CNX"
-],
-"バンコク": [
-"BKK",
-"DMK"
-],
-"プーケット": [
-"HKT",
-"KBV"
 ]
 }
 },
 "TJ": {
 "zone": "4",
+"region": "中央アジア",
 "cities": {
 "Dushanbe": [
 "DYU"
@@ -3487,6 +3676,7 @@
 },
 "TM": {
 "zone": "4",
+"region": "中央アジア",
 "cities": {
 "Ashgabat": [
 "ASB"
@@ -3495,6 +3685,7 @@
 },
 "TN": {
 "zone": "7",
+"region": "アフリカ",
 "cities": {
 "Enfidha": [
 "NBE"
@@ -3512,6 +3703,7 @@
 },
 "TO": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "Nuku'alofa": [
 "TBU"
@@ -3520,7 +3712,11 @@
 },
 "TR": {
 "zone": "7",
+"region": "中東",
 "cities": {
+"イスタンブール": [
+"IST"
+],
 "Adıyaman": [
 "ADF"
 ],
@@ -3655,14 +3851,12 @@
 ],
 "Şırnak": [
 "NKT"
-],
-"イスタンブール": [
-"IST"
 ]
 }
 },
 "TT": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Port of Spain": [
 "POS"
@@ -3671,6 +3865,7 @@
 },
 "TW": {
 "zone": "3",
+"region": "東アジア",
 "cities": {
 "台北": [
 "TPE",
@@ -3683,6 +3878,7 @@
 },
 "TZ": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Arusha": [
 "JRO"
@@ -3697,6 +3893,7 @@
 },
 "UA": {
 "zone": "7",
+"region": "ヨーロッパ",
 "cities": {
 "Kherson": [
 "KHE"
@@ -3708,6 +3905,7 @@
 },
 "UG": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Entebbe": [
 "EBB"
@@ -3716,7 +3914,95 @@
 },
 "US": {
 "zone": "6",
+"region": "北米",
 "cities": {
+"アトランタ": [
+"ATL"
+],
+"オーランド": [
+"MCO"
+],
+"コナ": [
+"KOA"
+],
+"サンディエゴ": [
+"SAN"
+],
+"サンノゼ": [
+"SJC"
+],
+"サンフランシスコ": [
+"SFO"
+],
+"シアトル": [
+"SEA"
+],
+"シカゴ": [
+"ORD"
+],
+"シャーロット": [
+"CLT"
+],
+"ソルトレイクシティ": [
+"SLC"
+],
+"ダラス": [
+"DFW"
+],
+"デトロイト": [
+"DTW"
+],
+"デンバー": [
+"DEN"
+],
+"ニューヨーク": [
+"EWR",
+"JFK",
+"LGA"
+],
+"ヒューストン": [
+"IAH"
+],
+"フィラデルフィア": [
+"PHL"
+],
+"フェニックス": [
+"PHX"
+],
+"ホノルル": [
+"HNL"
+],
+"ボストン": [
+"BOS",
+"PVD"
+],
+"ポートランド": [
+"PDX"
+],
+"マイアミ": [
+"FLL",
+"MIA"
+],
+"マウイ島": [
+"OGG"
+],
+"ミネアポリス": [
+"MSP"
+],
+"ラスベガス": [
+"LAS"
+],
+"ロサンゼルス": [
+"BUR",
+"LAX",
+"ONT",
+"SNA"
+],
+"ワシントン": [
+"BWI",
+"DCA",
+"IAD"
+],
 "Albany": [
 "ALB"
 ],
@@ -3983,98 +4269,12 @@
 ],
 "Wichita": [
 "ICT"
-],
-"アトランタ": [
-"ATL"
-],
-"オーランド": [
-"MCO"
-],
-"コナ": [
-"KOA"
-],
-"サンディエゴ": [
-"SAN"
-],
-"サンノゼ": [
-"SJC"
-],
-"サンフランシスコ": [
-"SFO"
-],
-"シアトル": [
-"SEA"
-],
-"シカゴ": [
-"ORD"
-],
-"シャーロット": [
-"CLT"
-],
-"ソルトレイクシティ": [
-"SLC"
-],
-"ダラス": [
-"DFW"
-],
-"デトロイト": [
-"DTW"
-],
-"デンバー": [
-"DEN"
-],
-"ニューヨーク": [
-"EWR",
-"JFK",
-"LGA"
-],
-"ヒューストン": [
-"IAH"
-],
-"フィラデルフィア": [
-"PHL"
-],
-"フェニックス": [
-"PHX"
-],
-"ホノルル": [
-"HNL"
-],
-"ボストン": [
-"BOS",
-"PVD"
-],
-"ポートランド": [
-"PDX"
-],
-"マイアミ": [
-"FLL",
-"MIA"
-],
-"マウイ島": [
-"OGG"
-],
-"ミネアポリス": [
-"MSP"
-],
-"ラスベガス": [
-"LAS"
-],
-"ロサンゼルス": [
-"BUR",
-"LAX",
-"ONT",
-"SNA"
-],
-"ワシントン": [
-"BWI",
-"DCA",
-"IAD"
 ]
 }
 },
 "UY": {
 "zone": "9",
+"region": "南米",
 "cities": {
 "Ciudad de la Costa": [
 "MVD"
@@ -4083,7 +4283,11 @@
 },
 "UZ": {
 "zone": "4",
+"region": "中央アジア",
 "cities": {
+"タシケント": [
+"TAS"
+],
 "Bukhara": [
 "BHK"
 ],
@@ -4095,14 +4299,12 @@
 ],
 "Urgench": [
 "UGC"
-],
-"タシケント": [
-"TAS"
 ]
 }
 },
 "VC": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Kingstown": [
 "SVD"
@@ -4111,6 +4313,7 @@
 },
 "VE": {
 "zone": "9",
+"region": "南米",
 "cities": {
 "Barquisimeto": [
 "BRM"
@@ -4131,6 +4334,7 @@
 },
 "VI": {
 "zone": "9",
+"region": "中米・カリブ",
 "cities": {
 "Charlotte Amalie": [
 "STT"
@@ -4142,7 +4346,18 @@
 },
 "VN": {
 "zone": "4",
+"region": "東南アジア",
 "cities": {
+"ダナン": [
+"DAD",
+"HUI"
+],
+"ハノイ": [
+"HAN"
+],
+"ホーチミン": [
+"SGN"
+],
 "Buon Ma Thuot": [
 "BMV"
 ],
@@ -4193,21 +4408,12 @@
 ],
 "Vinh": [
 "VII"
-],
-"ダナン": [
-"DAD",
-"HUI"
-],
-"ハノイ": [
-"HAN"
-],
-"ホーチミン": [
-"SGN"
 ]
 }
 },
 "VU": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "Port Vila": [
 "VLI"
@@ -4216,6 +4422,7 @@
 },
 "WS": {
 "zone": "10",
+"region": "オセアニア",
 "cities": {
 "Apia": [
 "APW"
@@ -4224,23 +4431,25 @@
 },
 "ZA": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
-"Durban": [
-"DUR"
-],
-"Gqeberha": [
-"PLZ"
-],
 "ケープタウン": [
 "CPT"
 ],
 "ヨハネスブルグ": [
 "JNB"
+],
+"Durban": [
+"DUR"
+],
+"Gqeberha": [
+"PLZ"
 ]
 }
 },
 "ZM": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Livingstone": [
 "LVI"
@@ -4255,6 +4464,7 @@
 },
 "ZW": {
 "zone": "8",
+"region": "アフリカ",
 "cities": {
 "Bulawayo": [
 "BUQ"

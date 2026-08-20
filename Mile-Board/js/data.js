@@ -39,6 +39,7 @@ async function loadAll() {
   MB.countryZone = zones.countries;
   MB.labels = zones.labels;
   MB.cities = cities.countries;
+  MB.regionOrder = cities.regionOrder || [];
   MB.segments = segments.segments;
   MB.airlineNames = segments.meta.airlines || {};
   MB.starCodes = new Set(segments.meta.star || []);
@@ -52,7 +53,7 @@ async function loadAll() {
   MB.countryList = [];
   for (const [cc, info] of Object.entries(MB.cities)) {
     const jaCountry = countryName(cc);
-    MB.countryList.push({ code: cc, name: jaCountry, zone: info.zone });
+    MB.countryList.push({ code: cc, name: jaCountry, zone: info.zone, region: info.region });
     for (const [name, iata] of Object.entries(info.cities)) {
       const key = MB.cityIndex[name] ? `${name}（${jaCountry}）` : name;
       MB.cityIndex[key] = { name: key, country: cc, countryName: jaCountry, zone: info.zone, iata };
@@ -62,12 +63,18 @@ async function loadAll() {
     }
   }
 
-  // 国は「日本を先頭、あとはゾーンの順→五十音」で並べる
+  /* 国はエリアごとにまとめて並べます。
+     エリアの順は data/cities.json の regionOrder（日本→東アジア→…）。
+     同じエリアの中は五十音順です。 */
+  const regionRank = (r) => {
+    const i = MB.regionOrder.indexOf(r);
+    return i < 0 ? 99 : i;
+  };
+  // 漢字ではじまる国名は、読みに置き換えてから並べます（COUNTRY_KANA）
+  const kana = (n) => COUNTRY_KANA[n] || n;
   MB.countryList.sort((a, b) => {
-    if (a.code === 'JP') return -1;
-    if (b.code === 'JP') return 1;
-    const z = Number(a.zone) - Number(b.zone);
-    return z !== 0 ? z : a.name.localeCompare(b.name, 'ja');
+    const r = regionRank(a.region) - regionRank(b.region);
+    return r !== 0 ? r : kana(a.name).localeCompare(kana(b.name), 'ja');
   });
 
   return {
@@ -92,7 +99,9 @@ function cityOptions({ japanOnly = false, overseasOnly = false, used = [] } = {}
       const first = APP.japanFirst.filter((n) => names.includes(n));
       names = [...first, ...names.filter((n) => !first.includes(n))];
     }
-    if (names.length) groups.push({ label: c.name, zone: c.zone, cities: names });
+    if (names.length) {
+      groups.push({ label: c.name, zone: c.zone, region: c.region, cities: names });
+    }
   }
   return groups;
 }

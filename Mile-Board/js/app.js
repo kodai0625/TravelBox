@@ -14,14 +14,40 @@ const trip = {
   back: ['', '', ''],
   to: '',
   stopover: '',
+
+  /* どの欄でどの国を選んだか。
+     ★これを覚えていないと、国を選んだ瞬間に画面を描き直したときに
+       選択が消えて、都市までたどり着けません。 */
+  countries: {},
 };
 
 const $ = (id) => document.getElementById(id);
 
+/* すでに旅程で使っている都市。
+   同じ都市を二度選べないよう、プルダウンから外すために使います。
+   field は、いま編集している欄の名前です。
+
+   ★気をつけるところが2つあります。
+     ・いま使っていない欄まで数えると、選べるはずの都市が消えます。
+       片道なら帰りの欄、オープンジョー以外なら「帰りの出発地」は数えません。
+     ・出発地と帰着地は、往復なら同じ都市なのがふつうです（東京→…→東京）。
+       どちらかを編集しているあいだは、もう一方を候補から外しません。
+       ここを外すと、出発地に東京を選べなくなります。 */
+function usedCities(field) {
+  const list = [trip.dest, ...trip.out];
+  if (trip.mode !== 'oneway') list.push(...trip.back);
+  if (trip.mode === 'openjaw') list.push(trip.ret);
+  if (field !== 'from' && field !== 'to') {
+    list.push(trip.from);
+    if (trip.mode !== 'oneway') list.push(trip.to);
+  }
+  return list.filter(Boolean);
+}
+
 /* ------------------------------------------------------------
  *  部品：国と都市の2段プルダウン
  * ---------------------------------------------------------- */
-function makePicker({ value, japanOnly, overseasOnly, used, placeholder, onChange }) {
+function makePicker({ key, value, japanOnly, overseasOnly, used, placeholder, onChange }) {
   const wrap = document.createElement('div');
   wrap.className = 'picker';
 
@@ -48,15 +74,25 @@ function makePicker({ value, japanOnly, overseasOnly, used, placeholder, onChang
   const city = document.createElement('select');
   country.className = city.className = 'sel';
 
-  // いま選ばれている都市が、どの国のものか探す
+  /* いまどの国が選ばれているか。
+     都市が入っていればその国、まだなら前に選んだ国を覚えておいたものを使います。 */
   const current = value ? cityInfo(value) : null;
-  const currentCountry = current ? current.countryName : '';
+  const currentCountry = current ? current.countryName : (trip.countries[key] || '');
 
-  country.appendChild(new Option(japanOnly ? '空港を選ぶ' : '国・地域を選ぶ', ''));
+  country.appendChild(new Option('国・地域を選ぶ', ''));
+  /* 東アジア・東南アジア…とエリアごとにまとめます。
+     200近い国が1本に並ぶと、スマホでは目当ての国まで転がし続けることになります。 */
+  let group = null, lastRegion = null;
   groups.forEach((g) => {
+    if (g.region !== lastRegion) {
+      group = document.createElement('optgroup');
+      group.label = g.region;
+      country.appendChild(group);
+      lastRegion = g.region;
+    }
     const o = new Option(g.label, g.label);
     if (g.label === currentCountry) o.selected = true;
-    country.appendChild(o);
+    group.appendChild(o);
   });
 
   function fillCities() {
@@ -79,7 +115,12 @@ function makePicker({ value, japanOnly, overseasOnly, used, placeholder, onChang
   }
   fillCities();
 
-  country.addEventListener('change', () => { fillCities(); onChange(''); });
+  country.addEventListener('change', () => {
+    trip.countries[key] = country.value;   // 先に覚える。でないと描き直しで消えます
+    fillCities();
+    if (value) onChange('');               // 都市が入っていたときだけ、消して描き直す
+    else save();
+  });
   city.addEventListener('change', () => onChange(city.value));
 
   wrap.append(country, city);
@@ -104,12 +145,10 @@ function renderLeg(box, dir) {
     return r;
   };
 
-  // すでに使っている都市（同じ都市を二度選べないように）
-  const used = () => [trip.from, trip.to, trip.dest, trip.ret, ...trip.out, ...trip.back].filter(Boolean);
 
   if (isOut) {
     box.appendChild(row('出発地', makePicker({
-      value: trip.from, used: used().filter((c) => c !== trip.from),
+      key: 'from', value: trip.from, used: usedCities('from'),
       placeholder: '出発する都市', onChange: (v) => { trip.from = v; refresh(); },
     }), true));
   }
@@ -117,7 +156,7 @@ function renderLeg(box, dir) {
   // オープンジョーのときは、帰りがどこから始まるかを選びます
   if (!isOut && trip.mode === 'openjaw') {
     box.appendChild(row('帰りの出発地', makePicker({
-      value: trip.ret, used: used().filter((c) => c !== trip.ret),
+      key: 'ret', value: trip.ret, used: usedCities('ret'),
       placeholder: '帰りに乗る都市', onChange: (v) => { trip.ret = v; refresh(); },
     }), true));
   } else if (!isOut) {
@@ -129,7 +168,7 @@ function renderLeg(box, dir) {
 
   list.forEach((v, i) => {
     box.appendChild(row(`乗継 ${i + 1}`, makePicker({
-      value: v, used: used().filter((c) => c !== v),
+      key: `${dir}${i}`, value: v, used: usedCities(`${dir}${i}`),
       placeholder: '乗り継ぐ都市', onChange: (nv) => { list[i] = nv; tidy(list); refresh(); },
     })));
   });
@@ -141,7 +180,7 @@ function renderLeg(box, dir) {
     box.appendChild(row('目的地', goal, true));
   } else {
     box.appendChild(row('帰着地', makePicker({
-      value: trip.to, used: used().filter((c) => c !== trip.to),
+      key: 'to', value: trip.to, used: usedCities('to'),
       placeholder: '帰り着く都市', onChange: (v) => { trip.to = v; refresh(); },
     }), true));
   }
@@ -188,8 +227,8 @@ function refresh() {
   $('stopCard').hidden = oneway;
   // 目的地
   $('destPicker').replaceChildren(makePicker({
-    value: trip.dest,
-    used: [trip.from, trip.to, trip.ret, ...trip.out, ...trip.back].filter(Boolean),
+    key: 'dest', value: trip.dest,
+    used: usedCities('dest'),
     placeholder: '行きたい都市', onChange: (v) => { trip.dest = v; refresh(); },
   }));
   const d = trip.dest && cityInfo(trip.dest);
@@ -361,6 +400,7 @@ function load() {
   try {
     const s = JSON.parse(localStorage.getItem(APP.storageKey + ':trip') || 'null');
     if (s) Object.assign(trip, s);
+    if (!trip.countries) trip.countries = {};   // 前の版の記録には入っていません
   } catch (e) {}
 }
 
@@ -404,7 +444,7 @@ function load() {
   $('resetBtn').addEventListener('click', () => {
     Object.assign(trip, {
       mode: 'roundtrip', from: APP.homeCity, out: ['', '', ''], dest: '',
-      ret: '', back: ['', '', ''], to: APP.homeCity, stopover: '',
+      ret: '', back: ['', '', ''], to: APP.homeCity, stopover: '', countries: {},
     });
     refresh();
   });
