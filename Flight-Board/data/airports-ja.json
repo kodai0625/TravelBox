@@ -40,6 +40,10 @@
    "César Manrique-Lanzarote",
    "ランサローテ"
   ],
+  "ADB": [
+   "Adnan Menderes",
+   "イズミル"
+  ],
   "ADD": [
    "ボレ国際",
    "アディスアベバ"
@@ -103,6 +107,10 @@
   "ALA": [
    "Almaty",
    "アルマトイ"
+  ],
+  "ALB": [
+   "Albany",
+   "オールバニー"
   ],
   "ALC": [
    "Alicante-Elche Miguel Hernández",
@@ -292,6 +300,10 @@
    "Belgrade Nikola Tesla",
    "ベオグラード"
   ],
+  "BEL": [
+   "Val de Cans/Júlio Cezar Ribeiro",
+   "ベレン"
+  ],
   "BER": [
    "Berlin Brandenburg",
    "ベルリン"
@@ -311,6 +323,10 @@
   "BFJ": [
    "Bijie Feixiong",
    "畢節市"
+  ],
+  "BFL": [
+   "Meadows Field",
+   "草地"
   ],
   "BGA": [
    "Palonegro",
@@ -367,6 +383,10 @@
   "BIA": [
    "Bastia-Poretta International airport",
    "バスティア"
+  ],
+  "BIL": [
+   "Billings Logan",
+   "ビリングス"
   ],
   "BIO": [
    "Bilbao",
@@ -464,6 +484,10 @@
    "ローガン国際",
    "ボストン"
   ],
+  "BPX": [
+   "Qamdo Bangda",
+   "チャムド市"
+  ],
   "BQT": [
    "Brest",
    "ブレスト"
@@ -540,6 +564,10 @@
    "Ignacy Jan Paderewski Bydgoszcz",
    "ブィドゴシュチュ"
   ],
+  "BZN": [
+   "Bozeman Yellowstone",
+   "ボーズマン"
+  ],
   "BZV": [
    "Maya-Maya",
    "ブラザヴィル"
@@ -571,6 +599,10 @@
   "CCJ": [
    "Calicut",
    "コーリコード"
+  ],
+  "CCS": [
+   "Maiquetía Simón Bolívar",
+   "カラカス"
   ],
   "CCU": [
    "ネタジ・スバス・チャンドラ・ボース国際",
@@ -667,6 +699,10 @@
   "CKZ": [
    "Çanakkale",
    "チャナッカレ"
+  ],
+  "CLE": [
+   "Cleveland Hopkins",
+   "クリーブランド"
   ],
   "CLJ": [
    "Avram Iancu Cluj",
@@ -784,6 +820,10 @@
    "Alejandro Velasco Astete",
    "クスコ"
   ],
+  "CVG": [
+   "Cincinnati Northern Kentucky",
+   "シンシナティ"
+  ],
   "CWB": [
    "Curitiba-Afonso Pena",
    "クリチバ"
@@ -892,6 +932,10 @@
    "Diyarbakır",
    "ディヤルバクル"
   ],
+  "DJE": [
+   "Djerba Zarzis",
+   "ジェルバ島"
+  ],
   "DKR": [
    "Léopold Sédar Senghor",
    "ダカール"
@@ -939,6 +983,10 @@
   "DOL": [
    "Deauville Normandie airport",
    "ドーヴィル"
+  ],
+  "DOM": [
+   "Douglas-Charles",
+   "ダグラス"
   ],
   "DOY": [
    "Dongying Shengli",
@@ -1004,6 +1052,10 @@
    "Düsseldorf",
    "デュッセルドルフ"
   ],
+  "DVO": [
+   "Francisco Bangoy",
+   "ダバオ"
+  ],
   "DWC": [
    "アール・マクトゥーム国際",
    "ドバイ"
@@ -1040,9 +1092,17 @@
    "Ercan",
    "エルジャン"
   ],
+  "ECP": [
+   "Northwest Florida Beaches",
+   "パナマシティビーチ"
+  ],
   "EDI": [
    "エディンバラ",
    "エディンバラ"
+  ],
+  "EDO": [
+   "Balıkesir Koca Seyit",
+   "バルケスィル"
   ],
   "EFL": [
    "Kefallinia",
@@ -1091,6 +1151,10 @@
   "ESB": [
    "Esenboğa",
    "アンカラ"
+  ],
+  "ETZ": [
+   "Metz-Nancy-Lorraine",
+   "メス"
   ],
   "EUG": [
    "Eugene",
@@ -1168,9 +1232,17 @@
    "Ndjili",
    "キンシャサ"
   ],
+  "FKB": [
+   "Karlsruhe Baden-Baden",
+   "カールスルーエ"
+  ],
   "FKS": [
    "福島",
    "福島"
+  ],
+  "FLA": [
+   "Gustavo Artunduaga Paredes",
+   "グスタボ"
   ],
   "FLN": [
    "Hercílio Luz",
@@ -1260,6 +1332,10 @@
    "Gdańsk Lech Wałęsa",
    "グダニスク"
   ],
+  "GDQ": [
+   "Gondar",
+   "ゴンダール"
+  ],
   "GEA": [
    "Nouméa Magenta",
    "ヌメア"
@@ -1280,6 +1356,10 @@
    "Garowe",
    "ガローウェ"
   ],
+  "GGT": [
+   "Exuma",
+   "エグズーマ・アンド・キーズ"
+  ],
   "GIG": [
    "ガレオン国際",
    "リオデジャネイロ"
@@ -1291,6 +1371,14 @@
   "GIZ": [
    "Jizan Regional Airport / King Abdullah bin Abdulaziz",
    "ジーザーン"
+  ],
+  "GJT": [
+   "Grand Junction",
+   "グランド"
+  ],
+  "GLT": [
+   "Gladstone",
+   "ウィリアム・グラッドストン"
   ],
   "GMP": [
    "金浦国際",
@@ -1336,6 +1424,10 @@
    "Girona-Costa Brava",
    "ジローナ"
   ],
+  "GRR": [
+   "Gerald R. Ford",
+   "グランドラピッズ"
+  ],
   "GRU": [
    "グアルーリョス国際",
    "サンパウロ"
@@ -1343,6 +1435,14 @@
   "GRZ": [
    "Graz",
    "グラーツ"
+  ],
+  "GSP": [
+   "Greenville-Spartanburg",
+   "グリーンビル"
+  ],
+  "GTF": [
+   "Great Falls",
+   "グレート"
   ],
   "GUA": [
    "La Aurora",
@@ -1584,6 +1684,10 @@
    "ジョージ・ブッシュ・インターコンチネンタル",
    "ヒューストン"
   ],
+  "IAS": [
+   "Iaşi",
+   "ヤシ"
+  ],
   "IBE": [
    "Perales",
    "イバゲ"
@@ -1599,6 +1703,14 @@
   "ICN": [
    "仁川国際",
    "ソウル"
+  ],
+  "ICT": [
+   "Wichita Dwight D. Eisenhower National",
+   "ウィチタ"
+  ],
+  "IDR": [
+   "Devi Ahilya Bai Holkar",
+   "インドール"
   ],
   "IGD": [
    "Iğdır",
@@ -1707,6 +1819,10 @@
   "IXJ": [
    "Jammu",
    "ジャンムー"
+  ],
+  "IXL": [
+   "Leh Kushok Bakula Rimpochee",
+   "レー"
   ],
   "IXM": [
    "Madurai",
@@ -1864,6 +1980,10 @@
    "Kastamonu",
    "カスタモヌ"
   ],
+  "KGI": [
+   "Kalgoorlie Boulder",
+   "カルグーリー"
+  ],
   "KGL": [
    "Kigali",
    "キガリ"
@@ -1960,6 +2080,10 @@
    "Kualanamu",
    "クアラナム"
   ],
+  "KNX": [
+   "East Kimberley Regional (Kununurra)",
+   "東"
+  ],
   "KOA": [
    "エリソン・オニヅカ・コナ国際",
    "コナ"
@@ -2036,6 +2160,10 @@
    "Kuopio",
    "クオピオ"
   ],
+  "KVA": [
+   "Kavala Alexander the Great",
+   "カヴァラ"
+  ],
   "KWA": [
    "Bucholz Army Air Field",
    "クェゼリン環礁"
@@ -2100,6 +2228,10 @@
    "Pulkovo",
    "サンクトペテルブルク"
   ],
+  "LEJ": [
+   "Leipzig/Halle",
+   "ライプツィヒ"
+  ],
   "LFQ": [
    "Linfen Yaodu",
    "臨汾市"
@@ -2152,6 +2284,10 @@
    "ウンベルト・デルガード",
    "リスボン"
   ],
+  "LIT": [
+   "Bill & Hillary Clinton National Airport/Adams Field",
+   "ビル"
+  ],
   "LJG": [
    "Lijiang Sanyi",
    "麗江市"
@@ -2187,6 +2323,14 @@
   "LOS": [
    "ムルタラ・モハンメド国際",
    "ラゴス"
+  ],
+  "LPA": [
+   "Gran Canaria",
+   "ラスパルマス"
+  ],
+  "LPB": [
+   "El Alto",
+   "ラパス"
   ],
   "LPF": [
    "Liupanshui Yuezhao",
@@ -2224,9 +2368,17 @@
    "Lviv",
    "リヴィウ"
   ],
+  "LXA": [
+   "Lhasa Gonggar",
+   "ラサ"
+  ],
   "LXR": [
    "Luxor",
    "ルクソール"
+  ],
+  "LXS": [
+   "Limnos",
+   "リムノス島"
   ],
   "LYG": [
    "Lianyungang Huaguoshan",
@@ -2312,6 +2464,10 @@
    "マスカット国際",
    "マスカット"
   ],
+  "MCY": [
+   "Sunshine Coast",
+   "太陽光"
+  ],
   "MCZ": [
    "Zumbi dos Palmares",
    "マセイオ"
@@ -2327,6 +2483,10 @@
   "MDT": [
    "Harrisburg",
    "ハリスバーグ"
+  ],
+  "MDZ": [
+   "Governor Francisco Gabrielli",
+   "メンドーサ"
   ],
   "MEC": [
    "Eloy Alfaro",
@@ -2347,6 +2507,10 @@
   "MEX": [
    "メキシコシティ国際",
    "メキシコシティ"
+  ],
+  "MFE": [
+   "McAllen Miller",
+   "マッキャレン"
   ],
   "MFM": [
    "マカオ国際",
@@ -2436,6 +2600,10 @@
    "ニノイ・アキノ国際",
    "マニラ"
   ],
+  "MPL": [
+   "Montpellier-Méditerranée",
+   "モンペリエ"
+  ],
   "MPM": [
    "Maputo",
    "マプト"
@@ -2452,6 +2620,14 @@
    "Merrill Field",
    "アンカレッジ"
   ],
+  "MRS": [
+   "Marseille Provence",
+   "マルセイユ"
+  ],
+  "MRU": [
+   "Sir Seewoosagur Ramgoolam",
+   "モーリシャス"
+  ],
   "MRY": [
    "Monterey",
    "モントレー"
@@ -2459,6 +2635,14 @@
   "MSJ": [
    "三沢",
    "三沢"
+  ],
+  "MSN": [
+   "Dane County Regional Truax Field",
+   "デーン"
+  ],
+  "MSO": [
+   "Missoula Montana",
+   "ミズーラ"
   ],
   "MSP": [
    "ミネアポリス・セントポール国際",
@@ -2520,6 +2704,10 @@
    "Amasya Merzifon",
    "アマスィヤ"
   ],
+  "MZT": [
+   "General Rafael Buelna",
+   "マサトラン"
+  ],
   "NAG": [
    "Dr. Babasaheb Ambedkar",
    "ナーグプル"
@@ -2543,6 +2731,10 @@
   "NAS": [
    "Lynden Pindling",
    "ナッサウ"
+  ],
+  "NAT": [
+   "Rio Grande do Norte/São Gonçalo do Amarante–Governador Aluízio Alves",
+   "リオ"
   ],
   "NAV": [
    "Nevşehir Kapadokya",
@@ -2571,6 +2763,10 @@
   "NDJ": [
    "N'Djamena",
    "ンジャメナ"
+  ],
+  "NDR": [
+   "Nador Al Aaroui",
+   "ナドール"
   ],
   "NGB": [
    "寧波櫟社国際",
@@ -2792,6 +2988,10 @@
    "Cork",
    "コーク"
   ],
+  "ORN": [
+   "Oran Es-Sénia (Ahmed Ben Bella)",
+   "オラン"
+  ],
   "ORY": [
    "オルリー",
    "パリ"
@@ -2804,9 +3004,21 @@
    "ガーデモエン",
    "オスロ"
   ],
+  "OSR": [
+   "Leoš Janáček Airport Ostrava",
+   "オストラヴァ"
+  ],
+  "OTP": [
+   "Bucharest Henri Coandă",
+   "ブカレスト"
+  ],
   "OUA": [
    "Ouagadougou Thomas Sankara",
    "ワガドゥグー"
+  ],
+  "OUD": [
+   "Oujda Angads",
+   "ウジダ"
   ],
   "OUL": [
    "Oulu",
@@ -2872,6 +3084,10 @@
    "Port Harcourt",
    "ポートハーコート"
   ],
+  "PHE": [
+   "Port Hedland",
+   "港湾"
+  ],
   "PHG": [
    "Port Harcourt City Airport / Port Harcourt Air Force Base",
    "ポートハーコート"
@@ -2931,6 +3147,10 @@
   "PNR": [
    "Antonio Agostinho-Neto",
    "ポワントノワール"
+  ],
+  "PNS": [
+   "Pensacola",
+   "ペンサコーラ"
   ],
   "POA": [
    "Porto Alegre-Salgado Filho",
@@ -3068,6 +3288,10 @@
    "Recife/Guararapes - Gilberto Freyre",
    "レシフェ"
   ],
+  "REG": [
+   "Reggio Calabria",
+   "レッジョ"
+  ],
   "RGN": [
    "ヤンゴン国際",
    "ヤンゴン"
@@ -3087,6 +3311,10 @@
   "RIX": [
    "Riga",
    "リガ"
+  ],
+  "RJK": [
+   "Rijeka",
+   "リエカ"
   ],
   "RKV": [
    "Reykjavík",
@@ -3111,6 +3339,10 @@
   "RNJ": [
    "与論",
    "与論島"
+  ],
+  "RNO": [
+   "Reno Tahoe",
+   "リノ"
   ],
   "ROB": [
    "Roberts",
@@ -3168,6 +3400,10 @@
    "Rovaniemi",
    "ロヴァニエミ"
   ],
+  "RZE": [
+   "Rzeszów-Jasionka",
+   "ジェシュフ"
+  ],
   "RZV": [
    "Rize–Artvin",
    "リゼ"
@@ -3191,6 +3427,10 @@
   "SAT": [
    "San Antonio",
    "サンアントニオ"
+  ],
+  "SAV": [
+   "Savannah Hilton Head",
+   "サバンナ"
   ],
   "SAW": [
    "サビハ・ギョクチェン国際",
@@ -3219,6 +3459,14 @@
   "SCO": [
    "Aktau",
    "アクタウ"
+  ],
+  "SCQ": [
+   "Santiago-Rosalía de Castro",
+   "サンティアゴ・デ・コンポステーラ"
+  ],
+  "SDF": [
+   "Louisville Muhammad Ali",
+   "ルイビル"
   ],
   "SDJ": [
    "仙台",
@@ -3284,6 +3532,10 @@
    "ノーマン・Y・ミネタ・サンノゼ国際",
    "サンノゼ"
   ],
+  "SJD": [
+   "Los Cabos",
+   "ロスカボス"
+  ],
   "SJJ": [
    "Sarajevo",
    "サラエヴォ"
@@ -3315,6 +3567,10 @@
   "SKP": [
    "Skopje",
    "スコピエ"
+  ],
+  "SKU": [
+   "Skiros",
+   "スキロス島"
   ],
   "SLA": [
    "Martín Miguel de Güemes",
@@ -3359,6 +3615,10 @@
   "SQD": [
    "Shangrao Sanqingshan",
    "上饒市"
+  ],
+  "SSA": [
+   "Deputado Luiz Eduardo Magalhães",
+   "サルバドル"
   ],
   "SSG": [
    "Malabo",
@@ -3456,6 +3716,14 @@
    "深圳宝安国際",
    "深圳"
   ],
+  "SZY": [
+   "Olsztyn-Mazury",
+   "オルシュティン"
+  ],
+  "SZZ": [
+   "Solidarity Szczecin–Goleniów",
+   "シュチェチン"
+  ],
   "TAE": [
    "大邱国際",
    "大邱"
@@ -3528,6 +3796,10 @@
    "Taif",
    "ターイフ"
   ],
+  "TIR": [
+   "Tirupati",
+   "ティルパティ"
+  ],
   "TIV": [
    "Tivat",
    "ティヴァト"
@@ -3560,9 +3832,17 @@
    "Lennart Meri Tallinn",
    "タリン"
   ],
+  "TLS": [
+   "Toulouse-Blagnac",
+   "トゥールーズ"
+  ],
   "TLV": [
    "ベン・グリオン国際",
    "テルアビブ"
+  ],
+  "TMP": [
+   "Tampere-Pirkkala",
+   "タンペレ"
   ],
   "TMS": [
    "São Tomé",
@@ -3632,6 +3912,10 @@
    "Turin",
    "トリノ"
   ],
+  "TRS": [
+   "Trieste",
+   "トリエステ"
+  ],
   "TRV": [
    "Thiruvananthapuram",
    "ティルヴァナンタプラム"
@@ -3660,6 +3944,10 @@
    "鳥取砂丘コナン",
    "鳥取"
   ],
+  "TUC": [
+   "Teniente Benjamín Matienzo",
+   "サン・ミゲル・デ・トゥクマン"
+  ],
   "TUL": [
    "Tulsa",
    "タルサ"
@@ -3676,6 +3964,10 @@
    "Tucson",
    "ツーソン"
   ],
+  "TVC": [
+   "Cherry Capital",
+   "サクランボ"
+  ],
   "TWC": [
    "Tumxuk Tangwangcheng",
    "トムシュク市"
@@ -3691,6 +3983,10 @@
   "TYN": [
    "Taiyuan Wusu",
    "太原市"
+  ],
+  "TYS": [
+   "McGhee Tyson",
+   "ノックスビル"
   ],
   "TZA": [
    "Sir Barry Bowen",
@@ -3848,6 +4144,10 @@
    "Juan Gualberto Gomez",
    "マタンサス"
   ],
+  "VRN": [
+   "Verona Villafranca Valerio Catullo",
+   "ヴェローナ"
+  ],
   "VTE": [
    "ワットタイ国際",
    "ビエンチャン"
@@ -3863,6 +4163,10 @@
   "VVC": [
    "Vanguardia",
    "ビリャビセンシオ"
+  ],
+  "VVI": [
+   "Viru Viru",
+   "サンタクルス"
   ],
   "VVO": [
    "Vladivostok",
@@ -3952,6 +4256,10 @@
    "厦門高崎国際",
    "厦門"
   ],
+  "XNA": [
+   "Northwest Arkansas National",
+   "フェイエットビル"
+  ],
   "XNN": [
    "Xining Caojiabao",
    "海東市"
@@ -3987,6 +4295,10 @@
   "YHM": [
    "John C. Munro Hamilton",
    "ハミルトン"
+  ],
+  "YHZ": [
+   "Halifax / Stanfield",
+   "ハリファックス"
   ],
   "YIC": [
    "Yichun Mingyueshan",
@@ -4040,6 +4352,14 @@
    "Greater Moncton Roméo LeBlanc",
    "モンクトン"
   ],
+  "YQR": [
+   "Regina",
+   "レジャイナ"
+  ],
+  "YQT": [
+   "Thunder Bay",
+   "雷鳴"
+  ],
   "YRO": [
    "Ottawa / Rockcliffe",
    "オタワ"
@@ -4075,6 +4395,10 @@
   "YXE": [
    "Saskatoon John G. Diefenbaker",
    "サスカトゥーン"
+  ],
+  "YXY": [
+   "Whitehorse / Erik Nielsen",
+   "ホワイトホース"
   ],
   "YYC": [
    "カルガリー国際",
