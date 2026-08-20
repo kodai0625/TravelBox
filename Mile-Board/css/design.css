@@ -36,6 +36,11 @@
   --partner:   #5c4a75;   /* 単独運航のみの提携会社 */
   --partner-bg:#efeaf7;
 
+  /* 旅程の図のゾーンの色。となり合うゾーンで色味が近づかないように選んでいます */
+  --z1:  #b8862b;  --z2:  #2f7d5b;  --z3:  #2f5d7c;  --z4:  #1f7a86;
+  --z5:  #a8562a;  --z6:  #5a3a7a;  --z7:  #8a3a52;  --z8:  #6b6410;
+  --z9:  #7a2060;  --z10: #2f6b3a;  --zun: #8b98a8;
+
   --long:      #8a4a12;   /* 24時間以上 */
   --long-bg:   #fbeedd;
   --dest:      #7a2060;   /* 目的地 */
@@ -70,6 +75,10 @@ html[data-theme="dark"] {
   --star-bg:   #26304a;
   --partner:   #cdb6d8;
   --partner-bg:#3a2a44;
+
+  --z1:  #e0a35c;  --z2:  #6fd79b;  --z3:  #8fc3e8;  --z4:  #6fd0da;
+  --z5:  #f0a077;  --z6:  #c3a4e2;  --z7:  #f0a3c4;  --z8:  #d6cf6a;
+  --z9:  #e79ad4;  --z10: #86d18f;  --zun: #8b7f96;
 
   --long:      #f0bd88;
   --long-bg:   #38281a;
@@ -124,8 +133,27 @@ body {
 .mile-cls { color: var(--ink-2); }
 .miles-lead { color: var(--ink-2); }
 
+.plan { background: var(--panel-2); border-color: var(--line); color: var(--ink); }
+.plan-sub { color: var(--ink-2); }
+.plan-stop { color: var(--long); }
+
 .chip { border-color: var(--line); color: var(--ink-2); }
 .chip.on { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+
+/* 旅程の図 */
+.dg-line { stroke: var(--line); }
+.dg-label { fill: var(--ink-2); }
+.dg-legend { fill: var(--ink-3); }
+.dg-ring { stroke: var(--long); }
+.dg-node { fill: var(--panel); stroke: currentColor; }
+.dg-node.dg-dest { fill: currentColor; }
+.dg-node.dg-home { fill: var(--panel); stroke-width: 3; }
+.z-jp { color: var(--z1); }  .z-kr { color: var(--z2); }
+.z-as1 { color: var(--z3); } .z-as2 { color: var(--z4); }
+.z-hi { color: var(--z5); }  .z-na { color: var(--z6); }
+.z-eu { color: var(--z7); }  .z-af { color: var(--z8); }
+.z-la { color: var(--z9); }  .z-oc { color: var(--z10); }
+.z-un { color: var(--zun); }
 
 .seg { background: var(--panel-2); }
 .air.star { background: var(--star-bg); color: var(--star); }

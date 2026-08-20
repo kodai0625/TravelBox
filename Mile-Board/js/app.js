@@ -8,10 +8,10 @@
 const trip = {
   mode: 'roundtrip',   // roundtrip（往復）/ openjaw（オープンジョー）/ oneway（片道）
   from: '',
-  out: ['', '', ''],
+  out: [],
   dest: '',
   ret: '',             // 帰りの出発地。オープンジョーのときだけ使います
-  back: ['', '', ''],
+  back: [],
   to: '',
   stopover: '',
   date: '',            // 行きの搭乗日。シーズンを決めるのに使います
@@ -23,6 +23,17 @@ const trip = {
 };
 
 const $ = (id) => document.getElementById(id);
+
+/* 乗継の空き枠。数は config.js の RULE.transitSlots で決まります。 */
+function emptySlots() {
+  return Array(RULE.transitSlots).fill('');
+}
+
+/* 保存してあった旅程の枠が、いまの枠数と違うときにそろえる */
+function fitSlots(list) {
+  const filled = (list || []).filter(Boolean).slice(0, RULE.transitSlots);
+  return [...filled, ...Array(RULE.transitSlots - filled.length).fill('')];
+}
 
 /* すでに旅程で使っている都市。
    同じ都市を二度選べないよう、プルダウンから外すために使います。
@@ -194,6 +205,49 @@ function tidy(list) {
 }
 
 /* ------------------------------------------------------------
+ *  行き方の案
+ * ---------------------------------------------------------- */
+function renderSuggests(plans) {
+  const box = $('suggests');
+  box.innerHTML = '';
+  if (!plans) return;
+  if (!plans.length) {
+    box.innerHTML = '<p class="hint">この行き先で成り立つ乗り継ぎの道すじが見つかりませんでした。' +
+                    '出発地を変えるか、目的地を近いところにしてみてください。</p>';
+    return;
+  }
+  const wrap = document.createElement('div');
+  wrap.className = 'plans';
+  plans.forEach((p) => {
+    const chain = [trip.from, ...p.out, trip.dest, ...p.back, trip.to]
+      .map((c) => (c === p.stopover ? `<span class="plan-stop">${c}★</span>` : c))
+      .join('<span class="plan-arrow">→</span>');
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'plan';
+    b.innerHTML = `<span class="plan-route">${chain}</span>` +
+      `<span class="plan-sub"><span>寄れる街 ${p.cities}</span>` +
+      `<span>${p.segCount}区間</span>` +
+      `<span>${p.km.toLocaleString()}km${p.detour > 1.6 ? '（遠回り）' : ''}</span>` +
+      (p.miles ? `<span>エコノミー ${p.miles.Y.toLocaleString()}／ビジネス ${(p.miles.C || 0).toLocaleString()}</span>` : '') +
+      `</span>`;
+    b.addEventListener('click', () => {
+      trip.out = [...p.out, ...Array(RULE.transitSlots - p.out.length).fill('')];
+      trip.back = [...p.back, ...Array(RULE.transitSlots - p.back.length).fill('')];
+      trip.stopover = p.stopover;
+      trip.countries = {};    // 覚えていた国は、選び直しになるので消します
+      renderSuggests(null);
+      refresh();
+      $('itinCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    wrap.appendChild(b);
+  });
+  box.appendChild(wrap);
+  box.insertAdjacentHTML('beforeend',
+    '<p class="hint">★ が24時間以上とまる街です。押すと、その道すじが下の欄に入ります。</p>');
+}
+
+/* ------------------------------------------------------------
  *  旅程の形をえらぶボタン
  * ---------------------------------------------------------- */
 function renderModes() {
@@ -210,8 +264,9 @@ function renderModes() {
       trip.mode = key;
       // 形を変えたときに、使わなくなった値が残らないようにします
       if (key !== 'openjaw') trip.ret = '';
-      if (key === 'oneway') { trip.back = ['', '', '']; trip.to = ''; trip.stopover = ''; }
+      if (key === 'oneway') { trip.back = emptySlots(); trip.to = ''; trip.stopover = ''; }
       else if (!trip.to) trip.to = trip.from;
+      renderSuggests(null);
       refresh();
     });
     box.appendChild(b);
@@ -231,7 +286,7 @@ function refresh() {
   $('destPicker').replaceChildren(makePicker({
     key: 'dest', value: trip.dest,
     used: usedCities('dest'),
-    placeholder: '行きたい都市', onChange: (v) => { trip.dest = v; refresh(); },
+    placeholder: '行きたい都市', onChange: (v) => { trip.dest = v; renderSuggests(null); refresh(); },
   }));
   const d = trip.dest && cityInfo(trip.dest);
   $('destHint').textContent = d ? `${d.countryName}／${MB.labels[d.zone]}（Zone ${d.zone}）` : '';
@@ -435,6 +490,7 @@ function renderItinerary(r) {
   if (!r.ready || !r.segments || !r.segments.length) { card.hidden = true; return; }
   card.hidden = false;
 
+  $('diagram').innerHTML = drawItinerary(r, trip);
   $('segs').innerHTML = r.segments.map((s) => {
     if (s.gap) {
       return `<li class="seg seg-gap">
@@ -492,6 +548,8 @@ function load() {
     const s = JSON.parse(localStorage.getItem(APP.storageKey + ':trip') || 'null');
     if (s) Object.assign(trip, s);
     if (!trip.countries) trip.countries = {};   // 前の版の記録には入っていません
+    trip.out = fitSlots(trip.out);              // 枠の数が変わっていることがあります
+    trip.back = fitSlots(trip.back);
   } catch (e) {}
 }
 
@@ -502,6 +560,8 @@ function load() {
   try {
     const src = await loadAll();
     load();
+    if (!trip.out.length) trip.out = emptySlots();
+    if (!trip.back.length) trip.back = emptySlots();
     if (!trip.from) trip.from = APP.homeCity;
     if (!trip.to) trip.to = APP.homeCity;
 
@@ -534,13 +594,28 @@ function load() {
 
   $('resetBtn').addEventListener('click', () => {
     Object.assign(trip, {
-      mode: 'roundtrip', from: APP.homeCity, out: ['', '', ''], dest: '',
-      ret: '', back: ['', '', ''], to: APP.homeCity, stopover: '', date: '', countries: {},
+      mode: 'roundtrip', from: APP.homeCity, out: emptySlots(), dest: '',
+      ret: '', back: emptySlots(), to: APP.homeCity, stopover: '', date: '', countries: {},
     });
     refresh();
   });
 
   $('dateIn').addEventListener('change', () => { trip.date = $('dateIn').value; refresh(); });
+
+  $('suggestBtn').addEventListener('click', () => {
+    const btn = $('suggestBtn');
+    if (!trip.dest) { flash(btn, 'さきに目的地を選んでください'); return; }
+    if (trip.mode === 'openjaw') { flash(btn, 'オープンジョーでは出せません'); return; }
+    btn.textContent = 'さがしています…';
+    // 画面に「さがしています」を出してから探しにいきます
+    setTimeout(() => {
+      const t0 = performance.now();
+      const plans = suggestRoutes(trip, 6);
+      renderSuggests(plans);
+      btn.textContent = '行き方をいくつか出す';
+      console.log(`道さがし ${Math.round(performance.now() - t0)}ミリ秒 / ${plans.length}件`);
+    }, 20);
+  });
 
   $('themeBtn').addEventListener('click', () => {
     const now = document.documentElement.dataset.theme;

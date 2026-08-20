@@ -219,6 +219,36 @@ body {
   background: none;
 }
 
+/* ===== 行き方の案 ===== */
+.btn-wide { width: 100%; flex: none; margin-top: 11px; }
+.plans { display: grid; gap: 7px; margin-top: 10px; }
+.plan {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px 11px;
+  border-radius: 12px;
+  border: 1px solid;
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  display: grid;
+  gap: 4px;
+}
+.plan-route { font-size: 12.5px; font-weight: 700; line-height: 1.55; }
+.plan-sub { font-size: 10.5px; display: flex; gap: 9px; flex-wrap: wrap; }
+.plan-arrow { opacity: .5; margin: 0 3px; font-weight: 400; }
+.plan-stop { font-weight: 800; }
+
+/* ===== 旅程の図 ===== */
+.dg-wrap { overflow-x: auto; margin: 2px -4px 14px; }
+.dg { width: 100%; min-width: 480px; display: block; }
+.dg-line { fill: none; stroke-width: 2.4; stroke-linecap: round; }
+.dg-line-gap { stroke-dasharray: 3 5; }
+.dg-node { stroke-width: 2.4; }
+.dg-ring { fill: none; stroke-width: 2; }
+.dg-label { font-size: 11px; text-anchor: middle; font-weight: 600; }
+.dg-legend { font-size: 9px; text-anchor: end; }
+
 /* ===== 旅程 ===== */
 .segs { list-style: none; display: grid; gap: 8px; }
 .seg {

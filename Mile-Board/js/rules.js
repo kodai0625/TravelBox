@@ -116,6 +116,44 @@ function anaOnlyPlan(segments, destZone, fromZone, date, oneway) {
   };
 }
 
+/* 会社の組み合わせが、この特典で許されるかを見る。
+
+   公式のきまりでは、乗れる会社が2通りに分かれています。
+     ・スターアライアンス加盟社（＋コネクティングパートナーの吉祥航空）
+       … 自由に組み合わせてよい
+     ・それ以外の提携航空会社（ベトナム航空・エティハド航空など9社）
+       … 「単一の提携航空会社運航便での旅程のみ」。
+          つまり、その1社だけで全区間を飛ぶ旅程しか組めません。
+          スターアライアンス便と混ぜることはできません。
+
+   区間ごとに「飛んでいる会社」しか分からないので、
+   「全区間をスタアラでまかなえるか」「1社だけでまかなえる会社があるか」
+   のどちらかが成り立つかを見ます。 */
+function airlinePlan(segments) {
+  const flights = segments.filter((s) => !s.gap && s.airlines.length);
+  if (!flights.length) return { ok: true, kind: 'unknown' };
+
+  // ① 全区間にスターアライアンス便（＋吉祥航空）があるか
+  const starish = (code) => MB.starCodes.has(code) || MB.connecting.has(code);
+  const noStar = flights.filter((s) => !s.airlines.some(starish));
+  if (!noStar.length) return { ok: true, kind: 'star' };
+
+  // ② 1社だけで全区間をまかなえる提携会社があるか
+  const solo = [...MB.partnerOnly].filter(
+    (code) => flights.every((s) => s.airlines.includes(code)));
+  if (solo.length) return { ok: true, kind: 'solo', airlines: solo };
+
+  return {
+    ok: false,
+    kind: 'mixed',
+    // スタアラ便が無い区間と、そこを飛んでいる会社
+    trouble: noStar.map((s) => ({
+      leg: `${s.from}→${s.to}`,
+      airlines: s.airlines.filter((c) => MB.partnerOnly.has(c)),
+    })),
+  };
+}
+
 /* そのゾーンがどのエリアに属するか。 */
 function areaOf(zone) {
   for (const [area, list] of Object.entries(AREAS)) {
@@ -242,8 +280,9 @@ function judge(trip) {
 
   /* --- 7. 区間の数 --- */
   const segCount = (outLeg.length - 1) + Math.max(0, backLeg.length - 1);
-  if (segCount > RULE.maxSegments) {
-    errors.push(`区間が${segCount}になりました。ANAの予約画面は${RULE.maxSegments}区間までです。`);
+  if (segCount > RULE.softMaxSegments) {
+    // ここは公式の条文にある数字ではないので、止めずに知らせるだけにします
+    notes.push(`区間が${segCount}になりました。ANAの予約画面は${RULE.softMaxSegments}区間までとされています（公式の条文にある数字ではありません）。予約できないときは、区間を減らしてみてください。`);
   }
 
   /* --- 8. どの表を引くか --- */
@@ -328,6 +367,20 @@ function judge(trip) {
   const unknown = segments.filter((s) => !s.gap && !s.airlines.length);
   if (unknown.length) {
     notes.push(`${unknown.map((s) => `${s.from}→${s.to}`).join('・')} は、この特典で乗れる会社の直行便が見つかりませんでした。乗り継ぎが必要か、路線データに載っていない可能性があります。`);
+  }
+
+  /* --- 13. 乗れる会社の組み合わせ --- */
+  const plan = airlinePlan(segments);
+  if (!plan.ok) {
+    const names = [...new Set(plan.trouble.flatMap((t) => t.airlines))].map(airlineName);
+    errors.push(
+      `${plan.trouble.map((t) => t.leg).join('・')} は ${names.join('・')} しか飛んでいません。` +
+      `この会社は「その会社だけで組んだ旅程」でしか使えないので、` +
+      `ほかの区間と混ぜることができません。別の乗継地にしてください。`);
+  } else if (plan.kind === 'solo') {
+    notes.push(
+      `この旅程は ${plan.airlines.map(airlineName).join('・')} だけで組むことになります。` +
+      `この会社はほかの会社と混ぜられないためです。`);
   }
 
   /* ANA運航便だけで組んだ場合との見くらべ */

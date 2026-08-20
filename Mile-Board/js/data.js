@@ -54,6 +54,9 @@ async function loadAll() {
   MB.airlineNames = segments.meta.airlines || {};
   MB.starCodes = new Set(segments.meta.star || []);
   MB.partnerOnly = new Set(segments.meta.partnerOnly || []);
+  /* 吉祥航空はスターアライアンスの「コネクティングパートナー」で、
+     加盟社と組み合わせて使えます。単独運航しばりの9社とは別あつかいです。 */
+  MB.connecting = new Set(segments.meta.connecting || []);
   MB.ending = segments.meta.ending || {};
 
   /* 都市名から一発で引ける索引を作る。
@@ -64,11 +67,17 @@ async function loadAll() {
   for (const [cc, info] of Object.entries(MB.cities)) {
     const jaCountry = countryName(cc);
     MB.countryList.push({ code: cc, name: jaCountry, zone: info.zone, region: info.region });
-    for (const [name, iata] of Object.entries(info.cities)) {
+    for (const [row, ] of Object.entries(info.cities).map((e) => [e, 0])) {
+      const [name, packed] = row;
+      /* 形は [ 空港コード…, 緯度, 経度 ]。うしろの2つが位置です。 */
+      const lon = packed[packed.length - 1];
+      const lat = packed[packed.length - 2];
+      const iata = packed.slice(0, -2);
       const key = MB.cityIndex[name] ? `${name}（${jaCountry}）` : name;
-      MB.cityIndex[key] = { name: key, country: cc, countryName: jaCountry, zone: info.zone, iata };
-      info.cities[name] = iata;      // もとの形は残しておく
-      if (key !== name) info.cities[key] = iata;
+      MB.cityIndex[key] = { name: key, country: cc, countryName: jaCountry,
+                            zone: info.zone, iata, lat, lon };
+      info.cities[name] = packed;    // もとの形は残しておく
+      if (key !== name) info.cities[key] = packed;
       if (key !== name) delete info.cities[name];
     }
   }
