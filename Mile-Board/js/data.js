@@ -62,6 +62,23 @@ async function loadAll() {
   /* 都市名から一発で引ける索引を作る。
      同じ都市名が別の国にあることがあるので（例：サンティアゴ）、
      先に見つかったほうを採り、あとから来たものには国名を付けて別の項目にします。 */
+  /* 都市のゾーンの決めかた。
+     ★国のゾーンをそのまま当ててはいけません。
+       アメリカは ハワイ（Zone 5）と本土（Zone 6）に分かれ、
+       ロシアは 沿海地方（2）・ウラル以東（4）・以西（7）の3つに分かれます。
+       空港ごとの正しいゾーンは zones.json のほうに入っているので、そちらから決めます。
+       ここを国のゾーンで済ませていたころは、ホノルルが北米あつかいになり、
+       必要マイル数が 43,000 のところ 55,000 と出ていました。 */
+  const zoneOfCity = (iata, fallback) => {
+    const count = {};
+    iata.forEach((i) => {
+      const z = MB.zones[i];
+      if (z) count[z] = (count[z] || 0) + 1;
+    });
+    const top = Object.entries(count).sort((a, b) => b[1] - a[1])[0];
+    return top ? top[0] : fallback;
+  };
+
   MB.cityIndex = {};
   MB.countryList = [];
   for (const [cc, info] of Object.entries(MB.cities)) {
@@ -75,7 +92,7 @@ async function loadAll() {
       const iata = packed.slice(0, -2);
       const key = MB.cityIndex[name] ? `${name}（${jaCountry}）` : name;
       MB.cityIndex[key] = { name: key, country: cc, countryName: jaCountry,
-                            zone: info.zone, iata, lat, lon };
+                            zone: zoneOfCity(iata, info.zone), iata, lat, lon };
       info.cities[name] = packed;    // もとの形は残しておく
       if (key !== name) info.cities[key] = packed;
       if (key !== name) delete info.cities[name];

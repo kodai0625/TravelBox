@@ -15,6 +15,8 @@ const trip = {
   to: '',
   stopover: '',
   date: '',            // 行きの搭乗日。シーズンを決めるのに使います
+  dateBack: '',        // 帰りの搭乗日。予約を受け付けてもらえる期間の計算に使います
+                       // （公式：復路の搭乗日の355日前から予約が開きます）
   onlyReachable: true, // 行けるところだけ出すか
 
   /* どの欄でどの国を選んだか。
@@ -60,7 +62,12 @@ function usedCities(field) {
 /* ------------------------------------------------------------
  *  部品：国と都市の2段プルダウン
  * ---------------------------------------------------------- */
-function makePicker({ key, value, japanOnly, overseasOnly, used, only, placeholder, onChange }) {
+function makePicker({ key, value, japanOnly, overseasOnly, used, only, placeholder, onChange,
+                     mem, onSave }) {
+  /* 選んだ国を覚えておく場所と、覚えたときの保存のしかた。
+     旅程の画面は trip、空席メモの画面は seats のものを渡します。 */
+  const memo = mem || trip.countries;
+  const persist = onSave || save;
   const wrap = document.createElement('div');
   wrap.className = 'picker';
 
@@ -90,7 +97,7 @@ function makePicker({ key, value, japanOnly, overseasOnly, used, only, placehold
   /* いまどの国が選ばれているか。
      都市が入っていればその国、まだなら前に選んだ国を覚えておいたものを使います。 */
   const current = value ? cityInfo(value) : null;
-  const currentCountry = current ? current.countryName : (trip.countries[key] || '');
+  const currentCountry = current ? current.countryName : (memo[key] || '');
 
   country.appendChild(new Option('国・地域を選ぶ', ''));
   /* 東アジア・東南アジア…とエリアごとにまとめます。
@@ -129,10 +136,10 @@ function makePicker({ key, value, japanOnly, overseasOnly, used, only, placehold
   fillCities();
 
   country.addEventListener('change', () => {
-    trip.countries[key] = country.value;   // 先に覚える。でないと描き直しで消えます
+    memo[key] = country.value;             // 先に覚える。でないと描き直しで消えます
     fillCities();
     if (value) onChange('');               // 都市が入っていたときだけ、消して描き直す
-    else save();
+    else persist();
   });
   city.addEventListener('change', () => onChange(city.value));
 
@@ -330,10 +337,12 @@ function renderModes() {
 function refresh() {
   renderModes();
   $('dateIn').value = trip.date || '';
+  $('dateBack').value = trip.dateBack || '';
   $('onlyReach').checked = trip.onlyReachable !== false;
   const oneway = trip.mode === 'oneway';
   $('backCard').hidden = oneway;
   $('stopCard').hidden = oneway;
+  $('dateBackLine').hidden = oneway;
   // 目的地
   $('destPicker').replaceChildren(makePicker({
     key: 'dest', value: trip.dest,
@@ -544,7 +553,7 @@ function renderItinerary(r) {
   card.hidden = false;
 
   $('diagram').innerHTML = drawItinerary(r, trip);
-  $('segs').innerHTML = r.segments.map((s) => {
+  $('segs').innerHTML = r.segments.map((s, i) => {
     if (s.gap) {
       return `<li class="seg seg-gap">
         <div class="seg-route"><b>${s.from}</b><span class="arrow">⇢</span><b>${s.to}</b></div>
@@ -562,11 +571,84 @@ function renderItinerary(r) {
       : '';
     return `<li class="seg">
       <div class="seg-route"><b>${s.from}</b><span class="arrow">→</span><b>${s.to}</b></div>
-      <div class="seg-air">${air}</div>${stay}</li>`;
+      <div class="seg-air">${air}</div>${stay}
+      ${segSeatHtml(s, i)}</li>`;
   }).join('');
+
+  $('segs').querySelectorAll('.seg-seat').forEach((b) => {
+    b.addEventListener('click', () => {
+      seats.from = b.dataset.from;
+      seats.to = b.dataset.to;
+      if (b.dataset.month) seats.month = b.dataset.month;
+      seats.countries = {};
+      showPage('seats');
+    });
+  });
 
   $('segHint').textContent =
     '航空会社は「その区間を飛んでいる会社」の参考表示です。実際に特典の空席があるかどうかは別です。';
+}
+
+/* ------------------------------------------------------------
+ *  区間ごとの「空席メモ」の入口
+ *  行きの区間は行きの搭乗日、帰りの区間は帰りの搭乗日で引きます。
+ *  日を入れていないときは、印は出さずに入口だけ出します。
+ * ---------------------------------------------------------- */
+function segSeatHtml(s, i) {
+  if (s.gap) return '';
+  const outCount = (trip.out || []).filter(Boolean).length + 1;
+  const isOut = i < outCount;
+  const date = isOut ? trip.date : (trip.dateBack || trip.date);
+  const month = date ? date.slice(0, 7) : '';
+  const hit = seatLookup(s.from, s.to, date, 'partner');
+
+  let marks = '<span class="seg-seat-none">未確認</span>';
+  if (hit) {
+    const age = seatAge(hit.at);
+    marks = seatClasses('partner').map((c) => {
+      const m = hit.marks[c.key];
+      if (!m) return '';
+      return `<span class="seg-seat-m m-${m}">${c.short}${SEAT_MARKS[m].sign}</span>`;
+    }).join('') + (age ? `<span class="seg-seat-age age-${age.tier}">${age.text}</span>` : '');
+  }
+  return `<button type="button" class="seg-seat${hit ? ' has' : ''}"` +
+         ` data-from="${s.from}" data-to="${s.to}" data-month="${month}"` +
+         ` title="${date ? date + ' の空席メモ' : '空席メモ'}">` +
+         `<span class="seg-seat-lab">空席</span>${marks}</button>`;
+}
+
+/* ------------------------------------------------------------
+ *  ページの切り替え
+ * ---------------------------------------------------------- */
+const PAGES = {
+  trip:  { label: '旅程をつくる', el: 'page-trip' },
+  seats: { label: '空席メモ',     el: 'page-seats' },
+};
+let currentPage = 'trip';
+
+function showPage(name) {
+  currentPage = PAGES[name] ? name : 'trip';
+  for (const [key, p] of Object.entries(PAGES)) {
+    $(p.el).hidden = key !== currentPage;
+  }
+  renderPageNav();
+  if (currentPage === 'seats') renderSeats();
+  try { localStorage.setItem(APP.storageKey + ':page', currentPage); } catch (e) {}
+  window.scrollTo({ top: 0 });
+}
+
+function renderPageNav() {
+  const box = $('pageNav');
+  box.innerHTML = '';
+  for (const [key, p] of Object.entries(PAGES)) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'pagetab' + (currentPage === key ? ' on' : '');
+    b.setAttribute('aria-pressed', String(currentPage === key));
+    b.textContent = p.label;
+    b.addEventListener('click', () => showPage(key));
+    box.appendChild(b);
+  }
 }
 
 /* ------------------------------------------------------------
@@ -575,7 +657,11 @@ function renderItinerary(r) {
 function asText() {
   const r = judge(trip);
   const lines = [`旅程の形：${MODES[trip.mode].label}`, `目的地：${trip.dest}`];
-  if (trip.date) lines.push(`搭乗日：${trip.date}` + (r.anaOnly && r.anaOnly.seasonName ? `（${r.anaOnly.seasonName}）` : ''));
+  if (trip.date) lines.push(`行きの搭乗日：${trip.date}` + (r.anaOnly && r.anaOnly.seasonName ? `（${r.anaOnly.seasonName}）` : ''));
+  if (trip.dateBack && trip.mode !== 'oneway') lines.push(`帰りの搭乗日：${trip.dateBack}`);
+  if (r.booking && !r.booking.invalid) {
+    lines.push(`予約できる期間：${jstText(r.booking.opens, true)} 〜 ${jstText(r.booking.closes, true)}（日本時間）`);
+  }
   if (r.miles) {
     lines.push(`必要マイル：` + Object.entries(r.miles)
       .map(([k, v]) => `${{ Y: 'エコノミー', PY: 'プレエコ', C: 'ビジネス', F: 'ファースト' }[k]} ${v.toLocaleString()}`)
@@ -602,6 +688,7 @@ function load() {
     if (s) Object.assign(trip, s);
     if (!trip.countries) trip.countries = {};   // 前の版の記録には入っていません
     if (trip.onlyReachable === undefined) trip.onlyReachable = true;
+    if (trip.dateBack === undefined) trip.dateBack = '';   // 前の版の記録には入っていません
     trip.out = fitSlots(trip.out);              // 枠の数が変わっていることがあります
     trip.back = fitSlots(trip.back);
   } catch (e) {}
@@ -622,9 +709,15 @@ function load() {
     $('sources').textContent =
       `必要マイル数とゾーン区分：ANA公式／就航路線：${src.routeSource}`;
 
+    seatsLoad();
+
     $('loading').hidden = true;
     $('main').hidden = false;
     refresh();
+
+    let firstPage = 'trip';
+    try { firstPage = localStorage.getItem(APP.storageKey + ':page') || 'trip'; } catch (e) {}
+    showPage(firstPage);
   } catch (e) {
     $('loading').textContent = '読み込みに失敗しました：' + e.message;
     return;
@@ -649,12 +742,56 @@ function load() {
   $('resetBtn').addEventListener('click', () => {
     Object.assign(trip, {
       mode: 'roundtrip', from: APP.homeCity, out: emptySlots(), dest: '',
-      ret: '', back: emptySlots(), to: APP.homeCity, stopover: '', date: '', countries: {},
+      ret: '', back: emptySlots(), to: APP.homeCity, stopover: '',
+      date: '', dateBack: '', countries: {},
     });
     refresh();
   });
 
   $('dateIn').addEventListener('change', () => { trip.date = $('dateIn').value; refresh(); });
+  $('dateBack').addEventListener('change', () => { trip.dateBack = $('dateBack').value; refresh(); });
+
+  /* ===== 空席メモ ===== */
+  $('seatPrev').addEventListener('click', () => { seats.month = monthShift(seats.month, -1); renderSeats(); });
+  $('seatNext').addEventListener('click', () => { seats.month = monthShift(seats.month, 1); renderSeats(); });
+  $('seatSwap').addEventListener('click', () => {
+    const a = seats.from; seats.from = seats.to; seats.to = a;
+    seats.countries = {};
+    renderSeats();
+  });
+
+  $('bulkClass').addEventListener('change', () => { seats.bulkClass = $('bulkClass').value; seatsSavePref(); });
+  $('bulkMark').addEventListener('change', () => { seats.bulkMark = $('bulkMark').value; seatsSavePref(); });
+
+  $('bulkFill').addEventListener('click', () => {
+    const n = seatNote(true);
+    if (!n) { flash($('bulkFill'), '先に路線を選んでください'); return; }
+    const days = daysInMonth(seats.month);
+    for (let d = 1; d <= days; d++) n.cells[`${d}:${seats.bulkClass}`] = [seats.bulkMark, nowSec()];
+    n.updated = nowSec();
+    seatsSave();
+    renderSeats();
+    renderItinerary(judge(trip));
+  });
+
+  $('bulkClear').addEventListener('click', () => {
+    const n = seatNote(false);
+    if (!n) return;
+    if (!confirm(`${seats.from} → ${seats.to}（${monthLabel(seats.month)}）の記録を消します。よろしいですか。`)) return;
+    delete SEAT_DATA.notes[seatNoteKey(seats.award, seats.from, seats.to, seats.month)];
+    seatsSave();
+    renderSeats();
+    renderItinerary(judge(trip));
+  });
+
+  $('seatCopy').addEventListener('click', async () => {
+    const t = seatsAsText();
+    if (!t) { flash($('seatCopy'), '書き留めたものがありません'); return; }
+    try {
+      await navigator.clipboard.writeText(t);
+      flash($('seatCopy'), 'コピーしました');
+    } catch (e) { flash($('seatCopy'), 'コピーできませんでした'); }
+  });
 
   $('onlyReach').addEventListener('change', () => {
     trip.onlyReachable = $('onlyReach').checked;

@@ -278,3 +278,144 @@ body {
   .picker { grid-template-columns: 1fr; }
   .row { grid-template-columns: 1fr; gap: 5px; }
 }
+
+/* ============================================================
+ *  空席メモ
+ * ============================================================ */
+
+/* ページの切り替えタブ */
+.pages { display: flex; gap: 6px; margin-bottom: 12px; }
+.pagetab {
+  flex: 1;
+  padding: 10px 6px;
+  border-radius: 12px;
+  border: 1px solid;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  background: none;
+}
+
+/* 路線をえらぶ */
+.seatroute { display: grid; gap: 7px; }
+.seatroute-row { display: grid; grid-template-columns: 42px 1fr; align-items: center; gap: 9px; }
+.seatroute-row .row-label { font-size: 12px; font-weight: 700; }
+.seat-swap { flex: none; width: auto; margin-left: 51px; font-size: 11.5px; padding: 5px 10px; }
+
+/* 月の送り */
+.monthbar {
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.monthbar .btn { padding: 9px 0; flex: none; }
+.monthbar-label {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+
+/* マス目。行が日、列がクラスです。
+   31列を横に並べるとスマホでは読めないので、縦に日を並べています。 */
+.sg { display: grid; gap: 2px; }
+/* 列の数は JS が --cols に入れます（提携は3クラス、ANA特典は4クラス）。
+   auto-fit まかせにすると、クラスの数が変わったときに崩れます。 */
+.sg-row { display: grid; grid-template-columns: 46px repeat(var(--cols, 3), minmax(0, 1fr)); gap: 2px; }
+.sg-head { position: sticky; top: 0; z-index: 3; padding-bottom: 2px; }
+.sg-day {
+  display: flex; align-items: baseline; justify-content: flex-end; gap: 3px;
+  padding: 0 7px 0 0;
+  font-size: 13px;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.sg-day span { font-size: 9.5px; }
+.sg-head .sg-day { justify-content: center; font-size: 10.5px; padding: 0; }
+
+.sg-cls {
+  display: grid; place-items: center; gap: 0;
+  padding: 4px 2px 5px;
+  border-radius: 7px;
+  font-size: 11px; font-weight: 800;
+  font-family: var(--mono);
+}
+.sg-cls span { font-size: 8.5px; font-weight: 600; letter-spacing: -.02em; }
+
+.sg-mark {
+  padding: 7px 2px;
+  border-radius: 7px;
+  border: 1px solid;
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1.15;
+  cursor: pointer;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.sg-past { opacity: .45; }
+.age-aging { opacity: .62; }
+.age-stale { opacity: .38; }
+.sg-stale { display: block; margin-top: 2px; }
+
+/* まとめて入れる */
+.bulkbar {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr auto;
+  gap: 6px;
+  margin-top: 12px;
+}
+.bulkbar .sel { font-size: 12.5px; padding: 9px 8px; }
+.bulkbar .btn { flex: none; white-space: nowrap; font-size: 12.5px; padding: 9px 12px; }
+
+/* 印の見かた */
+.legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 14px; font-size: 11px; }
+.legend-i b { font-family: var(--mono); font-size: 13px; margin-right: 3px; }
+
+/* 書き留めてあるものの一覧 */
+.snote { display: grid; grid-template-columns: 1fr auto; gap: 6px; margin-bottom: 7px; }
+.snote-main {
+  display: grid; gap: 1px;
+  text-align: left;
+  padding: 9px 12px 10px;
+  border-radius: 11px;
+  border: 1px solid;
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+}
+.snote-route { font-size: 13.5px; font-weight: 700; }
+.snote-sub { font-size: 11px; }
+.snote-sub2 { font-size: 10.5px; }
+.snote-del {
+  padding: 0 11px;
+  border-radius: 11px;
+  border: 1px solid;
+  font-family: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+  background: none;
+}
+
+/* 旅程の区間についている空席の印 */
+.seg-seat {
+  grid-column: 1 / -1;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 5px;
+  margin-top: 6px;
+  padding: 5px 9px 6px;
+  border-radius: 9px;
+  border: 1px dashed;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+.seg-seat-lab { font-weight: 700; }
+.seg-seat-m { font-family: var(--mono); font-size: 12px; padding: 0 4px; border-radius: 5px; }
+.seg-seat-age { font-size: 10px; margin-left: auto; }
+.seg-seat-none { font-size: 10.5px; }

@@ -155,6 +155,50 @@ function airlinePlan(segments) {
 }
 
 /* そのゾーンがどのエリアに属するか。 */
+/* ------------------------------------------------------------
+ *  予約を受け付けてもらえる期間
+ *
+ *  公式（提携航空会社特典航空券 お申し込み方法）：
+ *    「旅程の復路ご搭乗日の355日前（ご出発日含まず）午前9時（日本時間）から
+ *      第一区間出発の96時間前まで。」
+ *    「全旅程申し込み開始後、ご予約を承ります。」
+ *
+ *  ★数えるもとが「復路の搭乗日」であるところが肝心です。
+ *    行きの日が355日以内に入っていても、帰りの日がまだ先なら、
+ *    旅程ぜんぶが開くまで予約できません。周遊ほど窓が狭くなります。
+ * ---------------------------------------------------------- */
+const DAY_MS = 86400000;
+
+function bookingWindow(dateOut, dateBack) {
+  if (!dateOut) return null;
+  // 日付は日本時間の0時として読みます（日本標準時は夏時間がないので、ずれません）
+  const out = new Date(`${dateOut}T00:00:00+09:00`);
+  if (isNaN(out)) return null;
+  const last = dateBack ? new Date(`${dateBack}T00:00:00+09:00`) : out;
+  if (isNaN(last)) return null;
+  if (last < out) return { invalid: true };
+
+  const opens = new Date(last.getTime()
+                         - BOOKING.openDaysBefore * DAY_MS
+                         + BOOKING.openHourJst * 3600000);
+  const closes = new Date(out.getTime() - BOOKING.closeHoursBefore * 3600000);
+
+  const now = new Date();
+  const state = now < opens ? 'early' : (now > closes ? 'late' : 'open');
+  return {
+    opens, closes, state,
+    basedOn: dateBack ? 'back' : 'out',
+    daysToOpen: Math.ceil((opens - now) / DAY_MS),
+  };
+}
+
+/* 日本時間で「2026年10月26日(月) 9:00」の形にする。 */
+function jstText(d, withTime) {
+  const o = { timeZone: 'Asia/Tokyo', year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' };
+  if (withTime) { o.hour = '2-digit'; o.minute = '2-digit'; }
+  return d.toLocaleString('ja-JP', o);
+}
+
 function areaOf(zone) {
   for (const [area, list] of Object.entries(AREAS)) {
     if (list.includes(zone)) return area;
@@ -246,13 +290,29 @@ function judge(trip) {
     }
   }
 
-  /* --- 4. 同じ都市を2回使わない --- */
-  const seen = new Map();
-  all.forEach((c) => seen.set(c, (seen.get(c) || 0) + 1));
-  const allowTwice = (c) => (c === from && c === to ? 2 : (!openjaw && c === dest ? 2 : 1));
-  const dup = [...seen.entries()].filter(([c, n]) => n > allowTwice(c)).map(([c]) => c);
-  if (dup.length) {
-    errors.push(`${dup.join('・')} が旅程の中で重なっています。乗継地は出発地・目的地・帰着地と別の都市にしてください。`);
+  /* --- 4. その区間の最初と最後を、途中で経由しない ---
+     公式：「往路・復路それぞれの最初の都市、または最後の都市を経由することはできません」
+
+     ★ここは以前「同じ都市を旅程ぜんぶで2回使わない」としていました。
+       それだと 東京⇒ソウル⇒パリ／パリ⇒ソウル⇒東京 のように、
+       行きも帰りも同じ街で乗り継ぐごくふつうの旅程まで弾いてしまいます。
+       公式のきまりは区間ごとの話で、ANAの例にも
+       「復路：ソウル⇒東京⇒福岡 は、復路の最初(ソウル)でも最後(福岡)でもないので可」
+       と書かれています。 */
+  const legs = [[outLeg, oneway ? '' : '往路の'], [backLeg, '復路の']];
+  for (const [leg, name] of legs) {
+    if (leg.length < 3) continue;
+    const ends = [leg[0], leg[leg.length - 1]];
+    const mid = leg.slice(1, -1);
+    const hit = [...new Set(mid.filter((c) => ends.includes(c)))];
+    if (hit.length) {
+      errors.push(`${name}${hit.join('・')} は、その区間の出発地か到着地です。同じ都市を途中で経由することはできません。`);
+    }
+    // 同じ区間の中で同じ乗継地を2回使うのもできません
+    const twice = [...new Set(mid.filter((c, i) => mid.indexOf(c) !== i))];
+    if (twice.length) {
+      errors.push(`${name}${twice.join('・')} が2回出てきます。`);
+    }
   }
 
   /* --- 5. 続けて同じ都市に降りていないか --- */
@@ -272,11 +332,44 @@ function judge(trip) {
     fg: list.filter((c) => c && !isJapan(c)).length,
   });
   const oc = count(out), bc = count(back);
+
+  /* 地上移動区間（オープンジョー）は、両端の都市を合わせて1回の乗り換えと数えます（公式）。 */
+  if (openjaw) {
+    if (isJapan(dest) && isJapan(ret)) oc.jp += 1; else oc.fg += 1;
+    notes.push(`${dest} から ${ret} への地上移動は、両端の都市を合わせて1回の乗り換えとして数えます（公式のきまり）。`);
+  }
+
   const dirName = { out: oneway ? '' : '往路の', back: '復路の' };
-  if (oc.jp > RULE.maxJapanTransit) errors.push(`${dirName.out}日本国内の乗り継ぎは${RULE.maxJapanTransit}回までです（いま${oc.jp}回）。`);
-  if (bc.jp > RULE.maxJapanTransit) errors.push(`${dirName.back}日本国内の乗り継ぎは${RULE.maxJapanTransit}回までです（いま${bc.jp}回）。`);
-  if (oc.fg > RULE.maxForeignTransit) errors.push(`${dirName.out}海外の乗り継ぎは${RULE.maxForeignTransit}都市までです（いま${oc.fg}都市）。`);
-  if (bc.fg > RULE.maxForeignTransit) errors.push(`${dirName.back}海外の乗り継ぎは${RULE.maxForeignTransit}都市までです（いま${bc.fg}都市）。`);
+  const over = (n, max, dir, where) =>
+    errors.push(`${dir}${where}の乗り継ぎは${max}回までです（いま${n}回）。`);
+  if (oc.jp > RULE.maxJapanTransit) over(oc.jp, RULE.maxJapanTransit, dirName.out, '日本国内');
+  if (oc.fg > RULE.maxForeignTransit) over(oc.fg, RULE.maxForeignTransit, dirName.out, '海外');
+  if (!oneway) {
+    if (bc.jp > RULE.maxJapanTransit) over(bc.jp, RULE.maxJapanTransit, dirName.back, '日本国内');
+    if (bc.fg > RULE.maxForeignTransit) over(bc.fg, RULE.maxForeignTransit, dirName.back, '海外');
+  }
+
+  /* --- 6b. 乗換地のエリア ---
+     公式「乗り換え地点には制限があります」の表は、言いかえると
+     『乗換地は、出発地のエリアか目的地のエリアのどちらかでなければならない』です。
+     （例：モスクワ⇒ヨハネスブルク はどちらもエリア2なので、
+       エリア3のシンガポールでは乗り継げません） */
+  {
+    const fromArea = areaOf(fromC.zone), destArea = areaOf(destC.zone);
+    const outside = [];
+    [...out, ...back].forEach((c) => {
+      const info = cityInfo(c);
+      if (!info) return;
+      const a = areaOf(info.zone);
+      if (a && a !== fromArea && a !== destArea) outside.push(`${c}（${AREA_NAME[a]}）`);
+    });
+    if (outside.length) {
+      errors.push(
+        `${[...new Set(outside)].join('・')} では乗り継げません。` +
+        `乗換地は、出発地のエリア（${AREA_NAME[fromArea]}）か、` +
+        `目的地のエリア（${AREA_NAME[destArea]}）の中にしてください。`);
+    }
+  }
 
   /* --- 7. 区間の数 --- */
   const segCount = (outLeg.length - 1) + Math.max(0, backLeg.length - 1);
@@ -336,6 +429,28 @@ function judge(trip) {
     if (farther.length) {
       errors.push(`${farther.join('・')} は目的地の ${dest} より必要マイル数が多い地域です。目的地はいちばん必要マイル数が多い都市にしてください。`);
     }
+
+    /* --- 10b. 乗換地から目的地までが、出発地から目的地までを上回らないか ---
+       公式のきまりの後半です。前半（上）とは向きが逆で、こちらは
+       「乗換地を出発地に見立てたときの必要マイル数」を見ます。
+       ANAの例：東京⇒ソウル⇒ロサンゼルス は、
+         東京→LA 55,000 に対して ソウル→LA 60,000 と上回るので組めません。 */
+    const over2 = [];
+    [...out, ...back].forEach((c) => {
+      const info = cityInfo(c);
+      if (!info || info.zone === destC.zone) return;
+      const z = info.zone === '1' ? fromZone : info.zone;   // 日本国内なら出発地と同じ扱い
+      const m = milesFor(z, destC.zone, oneway);
+      if (m && m.Y > destMiles.Y) {
+        over2.push(`${c}（${MB.labels[info.zone]}）から ${dest} は ${m.Y.toLocaleString()}マイル`);
+      }
+    });
+    if (over2.length) {
+      errors.push(
+        `${[...new Set(over2)].join('、')}で、${from} から ${dest} の ` +
+        `${destMiles.Y.toLocaleString()}マイルを上回ります。` +
+        `乗換地から目的地までが、出発地から目的地までより高くなる乗り継ぎはできません。`);
+    }
   }
 
   /* --- 11. 途中降機（24時間を超える滞在） --- */
@@ -348,6 +463,26 @@ function judge(trip) {
       errors.push(`${stopover} は乗継地に入っていません。`);
     } else if (isJapanOrigin && isJapan(stopover)) {
       errors.push('日本国内での途中降機（24時間を超える滞在）はできません。');
+    }
+  }
+
+  /* --- 11b. 予約を受け付けてもらえる期間 --- */
+  const booking = bookingWindow(trip.date, oneway ? '' : trip.dateBack);
+  if (booking && booking.invalid) {
+    errors.push('帰りの搭乗日が、行きの搭乗日より前になっています。');
+  } else if (booking) {
+    if (booking.state === 'early') {
+      notes.push(
+        `この旅程の予約が始まるのは ${jstText(booking.opens, true)}（日本時間）です。` +
+        (booking.basedOn === 'back'
+          ? `帰りの搭乗日の355日前から、旅程ぜんぶがまとめて開きます。`
+          : `帰りの搭乗日を入れると、正しい日が出ます。`));
+    } else if (booking.state === 'late') {
+      notes.push(
+        `第一区間の出発まで96時間を切っています。受付は ${jstText(booking.closes, true)}（日本時間）で終わりです。`);
+    } else {
+      notes.push(
+        `いま予約できる期間です（${jstText(booking.opens, true)} 〜 ${jstText(booking.closes, true)}／日本時間）。`);
     }
   }
 
@@ -404,6 +539,7 @@ function judge(trip) {
       ? milesFor('1-A', destC.zone, oneway) : null,
     segments,
     segCount,
+    booking,
     transit: { out: oc, back: bc },
   };
 }
@@ -412,12 +548,19 @@ function judge(trip) {
 function buildSegments(outLeg, backLeg, dest, ret, stopover, openjaw) {
   const list = [];
 
+  /* 途中降機は往復あわせて1回だけです。
+     行きも帰りも同じ街で乗り継ぐとき（東京⇒ソウル⇒パリ／パリ⇒ソウル⇒東京）に、
+     両方へ「24時間以上」と付けてしまうと、2回とまったように見えてしまいます。
+     最初に出てきたほうにだけ付けます。 */
+  let stopoverUsed = false;
+
   const push = (leg) => {
     for (let i = 0; i < leg.length - 1; i++) {
       const a = leg[i], b = leg[i + 1];
       let stay = '';
       if (i + 1 < leg.length - 1) {
-        stay = b === stopover ? '24時間以上' : '24時間以内';
+        if (b === stopover && !stopoverUsed) { stay = '24時間以上'; stopoverUsed = true; }
+        else stay = '24時間以内';
       } else if (b === dest) {
         stay = '目的地';
       }

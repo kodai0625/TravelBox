@@ -151,3 +151,41 @@ body {
 .btn-quiet { color: var(--ink-3); background: none; }
 
 .loading { color: var(--ink-2); }
+
+/* ===== 空席メモ ===== */
+.pagetab { background: var(--panel); border-color: var(--line); color: var(--ink-2); }
+.pagetab.on { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+
+.monthbar-label { color: var(--ink); }
+.sg-head { background: var(--panel); }
+.sg-cls { background: var(--panel-2); color: var(--ink-2); }
+.sg-day { color: var(--ink-2); }
+.sg-day span { color: var(--ink-3); }
+.sg-day.w0 { color: var(--ng); }        /* 日曜 */
+.sg-day.w6 { color: var(--star); }      /* 土曜 */
+
+/* 印の色。ANAのカレンダーの見ために寄せています */
+.sg-mark { background: var(--field); border-color: var(--line-soft); color: var(--ink-3); }
+.sg-mark.m-oo { background: var(--ok-bg); border-color: var(--ok-line); color: var(--ok); font-weight: 800; }
+.sg-mark.m-o  { background: var(--ok-bg); border-color: var(--ok-line); color: var(--ok); }
+.sg-mark.m-t  { background: var(--note-bg); border-color: var(--long-bg); color: var(--note); }
+.sg-mark.m-x  { background: var(--panel-2); border-color: var(--line-soft); color: var(--ink-3); }
+.sg-stale { color: var(--ng); }
+
+.bulkbar .sel { background-color: var(--field); border-color: var(--line); color: var(--ink); }
+.legend { color: var(--ink-2); }
+
+.snote-main { background: var(--panel-2); border-color: var(--line); color: var(--ink); }
+.snote.on .snote-main { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+.snote-sub { color: var(--ink-2); }
+.snote-sub2 { color: var(--ink-3); }
+.snote-del { border-color: var(--line); color: var(--ink-3); }
+
+.seg-seat { border-color: var(--line); color: var(--ink-2); }
+.seg-seat.has { border-style: solid; }
+.seg-seat-lab { color: var(--ink-3); }
+.seg-seat-none { color: var(--ink-3); }
+.seg-seat-age { color: var(--ink-3); }
+.seg-seat-m.m-oo, .seg-seat-m.m-o { background: var(--ok-bg); color: var(--ok); }
+.seg-seat-m.m-t { background: var(--note-bg); color: var(--note); }
+.seg-seat-m.m-x { background: var(--ng-bg); color: var(--ng); }

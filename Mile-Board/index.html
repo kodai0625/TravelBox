@@ -30,9 +30,9 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/travel.css?v=20260822a">
-<link rel="stylesheet" href="css/style.css?v=20260822a">
-<link rel="stylesheet" href="css/design.css?v=20260822a">
+<link rel="stylesheet" href="css/travel.css?v=20260822b">
+<link rel="stylesheet" href="css/style.css?v=20260822b">
+<link rel="stylesheet" href="css/design.css?v=20260822b">
 </head>
 <body class="paper">
 
@@ -112,6 +112,11 @@
 
 <main id="main" hidden>
 
+  <!-- ===== ページの切り替え ===== -->
+  <nav class="pages" id="pageNav" aria-label="ページ"></nav>
+
+<div id="page-trip">
+
   <!-- ===== 旅程の形 ===== -->
   <div class="modes" id="modes" role="group" aria-label="旅程の形"></div>
   <label class="onlyline">
@@ -136,7 +141,12 @@
       <label class="row-label" for="dateIn">行きの搭乗日</label>
       <input type="date" id="dateIn" class="sel">
     </div>
+    <div class="dateline" id="dateBackLine">
+      <label class="row-label" for="dateBack">帰りの搭乗日</label>
+      <input type="date" id="dateBack" class="sel">
+    </div>
     <p class="hint" id="seasonHint">日を入れると、ANA便だけで組んだときのマイル数も出ます。</p>
+    <p class="hint">予約が始まるのは<b>帰りの搭乗日</b>の355日前です。行きだけでは決まりません。</p>
     <button type="button" class="btn btn-wide" id="suggestBtn">行き方をいくつか出す</button>
     <div id="suggests"></div>
   </section>
@@ -186,6 +196,89 @@
     <p class="hint" id="segHint"></p>
   </section>
 
+</div><!-- /page-trip -->
+
+<!-- ============================================================
+     空席メモ
+     自分で ANA の画面を見て、見えたようすをここに写しておくところです。
+     アプリから ANA につなぐことは一切ありません。
+     ============================================================ -->
+<div id="page-seats" hidden>
+
+  <section class="card">
+    <h2 class="card-title"><span class="step">1</span>どの特典で見ましたか</h2>
+    <div class="modes" id="seatAward" role="group" aria-label="特典種別"></div>
+    <p class="hint">
+      同じ日・同じ路線でも、ANA特典と提携航空会社特典では<b>空席がまったく別</b>です。
+      見た画面のほうを選んでください。提携ではプレミアムエコノミーは使えません。
+    </p>
+  </section>
+
+  <section class="card">
+    <h2 class="card-title"><span class="step">2</span>どの区間ですか</h2>
+    <div class="seatroute">
+      <div class="seatroute-row">
+        <span class="row-label">出発</span>
+        <div id="seatFrom"></div>
+      </div>
+      <button type="button" class="btn btn-quiet seat-swap" id="seatSwap"
+              title="向きを入れ替える" aria-label="向きを入れ替える">⇅ 向きを入れ替える</button>
+      <div class="seatroute-row">
+        <span class="row-label">到着</span>
+        <div id="seatTo"></div>
+      </div>
+    </div>
+    <div class="chips" id="seatLegs" hidden></div>
+  </section>
+
+  <section class="card">
+    <h2 class="card-title"><span class="step">3</span>見えたようすを写す</h2>
+
+    <div class="monthbar">
+      <button type="button" class="btn btn-quiet" id="seatPrev" aria-label="前の月">◀</button>
+      <span class="monthbar-label" id="seatMonthLabel"></span>
+      <button type="button" class="btn btn-quiet" id="seatNext" aria-label="次の月">▶</button>
+    </div>
+
+    <div id="seatGrid"></div>
+    <p class="hint" id="seatInfo"></p>
+
+    <div id="seatTools" hidden>
+      <div class="bulkbar">
+        <select class="sel" id="bulkClass" aria-label="まとめて入れるクラス"></select>
+        <select class="sel" id="bulkMark" aria-label="まとめて入れる印"></select>
+        <button type="button" class="btn" id="bulkFill">この月ぜんぶに入れる</button>
+      </div>
+      <p class="hint">
+        ANAの「国際線特典カレンダー」は、1つの路線・1つのクラスが2か月ぶんまとめて並びます。
+        同じ印が続いているときは、ここでまとめて入れてから、ちがう日だけ押し直すのが早いです。
+      </p>
+      <div class="actions">
+        <button type="button" class="btn" id="seatCopy">この月をコピーする</button>
+        <button type="button" class="btn btn-quiet" id="bulkClear">この月の記録を消す</button>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="legend-i"><b>◎</b>十分空席あり</span>
+      <span class="legend-i"><b>○</b>空席あり</span>
+      <span class="legend-i"><b>△</b>残席わずか・空席待ち</span>
+      <span class="legend-i"><b>−</b>利用いただけない</span>
+      <span class="legend-i"><b>·</b>まだ調べていない</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 class="card-title"><span class="step">4</span>書き留めてあるもの</h2>
+    <div id="seatList"></div>
+    <p class="hint">
+      調べてから時間がたつほど、印は薄くなります。1週間たったものは当てになりません。
+      特典の空席は数時間で消えることがあります。<b>最後は必ずANAの画面で確かめてください。</b>
+    </p>
+  </section>
+
+</div><!-- /page-seats -->
+
   <footer class="app-foot">
     <p>このアプリはANA（全日本空輸株式会社）とは関係のない、個人が作った道具です。</p>
     <p>判定と必要マイル数は目安です。<strong>予約できるかどうかは、必ずANA公式サイトでご確認ください。</strong></p>
@@ -195,13 +288,14 @@
 
 <div class="loading" id="loading">読み込んでいます…</div>
 
-<script src="js/update.js?v=20260822a"></script>
-<script src="js/config.js?v=20260822a"></script>
-<script src="js/rules.js?v=20260822a"></script>
-<script src="js/diagram.js?v=20260822a"></script>
-<script src="js/reach.js?v=20260822a"></script>
-<script src="js/suggest.js?v=20260822a"></script>
-<script src="js/data.js?v=20260822a"></script>
-<script src="js/app.js?v=20260822a"></script>
+<script src="js/update.js?v=20260822b"></script>
+<script src="js/config.js?v=20260822b"></script>
+<script src="js/rules.js?v=20260822b"></script>
+<script src="js/diagram.js?v=20260822b"></script>
+<script src="js/reach.js?v=20260822b"></script>
+<script src="js/suggest.js?v=20260822b"></script>
+<script src="js/data.js?v=20260822b"></script>
+<script src="js/seats.js?v=20260822b"></script>
+<script src="js/app.js?v=20260822b"></script>
 </body>
 </html>
