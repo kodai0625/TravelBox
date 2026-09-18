@@ -129,7 +129,24 @@ function anaOnlyPlan(segments, destZone, fromZone, date, oneway) {
    区間ごとに「飛んでいる会社」しか分からないので、
    「全区間をスタアラでまかなえるか」「1社だけでまかなえる会社があるか」
    のどちらかが成り立つかを見ます。 */
-function airlinePlan(segments) {
+function airlinePlan(segments, carrier) {
+  /* 1社だけで組む会社を選んでいるときは、
+     「全区間をその会社が飛んでいるか」だけを見ます。
+     路線データに便が見つからない区間も、その会社は飛んでいないものとして扱います。
+     （ここを甘くすると、道さがしが出した道と判定が食い違います） */
+  if (carrier) {
+    const miss = segments.filter((s) => !s.gap && !s.airlines.includes(carrier));
+    if (miss.length) {
+      return {
+        ok: false,
+        kind: 'carrier',
+        carrier,
+        trouble: miss.map((s) => ({ leg: `${s.from}→${s.to}`, from: s.from, to: s.to })),
+      };
+    }
+    return { ok: true, kind: 'solo', airlines: [carrier] };
+  }
+
   const flights = segments.filter((s) => !s.gap && s.airlines.length);
   if (!flights.length) return { ok: true, kind: 'unknown' };
 
@@ -232,6 +249,7 @@ function sameCountry(a, b, allInEurope) {
  *    back:  ['バンコク','',''],復路の乗継地
  *    to:    '東京',            帰着地
  *    stopover: 'バンコク',     24時間以上とまる都市（目的地以外に1つ）
+ *    carrier: 'VN',            1社だけで組むときの会社（空なら指定なし）
  *  }
  * ---------------------------------------------------------- */
 function judge(trip) {
@@ -500,19 +518,35 @@ function judge(trip) {
   /* --- できあがり --- */
   const segments = buildSegments(outLeg, backLeg, dest, ret, stopover, openjaw);
   const unknown = segments.filter((s) => !s.gap && !s.airlines.length);
-  if (unknown.length) {
+  if (unknown.length && !trip.carrier) {
     notes.push(`${unknown.map((s) => `${s.from}→${s.to}`).join('・')} は、この特典で乗れる会社の直行便が見つかりませんでした。乗り継ぎが必要か、路線データに載っていない可能性があります。`);
   }
 
   /* --- 13. 乗れる会社の組み合わせ --- */
-  const plan = airlinePlan(segments);
-  if (!plan.ok) {
-    const names = [...new Set(plan.trouble.flatMap((t) => t.airlines))].map(airlineName);
+  const plan = airlinePlan(segments, trip.carrier);
+  if (!plan.ok && plan.kind === 'carrier') {
+    const name = airlineName(plan.carrier);
+    errors.push(
+      `${plan.trouble.map((t) => t.leg).join('・')} は ${name} が飛んでいません。` +
+      `${name}は、${name}の便だけで組んだ旅程でしか使えません（ANA公式）。` +
+      `別の乗継地にしてください。`);
+    /* 日本国内の乗り継ぎは、2026年5月19日搭乗分からANA運航便だけになりました（公式）。
+       ANA便が混ざると「1社だけ」ではなくなるので、この会社では入れられません。 */
+    if (plan.trouble.some((t) => isJapan(t.from) && isJapan(t.to))) {
+      notes.push('日本国内の乗り継ぎはANA便になるので、1社だけで組む旅程には入れられません。');
+    }
+  } else if (!plan.ok) {
+    const codes = [...new Set(plan.trouble.flatMap((t) => t.airlines))];
+    const names = codes.map(airlineName);
     errors.push(
       `${plan.trouble.map((t) => t.leg).join('・')} は ${names.join('・')} しか飛んでいません。` +
       `この会社は「その会社だけで組んだ旅程」でしか使えないので、` +
       `ほかの区間と混ぜることができません。別の乗継地にしてください。`);
-  } else if (plan.kind === 'solo') {
+    // その会社で組みたいときの道を案内します
+    notes.push(
+      `${names.join('・')}で組みたいときは、上の「航空会社」で選んでください。` +
+      `行ける街と行き方を、その会社の便だけで出します。`);
+  } else if (plan.kind === 'solo' && !trip.carrier) {
     notes.push(
       `この旅程は ${plan.airlines.map(airlineName).join('・')} だけで組むことになります。` +
       `この会社はほかの会社と混ぜられないためです。`);

@@ -189,3 +189,10 @@ body {
 .seg-seat-m.m-oo, .seg-seat-m.m-o { background: var(--ok-bg); color: var(--ok); }
 .seg-seat-m.m-t { background: var(--note-bg); color: var(--note); }
 .seg-seat-m.m-x { background: var(--ng-bg); color: var(--ng); }
+
+/* 航空会社（1社だけで組む）。単独運航の会社と同じ紫にそろえます */
+.carrier-label { color: var(--ink); }
+.carrier-hint b { color: var(--partner); }
+.carrierline.on .sel { color: var(--partner); border-color: var(--partner); }
+
+.reach-why { color: var(--ink-2); }

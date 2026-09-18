@@ -49,11 +49,17 @@ function detour(start, legs, goal) {
   return pathKm([start, ...legs, goal]) / direct;
 }
 
-/* 街と街のつながり。都市名 → その街から直行便がある街の集合。 */
-let CITY_GRAPH = null;
+/* 街と街のつながり。都市名 → その街から直行便がある街の集合。
 
-function buildCityGraph() {
-  if (CITY_GRAPH) return CITY_GRAPH;
+   carrier に会社コード（VN など）を渡すと、その会社が飛んでいる区間だけでつなぎます。
+   ベトナム航空など9社は「その会社の便だけで組んだ旅程」でしか使えないので（ANA公式）、
+   その会社で組むときは、ほかの会社の区間を道に入れてはいけません。
+   会社ごとに一度だけ作って覚えておきます。 */
+const CITY_GRAPHS = new Map();
+
+function buildCityGraph(carrier) {
+  const tag = carrier || '*';
+  if (CITY_GRAPHS.has(tag)) return CITY_GRAPHS.get(tag);
   // 空港コード → 都市名 の逆引きを先に作ります
   const cityOf = {};
   for (const [name, info] of Object.entries(MB.cityIndex)) {
@@ -64,19 +70,35 @@ function buildCityGraph() {
     if (!g.has(a)) g.set(a, new Set());
     g.get(a).add(b);
   };
-  for (const key of Object.keys(MB.segments)) {
+  for (const [key, airlines] of Object.entries(MB.segments)) {
+    if (carrier && !airlines.includes(carrier)) continue;
     const [x, y] = key.split('-');
     const a = cityOf[x], b = cityOf[y];
     if (!a || !b || a === b) continue;
     link(a, b);
     link(b, a);
   }
-  CITY_GRAPH = g;
+  CITY_GRAPHS.set(tag, g);
   return g;
 }
 
-function neighbours(city) {
-  return buildCityGraph().get(city) || new Set();
+function neighbours(city, carrier) {
+  return buildCityGraph(carrier).get(city) || new Set();
+}
+
+/* その会社が飛んでいる街ぜんぶ。 */
+function carrierCities(carrier) {
+  return new Set(buildCityGraph(carrier).keys());
+}
+
+/* その会社の便が多い街。1社だけで組むと、乗り継ぎはだいたいここになります。
+   便の少ない街まで並べても役に立たないので、3都市以上とつながる街だけにします。 */
+function carrierHubs(carrier, n) {
+  return [...buildCityGraph(carrier).entries()]
+    .filter(([, nb]) => nb.size >= 3)
+    .sort((a, b) => b[1].size - a[1].size)
+    .slice(0, n)
+    .map(([c]) => c);
 }
 
 /* 乗継地に選んでよい街をしぼる。
@@ -84,7 +106,7 @@ function neighbours(city) {
    ・日本語の名前が付いている街だけにします。
      もとの空港データに日本語名があるのは主要都市だけなので、
      ここを絞ると「知らない小さな町」が候補に出てこなくなります。 */
-function transitCandidates(fromZone, destZone, oneway) {
+function transitCandidates(fromZone, destZone, oneway, carrier) {
   const destMiles = milesFor(fromZone, destZone, oneway);
   const okZone = new Map();
   const allowed = (zone) => {
@@ -103,7 +125,7 @@ function transitCandidates(fromZone, destZone, oneway) {
   for (const [name, info] of Object.entries(MB.cityIndex)) {
     if (!ja.test(name)) continue;
     if (!allowed(info.zone)) continue;
-    if (!neighbours(name).size) continue;
+    if (!neighbours(name, carrier).size) continue;
     list.push(name);
   }
   return new Set(list);
@@ -111,11 +133,11 @@ function transitCandidates(fromZone, destZone, oneway) {
 
 /* 片道ぶんの道すじをさがす。
    start から goal まで、乗継を最大 maxTransit 個はさんで行ける道を集めます。 */
-function findLegs(start, goal, cand, maxTransit, avoid, limit, maxDetour) {
+function findLegs(start, goal, cand, maxTransit, avoid, limit, maxDetour, carrier) {
   const found = [];
   const seen = new Set();
-  const goalNb = neighbours(goal);
-  const startNb = neighbours(start);
+  const goalNb = neighbours(goal, carrier);
+  const startNb = neighbours(start, carrier);
 
   const push = (path) => {
     const key = path.join('>');
@@ -136,7 +158,7 @@ function findLegs(start, goal, cand, maxTransit, avoid, limit, maxDetour) {
     for (const t1 of startNb) {
       if (n >= limit * 3) break;
       if (!usable(t1)) continue;
-      for (const t2 of neighbours(t1)) {
+      for (const t2 of neighbours(t1, carrier)) {
         if (!usable(t2) || t2 === t1) continue;
         if (!goalNb.has(t2)) continue;
         if (detour(start, [t1, t2], goal) > maxDetour) continue;
@@ -180,8 +202,9 @@ function suggestRoutes(trip, count) {
   if (openjaw) return [];      // オープンジョーは帰りの出発地を自分で決めるので出しません
 
   const maxT = Math.min(2, RULE.transitSlots);   // 海外は片道2都市まで
+  const carrier = trip.carrier || '';
   const cand = transitCandidates(fromC.zone === '1' ? '1-B' : fromC.zone,
-                                 destC.zone, oneway);
+                                 destC.zone, oneway, carrier);
   const fixed = new Set([trip.from, trip.dest, trip.to].filter(Boolean));
 
   const plans = [];
@@ -191,7 +214,7 @@ function suggestRoutes(trip, count) {
   for (const maxDetour of DETOUR_STEPS) {
     if (plans.length >= count) break;
 
-    const outs = findLegs(trip.from, trip.dest, cand, maxT, fixed, count, maxDetour)
+    const outs = findLegs(trip.from, trip.dest, cand, maxT, fixed, count, maxDetour, carrier)
       .sort((a, b) => legScore(b, trip.from, trip.dest) - legScore(a, trip.from, trip.dest));
 
     for (const out of outs) {
@@ -200,9 +223,18 @@ function suggestRoutes(trip, count) {
 
       let back = [];
       if (!oneway) {
-        const avoid = new Set([...fixed, ...out]);
-        const backs = findLegs(trip.dest, trip.to, cand, maxT, avoid, count, maxDetour)
-          .sort((a, b) => legScore(b, trip.dest, trip.to) - legScore(a, trip.dest, trip.to));
+        /* 帰りは、行きと別の街を回れるなら、そちらを先に出します。
+           ★ただし行きと同じ街で乗り継ぐのは、きまりの上では組めます
+             （東京⇒ソウル⇒パリ／パリ⇒ソウル⇒東京）。
+             1社だけで組むと拠点が1つしかないことが多く（マカオ航空ならマカオ）、
+             行きの街を避けると帰りの道が1本も無くなるので、そのときは避けずに探し直します。 */
+        const byScore = (list) => list.sort((a, b) =>
+          legScore(b, trip.dest, trip.to) - legScore(a, trip.dest, trip.to));
+        let backs = byScore(findLegs(trip.dest, trip.to, cand, maxT,
+                                     new Set([...fixed, ...out]), count, maxDetour, carrier));
+        if (!backs.length) {
+          backs = byScore(findLegs(trip.dest, trip.to, cand, maxT, fixed, count, maxDetour, carrier));
+        }
         if (!backs.length) continue;
         back = backs[0];
       }

@@ -30,9 +30,9 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/travel.css?v=20260822b">
-<link rel="stylesheet" href="css/style.css?v=20260822b">
-<link rel="stylesheet" href="css/design.css?v=20260822b">
+<link rel="stylesheet" href="css/travel.css?v=20260918b">
+<link rel="stylesheet" href="css/style.css?v=20260918b">
+<link rel="stylesheet" href="css/design.css?v=20260918b">
 </head>
 <body class="paper">
 
@@ -124,6 +124,15 @@
     <span>行けるところだけ出す</span>
     <span class="onlyline-note">きまりに合って、実際に便がある街だけを候補にします</span>
   </label>
+
+  <!-- ===== 航空会社（1社だけで組む） =====
+       ベトナム航空など9社は、その会社の便だけで組んだ旅程でしか使えません（ANA公式）。
+       選ぶと、行ける街・行き方・判定をその会社の便だけで見ます（js/app.js の renderCarrier）。 -->
+  <div class="carrierline" id="carrierLine">
+    <label class="carrier-label" for="carrierSel">航空会社</label>
+    <select id="carrierSel" class="sel"></select>
+  </div>
+  <p class="hint carrier-hint" id="carrierHint"></p>
 
   <!-- ===== 判定 ===== -->
   <div class="verdict" id="verdict" role="status" aria-live="polite">
@@ -288,14 +297,14 @@
 
 <div class="loading" id="loading">読み込んでいます…</div>
 
-<script src="js/update.js?v=20260822b"></script>
-<script src="js/config.js?v=20260822b"></script>
-<script src="js/rules.js?v=20260822b"></script>
-<script src="js/diagram.js?v=20260822b"></script>
-<script src="js/reach.js?v=20260822b"></script>
-<script src="js/suggest.js?v=20260822b"></script>
-<script src="js/data.js?v=20260822b"></script>
-<script src="js/seats.js?v=20260822b"></script>
-<script src="js/app.js?v=20260822b"></script>
+<script src="js/update.js?v=20260918b"></script>
+<script src="js/config.js?v=20260918b"></script>
+<script src="js/rules.js?v=20260918b"></script>
+<script src="js/diagram.js?v=20260918b"></script>
+<script src="js/reach.js?v=20260918b"></script>
+<script src="js/suggest.js?v=20260918b"></script>
+<script src="js/data.js?v=20260918b"></script>
+<script src="js/seats.js?v=20260918b"></script>
+<script src="js/app.js?v=20260918b"></script>
 </body>
 </html>

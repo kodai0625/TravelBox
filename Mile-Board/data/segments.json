@@ -1124,6 +1124,7 @@
 "AZ"
 ],
 "AMS-FRA": [
+"EN",
 "LH"
 ],
 "AMS-HAN": [
@@ -1148,6 +1149,7 @@
 "TP"
 ],
 "AMS-MUC": [
+"EN",
 "LH"
 ],
 "AMS-ORD": [
@@ -1207,8 +1209,14 @@
 "ANU-LHR": [
 "VS"
 ],
+"AOI-MUC": [
+"EN"
+],
 "AOJ-TPE": [
 "BR"
+],
+"AOK-ATH": [
+"OA"
 ],
 "AOK-DUS": [
 "EW"
@@ -1218,6 +1226,15 @@
 ],
 "AOK-INN": [
 "EW"
+],
+"AOK-JSH": [
+"OA"
+],
+"AOK-KSJ": [
+"OA"
+],
+"AOK-RHO": [
+"OA"
 ],
 "AOK-SZG": [
 "EW"
@@ -1492,17 +1509,32 @@
 "ATH-JED": [
 "A3"
 ],
+"ATH-JIK": [
+"OA"
+],
 "ATH-JKH": [
 "A3"
 ],
 "ATH-JMK": [
 "A3"
 ],
+"ATH-JNX": [
+"OA"
+],
+"ATH-JSH": [
+"OA"
+],
+"ATH-JSI": [
+"OA"
+],
 "ATH-JTR": [
 "A3"
 ],
 "ATH-KGS": [
 "A3"
+],
+"ATH-KIT": [
+"OA"
 ],
 "ATH-KLX": [
 "A3"
@@ -1532,6 +1564,9 @@
 "ATH-LJU": [
 "A3"
 ],
+"ATH-LRS": [
+"OA"
+],
 "ATH-LUX": [
 "A3"
 ],
@@ -1555,6 +1590,9 @@
 ],
 "ATH-MLA": [
 "A3"
+],
+"ATH-MLO": [
+"OA"
 ],
 "ATH-MRS": [
 "A3"
@@ -1589,6 +1627,9 @@
 ],
 "ATH-OTP": [
 "A3"
+],
+"ATH-PAS": [
+"OA"
 ],
 "ATH-PEK": [
 "CA"
@@ -1635,6 +1676,9 @@
 ],
 "ATH-SKP": [
 "A3"
+],
+"ATH-SKU": [
+"OA"
 ],
 "ATH-SMI": [
 "A3"
@@ -1710,6 +1754,9 @@
 "ATH-ZRH": [
 "A3",
 "LX"
+],
+"ATH-ZTH": [
+"OA"
 ],
 "ATL-AUH": [
 "EY"
@@ -2381,6 +2428,9 @@
 "BDS-LIN": [
 "AZ"
 ],
+"BDS-MUC": [
+"EN"
+],
 "BDS-PRG": [
 "EW"
 ],
@@ -2739,6 +2789,7 @@
 "EW"
 ],
 "BHX-FRA": [
+"EN",
 "LH"
 ],
 "BHX-IST": [
@@ -2814,6 +2865,7 @@
 "OS"
 ],
 "BIQ-FRA": [
+"EN",
 "LH"
 ],
 "BIQ-GVA": [
@@ -3030,6 +3082,9 @@
 "BKK-MEL": [
 "TG"
 ],
+"BKK-MFM": [
+"NX"
+],
 "BKK-MNL": [
 "PR",
 "TG"
@@ -3128,6 +3183,7 @@
 "SN"
 ],
 "BLL-FRA": [
+"EN",
 "LH"
 ],
 "BLL-INN": [
@@ -3155,6 +3211,7 @@
 "AZ"
 ],
 "BLQ-FRA": [
+"EN",
 "LH"
 ],
 "BLQ-IST": [
@@ -3162,6 +3219,9 @@
 ],
 "BLQ-LIS": [
 "TP"
+],
+"BLQ-MUC": [
+"EN"
 ],
 "BLQ-VIE": [
 "OS"
@@ -3331,6 +3391,7 @@
 "SN"
 ],
 "BOD-FRA": [
+"EN",
 "LH"
 ],
 "BOD-HER": [
@@ -3844,6 +3905,7 @@
 "AZ"
 ],
 "BRI-MUC": [
+"EN",
 "LH"
 ],
 "BRI-STR": [
@@ -4166,6 +4228,7 @@
 "CM"
 ],
 "BSL-FRA": [
+"EN",
 "LH"
 ],
 "BSL-IST": [
@@ -4899,6 +4962,9 @@
 "CGK-IST": [
 "TK"
 ],
+"CGK-MFM": [
+"NX"
+],
 "CGK-MNL": [
 "PR"
 ],
@@ -5139,6 +5205,9 @@
 ],
 "CGO-LHW": [
 "ZH"
+],
+"CGO-MFM": [
+"NX"
 ],
 "CGO-MXP": [
 "HO"
@@ -5458,6 +5527,9 @@
 ],
 "CKG-LXA": [
 "CA"
+],
+"CKG-MFM": [
+"NX"
 ],
 "CKG-MNL": [
 "CA"
@@ -6036,6 +6108,9 @@
 "CTU-LXA": [
 "CA"
 ],
+"CTU-MFM": [
+"NX"
+],
 "CTU-NGB": [
 "CA"
 ],
@@ -6246,6 +6321,9 @@
 "CZX-JJN": [
 "ZH"
 ],
+"CZX-MFM": [
+"NX"
+],
 "CZX-NNG": [
 "ZH"
 ],
@@ -6285,6 +6363,9 @@
 ],
 "DAD-KIX": [
 "VN"
+],
+"DAD-MFM": [
+"NX"
 ],
 "DAD-MNL": [
 "PR"
@@ -8547,8 +8628,14 @@
 "FLN-PTY": [
 "CM"
 ],
+"FLR-FRA": [
+"EN"
+],
 "FLR-LIS": [
 "TP"
+],
+"FLR-MUC": [
+"EN"
 ],
 "FLR-VIE": [
 "OS"
@@ -8611,6 +8698,9 @@
 "FNC-VIE": [
 "OS"
 ],
+"FOC-MFM": [
+"NX"
+],
 "FOC-NKG": [
 "ZH"
 ],
@@ -8625,6 +8715,9 @@
 ],
 "FOR-LIS": [
 "TP"
+],
+"FRA-FSC": [
+"EN"
 ],
 "FRA-GDN": [
 "LH"
@@ -8642,6 +8735,7 @@
 "LH"
 ],
 "FRA-GRZ": [
+"EN",
 "LH"
 ],
 "FRA-GVA": [
@@ -8700,6 +8794,9 @@
 "FRA-IKA": [
 "LH"
 ],
+"FRA-INN": [
+"EN"
+],
 "FRA-IST": [
 "LH",
 "TK"
@@ -8735,6 +8832,9 @@
 "FRA-LAX": [
 "LH"
 ],
+"FRA-LCY": [
+"EN"
+],
 "FRA-LEJ": [
 "LH"
 ],
@@ -8742,6 +8842,7 @@
 "LH"
 ],
 "FRA-LIN": [
+"EN",
 "LH"
 ],
 "FRA-LIS": [
@@ -8755,12 +8856,14 @@
 "LH"
 ],
 "FRA-LUX": [
+"EN",
 "LH"
 ],
 "FRA-LWO": [
 "LH"
 ],
 "FRA-LYS": [
+"EN",
 "LH"
 ],
 "FRA-MAA": [
@@ -8788,6 +8891,7 @@
 "LH"
 ],
 "FRA-MXP": [
+"EN",
 "LH"
 ],
 "FRA-NAP": [
@@ -8858,7 +8962,11 @@
 "LH"
 ],
 "FRA-PRG": [
+"EN",
 "LH"
+],
+"FRA-PSA": [
+"EN"
 ],
 "FRA-PUY": [
 "LH"
@@ -8969,6 +9077,12 @@
 "FRA-TRD": [
 "LH"
 ],
+"FRA-TRN": [
+"EN"
+],
+"FRA-TRS": [
+"EN"
+],
 "FRA-TUN": [
 "LH"
 ],
@@ -8985,11 +9099,15 @@
 "FRA-VNO": [
 "LH"
 ],
+"FRA-VRN": [
+"EN"
+],
 "FRA-WAW": [
 "LH",
 "LO"
 ],
 "FRA-WRO": [
+"EN",
 "LH"
 ],
 "FRA-YUL": [
@@ -9009,6 +9127,7 @@
 "OU"
 ],
 "FRA-ZRH": [
+"EN",
 "LH",
 "LX"
 ],
@@ -9044,6 +9163,9 @@
 ],
 "FUK-KHH": [
 "BR"
+],
+"FUK-MFM": [
+"NX"
 ],
 "FUK-MMY": [
 "NH"
@@ -9198,6 +9320,9 @@
 "GNY-IST": [
 "TK"
 ],
+"GOA-MUC": [
+"EN"
+],
 "GOA-OLB": [
 "AZ"
 ],
@@ -9304,6 +9429,7 @@
 "EW"
 ],
 "GRZ-MUC": [
+"EN",
 "LH"
 ],
 "GRZ-OLB": [
@@ -9459,6 +9585,7 @@
 "ET"
 ],
 "GVA-MUC": [
+"EN",
 "LH",
 "LX"
 ],
@@ -9864,6 +9991,9 @@
 "HAN-MEL": [
 "VN"
 ],
+"HAN-MFM": [
+"NX"
+],
 "HAN-MNL": [
 "PR",
 "VN"
@@ -10233,6 +10363,9 @@
 ],
 "HGH-LJG": [
 "CA"
+],
+"HGH-MFM": [
+"NX"
 ],
 "HGH-NNG": [
 "CA"
@@ -11380,6 +11513,9 @@
 "OZ",
 "VS"
 ],
+"ICN-MFM": [
+"NX"
+],
 "ICN-MNL": [
 "OZ",
 "PR"
@@ -12221,6 +12357,12 @@
 "JIC-PVG": [
 "HO"
 ],
+"JIK-LXS": [
+"OA"
+],
+"JIK-SKG": [
+"OA"
+],
 "JJN-LYG": [
 "ZH"
 ],
@@ -12272,6 +12414,9 @@
 ],
 "JJN-ZHA": [
 "ZH"
+],
+"JKH-SKG": [
+"OA"
 ],
 "JMK-MUC": [
 "LH"
@@ -12338,6 +12483,12 @@
 ],
 "JNX-SKG": [
 "A3"
+],
+"JSH-KSJ": [
+"OA"
+],
+"JSH-RHO": [
+"OA"
 ],
 "JSI-VIE": [
 "OS"
@@ -12445,7 +12596,8 @@
 "BR"
 ],
 "KHH-MFM": [
-"BR"
+"BR",
+"NX"
 ],
 "KHH-NRT": [
 "BR",
@@ -12497,6 +12649,9 @@
 ],
 "KIN-PTY": [
 "CM"
+],
+"KIX-MFM": [
+"NX"
 ],
 "KIX-MNL": [
 "PR"
@@ -12621,6 +12776,7 @@
 "LO"
 ],
 "KRK-MUC": [
+"EN",
 "LH"
 ],
 "KRK-ORD": [
@@ -12695,6 +12851,9 @@
 "KSC-ZRH": [
 "LX"
 ],
+"KSJ-RHO": [
+"OA"
+],
 "KTA-PER": [
 "VA"
 ],
@@ -12767,6 +12926,9 @@
 "KTW-ZTH": [
 "LO"
 ],
+"KUL-MFM": [
+"NX"
+],
 "KUL-MNL": [
 "PR"
 ],
@@ -12821,6 +12983,9 @@
 ],
 "KWE-LHW": [
 "HO"
+],
+"KWE-MFM": [
+"NX"
 ],
 "KWE-NKG": [
 "HO",
@@ -12887,6 +13052,9 @@
 ],
 "KWL-TSN": [
 "CA"
+],
+"KZS-RHO": [
+"OA"
 ],
 "LAD-LBV": [
 "TK"
@@ -13299,6 +13467,7 @@
 ],
 "LIN-MUC": [
 "AZ",
+"EN",
 "LH"
 ],
 "LIN-NAP": [
@@ -13571,6 +13740,7 @@
 "CA"
 ],
 "LUX-MUC": [
+"EN",
 "LH"
 ],
 "LUX-OPO": [
@@ -13602,6 +13772,9 @@
 ],
 "LXR-SSH": [
 "MS"
+],
+"LXS-SKG": [
+"OA"
 ],
 "LXS-VIE": [
 "OS"
@@ -13637,6 +13810,7 @@
 "ZH"
 ],
 "LYS-MUC": [
+"EN",
 "LH"
 ],
 "LYS-SPU": [
@@ -13893,17 +14067,63 @@
 "MEX-YYZ": [
 "AC"
 ],
+"MFM-MNL": [
+"NX"
+],
+"MFM-NGB": [
+"NX"
+],
+"MFM-NKG": [
+"NX"
+],
+"MFM-NNG": [
+"NX"
+],
+"MFM-NRT": [
+"NX"
+],
 "MFM-NTG": [
 "ZH"
 ],
+"MFM-PEK": [
+"NX"
+],
+"MFM-PKX": [
+"NX"
+],
+"MFM-PVG": [
+"NX"
+],
+"MFM-RMQ": [
+"NX"
+],
+"MFM-SHA": [
+"NX"
+],
+"MFM-SIN": [
+"NX"
+],
+"MFM-TFU": [
+"NX"
+],
+"MFM-TNA": [
+"NX"
+],
 "MFM-TPE": [
-"BR"
+"BR",
+"NX"
+],
+"MFM-WNZ": [
+"NX"
 ],
 "MFM-WUH": [
 "CA"
 ],
 "MFM-WUX": [
 "ZH"
+],
+"MFM-XMN": [
+"NX"
 ],
 "MFR-SFO": [
 "UA"
@@ -14149,6 +14369,7 @@
 "ET"
 ],
 "MUC-MXP": [
+"EN",
 "LH"
 ],
 "MUC-NAP": [
@@ -14164,6 +14385,7 @@
 "TK"
 ],
 "MUC-OLB": [
+"EN",
 "LH"
 ],
 "MUC-OMR": [
@@ -14206,6 +14428,7 @@
 "LH"
 ],
 "MUC-PUY": [
+"EN",
 "LH"
 ],
 "MUC-PVG": [
@@ -14293,11 +14516,17 @@
 "MUC-TRD": [
 "LH"
 ],
+"MUC-TRN": [
+"EN"
+],
 "MUC-TUN": [
 "LH"
 ],
 "MUC-TZX": [
 "TK"
+],
+"MUC-VCE": [
+"EN"
 ],
 "MUC-VIE": [
 "LH",
@@ -14305,6 +14534,9 @@
 ],
 "MUC-VLC": [
 "LH"
+],
+"MUC-VRN": [
+"EN"
 ],
 "MUC-WAW": [
 "LH",
@@ -14329,6 +14561,7 @@
 "OU"
 ],
 "MUC-ZRH": [
+"EN",
 "LH",
 "LX"
 ],
@@ -16202,6 +16435,9 @@
 ],
 "SJW-TFU": [
 "CA"
+],
+"SKG-SMI": [
+"OA"
 ],
 "SKG-STR": [
 "A3",

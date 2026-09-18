@@ -18,6 +18,7 @@ const trip = {
   dateBack: '',        // 帰りの搭乗日。予約を受け付けてもらえる期間の計算に使います
                        // （公式：復路の搭乗日の355日前から予約が開きます）
   onlyReachable: true, // 行けるところだけ出すか
+  carrier: '',         // 1社だけで組むときの会社（VN など）。空なら指定なし
 
   /* どの欄でどの国を選んだか。
      ★これを覚えていないと、国を選んだ瞬間に画面を描き直したときに
@@ -49,6 +50,18 @@ function fitSlots(list) {
        どちらかを編集しているあいだは、もう一方を候補から外しません。
        ここを外すと、出発地に東京を選べなくなります。 */
 function usedCities(field) {
+  /* 乗継の欄は、同じ向きの道すじに入っている街だけを外します。
+     行きと帰りで同じ街を乗り継ぐのは、きまりの上で組めるためです
+     （東京⇒ハノイ⇒パリ／パリ⇒ハノイ⇒東京）。 */
+  const m = /^(out|back)(\d)$/.exec(field || '');
+  if (m) {
+    const i = Number(m[2]);
+    const chain = m[1] === 'out'
+      ? [trip.from, trip.dest, ...trip.out.filter((_, k) => k !== i)]
+      : [trip.mode === 'openjaw' ? trip.ret : trip.dest, trip.to,
+         ...trip.back.filter((_, k) => k !== i)];
+    return chain.filter(Boolean);
+  }
   const list = [trip.dest, ...trip.out];
   if (trip.mode !== 'oneway') list.push(...trip.back);
   if (trip.mode === 'openjaw') list.push(trip.ret);
@@ -72,6 +85,21 @@ function makePicker({ key, value, japanOnly, overseasOnly, used, only, placehold
   wrap.className = 'picker';
 
   const groups = cityOptions({ japanOnly, overseasOnly, used, only });
+
+  /* いま入っている都市の国が候補から消えていても、その国とその都市は出しておきます。
+     でないと、選んだはずの都市がプルダウンに出ず、空欄に見えてしまいます。
+     （1社で組むと国ごとの街が少なく、フランスはパリだけ、のようになるので起きやすくなります。
+       航空会社を切り替えて、いまの都市がその会社の街でなくなったときも同じです） */
+  if (value && !japanOnly) {
+    const cur = cityInfo(value);
+    if (cur && !groups.some((g) => g.label === cur.countryName)) {
+      const rank = (name) => MB.countryList.findIndex((c) => c.name === name);
+      const me = MB.countryList[rank(cur.countryName)];
+      const at = groups.findIndex((g) => rank(g.label) > rank(cur.countryName));
+      const add = { label: cur.countryName, zone: cur.zone, region: me ? me.region : '', cities: [value] };
+      if (at < 0) groups.push(add); else groups.splice(at, 0, add);
+    }
+  }
 
   /* 日本の中から選ぶときは、国を選ぶ意味がないので都市の1段だけにします。 */
   if (japanOnly) {
@@ -168,7 +196,7 @@ function renderLeg(box, dir) {
 
   if (isOut) {
     box.appendChild(row('出発地', makePicker({
-      key: 'from', value: trip.from, used: usedCities('from'),
+      key: 'from', value: trip.from, used: usedCities('from'), only: carrierOnly(),
       placeholder: '出発する都市', onChange: (v) => { trip.from = v; refresh(); },
     }), true));
   }
@@ -176,7 +204,7 @@ function renderLeg(box, dir) {
   // オープンジョーのときは、帰りがどこから始まるかを選びます
   if (!isOut && trip.mode === 'openjaw') {
     box.appendChild(row('帰りの出発地', makePicker({
-      key: 'ret', value: trip.ret, used: usedCities('ret'),
+      key: 'ret', value: trip.ret, used: usedCities('ret'), only: carrierOnly(),
       placeholder: '帰りに乗る都市', onChange: (v) => { trip.ret = v; refresh(); },
     }), true));
   } else if (!isOut) {
@@ -203,7 +231,7 @@ function renderLeg(box, dir) {
     box.appendChild(row('目的地', goal, true));
   } else {
     box.appendChild(row('帰着地', makePicker({
-      key: 'to', value: trip.to, used: usedCities('to'),
+      key: 'to', value: trip.to, used: usedCities('to'), only: carrierOnly(),
       placeholder: '帰り着く都市', onChange: (v) => { trip.to = v; refresh(); },
     }), true));
   }
@@ -231,6 +259,14 @@ function renderReachChips(box, dir) {
     : 'ここに入れられる街がありません';
   wrap.appendChild(head);
 
+  const why = reachWhy(dir, at, names);
+  if (why) {
+    const p = document.createElement('p');
+    p.className = 'reach-why';
+    p.textContent = why;
+    wrap.appendChild(p);
+  }
+
   if (names.length) {
     const chips = document.createElement('div');
     chips.className = 'chips';
@@ -256,6 +292,52 @@ function renderReachChips(box, dir) {
   box.appendChild(wrap);
 }
 
+/* 空港コード → 国コード。一度だけ作ります。 */
+let IATA_COUNTRY = null;
+function countryOfIata(code) {
+  if (!IATA_COUNTRY) {
+    IATA_COUNTRY = {};
+    for (const c of Object.values(MB.cityIndex)) c.iata.forEach((i) => { IATA_COUNTRY[i] = c.country; });
+  }
+  return IATA_COUNTRY[code];
+}
+
+/* 乗継の候補が絞られた理由。
+   東南アジアで「フィリピンしか出てこない」ようなとき、こわれて見えないように、
+   きまりや便のせいであることを一言そえます。 */
+function reachWhy(dir, at, names) {
+  const lines = [];
+  const ja = /[ぁ-んァ-ヶ一-龠]/;
+  const countries = [...new Set(names.filter((n) => !isJapan(n)).map((n) => cityInfo(n).countryName))];
+
+  // 1社で組むとき：その会社が1つの国を中心に飛んでいる
+  if (trip.carrier && countries.length === 1) {
+    const name = airlineName(trip.carrier);
+    const cc = cityInfo(names.find((n) => !isJapan(n))).country;
+    const every = Object.entries(MB.segments)
+      .filter(([, a]) => a.includes(trip.carrier))
+      .every(([k]) => k.split('-').some((i) => countryOfIata(i) === cc));
+    lines.push(`海外で乗り継げるのは${countries[0]}の街だけです。` +
+      (every ? `${name}の便は、どれも${countries[0]}を発着するためです。`
+             : `${name}は${countries[0]}を中心に飛んでいるためです。`));
+  }
+
+  // きまりで外した街（便はつながっているもの）
+  const blocked = transitBlocked(trip, dir, at).filter((b) => ja.test(b.city));
+  const dest = cityInfo(trip.dest);
+  const text = {
+    dearer: (cs) => `${cs}は、目的地の${trip.dest}（${MB.labels[dest.zone]}）より必要マイル数が多い地域なので、乗継地にできません（ANA公式のきまり）。`,
+    over:   (cs) => `${cs}は、そこから${trip.dest}までの必要マイル数が ${trip.from} から${trip.dest}までより多くなるので、乗継地にできません（ANA公式のきまり）。`,
+    area:   (cs) => `${cs}は、出発地とも目的地とも別のエリアなので、乗継地にできません（ANA公式のきまり）。`,
+  };
+  for (const why of ['dearer', 'over', 'area']) {
+    const cs = [...new Set(blocked.filter((b) => b.why === why).map((b) => cityInfo(b.city).countryName))]
+      .filter((c) => !countries.includes(c)).slice(0, 4);
+    if (cs.length) lines.push(text[why](cs.join('・')));
+  }
+  return lines.join(' ');
+}
+
 /* 空いた枠を後ろに詰める（乗継1を消したら2が繰り上がる） */
 function tidy(list) {
   const filled = list.filter(Boolean);
@@ -270,8 +352,12 @@ function renderSuggests(plans) {
   box.innerHTML = '';
   if (!plans) return;
   if (!plans.length) {
-    box.innerHTML = '<p class="hint">この行き先で成り立つ乗り継ぎの道すじが見つかりませんでした。' +
-                    '出発地を変えるか、目的地を近いところにしてみてください。</p>';
+    const name = trip.carrier ? airlineName(trip.carrier) : '';
+    box.innerHTML = name
+      ? `<p class="hint">${name}の便だけでつながる道すじが見つかりませんでした。` +
+        `目的地を${name}が飛んでいる街にしてみてください。</p>`
+      : '<p class="hint">この行き先で成り立つ乗り継ぎの道すじが見つかりませんでした。' +
+        '出発地を変えるか、目的地を近いところにしてみてください。</p>';
     return;
   }
   const wrap = document.createElement('div');
@@ -306,6 +392,69 @@ function renderSuggests(plans) {
 }
 
 /* ------------------------------------------------------------
+ *  航空会社（1社だけで組む）
+ *
+ *  ベトナム航空・エティハド航空など9社は、
+ *  「単一の提携航空会社運航便での旅程のみ」使えます（ANA公式）。
+ *  ここで選ぶと、行ける街・行き方・判定のすべてを、その会社の便だけで見ます。
+ * ---------------------------------------------------------- */
+
+/* 出発地などのプルダウンをしぼるときの街。しぼらないときは null。 */
+function carrierOnly() {
+  return trip.onlyReachable && trip.carrier ? carrierCities(trip.carrier) : null;
+}
+
+function renderCarrier() {
+  const sel = $('carrierSel');
+  if (!sel.options.length) {           // 選択肢は一度だけ作ります
+    sel.appendChild(new Option('指定しない（スターアライアンス便など）', ''));
+    const g = document.createElement('optgroup');
+    g.label = '1社だけで組む会社';
+    [...MB.partnerOnly]
+      .map((c) => [c, airlineName(c)])
+      .sort((a, b) => a[1].localeCompare(b[1], 'ja'))
+      .forEach(([c, n]) => g.appendChild(new Option(n, c)));
+    sel.appendChild(g);
+  }
+  sel.value = trip.carrier || '';
+  $('carrierLine').classList.toggle('on', !!trip.carrier);
+
+  const hint = $('carrierHint');
+  if (!trip.carrier) {
+    hint.textContent = 'ベトナム航空・エティハド航空など9社は、その会社の便だけで組んだ旅程でしか使えません。' +
+                       'その会社で組むときは、ここで選んでください。';
+    return;
+  }
+  const name = airlineName(trip.carrier);
+  const lines = [
+    `<b>${name}</b>は、${name}の便だけで組んだ旅程でしか使えません（ANA公式）。` +
+    `行ける街も行き方も、${name}が飛んでいる区間だけで出します。`,
+  ];
+  const hubs = carrierHubs(trip.carrier, 3);
+  if (hubs.length) lines.push(`便の多い街：${hubs.join('・')}。乗り継ぎはだいたいここになります。`);
+  const served = carrierCities(trip.carrier);
+  /* その会社の便が1つの国の中だけなら、この特典では組めません
+     （目的地は出発地と別の国にするきまり）。オリンピック航空がそうです。 */
+  const countries = new Set([...served].map((c) => cityInfo(c).country));
+  if (countries.size === 1) {
+    const cn = cityInfo([...served][0]).countryName;
+    lines.push(`★${name}の便は${cn}の国内だけです。` +
+               '目的地は出発地と別の国にするきまりなので、この会社だけでは組めません。');
+  } else if (trip.from && !served.has(trip.from)) {
+    lines.push(`★${name}は ${trip.from} に飛んでいません。出発地を変えてください。`);
+  } else if (trip.onlyReachable && trip.from) {
+    const dests = allowedDestinations(Object.assign({}, trip, { dest: '' }));
+    if (dests && !dests.size) {
+      lines.push(`★${name}の便だけでは、${trip.from} から組める目的地がありません。`);
+    }
+  }
+  if (isJapan(trip.from)) lines.push('日本国内の乗り継ぎはANA便になるので、入れられません。');
+  if (CARRIER_NOTES[trip.carrier]) lines.push(CARRIER_NOTES[trip.carrier]);
+  if (!trip.onlyReachable) lines.push('「行けるところだけ出す」を切っているので、候補はしぼっていません。');
+  hint.innerHTML = lines.join('<br>');
+}
+
+/* ------------------------------------------------------------
  *  旅程の形をえらぶボタン
  * ---------------------------------------------------------- */
 function renderModes() {
@@ -336,6 +485,7 @@ function renderModes() {
  * ---------------------------------------------------------- */
 function refresh() {
   renderModes();
+  renderCarrier();
   $('dateIn').value = trip.date || '';
   $('dateBack').value = trip.dateBack || '';
   $('onlyReach').checked = trip.onlyReachable !== false;
@@ -418,7 +568,9 @@ function renderMiles(r) {
   const names = { Y: 'エコノミー', PY: 'プレミアムエコノミー', C: 'ビジネス', F: 'ファースト' };
   /* ★どちらの表の数字かを必ず書きます。
      ANA便だけで組むかどうかで、まったく別の表になるためです。 */
-  $('milesLead').textContent = 'スターアライアンス便を1便でも使うとき';
+  $('milesLead').textContent = trip.carrier
+    ? `${airlineName(trip.carrier)}だけで組むとき`
+    : 'スターアライアンス便を1便でも使うとき';
   $('milesBox').innerHTML = Object.entries(r.miles)
     .map(([k, v]) => `<div class="mile"><span class="mile-cls">${names[k] || k}</span>` +
                      `<span class="mile-val"><span class="mile-num">${v.toLocaleString()}</span>` +
@@ -435,6 +587,16 @@ function renderMiles(r) {
       .map(([k, v]) => `${names[k]} +${(v - r.milesBase[k]).toLocaleString()}`)
       .join('　');
     hint.textContent = `海外で乗り継ぐので Zone 1-B です。直行の往復（Zone 1-A）にくらべて ${diff} マイル。`;
+  } else if (r.fromZone === '1-A' && trip.carrier &&
+             !airlinesBetween(trip.from, trip.dest).includes(trip.carrier)) {
+    /* 1社で組むとき、その会社に直行便が無ければ、海外で乗り継ぐしかありません。
+       日本国内の乗り継ぎはANA便になるので使えず、必ず Zone 1-B になります。
+       ここで 1-A の数字だけを見せると、とれない値段を見せることになります。 */
+    const name = airlineName(trip.carrier);
+    const b = milesFor('1-B', r.destZone, trip.mode === 'oneway');
+    hint.textContent = `${name}は ${trip.from}–${trip.dest} の直行便が無いので、海外で乗り継ぐことになり Zone 1-B です` +
+      (b ? `（エコノミー ${b.Y.toLocaleString()}／ビジネス ${(b.C || 0).toLocaleString()}）。` : '。') +
+      '上の数字は乗継地を入れる前のものです。';
   } else if (r.fromZone === '1-A') {
     hint.textContent = '海外で乗り継がない旅程なので Zone 1-A です。海外の乗継地を足すと 1-B になり、必要マイル数が上がります。';
   } else {
@@ -464,6 +626,7 @@ function renderSeasonHint(r) {
 function renderAnaBox(r) {
   const box = $('anaBox');
   box.innerHTML = '';
+  if (trip.carrier) return;     // 1社で組むときは、ANA便だけの特典とは見くらべません
   const a = r.ready && r.anaOnly;
   if (!a || !r.miles) return;
 
@@ -561,7 +724,8 @@ function renderItinerary(r) {
     }
     const air = s.airlines.length
       ? s.airlines.map((c) => {
-          const cls = MB.starCodes.has(c) ? 'air star' : 'air partner';
+          const cls = (MB.starCodes.has(c) ? 'air star' : 'air partner') +
+                      (c === trip.carrier ? ' pick' : '');
           const end = MB.ending[c] ? ` title="${MB.ending[c]}"` : '';
           return `<span class="${cls}"${end}>${airlineName(c)}</span>`;
         }).join('')
@@ -657,6 +821,7 @@ function renderPageNav() {
 function asText() {
   const r = judge(trip);
   const lines = [`旅程の形：${MODES[trip.mode].label}`, `目的地：${trip.dest}`];
+  if (trip.carrier) lines.push(`航空会社：${airlineName(trip.carrier)}だけで組む`);
   if (trip.date) lines.push(`行きの搭乗日：${trip.date}` + (r.anaOnly && r.anaOnly.seasonName ? `（${r.anaOnly.seasonName}）` : ''));
   if (trip.dateBack && trip.mode !== 'oneway') lines.push(`帰りの搭乗日：${trip.dateBack}`);
   if (r.booking && !r.booking.invalid) {
@@ -689,6 +854,7 @@ function load() {
     if (!trip.countries) trip.countries = {};   // 前の版の記録には入っていません
     if (trip.onlyReachable === undefined) trip.onlyReachable = true;
     if (trip.dateBack === undefined) trip.dateBack = '';   // 前の版の記録には入っていません
+    if (!trip.carrier) trip.carrier = '';                  // 前の版の記録には入っていません
     trip.out = fitSlots(trip.out);              // 枠の数が変わっていることがあります
     trip.back = fitSlots(trip.back);
   } catch (e) {}
@@ -701,6 +867,7 @@ function load() {
   try {
     const src = await loadAll();
     load();
+    if (trip.carrier && !MB.partnerOnly.has(trip.carrier)) trip.carrier = '';
     if (!trip.out.length) trip.out = emptySlots();
     if (!trip.back.length) trip.back = emptySlots();
     if (!trip.from) trip.from = APP.homeCity;
@@ -743,7 +910,7 @@ function load() {
     Object.assign(trip, {
       mode: 'roundtrip', from: APP.homeCity, out: emptySlots(), dest: '',
       ret: '', back: emptySlots(), to: APP.homeCity, stopover: '',
-      date: '', dateBack: '', countries: {},
+      date: '', dateBack: '', countries: {}, carrier: '',
     });
     refresh();
   });
@@ -791,6 +958,14 @@ function load() {
       await navigator.clipboard.writeText(t);
       flash($('seatCopy'), 'コピーしました');
     } catch (e) { flash($('seatCopy'), 'コピーできませんでした'); }
+  });
+
+  $('carrierSel').addEventListener('change', () => {
+    trip.carrier = $('carrierSel').value;
+    trip.reachOpen = '';
+    trip.countries = {};   // 候補が変わるので、覚えていた国は選び直しになります
+    renderSuggests(null);
+    refresh();
   });
 
   $('onlyReach').addEventListener('change', () => {
