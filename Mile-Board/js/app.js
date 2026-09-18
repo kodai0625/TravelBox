@@ -39,9 +39,11 @@ function fitSlots(list) {
   return [...filled, ...Array(RULE.transitSlots - filled.length).fill('')];
 }
 
-/* すでに旅程で使っている都市。
-   同じ都市を二度選べないよう、プルダウンから外すために使います。
-   field は、いま編集している欄の名前です。
+/* すでに旅程で使っている都市と、その役割（目的地・行きの乗継1 など）。
+   同じ都市を二度選べないよう、プルダウンでは「バンコク（目的地）」のように
+   選べない形で出します。field は、いま編集している欄の名前です。
+   ★外してしまうと、その国の候補がその都市だけのとき国ごと消えて、
+     「東南アジアにタイが無い」ように見えます（フィリピン航空で目的地をバンコクにしたとき）。
 
    ★気をつけるところが2つあります。
      ・いま使っていない欄まで数えると、選べるはずの都市が消えます。
@@ -49,27 +51,40 @@ function fitSlots(list) {
      ・出発地と帰着地は、往復なら同じ都市なのがふつうです（東京→…→東京）。
        どちらかを編集しているあいだは、もう一方を候補から外しません。
        ここを外すと、出発地に東京を選べなくなります。 */
-function usedCities(field) {
+function usedRoles(field) {
+  const roles = new Map();
+  const add = (city, role) => {
+    if (!city) return;
+    roles.set(city, roles.has(city) ? `${roles.get(city)}・${role}` : role);
+  };
+  const oneway = trip.mode === 'oneway', openjaw = trip.mode === 'openjaw';
+  const outs = () => trip.out.forEach((c, i) => add(c, `行きの乗継${i + 1}`));
+  const backs = () => { if (!oneway) trip.back.forEach((c, i) => add(c, `帰りの乗継${i + 1}`)); };
+
   /* 乗継の欄は、同じ向きの道すじに入っている街だけを外します。
      行きと帰りで同じ街を乗り継ぐのは、きまりの上で組めるためです
      （東京⇒ハノイ⇒パリ／パリ⇒ハノイ⇒東京）。 */
   const m = /^(out|back)(\d)$/.exec(field || '');
   if (m) {
     const i = Number(m[2]);
-    const chain = m[1] === 'out'
-      ? [trip.from, trip.dest, ...trip.out.filter((_, k) => k !== i)]
-      : [trip.mode === 'openjaw' ? trip.ret : trip.dest, trip.to,
-         ...trip.back.filter((_, k) => k !== i)];
-    return chain.filter(Boolean);
+    if (m[1] === 'out') {
+      add(trip.from, '出発地'); add(trip.dest, '目的地');
+      trip.out.forEach((c, k) => { if (k !== i) add(c, `行きの乗継${k + 1}`); });
+    } else {
+      add(openjaw ? trip.ret : trip.dest, openjaw ? '帰りの出発地' : '目的地'); add(trip.to, '帰着地');
+      trip.back.forEach((c, k) => { if (k !== i) add(c, `帰りの乗継${k + 1}`); });
+    }
+    return roles;
   }
-  const list = [trip.dest, ...trip.out];
-  if (trip.mode !== 'oneway') list.push(...trip.back);
-  if (trip.mode === 'openjaw') list.push(trip.ret);
+  if (field !== 'dest') add(trip.dest, '目的地');
+  outs();
+  backs();
+  if (openjaw && field !== 'ret') add(trip.ret, '帰りの出発地');
   if (field !== 'from' && field !== 'to') {
-    list.push(trip.from);
-    if (trip.mode !== 'oneway') list.push(trip.to);
+    add(trip.from, '出発地');
+    if (!oneway) add(trip.to, '帰着地');
   }
-  return list.filter(Boolean);
+  return roles;
 }
 
 /* ------------------------------------------------------------
@@ -84,7 +99,21 @@ function makePicker({ key, value, japanOnly, overseasOnly, used, only, placehold
   const wrap = document.createElement('div');
   wrap.className = 'picker';
 
-  const groups = cityOptions({ japanOnly, overseasOnly, used, only });
+  /* 使っている都市（used）は外さずに、選べない形で出します（上の usedRoles）。
+     used は役割つきの Map でも、ただの配列でもかまいません。 */
+  const roleOf = (n) => {
+    if (!used || n === value) return '';
+    if (used instanceof Map) return used.get(n) || '';
+    return used.includes(n) ? '使っています' : '';
+  };
+  const groups = cityOptions({ japanOnly, overseasOnly, only });
+  const optionFor = (n) => {
+    const role = roleOf(n);
+    const o = new Option(role ? `${n}（${role}）` : n, n);
+    if (role) o.disabled = true;
+    if (n === value) o.selected = true;
+    return o;
+  };
 
   /* いま入っている都市の国が候補から消えていても、その国とその都市は出しておきます。
      でないと、選んだはずの都市がプルダウンに出ず、空欄に見えてしまいます。
@@ -109,9 +138,7 @@ function makePicker({ key, value, japanOnly, overseasOnly, used, only, placehold
     only.appendChild(new Option(placeholder || '空港を選ぶ', ''));
     const names = groups[0] ? groups[0].cities : [];
     (names.includes(value) || !value ? names : [value, ...names]).forEach((n) => {
-      const o = new Option(n, n);
-      if (n === value) o.selected = true;
-      only.appendChild(o);
+      only.appendChild(optionFor(n));
     });
     only.addEventListener('change', () => onChange(only.value));
     wrap.appendChild(only);
@@ -155,11 +182,7 @@ function makePicker({ key, value, japanOnly, overseasOnly, used, only, placehold
     city.appendChild(new Option(placeholder || '都市を選ぶ', ''));
     // いま選ばれている都市は、使用ずみでも消さずに残す
     const names = g.cities.includes(value) || !value ? g.cities : [value, ...g.cities];
-    names.forEach((n) => {
-      const o = new Option(n, n);
-      if (n === value) o.selected = true;
-      city.appendChild(o);
-    });
+    names.forEach((n) => city.appendChild(optionFor(n)));
   }
   fillCities();
 
@@ -196,7 +219,7 @@ function renderLeg(box, dir) {
 
   if (isOut) {
     box.appendChild(row('出発地', makePicker({
-      key: 'from', value: trip.from, used: usedCities('from'), only: carrierOnly(),
+      key: 'from', value: trip.from, used: usedRoles('from'), only: carrierOnly(),
       placeholder: '出発する都市', onChange: (v) => { trip.from = v; refresh(); },
     }), true));
   }
@@ -204,7 +227,7 @@ function renderLeg(box, dir) {
   // オープンジョーのときは、帰りがどこから始まるかを選びます
   if (!isOut && trip.mode === 'openjaw') {
     box.appendChild(row('帰りの出発地', makePicker({
-      key: 'ret', value: trip.ret, used: usedCities('ret'), only: carrierOnly(),
+      key: 'ret', value: trip.ret, used: usedRoles('ret'), only: carrierOnly(),
       placeholder: '帰りに乗る都市', onChange: (v) => { trip.ret = v; refresh(); },
     }), true));
   } else if (!isOut) {
@@ -216,8 +239,8 @@ function renderLeg(box, dir) {
 
   list.forEach((v, i) => {
     box.appendChild(row(`乗継 ${i + 1}`, makePicker({
-      key: `${dir}${i}`, value: v, used: usedCities(`${dir}${i}`),
-      only: trip.onlyReachable ? allowedTransits(trip, dir, i) : null,
+      key: `${dir}${i}`, value: v, used: usedRoles(`${dir}${i}`),
+      only: trip.onlyReachable ? allowedTransits(trip, dir, i, true) : null,
       placeholder: '乗り継ぐ都市', onChange: (nv) => { list[i] = nv; tidy(list); refresh(); },
     })));
   });
@@ -231,7 +254,7 @@ function renderLeg(box, dir) {
     box.appendChild(row('目的地', goal, true));
   } else {
     box.appendChild(row('帰着地', makePicker({
-      key: 'to', value: trip.to, used: usedCities('to'), only: carrierOnly(),
+      key: 'to', value: trip.to, used: usedRoles('to'), only: carrierOnly(),
       placeholder: '帰り着く都市', onChange: (v) => { trip.to = v; refresh(); },
     }), true));
   }
@@ -496,8 +519,8 @@ function refresh() {
   // 目的地
   $('destPicker').replaceChildren(makePicker({
     key: 'dest', value: trip.dest,
-    used: usedCities('dest'),
-    only: trip.onlyReachable ? allowedDestinations(trip) : null,
+    used: usedRoles('dest'),
+    only: trip.onlyReachable ? allowedDestinations(trip, true) : null,
     placeholder: '行きたい都市', onChange: (v) => { trip.dest = v; renderSuggests(null); refresh(); },
   }));
   const d = trip.dest && cityInfo(trip.dest);

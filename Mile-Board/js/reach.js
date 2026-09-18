@@ -87,7 +87,7 @@ function citiesInUse(trip, except) {
  *  乗継の欄に入れられる街
  *  leg は 'out'（行き）か 'back'（帰り）、index は何番目の乗継か。
  * ---------------------------------------------------------- */
-function allowedTransits(trip, leg, index) {
+function allowedTransits(trip, leg, index, keepUsed) {
   const fromC = cityInfo(trip.from), destC = cityInfo(trip.dest);
   if (!fromC || !destC) return null;           // まだ決まっていないので絞りません
 
@@ -105,7 +105,9 @@ function allowedTransits(trip, leg, index) {
      （東京⇒ハノイ⇒パリ／パリ⇒ハノイ⇒東京）。
      ★以前は旅程ぜんぶで使った街を外していたので、行きにハノイを入れると
        帰りにハノイを選べませんでした。1社で組むと拠点が1つのことが多く、困ります。 */
-  const used = new Set(chain.filter((c, i) => c && i !== at));
+  /* keepUsed のときは外しません。プルダウンで「ハノイ（行きの乗継1）」のように
+     選べない形で見せて、国ごと消えないようにするためです（makePicker）。 */
+  const used = keepUsed ? new Set() : new Set(chain.filter((c, i) => c && i !== at));
   const carrier = trip.carrier || '';
   const prevNb = neighbours(prev, carrier);
   const nextNb = next ? neighbours(next, carrier) : null;
@@ -185,7 +187,7 @@ function reachableWithin(start, hops, carrier, pass) {
  *  目的地の欄に入れられる街
  *  出発地と、行きの乗継地から、たどり着ける先を出します。
  * ---------------------------------------------------------- */
-function allowedDestinations(trip) {
+function allowedDestinations(trip, keepUsed) {
   const fromC = cityInfo(trip.from);
   if (!fromC) return null;
 
@@ -193,7 +195,8 @@ function allowedDestinations(trip) {
   const fromZone = fromC.zone === '1' ? '1-B' : fromC.zone;
   const outCities = trip.out.filter(Boolean);
   const last = outCities.length ? outCities[outCities.length - 1] : trip.from;
-  const used = citiesInUse(trip, trip.dest);
+  // keepUsed のときは外しません（乗継と同じ理由です）
+  const used = keepUsed ? new Set() : citiesInUse(trip, trip.dest);
 
   /* 乗継地の中でいちばん必要マイル数が多い地域。
      目的地はこれ以上でないといけません（公式のきまり）。 */
