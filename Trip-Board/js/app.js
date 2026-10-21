@@ -108,24 +108,6 @@ function setupTheme() {
 }
 
 /* ------------------------------------------------------------
- *  ヘッダーの高さを測る
- *
- *  一覧表と比較表の見出し行を「ヘッダーのすぐ下」で止めるために、
- *  実際の高さを測って CSS に渡します。タイトルが折り返す幅では
- *  高さが変わるので、決め打ちの数値にはできません。
- * ---------------------------------------------------------- */
-function trackHeaderHeight() {
-  const head = document.querySelector('.app-header');
-  const set = () => {
-    document.documentElement.style.setProperty(
-      '--header-h', head.offsetHeight + 'px');
-  };
-  set();
-  if (window.ResizeObserver) new ResizeObserver(set).observe(head);
-  window.addEventListener('orientationchange', () => setTimeout(set, 200));
-}
-
-/* ------------------------------------------------------------
  *  タブ
  * ---------------------------------------------------------- */
 function setupTabs() {
@@ -1200,7 +1182,6 @@ async function boot() {
   }
 
   restore();
-  trackHeaderHeight();
   setupTabs();
   setupFilters();
   setupCompare();

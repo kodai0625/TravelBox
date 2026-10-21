@@ -407,10 +407,14 @@ a { color: inherit; }
 }
 .list__item:active { background: var(--surface-2); }
 
-/* エリアの見出し。上に貼り付いて、下へたどっても今どのエリアかが分かります */
+/* エリアの見出し。上に貼り付いて、下へたどっても今どのエリアかが分かります
+   ★貼り付く位置は「画面のいちばん上」です（iPhone の時刻の帯の下）。
+     以前は「ヘッダーの真下」に貼り付けていましたが、道具箱の共通デザイン（travel.css）で
+     ヘッダーがスクロールと一緒に流れていく作りになったため、
+     見出しだけが画面の途中（上から178px）に浮いて止まって見えていました（2026-10-21 に直しました）。 */
 .list__group {
   position: sticky;
-  top: var(--header-h, 0px);
+  top: env(safe-area-inset-top, 0px);
   z-index: 5;
   display: flex;
   /* しるしを足したので、文字の下端そろえ（baseline）から中央そろえに変えました。
