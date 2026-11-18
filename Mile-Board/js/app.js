@@ -217,11 +217,13 @@ function renderLeg(box, dir) {
   };
 
 
+  /* 出発地は、いちばん上の「どこから どこへ」で選びます（目的地と同じ）。
+     ここでは道すじの始まりとして出すだけです。 */
   if (isOut) {
-    box.appendChild(row('出発地', makePicker({
-      key: 'from', value: trip.from, used: usedRoles('from'), only: carrierOnly(),
-      placeholder: '出発する都市', onChange: (v) => { trip.from = v; refresh(); },
-    }), true));
+    const start = document.createElement('div');
+    start.className = 'goal';
+    start.textContent = trip.from || '（出発地は上で選びます）';
+    box.appendChild(row('出発地', start, true));
   }
 
   // オープンジョーのときは、帰りがどこから始まるかを選びます
@@ -503,6 +505,17 @@ function renderModes() {
   }
 }
 
+/* 出発地を変える。
+   帰着地が空か、それまでの出発地と同じ（＝ふつうの往復）なら、帰着地も一緒に変えます。
+   ★出発地を上に移したので、帰着地（帰りの道すじ）は画面のずっと下です。
+     付いていかないと、名古屋発に変えたのに帰りが東京のまま、に気づけません。
+     わざと別の街にしてあるとき（東京発・大阪着など）は触りません。 */
+function setFrom(v) {
+  const old = trip.from;
+  trip.from = v;
+  if (trip.mode !== 'oneway' && (!trip.to || trip.to === old)) trip.to = v;
+}
+
 /* ------------------------------------------------------------
  *  描き直し
  * ---------------------------------------------------------- */
@@ -516,7 +529,12 @@ function refresh() {
   $('backCard').hidden = oneway;
   $('stopCard').hidden = oneway;
   $('dateBackLine').hidden = oneway;
-  // 目的地
+  // 出発地（いちばん上）
+  $('fromPicker').replaceChildren(makePicker({
+    key: 'from', value: trip.from, used: usedRoles('from'), only: carrierOnly(),
+    placeholder: '出発する都市', onChange: (v) => { setFrom(v); renderSuggests(null); refresh(); },
+  }));
+  // 目的地（いちばん上）
   $('destPicker').replaceChildren(makePicker({
     key: 'dest', value: trip.dest,
     used: usedRoles('dest'),

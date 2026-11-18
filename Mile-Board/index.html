@@ -30,9 +30,9 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/travel.css?v=20260918c">
-<link rel="stylesheet" href="css/style.css?v=20260918c">
-<link rel="stylesheet" href="css/design.css?v=20260918c">
+<link rel="stylesheet" href="css/travel.css?v=20261118a">
+<link rel="stylesheet" href="css/style.css?v=20261118a">
+<link rel="stylesheet" href="css/design.css?v=20261118a">
 </head>
 <body class="paper">
 
@@ -119,6 +119,30 @@
 
   <!-- ===== 旅程の形 ===== -->
   <div class="modes" id="modes" role="group" aria-label="旅程の形"></div>
+
+  <!-- ===== どこから どこへ =====
+       ★出発地と目的地は、いちばん上で選びます（2026-11-18）。
+         以前は出発地が「行きの道すじ」の中（スマホで2画面目）にあり、探さないと見つかりませんでした。
+         中身のプルダウンは js/app.js の refresh() が入れます。 -->
+  <section class="card" id="placeCard">
+    <h2 class="card-title"><span class="step">1</span>どこから どこへ行きますか</h2>
+    <div class="leg">
+      <div class="row row-strong"><span class="row-label">出発地</span><div id="fromPicker"></div></div>
+      <div class="row row-strong"><span class="row-label">目的地</span><div id="destPicker"></div></div>
+    </div>
+    <p class="hint" id="destHint"></p>
+    <button type="button" class="btn btn-wide" id="suggestBtn">行き方をいくつか出す</button>
+    <div id="suggests"></div>
+  </section>
+
+  <!-- ===== 判定 =====
+       出発地と目的地のすぐ下に置きます。選んだらすぐ ○／× が見えるように。 -->
+  <div class="verdict" id="verdict" role="status" aria-live="polite">
+    <span class="verdict-mark" id="verdictMark">…</span>
+    <span class="verdict-text" id="verdictText">目的地を選んでください</span>
+  </div>
+  <ul class="msg-list" id="msgList"></ul>
+
   <label class="onlyline">
     <input type="checkbox" id="onlyReach" checked>
     <span>行けるところだけ出す</span>
@@ -134,18 +158,9 @@
   </div>
   <p class="hint carrier-hint" id="carrierHint"></p>
 
-  <!-- ===== 判定 ===== -->
-  <div class="verdict" id="verdict" role="status" aria-live="polite">
-    <span class="verdict-mark" id="verdictMark">…</span>
-    <span class="verdict-text" id="verdictText">目的地を選んでください</span>
-  </div>
-  <ul class="msg-list" id="msgList"></ul>
-
-  <!-- ===== 目的地 ===== -->
+  <!-- ===== 搭乗日 ===== -->
   <section class="card">
-    <h2 class="card-title"><span class="step">1</span>どこへ行きますか</h2>
-    <div class="picker" id="destPicker"></div>
-    <p class="hint" id="destHint"></p>
+    <h2 class="card-title"><span class="step">2</span>いつ行きますか</h2>
     <div class="dateline">
       <label class="row-label" for="dateIn">行きの搭乗日</label>
       <input type="date" id="dateIn" class="sel">
@@ -156,13 +171,11 @@
     </div>
     <p class="hint" id="seasonHint">日を入れると、ANA便だけで組んだときのマイル数も出ます。</p>
     <p class="hint">予約が始まるのは<b>帰りの搭乗日</b>の355日前です。行きだけでは決まりません。</p>
-    <button type="button" class="btn btn-wide" id="suggestBtn">行き方をいくつか出す</button>
-    <div id="suggests"></div>
   </section>
 
   <!-- ===== 必要マイル ===== -->
   <section class="card" id="milesCard">
-    <h2 class="card-title"><span class="step">2</span>必要マイル数</h2>
+    <h2 class="card-title"><span class="step">3</span>必要マイル数</h2>
     <p class="miles-lead" id="milesLead"></p>
     <div class="miles" id="milesBox"></div>
     <p class="hint" id="milesHint"></p>
@@ -175,26 +188,26 @@
 
   <!-- ===== 往路 ===== -->
   <section class="card">
-    <h2 class="card-title"><span class="step">3</span>行きの道すじ</h2>
+    <h2 class="card-title"><span class="step">4</span>行きの道すじ</h2>
     <div class="leg" id="legOut"></div>
   </section>
 
   <!-- ===== 復路 ===== -->
   <section class="card" id="backCard">
-    <h2 class="card-title"><span class="step">4</span>帰りの道すじ</h2>
+    <h2 class="card-title"><span class="step">5</span>帰りの道すじ</h2>
     <div class="leg" id="legBack"></div>
   </section>
 
   <!-- ===== ストップオーバー ===== -->
   <section class="card" id="stopCard">
-    <h2 class="card-title"><span class="step">5</span>24時間以上とまる街</h2>
+    <h2 class="card-title"><span class="step">6</span>24時間以上とまる街</h2>
     <p class="hint">目的地のほかに、ひとつだけ選べます。日本国内では選べません。</p>
     <div class="chips" id="stopChips"></div>
   </section>
 
   <!-- ===== 旅程 ===== -->
   <section class="card" id="itinCard" hidden>
-    <h2 class="card-title"><span class="step">6</span>できあがった旅程</h2>
+    <h2 class="card-title"><span class="step">7</span>できあがった旅程</h2>
     <div class="dg-wrap" id="diagram"></div>
     <ol class="segs" id="segs"></ol>
     <div class="actions">
@@ -297,14 +310,14 @@
 
 <div class="loading" id="loading">読み込んでいます…</div>
 
-<script src="js/update.js?v=20260918c"></script>
-<script src="js/config.js?v=20260918c"></script>
-<script src="js/rules.js?v=20260918c"></script>
-<script src="js/diagram.js?v=20260918c"></script>
-<script src="js/reach.js?v=20260918c"></script>
-<script src="js/suggest.js?v=20260918c"></script>
-<script src="js/data.js?v=20260918c"></script>
-<script src="js/seats.js?v=20260918c"></script>
-<script src="js/app.js?v=20260918c"></script>
+<script src="js/update.js?v=20261118a"></script>
+<script src="js/config.js?v=20261118a"></script>
+<script src="js/rules.js?v=20261118a"></script>
+<script src="js/diagram.js?v=20261118a"></script>
+<script src="js/reach.js?v=20261118a"></script>
+<script src="js/suggest.js?v=20261118a"></script>
+<script src="js/data.js?v=20261118a"></script>
+<script src="js/seats.js?v=20261118a"></script>
+<script src="js/app.js?v=20261118a"></script>
 </body>
 </html>
