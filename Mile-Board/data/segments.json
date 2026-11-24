@@ -1,6 +1,6 @@
 {
 "meta": {
-"title": "区間ごとの就航航空会社（この特典で乗れる会社にかぎる）",
+"title": "区間ごとの就航航空会社（この特典で乗れる会社に限る）",
 "source": "Flight-Board の data/routes.json（英語版Wikipediaの各空港記事）",
 "note": "tools/build_cities.py で生成しています。手で編集しないでください。 鍵は空港コードを並べ替えて「-」でつないだものです（例 CDG-SIN）。",
 "airlines": {

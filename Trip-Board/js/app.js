@@ -779,7 +779,7 @@ function renderCompare() {
   // 同じ国の都市を並べているときは、どの行が国のものかを断っておきます
   const multi = dup.size > 0;
   $('compareNote').innerHTML = multi
-    ? '同じ国の都市を並べています。「国」と付いた行は国ぜんたいの数字なので、'
+    ? '同じ国の都市を並べています。「国」と付いた行は国全体の数字なので、'
       + '都市が違っても同じ値になります。'
     : '';
   $('compareNote').classList.toggle('is-hidden', !multi);
@@ -942,7 +942,7 @@ function sheetHTML(c, ci) {
         <p class="lift__text">${esc(s.lifted_text).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')}</p>
         <p class="lift__src">雨の実測だけだと、雨季の終わりかけまで一律に✕になります。
           旅行ガイドや旅行会社が「行ける時期」として挙げている月を、
-          隣に良い月がある場合にかぎって1段上げています。上げるだけで、下げることはありません。</p>
+          隣に良い月がある場合に限って1段上げています。上げるだけで、下げることはありません。</p>
       </div>`);
     }
 
@@ -1025,7 +1025,7 @@ function sheetHTML(c, ci) {
     if (typeof p.level === 'number') {
       out.push(`<dl class="kv"><dt>経済全体の物価水準（参考）</dt>
         <dd>${p.level}　<span class="src">家賃や医療費まで含む平均です。
-        その国の暮らしの水準を表しますが、旅行の予算とはずれます</span></dd></dl>`);
+        その国の暮らしの水準を表しますが、旅行の予算と外れます</span></dd></dl>`);
     }
     out.push(`<p class="src">出典は${esc(DB.meta.prices.category_source)}。
       日本の値で割り直して100にしています。<br>

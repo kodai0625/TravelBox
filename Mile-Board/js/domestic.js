@@ -124,7 +124,7 @@ function judgeDomestic(trip) {
   }
   /* 6. 途中降機はできない */
   if (trip.stopover) {
-    notes.push('国内線特典では、乗り継ぐ街で24時間を超えてとまる（途中降機）ことはできません。「24時間以上とまる街」は数えていません。');
+    notes.push('国内線特典では、乗り継ぐ街で24時間を超えて泊まる（途中降機）ことはできません。「24時間以上とまる街」は数えていません。');
   }
 
   /* 7. 行き・帰りそれぞれの段 */
@@ -162,7 +162,7 @@ function judgeDomestic(trip) {
       const ground = distanceKm(dest, ret), longer = Math.max(pathKm(outLeg), pathKm(backLeg));
       if (ground >= longer) {
         errors.push(`${dest} から ${ret} への地上の移動（約${Math.round(kmToMi(ground))}マイル）が、` +
-                    `行き・帰りの長い方（約${Math.round(kmToMi(longer))}マイル）より長いので、往復になりません（公式のきまり）。`);
+                    `行き・帰りの長い方（約${Math.round(kmToMi(longer))}マイル）より長いので、往復になりません（公式の決まり）。`);
       } else {
         notes.push(`${dest} から ${ret} へは自分で移動します（特典に含まれません）。` +
                    '地上の移動は、行き・帰りの長い方の飛行距離より短いことが条件です（ここでは距離を目安で見ています）。');

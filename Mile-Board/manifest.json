@@ -1,7 +1,7 @@
 {
   "name": "Mile Board",
   "short_name": "Mile Board",
-  "description": "マイルの周遊旅程をつくる道具",
+  "description": "マイルの周遊旅程を作る道具",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#241a2e",

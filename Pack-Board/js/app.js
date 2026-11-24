@@ -529,7 +529,7 @@ function resetChecks() {
  *  分類の操作（あとから足す・消す）
  * ---------------------------------------------------------- */
 function addCategory() {
-  const name = prompt('分類の名前（例：カメラまわり、子どもの物）');
+  const name = prompt('分類の名前（例：カメラ周り、子どもの物）');
   if (name === null) return;
   const t = name.trim();
   if (!t) return;
@@ -777,7 +777,7 @@ function renderFineprint() {
   el.innerHTML =
     '登録した持ち物は<strong>この端末の中だけ</strong>に保存されます。'
     + 'サーバーには送っていないので、機内でも電波のない場所でも開けます。'
-    + '<br>そのかわり<strong>別の端末には引き継げません。</strong>'
+    + '<br>その代わり<strong>別の端末には引き継げません。</strong>'
     + 'ブラウザの履歴やサイトデータを消すと、リストも一緒に消えます。'
     + (typeof Sync !== 'undefined' && Sync.enabled()
       ? '引き継ぎたいときだけ、上の「他の端末と合わせる」を使ってください。'

@@ -354,9 +354,9 @@ function reachWhy(dir, at, names) {
   const blocked = transitBlocked(trip, dir, at).filter((b) => ja.test(b.city));
   const dest = cityInfo(trip.dest);
   const text = {
-    dearer: (cs) => `${cs}は、目的地の${trip.dest}（${MB.labels[dest.zone]}）より必要マイル数が多い地域なので、乗継地にできません（ANA公式のきまり）。`,
-    over:   (cs) => `${cs}は、そこから${trip.dest}までの必要マイル数が ${trip.from} から${trip.dest}までより多くなるので、乗継地にできません（ANA公式のきまり）。`,
-    area:   (cs) => `${cs}は、出発地とも目的地とも別のエリアなので、乗継地にできません（ANA公式のきまり）。`,
+    dearer: (cs) => `${cs}は、目的地の${trip.dest}（${MB.labels[dest.zone]}）より必要マイル数が多い地域なので、乗継地にできません（ANA公式の決まり）。`,
+    over:   (cs) => `${cs}は、そこから${trip.dest}までの必要マイル数が ${trip.from} から${trip.dest}までより多くなるので、乗継地にできません（ANA公式の決まり）。`,
+    area:   (cs) => `${cs}は、出発地とも目的地とも別のエリアなので、乗継地にできません（ANA公式の決まり）。`,
   };
   for (const why of ['dearer', 'over', 'area']) {
     const cs = [...new Set(blocked.filter((b) => b.why === why).map((b) => cityInfo(b.city).countryName))]
@@ -468,7 +468,7 @@ function renderCarrier() {
   if (countries.size === 1) {
     const cn = cityInfo([...served][0]).countryName;
     lines.push(`★${name}の便は${cn}の国内だけです。` +
-               '目的地は出発地と別の国にするきまりなので、この会社だけでは組めません。');
+               '目的地は出発地と別の国にする決まりなので、この会社だけでは組めません。');
   } else if (trip.from && !served.has(trip.from)) {
     lines.push(`★${name}は ${trip.from} に飛んでいません。出発地を変えてください。`);
   } else if (trip.onlyReachable && trip.from) {
@@ -591,7 +591,7 @@ function renderVerdict(r) {
   } else {
     box.classList.add('ng');
     mark.textContent = '×';
-    text.textContent = `${r.errors.length}件、きまりに合いません`;
+    text.textContent = `${r.errors.length}件、決まりに合いません`;
   }
 
   // まだ入力の途中のときは、上の帯に出したのと同じ文をくり返しません
@@ -892,7 +892,7 @@ function segSeatHtml(s, i) {
  *  ページの切り替え
  * ---------------------------------------------------------- */
 const PAGES = {
-  trip:  { label: '旅程をつくる', el: 'page-trip' },
+  trip:  { label: '旅程を作る', el: 'page-trip' },
   seats: { label: '空席メモ',     el: 'page-seats' },
 };
 let currentPage = 'trip';

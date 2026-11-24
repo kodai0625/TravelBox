@@ -370,7 +370,7 @@ function judge(trip) {
   /* 地上移動区間（オープンジョー）は、両端の都市を合わせて1回の乗り換えと数えます（公式）。 */
   if (openjaw) {
     if (isJapan(dest) && isJapan(ret)) oc.jp += 1; else oc.fg += 1;
-    notes.push(`${dest} から ${ret} への地上移動は、両端の都市を合わせて1回の乗り換えとして数えます（公式のきまり）。`);
+    notes.push(`${dest} から ${ret} への地上移動は、両端の都市を合わせて1回の乗り換えとして数えます（公式の決まり）。`);
   }
 
   const dirName = { out: oneway ? '' : '往路の', back: '復路の' };

@@ -56,7 +56,7 @@ const SOURCES = [
     url: 'https://www.worldbank.org/en/programs/icp' },
   { name: '経済全体の物価水準', by: '世界銀行 World Development Indicators',
     url: 'https://data.worldbank.org/' },
-  { name: '航空券の高低', by: '各国のシーズン解説をもとに手で整備（金額は持ちません）',
+  { name: '航空券の高低', by: '各国のシーズン解説を元に手で整備（金額は持ちません）',
     url: 'https://www.ana.co.jp/ja/jp/guide/amc/award/international/terms/' },
   { name: '危険情報', by: '外務省 海外安全ホームページ',
     url: 'https://www.anzen.mofa.go.jp/kiken_list.html' },
