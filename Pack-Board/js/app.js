@@ -55,7 +55,7 @@ const state = {
   undo: null,         // 直前に消したもの。取り消しに使います
 };
 
-const catName = (id) => (state.cats.find((c) => c.id === id) || {}).name || 'そのほか';
+const catName = (id) => (state.cats.find((c) => c.id === id) || {}).name || 'その他';
 
 /** どの分類にも入らなくなった持ち物の行き先。
  *  分類を消したときに持ち物まで消えないようにするための受け皿です。 */
@@ -291,8 +291,8 @@ function renderItems() {
 
   $('items').innerHTML = rows
     + `<button type="button" class="catadd" id="addCatBtn">＋ 分類を足す</button>`
-    + `<p class="catnote">分類は<strong>ぜんぶのリストで共通</strong>です。`
-    + `ここで足すと、ほかのリストにも同じ分類が出ます。</p>`;
+    + `<p class="catnote">分類は<strong>全部のリストで共通</strong>です。`
+    + `ここで足すと、他のリストにも同じ分類が出ます。</p>`;
 }
 
 function itemRow(it) {
@@ -630,7 +630,7 @@ function renderCopyFrom() {
   const sel = $('copyFromSel');
   const btn = $('copyFromBtn');
   if (!others.length) {
-    sel.innerHTML = '<option>ほかにリストがありません</option>';
+    sel.innerHTML = '<option>他にリストがありません</option>';
     sel.disabled = btn.disabled = true;
     return;
   }
@@ -780,7 +780,7 @@ function renderFineprint() {
     + '<br>そのかわり<strong>別の端末には引き継げません。</strong>'
     + 'ブラウザの履歴やサイトデータを消すと、リストも一緒に消えます。'
     + (typeof Sync !== 'undefined' && Sync.enabled()
-      ? '引き継ぎたいときだけ、上の「ほかの端末と合わせる」を使ってください。'
+      ? '引き継ぎたいときだけ、上の「他の端末と合わせる」を使ってください。'
         + '<strong>1台で使うなら、つなぐ必要はありません。</strong>'
       : '');
 }
@@ -880,12 +880,12 @@ function setupSync() {
     if (already) {
       const ok = await ask(
         'つなぎ先にリストがあります',
-        `つなぎ先には、すでに <strong>${already} 個のリスト</strong>があります。<br><br>`
-        + 'どの端末も、はじめて開いたときに自前の見本を作ります。'
+        `つなぎ先には、既に <strong>${already} 個のリスト</strong>があります。<br><br>`
+        + 'どの端末も、初めて開いたときに自前の見本を作ります。'
         + '中身が同じでも別のものとして扱われるので、そのまま合わせると'
         + '<strong>「海外旅行」が2つ、「パスポート」が2つ…と二重に並びます。</strong>'
         + '<br><br><strong>2台目としてつなぐなら「つなぎ先に合わせる」</strong>を'
-        + '選んでください。この端末のいまのリストは消えて、つなぎ先のものになります。',
+        + '選んでください。この端末の今のリストは消えて、つなぎ先のものになります。',
         'つなぎ先に合わせる', '両方を残す');
       if (ok) {
         // この端末のぶんは捨てて、まっさらから受け取ります。
@@ -903,7 +903,7 @@ function setupSync() {
     if (!state.activeId && state.lists.length) state.activeId = state.lists[0].id;
     render();
     renderCopyFrom();
-    toast('つなぎました。ほかの端末にも同じ合言葉を入れてください');
+    toast('つなぎました。他の端末にも同じ合言葉を入れてください');
   });
 
   $('syncNowBtn').addEventListener('click', () => Sync.run(true));

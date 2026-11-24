@@ -311,7 +311,7 @@ function renderReachChips(box, dir) {
       const more = document.createElement('button');
       more.type = 'button';
       more.className = 'chip chip-more';
-      more.textContent = `ほか ${names.length - show.length}`;
+      more.textContent = `他 ${names.length - show.length}`;
       more.addEventListener('click', () => { trip.reachOpen = dir; refresh(); });
       chips.appendChild(more);
     }
@@ -460,7 +460,7 @@ function renderCarrier() {
     `行ける街も行き方も、${name}が飛んでいる区間だけで出します。`,
   ];
   const hubs = carrierHubs(trip.carrier, 3);
-  if (hubs.length) lines.push(`便の多い街：${hubs.join('・')}。乗り継ぎはだいたいここになります。`);
+  if (hubs.length) lines.push(`便の多い街：${hubs.join('・')}。乗り継ぎは大体ここになります。`);
   const served = carrierCities(trip.carrier);
   /* その会社の便が1つの国の中だけなら、この特典では組めません
      （目的地は出発地と別の国にするきまり）。オリンピック航空がそうです。 */
@@ -479,7 +479,7 @@ function renderCarrier() {
   }
   if (isJapan(trip.from)) lines.push('日本国内の乗り継ぎはANA便になるので、入れられません。');
   if (CARRIER_NOTES[trip.carrier]) lines.push(CARRIER_NOTES[trip.carrier]);
-  if (!trip.onlyReachable) lines.push('「行けるところだけ出す」を切っているので、候補はしぼっていません。');
+  if (!trip.onlyReachable) lines.push('「行けるところだけ出す」を切っているので、候補は絞っていません。');
   hint.innerHTML = lines.join('<br>');
 }
 
@@ -646,14 +646,14 @@ function renderMiles(r) {
       .filter(([k]) => r.milesBase[k] != null)
       .map(([k, v]) => `${names[k]} +${(v - r.milesBase[k]).toLocaleString()}`).join('　') : '';
     hint.textContent = r.jpZone === '1-B'
-      ? `日本以外で乗り継ぐので、日本（Zone 1-B）の表です。` + (base ? `直行の往復（Zone 1-A）にくらべて ${base} マイル。` : '')
+      ? `日本以外で乗り継ぐので、日本（Zone 1-B）の表です。` + (base ? `直行の往復（Zone 1-A）に比べて ${base} マイル。` : '')
       : '日本以外で乗り継がない旅程なので、日本（Zone 1-A）の表です。日本以外の乗継地を足すと 1-B になり、必要マイル数が上がります。';
   } else if (r.fromZone === '1-B' && r.milesBase) {
     const diff = Object.entries(r.miles)
       .filter(([k]) => r.milesBase[k] != null)
       .map(([k, v]) => `${names[k]} +${(v - r.milesBase[k]).toLocaleString()}`)
       .join('　');
-    hint.textContent = `海外で乗り継ぐので Zone 1-B です。直行の往復（Zone 1-A）にくらべて ${diff} マイル。`;
+    hint.textContent = `海外で乗り継ぐので Zone 1-B です。直行の往復（Zone 1-A）に比べて ${diff} マイル。`;
   } else if (r.fromZone === '1-A' && trip.carrier &&
              !airlinesBetween(trip.from, trip.dest).includes(trip.carrier)) {
     /* 1社で組むとき、その会社に直行便が無ければ、海外で乗り継ぐしかありません。
@@ -783,10 +783,10 @@ function renderAnaBox(r) {
     `<div class="ana-rows">${rows}</div>` +
     `<p class="ana-note">${
       same ? 'この日は、どちらで組んでも必要マイル数は同じです。'
-             + '乗りたい会社や空席のあるほうで選べます。'
-    : cheaper ? 'この日は、全部ANA便で組んだほうが安くなります。'
+             + '乗りたい会社や空席のある方で選べます。'
+    : cheaper ? 'この日は、全部ANA便で組んだ方が安くなります。'
                 + 'ただしANA便に特典の空席があることが要ります。'
-    : 'この日は、スターアライアンス便を1便でも入れたほうが安くなります。'
+    : 'この日は、スターアライアンス便を1便でも入れた方が安くなります。'
       + 'ANA便だけの特典はシーズンで高くなりますが、'
       + 'スターアライアンス便が入る特典にはシーズンがないためです。'}</p>`;
   box.appendChild(el);
@@ -1091,16 +1091,16 @@ function load() {
 
   $('suggestBtn').addEventListener('click', () => {
     const btn = $('suggestBtn');
-    if (!trip.dest) { flash(btn, 'さきに目的地を選んでください'); return; }
+    if (!trip.dest) { flash(btn, '先に目的地を選んでください'); return; }
     if (trip.mode === 'openjaw') { flash(btn, 'オープンジョーでは出せません'); return; }
-    btn.textContent = 'さがしています…';
+    btn.textContent = '探しています…';
     // 画面に「さがしています」を出してから探しにいきます
     setTimeout(() => {
       const t0 = performance.now();
       const plans = suggestRoutes(trip, 6);
       renderSuggests(plans);
       btn.textContent = '行き方をいくつか出す';
-      console.log(`道さがし ${Math.round(performance.now() - t0)}ミリ秒 / ${plans.length}件`);
+      console.log(`道探し ${Math.round(performance.now() - t0)}ミリ秒 / ${plans.length}件`);
     }, 20);
   });
 

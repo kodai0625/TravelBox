@@ -114,11 +114,11 @@ function judgeDomestic(trip) {
   if (from === dest) errors.push('目的地は出発地と別の都市にしてください。');
   /* 4. 往復は出発地と最終帰着地が同じ都市（公式） */
   if (!oneway && to && to !== from) {
-    errors.push(`国内線特典の往復は、出発地と最終帰着地を同じ都市にしてください（いま ${from} と ${to}）。`);
+    errors.push(`国内線特典の往復は、出発地と最終帰着地を同じ都市にしてください（今 ${from} と ${to}）。`);
   }
   /* 5. 乗り継ぎは行き・帰り各1回まで（公式） */
-  if (out.length > 1) errors.push(`国内線特典の乗り継ぎは、行き・帰りそれぞれ1回までです（行きがいま${out.length}回）。`);
-  if (back.length > 1) errors.push(`国内線特典の乗り継ぎは、行き・帰りそれぞれ1回までです（帰りがいま${back.length}回）。`);
+  if (out.length > 1) errors.push(`国内線特典の乗り継ぎは、行き・帰りそれぞれ1回までです（行きが今${out.length}回）。`);
+  if (back.length > 1) errors.push(`国内線特典の乗り継ぎは、行き・帰りそれぞれ1回までです（帰りが今${back.length}回）。`);
   if (!oneway && trip.date && trip.dateBack && trip.dateBack < trip.date) {
     errors.push('帰りの搭乗日が、行きの搭乗日より前になっています。');
   }
@@ -162,10 +162,10 @@ function judgeDomestic(trip) {
       const ground = distanceKm(dest, ret), longer = Math.max(pathKm(outLeg), pathKm(backLeg));
       if (ground >= longer) {
         errors.push(`${dest} から ${ret} への地上の移動（約${Math.round(kmToMi(ground))}マイル）が、` +
-                    `行き・帰りの長いほう（約${Math.round(kmToMi(longer))}マイル）より長いので、往復になりません（公式のきまり）。`);
+                    `行き・帰りの長い方（約${Math.round(kmToMi(longer))}マイル）より長いので、往復になりません（公式のきまり）。`);
       } else {
         notes.push(`${dest} から ${ret} へは自分で移動します（特典に含まれません）。` +
-                   '地上の移動は、行き・帰りの長いほうの飛行距離より短いことが条件です（ここでは距離を目安で見ています）。');
+                   '地上の移動は、行き・帰りの長い方の飛行距離より短いことが条件です（ここでは距離を目安で見ています）。');
       }
     }
   }
@@ -198,7 +198,7 @@ function judgeDomestic(trip) {
     }
   }
   if (bOut && bOut.state === 'open' && (!bBack || bBack.state === 'open')) {
-    notes.push('いま予約できる期間です（搭乗日の355日前の午前9時から、搭乗の前日まで）。');
+    notes.push('今予約できる期間です（搭乗日の355日前の午前9時から、搭乗の前日まで）。');
   }
   notes.push('国内線特典は空席待ちができません。全区間の席が取れていることが要ります。');
 

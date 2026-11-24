@@ -247,7 +247,7 @@ function renderSeatHead() {
   box.hidden = false;
   const head = document.createElement('span');
   head.className = 'reach-head';
-  head.textContent = 'いまの旅程の区間：';
+  head.textContent = '今の旅程の区間：';
   box.appendChild(head);
   /* 行きの区間は行きの搭乗日の月、帰りの区間は帰りの搭乗日の月に移ります。
      押したのに8月のままだった、を避けるためです。 */
@@ -404,7 +404,7 @@ function renderSeatList() {
       </button>
       <button type="button" class="snote-del" data-del="${key}" aria-label="この記録を消す">消す</button>
     </div>`;
-  }).join('') + (all.length > 40 ? `<p class="hint">ほかに${all.length - 40}件あります。</p>` : '');
+  }).join('') + (all.length > 40 ? `<p class="hint">他に${all.length - 40}件あります。</p>` : '');
 
   box.querySelectorAll('.snote-main').forEach((b) => {
     b.addEventListener('click', () => {

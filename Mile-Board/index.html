@@ -30,9 +30,9 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/travel.css?v=20261124d">
-<link rel="stylesheet" href="css/style.css?v=20261124d">
-<link rel="stylesheet" href="css/design.css?v=20261124d">
+<link rel="stylesheet" href="css/travel.css?v=20261124e">
+<link rel="stylesheet" href="css/style.css?v=20261124e">
+<link rel="stylesheet" href="css/design.css?v=20261124e">
 </head>
 <body class="paper">
 
@@ -201,7 +201,7 @@
   <!-- ===== ストップオーバー ===== -->
   <section class="card" id="stopCard">
     <h2 class="card-title"><span class="step">6</span>24時間以上とまる街</h2>
-    <p class="hint">目的地のほかに、ひとつだけ選べます。日本国内では選べません。</p>
+    <p class="hint">目的地の他に、ひとつだけ選べます。日本国内では選べません。</p>
     <div class="chips" id="stopChips"></div>
   </section>
 
@@ -249,7 +249,7 @@
     <h3 class="ai-sub">出発の時間帯（区間ごと）</h3>
     <div id="aiTimes"></div>
     <p class="hint">「午前中の便に乗りたい」「夜ギリギリまで遊びたい」などを区間ごとに選べます。
-      取り込んだあとの表が、その時間帯に出発する便だけで ○ になります。あとで変えても、頼み直す必要はありません。</p>
+      取り込んだ後の表が、その時間帯に出発する便だけで ○ になります。後で変えても、頼み直す必要はありません。</p>
     <p class="hint" id="aiSize"></p>
     <ul class="msg-list" id="aiWarn"></ul>
 
@@ -257,7 +257,7 @@
       <li>Chrome で ANA のサイトを開き、<b>自分でログイン</b>しておく</li>
       <li>「頼む文をコピー」を押し、Chrome の Claude に貼って送る</li>
       <li>途中でパスワードを聞かれたら、<b>自分で入れる</b>（Claude には入れさせません）</li>
-      <li>終わったら Claude の返事をまるごとコピーし、下に貼って取り込む</li>
+      <li>終わったら Claude の返事を丸ごとコピーし、下に貼って取り込む</li>
     </ol>
     <div class="actions">
       <button type="button" class="btn" id="aiCopy">頼む文をコピー</button>
@@ -276,7 +276,7 @@
 
     <p class="hint">
       ANA のサイトを動かすのは Claude です。自分で頼んだときに1回ずつ使い、
-      くり返し見張らせる使い方はしないでください。AI の報告はまちがうことがあります。
+      繰り返し見張らせる使い方はしないでください。AI の報告は間違うことがあります。
       <b>予約の前に、必ず ANA の画面で確かめてください。</b>
     </p>
   </section>
@@ -294,8 +294,8 @@
     <h2 class="card-title"><span class="step">1</span>どの特典で見ましたか</h2>
     <div class="modes" id="seatAward" role="group" aria-label="特典種別"></div>
     <p class="hint">
-      同じ日・同じ路線でも、ANA特典と提携航空会社特典では<b>空席がまったく別</b>です。
-      見た画面のほうを選んでください。提携ではプレミアムエコノミーは使えません。
+      同じ日・同じ路線でも、ANA特典と提携航空会社特典では<b>空席が全く別</b>です。
+      見た画面の方を選んでください。提携ではプレミアムエコノミーは使えません。
     </p>
   </section>
 
@@ -317,7 +317,7 @@
   </section>
 
   <section class="card">
-    <h2 class="card-title"><span class="step">3</span>見えたようすを写す</h2>
+    <h2 class="card-title"><span class="step">3</span>見えた様子を写す</h2>
 
     <div class="monthbar">
       <button type="button" class="btn btn-quiet" id="seatPrev" aria-label="前の月">◀</button>
@@ -332,11 +332,11 @@
       <div class="bulkbar">
         <select class="sel" id="bulkClass" aria-label="まとめて入れるクラス"></select>
         <select class="sel" id="bulkMark" aria-label="まとめて入れる印"></select>
-        <button type="button" class="btn" id="bulkFill">この月ぜんぶに入れる</button>
+        <button type="button" class="btn" id="bulkFill">この月全部に入れる</button>
       </div>
       <p class="hint">
-        ANAの「国際線特典カレンダー」は、1つの路線・1つのクラスが2か月ぶんまとめて並びます。
-        同じ印が続いているときは、ここでまとめて入れてから、ちがう日だけ押し直すのが早いです。
+        ANAの「国際線特典カレンダー」は、1つの路線・1つのクラスが2か月分まとめて並びます。
+        同じ印が続いているときは、ここでまとめて入れてから、違う日だけ押し直すのが早いです。
       </p>
       <div class="actions">
         <button type="button" class="btn" id="seatCopy">この月をコピーする</button>
@@ -373,16 +373,16 @@
 
 <div class="loading" id="loading">読み込んでいます…</div>
 
-<script src="js/update.js?v=20261124d"></script>
-<script src="js/config.js?v=20261124d"></script>
-<script src="js/rules.js?v=20261124d"></script>
-<script src="js/diagram.js?v=20261124d"></script>
-<script src="js/reach.js?v=20261124d"></script>
-<script src="js/suggest.js?v=20261124d"></script>
-<script src="js/domestic.js?v=20261124d"></script>
-<script src="js/data.js?v=20261124d"></script>
-<script src="js/seats.js?v=20261124d"></script>
-<script src="js/ai.js?v=20261124d"></script>
-<script src="js/app.js?v=20261124d"></script>
+<script src="js/update.js?v=20261124e"></script>
+<script src="js/config.js?v=20261124e"></script>
+<script src="js/rules.js?v=20261124e"></script>
+<script src="js/diagram.js?v=20261124e"></script>
+<script src="js/reach.js?v=20261124e"></script>
+<script src="js/suggest.js?v=20261124e"></script>
+<script src="js/domestic.js?v=20261124e"></script>
+<script src="js/data.js?v=20261124e"></script>
+<script src="js/seats.js?v=20261124e"></script>
+<script src="js/ai.js?v=20261124e"></script>
+<script src="js/app.js?v=20261124e"></script>
 </body>
 </html>

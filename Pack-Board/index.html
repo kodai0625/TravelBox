@@ -28,11 +28,11 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。 -->
-<link rel="stylesheet" href="css/style.css?v=20260822b">
+<link rel="stylesheet" href="css/style.css?v=20261124a">
 <!-- 色と書体。style.css より後ろで読むこと（土台の色を上書きするため） -->
-<link rel="stylesheet" href="css/design.css?v=20260822b">
+<link rel="stylesheet" href="css/design.css?v=20261124a">
 <!-- 旅の道具箱 共通デザイン。着せ替えなので、いちばん後ろで読みます -->
-<link rel="stylesheet" href="css/travel.css?v=20260822b">
+<link rel="stylesheet" href="css/travel.css?v=20261124a">
 </head>
 <body class="paper">
 
@@ -227,7 +227,7 @@
       <button type="button" class="btn" id="copyBtn">うつしを作る</button>
       <button type="button" class="btn" id="seedBtn">見本から足りないものを足す</button>
       <div class="copyfrom">
-        <label class="copyfrom__label" for="copyFromSel">ほかのリストから持ってくる</label>
+        <label class="copyfrom__label" for="copyFromSel">他のリストから持ってくる</label>
         <div class="copyfrom__row">
           <select class="copyfrom__sel" id="copyFromSel"></select>
           <button type="button" class="btn" id="copyFromBtn">持ってくる</button>
@@ -235,20 +235,20 @@
       </div>
       <button type="button" class="btn btn--danger" id="delListBtn">このリストを消す</button>
       <p class="listops__note">
-        「うつしを作る」は、いまの持ち物をそのまま写した別のリストを作ります。
+        「うつしを作る」は、今の持ち物をそのまま写した別のリストを作ります。
         チェックは外れた状態から始まります。
         <strong>行き先ごとに少しずつ違うリストを作るときに使ってください。</strong>
       </p>
       <p class="listops__note">
-        「ほかのリストから持ってくる」は、えらんだリストの持ち物のうち、
-        <strong>いまのリストに無いものだけ</strong>を足します。
+        「他のリストから持ってくる」は、選んだリストの持ち物のうち、
+        <strong>今のリストに無いものだけ</strong>を足します。
         海外旅行と国内旅行はかなり重なるので、
         <strong>同じ名前のものは足しません。</strong>
         同じ行が2つ並ぶと、数えて確かめるときに合わなくなるためです。
       </p>
       <p class="listops__note">
-        「見本から足りないものを足す」は、はじめから入っている見本と見くらべて、
-        <strong>いまのリストに無いものだけ</strong>を足します。同じ名前のものは足しません。
+        「見本から足りないものを足す」は、初めから入っている見本と見比べて、
+        <strong>今のリストに無いものだけ</strong>を足します。同じ名前のものは足しません。
         見本が増えたときに使ってください。勝手に増えることはなく、押したときだけ足します。
         <strong>前に消したものも「無いもの」なので戻ってきます。</strong>
         要らなければ、そのまま消し直してください（「元に戻す」でまとめて取り消せます）。
@@ -258,7 +258,7 @@
 
   <!-- 端末をまたいだ同期。APP.syncUrl が空のあいだは丸ごと隠れます -->
   <details class="listops is-hidden" id="syncBox">
-    <summary class="listops__head">ほかの端末と合わせる</summary>
+    <summary class="listops__head">他の端末と合わせる</summary>
     <div class="listops__body">
       <p class="sync__state" id="syncState"></p>
       <label class="form__label" for="pinInput">合言葉</label>
@@ -267,7 +267,7 @@
              inputmode="text" enterkeyhint="done">
       <div class="sync__btns">
         <button type="button" class="btn btn--main" id="pinSaveBtn">つなぐ</button>
-        <button type="button" class="btn" id="syncNowBtn">いま合わせる</button>
+        <button type="button" class="btn" id="syncNowBtn">今合わせる</button>
         <button type="button" class="btn btn--danger" id="pinOffBtn">やめる</button>
       </div>
       <p class="listops__note">
@@ -326,9 +326,9 @@
   </div>
 </div>
 
-<script src="js/config.js?v=20260822b"></script>
-<script src="js/sync.js?v=20260822b"></script>
-<script src="js/app.js?v=20260822b"></script>
-<script src="js/update.js?v=20260822b"></script>
+<script src="js/config.js?v=20261124a"></script>
+<script src="js/sync.js?v=20261124a"></script>
+<script src="js/app.js?v=20261124a"></script>
+<script src="js/update.js?v=20261124a"></script>
 </body>
 </html>

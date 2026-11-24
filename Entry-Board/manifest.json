@@ -1,7 +1,7 @@
 {
   "name": "Entry Board",
   "short_name": "Entry Board",
-  "description": "入国の手続きを調べる。電子入国書・ビザ・そのほかの申請を、公式サイトへのリンク付きで。",
+  "description": "入国の手続きを調べる。電子入国書・ビザ・その他の申請を、公式サイトへのリンク付きで。",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

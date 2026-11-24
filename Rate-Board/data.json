@@ -2059,7 +2059,7 @@
       "cur": "THB",
       "country": "タイ",
       "city": "バンコク",
-      "area": "ラチャダムリ本店ほか19店",
+      "area": "ラチャダムリ本店他19店",
       "aliases": [
         "Bangkok",
         "กรุงเทพ",
@@ -2199,7 +2199,7 @@
       "cur": "IDR",
       "country": "インドネシア",
       "city": "バリ",
-      "area": "スミニャック本店ほか",
+      "area": "スミニャック本店他",
       "aliases": [
         "Bali",
         "バリ",
@@ -2222,7 +2222,7 @@
       "cur": "IDR",
       "country": "インドネシア",
       "city": "バリ",
-      "area": "クタほか",
+      "area": "クタ他",
       "aliases": [
         "Bali",
         "バリ",
@@ -2250,7 +2250,7 @@
         "ミッドバレー",
         "Mid Valley"
       ],
-      "shop": "Max Money／My Money Master ほか（館内に複数）",
+      "shop": "Max Money／My Money Master 他（館内に複数）",
       "jpyOk": true,
       "conf": "店舗公式＋実勢比較サイト",
       "note": "同一館内に複数店があり競争でレートが締まる。当日の最良店は klxchange.com で確認できる",
@@ -3040,7 +3040,7 @@
       "cur": "MOP",
       "country": "マカオ",
       "city": "マカオ",
-      "area": "新馬路・關閘ほか",
+      "area": "新馬路・關閘他",
       "aliases": [
         "Macau",
         "Macao",
@@ -3050,7 +3050,7 @@
       "shop": "瑞昌銀號 / Soi Cheong Money Changer",
       "jpyOk": true,
       "conf": "公式サイト（取扱通貨に日元を明記）",
-      "note": "1935年創業、マカオ金融管理局の認可両替商。本部は殷皇子大馬路62號（セナド広場至近）、ほか關閘・黑沙環・馬統領街に店舗。セナド広場周辺は両替店が集中しレート比較が容易。カジノ・ホテルの両替は便利だがレートは劣ります",
+      "note": "1935年創業、マカオ金融管理局の認可両替商。本部は殷皇子大馬路62號（セナド広場至近）、他關閘・黑沙環・馬統領街に店舗。セナド広場周辺は両替店が集中しレート比較が容易。カジノ・ホテルの両替は便利だがレートは劣ります",
       "map": "https://www.google.com/maps/search/?api=1&query=%E7%91%9E%E6%98%8C%E9%8A%80%E8%99%9F+Soi+Cheong+Money+Changer+Macau"
     },
     {
@@ -3084,7 +3084,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です",
       "map": null
@@ -3101,7 +3101,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。浦東・虹橋空港の両替所はレートが悪く手数料も高い",
       "map": null
@@ -3119,7 +3119,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です",
       "map": null
@@ -3136,7 +3136,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。羅湖口岸周辺の非公式な両替はヤミ両替で違法・偽札リスクがあります。香港経由なら香港側で替えた方が有利",
       "map": null
@@ -3153,7 +3153,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です",
       "map": null
@@ -3171,7 +3171,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。日本円は規模の大きい支店に限られる場合があります",
       "map": null
@@ -3188,7 +3188,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です",
       "map": null
@@ -3205,7 +3205,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。Alipay発祥の地で決済インフラが特に充実しており、海外カードを紐付けたAlipayでほぼ完結します",
       "map": null
@@ -3223,7 +3223,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。日本便が多く円を扱う支店は比較的見つけやすいものの、店選びの余地はありません",
       "map": null
@@ -3240,7 +3240,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。日系企業が多く円を扱う支店は多いのですが、レートは全行同一です",
       "map": null
@@ -3257,7 +3257,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です",
       "map": null
@@ -3275,7 +3275,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です",
       "map": null
@@ -3293,7 +3293,7 @@
       ],
       "shop": null,
       "jpyOk": null,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。地方観光都市のため日本円を扱うのは主要支店に限られ、支店によっては取扱がない・要予約のことがあります。広州や香港で先に人民元を用意するのが安全",
       "map": null
@@ -3310,7 +3310,7 @@
       ],
       "shop": null,
       "jpyOk": null,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。日本円の取扱は主要支店に限定される可能性が高いです",
       "map": null
@@ -3329,7 +3329,7 @@
       ],
       "shop": null,
       "jpyOk": null,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。リゾート地ですがホテル両替も銀行より不利。円を扱う支店は限られます",
       "map": null
@@ -3346,7 +3346,7 @@
       ],
       "shop": null,
       "jpyOk": true,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です",
       "map": null
@@ -3363,7 +3363,7 @@
       ],
       "shop": null,
       "jpyOk": null,
-      "conf": "中国銀行公式ほか",
+      "conf": "中国銀行公式他",
       "reasonKind": "same-rate",
       "note": "中国本土に民間の両替所は存在せず（銀行以外はヤミ両替で違法）、中国銀行・工商・建設・農業のレートはほぼ同一で店を選ぶ意味がありません。海外発行カードを紐付けたAlipay／WeChat Payと銀聯ATMが正解です。外貨両替を扱う窓口自体が乏しく、日本円が両替できるか確証が得られませんでした。長沙や上海で人民元を用意しておくこと",
       "map": null
@@ -3417,10 +3417,10 @@
         "หัวหิน",
         "ホアヒン"
       ],
-      "shop": "Twelve Victory Exchange（ナレースダムリ店ほか市内3店）",
+      "shop": "Twelve Victory Exchange（ナレースダムリ店他市内3店）",
       "jpyOk": true,
       "conf": "公式サイトの支店一覧",
-      "note": "No.160 Nares Damri Rd、毎日10:00-22:00。夜22時までやっているのが強み。ほかマーケットビレッジ店・ブルーポート店（各10:00-20:00）。全国50店超の認可両替商で日本円を扱います",
+      "note": "No.160 Nares Damri Rd、毎日10:00-22:00。夜22時までやっているのが強み。他マーケットビレッジ店・ブルーポート店（各10:00-20:00）。全国50店超の認可両替商で日本円を扱います",
       "map": "https://www.google.com/maps/search/?api=1&query=Twelve+Victory+Exchange+Nares+Damri+Hua+Hin"
     },
     {
@@ -3811,7 +3811,7 @@
         "ウィスマムルデカ",
         "Wisma Merdeka"
       ],
-      "shop": "Traveller's Money Changer ほか館内5軒前後",
+      "shop": "Traveller's Money Changer 他館内5軒前後",
       "jpyOk": null,
       "conf": "旅行フォーラム＋店舗ディレクトリ",
       "note": "館内に複数が集中し、Centre Point・空港・KK Plazaより良いという投稿が多数。ただし日本円の在庫は店ごとに差があり要確認",
@@ -4000,7 +4000,7 @@
         "メダン",
         "北スマトラ"
       ],
-      "shop": "Dolarasia Money Changer Medan ほか",
+      "shop": "Dolarasia Money Changer Medan 他",
       "jpyOk": null,
       "conf": "まとめ記事（公式サイトを直接確認できず）",
       "note": "認可両替商チェーンでメダンにも展開。ただし日本円レートを一次情報で確認できず要現地確認。マレーシア・シンガポール需要が中心で日本円の在庫は薄い可能性",
@@ -4265,7 +4265,7 @@
         "Connaught Place",
         "コンノートプレイス"
       ],
-      "shop": "BookMyForex（RBI認可）ほかコンノート・プレイスの認可両替商",
+      "shop": "BookMyForex（RBI認可）他コンノート・プレイスの認可両替商",
       "jpyOk": true,
       "conf": "公式サイト（日本円の専用ページ・認可番号を明記）",
       "note": "インドで外貨両替ができるのはRBI認可のFFMC／AD-IIだけで、無認可は違法かつ偽札リスクがあります。BookMyForexは日本円の買取・売却レートを都市別に日次公開。コンノート・プレイスには認可業者が集中し相見積りが取りやすいのが利点。空港レートは不利。★インドルピーの現金は外国人の持込・持出とも不可なので、余ったら出国前に必ず戻すこと",
@@ -4514,7 +4514,7 @@
         "Pettah",
         "ペター"
       ],
-      "shop": "People's Bank（日本円レートを公示）ほかヨーク通りの認可両替商",
+      "shop": "People's Bank（日本円レートを公示）他ヨーク通りの認可両替商",
       "jpyOk": true,
       "conf": "銀行公式サイト（日本円を含む24通貨を掲載）",
       "note": "スリランカは銀行によって日本円の扱いが明確に違い、People's Bankは円のレートを公式に日次公開している一方、Commercial Bank の現金買取表には円が載っていません。ヨーク通り51〜57番地に認可両替商が並び相見積りが取りやすいものの、円を扱うかは店ごとに要確認。無認可の路上両替は詐欺・偽札リスクで厳禁",
@@ -4636,7 +4636,7 @@
       "jpyOk": false,
       "conf": "複数の旅行媒体・リゾート公式情報で一致",
       "reasonKind": "no-jpy",
-      "note": "リゾート島は実質的に米ドル経済です。宿泊・食事・アクティビティ・チップまですべて米ドル建てで決済でき、ルフィアはほぼ不要。リゾートの両替はレートが悪く対応通貨も米ドル・ユーロ・ポンド程度に限られます。日本円ではなく米ドル現金（チップ用の1ドル札を多め）を日本で用意して持参してください",
+      "note": "リゾート島は実質的に米ドル経済です。宿泊・食事・アクティビティ・チップまで全て米ドル建てで決済でき、ルフィアはほぼ不要。リゾートの両替はレートが悪く対応通貨も米ドル・ユーロ・ポンド程度に限られます。日本円ではなく米ドル現金（チップ用の1ドル札を多め）を日本で用意して持参してください",
       "map": null
     },
     {
@@ -4736,7 +4736,7 @@
       "shop": "Link International Exchange／Paracha International Exchange",
       "jpyOk": true,
       "conf": "公式サイト（日本円のレートを支店別に公開）",
-      "note": "Parachaのサッダル店は Zainab Market 近く。ほかにMalik Exchange、Askari Exchange、Pakistan Currency Exchangeなど選択肢が多く比較しやすい都市です",
+      "note": "Parachaのサッダル店は Zainab Market 近く。他にMalik Exchange、Askari Exchange、Pakistan Currency Exchangeなど選択肢が多く比較しやすい都市です",
       "map": "https://www.google.com/maps/search/?api=1&query=Paracha+International+Exchange+Saddar+Karachi"
     },
     {
@@ -4851,7 +4851,7 @@
         "エディンバラ",
         "エジンバラ"
       ],
-      "shop": "No1 Currency（207 High Street ほか）",
+      "shop": "No1 Currency（207 High Street 他）",
       "jpyOk": true,
       "conf": "公式サイト（円の買取を明記）",
       "note": "ロイヤルマイル沿い。手数料0%でClick&Sellによるレート事前確保も可。Waverley Marketのeurochangeも代替。レートはロンドンの専門店より劣りますが実用水準",
@@ -5289,12 +5289,12 @@
       "cur": "EUR",
       "country": "ドイツ",
       "city": "ハンブルク",
-      "area": "アルトナ駅ほか",
+      "area": "アルトナ駅他",
       "aliases": [
         "Hamburg",
         "ハンブルク"
       ],
-      "shop": "ReiseBank（アルトナ駅店ほか）",
+      "shop": "ReiseBank（アルトナ駅店他）",
       "jpyOk": true,
       "conf": "公式サイト",
       "note": "市内複数＋空港。円対応ですがレートは割高で少額向き",
@@ -5757,7 +5757,7 @@
         "マドリード",
         "マドリッド"
       ],
-      "shop": "Ria Currency Exchange（ソル広場店ほか市内7店）",
+      "shop": "Ria Currency Exchange（ソル広場店他市内7店）",
       "jpyOk": true,
       "conf": "公式サイト（日本円対応・60通貨超を明記）",
       "note": "ソル広場2番地と8番地、Arenal 1、Callao 4など。EurochangeとEuropoundもレート公開型で比較できます。空港のGlobal Exchangeはレートが悪く回避を",
@@ -5925,7 +5925,7 @@
       "shop": "Unicâmbio ファロ空港店",
       "jpyOk": true,
       "conf": "公式サイト（空港拠点とチェーン共通の円対応を明記）",
-      "note": "市内に目立つ優良店の情報なし。空港店は事前オンライン予約で受取可。少額だけ両替してあとはATM＋カードが無難",
+      "note": "市内に目立つ優良店の情報なし。空港店は事前オンライン予約で受取可。少額だけ両替して後はATM＋カードが無難",
       "map": "https://www.google.com/maps/search/?api=1&query=Unicambio+Faro+Airport"
     },
     {
@@ -6090,7 +6090,7 @@
         "København",
         "コペンハーゲン"
       ],
-      "shop": "FOREX（Nørre Voldgade 90 ほか）",
+      "shop": "FOREX（Nørre Voldgade 90 他）",
       "jpyOk": true,
       "conf": "公式サイト（円の店頭両替・買戻し・手数料無料を明記）",
       "note": "ノーアポート駅前。中央駅構内とカストラップ空港T2にも店舗。中央駅から270mのTavex（50通貨超・円の専用ページあり）も比較先に。空港のProsegur Changeは円の明記なし",
@@ -6138,7 +6138,7 @@
         "Stockholm",
         "ストックホルム"
       ],
-      "shop": "FOREX（中央駅構内ほか）",
+      "shop": "FOREX（中央駅構内他）",
       "jpyOk": true,
       "conf": "公式サイト（円の店頭両替・手数料無料を明記）",
       "note": "市内複数店＋アーランダ空港各ターミナル。ネット事前注文でレート固定可。Tavex本店（Smålandsgatan 9）も円を価格表に掲載。★スウェーデンは現金お断りの店が多く、両替は最小限が正解",
@@ -6369,7 +6369,7 @@
         "エストニア",
         "Estonia"
       ],
-      "shop": "Tavid（本店 Pärnu mnt 186 ほか）",
+      "shop": "Tavid（本店 Pärnu mnt 186 他）",
       "jpyOk": true,
       "conf": "公式サイト（円を含む50通貨超）",
       "note": "エストニア最大の両替商（Tavexグループ）。手数料は1回3ユーロ。ショッピングセンター内の支店は21時まで",
@@ -6390,7 +6390,7 @@
       "shop": "Tavex（Origo店・毎日9-21時）",
       "jpyOk": true,
       "conf": "公式サイト（円の専用ページあり）",
-      "note": "中央駅の駅ビル内。新市街の本店（Elizabetes iela 21A）ほかショッピングセンターにも支店",
+      "note": "中央駅の駅ビル内。新市街の本店（Elizabetes iela 21A）他ショッピングセンターにも支店",
       "map": "https://www.google.com/maps/search/?api=1&query=Tavex+Origo+Stacijas+laukums+2+Riga"
     },
     {
@@ -6405,7 +6405,7 @@
         "リトアニア",
         "Lithuania"
       ],
-      "shop": "ExchangeLT（Aušros Vartų g. 3 ほか市内7店）",
+      "shop": "ExchangeLT（Aušros Vartų g. 3 他市内7店）",
       "jpyOk": true,
       "conf": "公式サイト（円の専用ページあり）",
       "note": "中央駅前店やMindaugo店（平日8-21時）など",
@@ -6415,7 +6415,7 @@
       "cur": "EUR",
       "country": "リトアニア",
       "city": "カウナス",
-      "area": "Akropolis ほか",
+      "area": "Akropolis 他",
       "aliases": [
         "Kaunas",
         "カウナス"
@@ -6625,7 +6625,7 @@
       "cur": "EUR",
       "country": "ブルガリア",
       "city": "ソフィア",
-      "area": "Mall of Sofia ほか市内4店",
+      "area": "Mall of Sofia 他市内4店",
       "aliases": [
         "Sofia",
         "София",
@@ -6633,7 +6633,7 @@
         "ブルガリア",
         "Bulgaria"
       ],
-      "shop": "Tavex（Mall of Sofia店ほか）",
+      "shop": "Tavex（Mall of Sofia店他）",
       "jpyOk": true,
       "conf": "公式サイト（円を含む約60通貨のレートを公開）",
       "note": "★ブルガリアは2026年1月1日にユーロを導入済みで、レフは流通を終えました。両替は円→ユーロです。Mall of Sofia店は毎日10-22時。プロヴディフ・ブルガスにも支店",
@@ -6747,7 +6747,7 @@
       "cur": "RSD",
       "country": "セルビア",
       "city": "ベオグラード",
-      "area": "中心部ほか市内複数",
+      "area": "中心部他市内複数",
       "aliases": [
         "Belgrade",
         "Beograd",
@@ -7458,7 +7458,7 @@
       "shop": "CADECA（国営両替所・オビスポ店）",
       "jpyOk": true,
       "conf": "公式サイト（取扱通貨に日本円を明記）",
-      "note": "★キューバは特殊です。公式レートと非公式実勢レートの乖離が非常に大きく、2025年末から変動相場の新制度・CADECAでの外貨購入は予約制で上限100ドル相当。実務はユーロか米ドルの現金持参が定石です。米系ネットワーク経由のカードはすべて不可、日本発行カードもATMは不安定",
+      "note": "★キューバは特殊です。公式レートと非公式実勢レートの乖離が非常に大きく、2025年末から変動相場の新制度・CADECAでの外貨購入は予約制で上限100ドル相当。実務はユーロか米ドルの現金持参が定石です。米系ネットワーク経由のカードは全て不可、日本発行カードもATMは不安定",
       "map": "https://www.google.com/maps/search/?api=1&query=CADECA+Calle+Obispo+Habana+Vieja"
     },
     {
@@ -7776,7 +7776,7 @@
       "jpyOk": false,
       "conf": "報道複数",
       "reasonKind": "no-jpy",
-      "note": "★ボリビアは現在、公式レート（6.96Bs/USD）と平行レート（8.9Bs超）が大きく乖離する「いまのブルードル国」です。正規両替所もドル不足で、米ドル現金の価値が非常に高い。円は不可。米ドル現金を日本から持参してください",
+      "note": "★ボリビアは現在、公式レート（6.96Bs/USD）と平行レート（8.9Bs超）が大きく乖離する「今のブルードル国」です。正規両替所もドル不足で、米ドル現金の価値が非常に高い。円は不可。米ドル現金を日本から持参してください",
       "map": null
     },
     {
@@ -8088,7 +8088,7 @@
         "أبوظبي",
         "アブダビ"
       ],
-      "shop": "Al Ansari Exchange（アブダビ・モール店ほか市内55支店）",
+      "shop": "Al Ansari Exchange（アブダビ・モール店他市内55支店）",
       "jpyOk": true,
       "conf": "公式サイト（通貨コンバータに日本円を明記）",
       "note": "毎日8:30-23:30。レートは公式サイトで公開されています",
@@ -8104,7 +8104,7 @@
         "الشارقة",
         "シャルジャ"
       ],
-      "shop": "Al Ansari Exchange（メガモール店ほか市内44支店）",
+      "shop": "Al Ansari Exchange（メガモール店他市内44支店）",
       "jpyOk": true,
       "conf": "公式サイト",
       "note": "",
@@ -8232,7 +8232,7 @@
         "バーレーン",
         "Bahrain"
       ],
-      "shop": "BFC（バーブ・アル・バーレーン店ほか国内50支店超）",
+      "shop": "BFC（バーブ・アル・バーレーン店他国内50支店超）",
       "jpyOk": true,
       "conf": "公式サイト（40通貨超に日本円を明記・手数料0%）",
       "note": "毎日8:00-21:00。空港にも支店",
@@ -8249,7 +8249,7 @@
         "クウェートシティ",
         "クウェート"
       ],
-      "shop": "Al Muzaini Exchange（本店ほか国内125支店超）",
+      "shop": "Al Muzaini Exchange（本店他国内125支店超）",
       "jpyOk": true,
       "conf": "公式サイト（コンバータに日本円を明記）",
       "note": "8:00-22:00。The Avenuesモール内にも支店",
@@ -8267,7 +8267,7 @@
         "ヨルダン",
         "Jordan"
       ],
-      "shop": "Alawneh Exchange（本店ほか国内50支店超）",
+      "shop": "Alawneh Exchange（本店他国内50支店超）",
       "jpyOk": true,
       "conf": "公式サイト（ディナール/円の日次レートを公表）",
       "note": "1966年創業。ダウンタウンのキング・ファイサル通りにも両替商が密集し円対応店の報告あり",

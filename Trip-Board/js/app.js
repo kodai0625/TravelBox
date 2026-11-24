@@ -210,7 +210,7 @@ function setupFilters() {
 
   // 一覧表の地域チップ
   $('tableRegionChips').innerHTML =
-    `<button type="button" class="chip is-active" data-region="">すべて</button>`
+    `<button type="button" class="chip is-active" data-region="">全て</button>`
     + DB.regions.map((r) =>
       `<button type="button" class="chip" data-region="${esc(r)}">${esc(r)}</button>`).join('');
   $('tableRegionChips').addEventListener('click', (e) => {
@@ -504,7 +504,7 @@ function fareBlock(code, s) {
     const isSweet = kind === 'low' && good;
     if (isSweet) sweet.push(m);
     const tip = [`${m}月`,
-      kind === 'high' ? '高くなりやすい' : (kind === 'low' ? '安くなりやすい' : 'ふつう')];
+      kind === 'high' ? '高くなりやすい' : (kind === 'low' ? '安くなりやすい' : '普通')];
     if (isSweet) tip.push('天気も良いので狙い目');
     return `<td class="fare fare--${kind}${isSweet ? ' is-sweet' : ''}"
       title="${tip.join('／')}">${kind === 'high' ? '高' : (kind === 'low' ? '安' : '')}</td>`;
@@ -539,7 +539,7 @@ function fareBlock(code, s) {
     <summary class="fare-jp__head">日本発ならどこへ行っても上がる時期</summary>
     <div class="fare-jp__body">
       <p class="fare-jp__lead">${esc(jp.note || '').replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')}</p>
-      <p class="fare-jp__label">とくに高い</p>
+      <p class="fare-jp__label">特に高い</p>
       <ul class="fare-jp__list">${(jp.high || []).map(li).join('')}</ul>
       <p class="fare-jp__label">やや高い</p>
       <ul class="fare-jp__list">${(jp.mid || []).map(li).join('')}</ul>
@@ -727,7 +727,7 @@ function renderCompare() {
   });
   add('雨が多い時期', (p) => {
     const s = seasonOf(p.c.code, p.i);
-    return s && s.worst.length ? esc(s.worst_label) : 'とくになし';
+    return s && s.worst.length ? esc(s.worst_label) : '特になし';
   });
   add('著しく暑い月', (p) => {
     const s = seasonOf(p.c.code, p.i);
@@ -952,13 +952,13 @@ function sheetHTML(c, ci) {
       + (s.relative ? '<br><b>この国は年中雨が多いので、'
         + '◎○△✕ はこの国の中での相対評価です。</b>'
         + '◎は上の「一般に勧められている時期」、'
-        + '✕はこの国のなかでも特に雨の日が多い月です。' : '') + '</p>');
+        + '✕はこの国の中でも特に雨の日が多い月です。' : '') + '</p>');
 
     out.push('<dl class="kv">');
     out.push(`<dt>${s.relative ? '勧められている時期（◎）' : '天気が良い時期'}</dt>
       <dd class="good">${esc(s.best_label)}</dd>`);
     out.push(`<dt>${s.relative ? '特に雨が多い時期' : '雨が多い時期'}</dt><dd>${s.worst.length
-      ? `<span class="bad">${esc(s.worst_label)}</span>` : 'とくにありません'}</dd>`);
+      ? `<span class="bad">${esc(s.worst_label)}</span>` : '特にありません'}</dd>`);
     out.push(`<dt>雨季</dt><dd>${s.rainy.length
       ? esc(s.rainy_label) : 'はっきりした雨季はありません'}</dd>`);
     out.push(`<dt>著しく暑い月</dt><dd>${s.hot.some(Boolean)
@@ -993,7 +993,7 @@ function sheetHTML(c, ci) {
       出典は ${esc(DB.meta.climate.source)}。雨の日数は Open-Meteo（ERA5）の
       2016〜2025年から、1日1mm以上降った日を数えたものです。<br>
       どちらも格子で世界を覆ったデータなので、都市部の気温は気象台の観測値より
-      0.5〜1℃低めに出ます。雨の日数は、ごく弱い雨まで拾うぶん実際より多めに出ます。
+      0.5〜1℃低めに出ます。雨の日数は、ごく弱い雨まで拾う分実際より多めに出ます。
       月どうしを見比べる用途には十分ですが、絶対値をそのまま信じる数字ではありません。</p>`);
   } else {
     out.push('<p class="hint">この都市の気候データがありません。</p>');
@@ -1071,7 +1071,7 @@ function sheetHTML(c, ci) {
     const h = hoursFromJapan(tz, now);
     const shift = dayShift(tz, now);
     out.push(`<dt>${esc(names.join('・'))}</dt><dd><b>${formatDiff(h)}</b>
-      いま ${esc(localTime(tz, now))}
+      今 ${esc(localTime(tz, now))}
       ${shift ? `（日本の${shift > 0 ? '翌日' : '前日'}）` : ''}
       <span class="src">${esc(tz)}</span></dd>`);
   });

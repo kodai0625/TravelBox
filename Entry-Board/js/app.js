@@ -128,7 +128,7 @@ function procsHTML(c) {
 
   (c.other || []).forEach((o) => {
     out.push(`<div class="proc proc--other">
-      <p class="proc__head"><span class="proc__kind">そのほか</span>
+      <p class="proc__head"><span class="proc__kind">その他</span>
         ${esc(o.name)} ${feeTag(o.fee)}</p>
       ${o.when ? `<p class="proc__when">${esc(o.when)}</p>` : ''}
       ${o.note ? `<p class="proc__note">${emph(o.note)}</p>` : ''}
@@ -195,7 +195,7 @@ function openSheet(code) {
   $('sheetBody').innerHTML =
     `<div class="procs">${procsHTML(c)}</div>
      <p class="proc__caution">入国の決まりは国が随時変えます。
-       <strong>出発の前に、かならず上の公式サイトで最新を確かめてください。</strong></p>`;
+       <strong>出発の前に、必ず上の公式サイトで最新を確かめてください。</strong></p>`;
   $('sheet').classList.remove('is-hidden');
   $('sheetBackdrop').classList.remove('is-hidden');
   document.body.classList.add('is-locked');

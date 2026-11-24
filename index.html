@@ -32,9 +32,9 @@
 </script>
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css を直したら、ここを1つ上げてください。 -->
-<link rel="stylesheet" href="css/entry.css?v=20260822b">
+<link rel="stylesheet" href="css/entry.css?v=20261124a">
 <!-- 旅の道具箱 共通デザイン。着せ替えなので、いちばん後ろで読みます -->
-<link rel="stylesheet" href="css/travel.css?v=20260822b">
+<link rel="stylesheet" href="css/travel.css?v=20261124a">
 </head>
 <body class="paper">
 
@@ -222,7 +222,7 @@
       <span class="app__body">
         <span class="app__name">Entry Board</span>
         <span class="app__desc">入国の手続きを調べる</span>
-        <span class="app__detail">電子入国書・ビザ・そのほかの申請・公式サイト</span>
+        <span class="app__detail">電子入国書・ビザ・その他の申請・公式サイト</span>
       </span>
       <span class="app__chev" aria-hidden="true">›</span>
     </a>
@@ -250,7 +250,7 @@
       </span>
       <span class="app__body">
         <span class="app__name">Rate Board</span>
-        <span class="app__desc">払う額を見くらべる</span>
+        <span class="app__desc">払う額を見比べる</span>
         <span class="app__detail">カードの支払総額・両替レート・世界410都市の両替所</span>
       </span>
       <span class="app__chev" aria-hidden="true">›</span>
@@ -316,12 +316,12 @@
   } catch (e) { /* 保存できなくてもリンクは働きます */ }
 })();
 </script>
-<script src="js/update.js?v=20260822b"></script>
+<script src="js/update.js?v=20261124a"></script>
 
 <script>
 /* 世話係の登録。これが無いと sw.js は働きません。
    ★この行が入った版を上げた直後だけ、ホーム画面のアイコンを
-     いったん消して追加し直す必要があります（古いページには
+     一旦消して追加し直す必要があります（古いページには
      登録が入っていないため）。以降は自動で新しくなります。 */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {

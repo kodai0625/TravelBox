@@ -112,7 +112,7 @@
     } catch (e) { return; }
     if (!flag) return;
     toast(flag === 'new' ? '新しい版に更新しました'
-        : flag === 'same' ? 'すでに最新でした'
+        : flag === 'same' ? '既に最新でした'
         : '最新の状態にしました');
   }
 

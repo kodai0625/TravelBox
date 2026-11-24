@@ -75,7 +75,7 @@ function airlineChips(list, limit) {
   const rest = list.length - shown.length;
   return shown.map((x) =>
     `<span class="airline-chip">${esc(x.code ? `${x.code} ` : '')}${esc(airlineName(x))}${stateTag(x.state)}</span>`
-  ).join('') + (rest > 0 ? `<span class="airline-chip airline-chip--more">ほか${rest}社</span>` : '');
+  ).join('') + (rest > 0 ? `<span class="airline-chip airline-chip--more">他${rest}社</span>` : '');
 }
 
 /* いま選ばれている出発地の就航先を、距離やエリアの情報付きで取り出す */
@@ -92,7 +92,7 @@ function renderAreaFilters(all) {
 
   const opts = FB.areaOptions(all, state.routeFrom);
   box.innerHTML =
-    `<button type="button" class="chip${state.routeFilter.area ? '' : ' is-active'}" data-area="">すべて<span class="chip__hint">${all.length}</span></button>` +
+    `<button type="button" class="chip${state.routeFilter.area ? '' : ' is-active'}" data-area="">全て<span class="chip__hint">${all.length}</span></button>` +
     opts.map((o) => `<button type="button" class="chip${state.routeFilter.area === o.key ? ' is-active' : ''}" data-area="${esc(o.key)}">${esc(o.label)}<span class="chip__hint">${o.count}</span></button>`).join('');
 }
 
@@ -245,7 +245,7 @@ function renderRouteResult() {
       <p class="result-count">${dests.length} 就航先　${countries.size} の国・地域</p>
       ${groups.length > 1
         ? `<button type="button" class="result-toggle" id="destToggleAll" data-open="${allOpen ? '1' : ''}">
-             ${allOpen ? 'すべて畳む' : 'すべて開く'}
+             ${allOpen ? '全て畳む' : '全て開く'}
            </button>`
         : ''}
     </div>` +
@@ -380,7 +380,7 @@ function renderAirports() {
 
   const more = $('airportMore');
   if (hits.length > limit) {
-    more.textContent = `ほかに ${(hits.length - limit).toLocaleString()} 件あります。検索語を足すと絞り込めます。`;
+    more.textContent = `他に ${(hits.length - limit).toLocaleString()} 件あります。検索語を足すと絞り込めます。`;
     more.classList.remove('is-hidden');
   } else {
     more.classList.add('is-hidden');
@@ -418,7 +418,7 @@ function airportRoutesBlock(iata) {
         </li>`;
       }).join('')}
     </ul>
-    ${rest > 0 ? `<p class="routes-block__more">ほか ${rest} 就航先。「ここからの路線を見る」で全部出ます。</p>` : ''}
+    ${rest > 0 ? `<p class="routes-block__more">他 ${rest} 就航先。「ここからの路線を見る」で全部出ます。</p>` : ''}
   </div>`;
 }
 
@@ -915,7 +915,7 @@ function renderAircraft() {
     $('aircraftSearch').placeholder = '機種名・型式（例：787、A350、B77W）';
     const hits = FB.searchAircraft(state.aircraftQuery, {});
     $('aircraftCount').textContent =
-      hits.length ? `すべての機材　${hits.length} 機種` : '見つかりませんでした';
+      hits.length ? `全ての機材　${hits.length} 機種` : '見つかりませんでした';
     box.innerHTML = `<ul class="list">${hits.map(aircraftRow).join('')}</ul>`;
     return;
   }
@@ -974,7 +974,7 @@ function renderAircraft() {
   const allEntry = q ? '' : `<li class="list__item list__item--all" data-fleet="__all">
       <span class="code code--airline">✈</span>
       <span class="list__main">
-        <span class="list__name">すべての機材から探す</span>
+        <span class="list__name">全ての機材から探す</span>
         <span class="list__sub">${FB.aircraft.length} 機種。どの会社にも属さない過去の名機もここから</span>
       </span>
       <span class="list__arrow" aria-hidden="true">›</span>
@@ -1082,7 +1082,7 @@ function awardCard(prog) {
     </header>
     <div class="award__links">${link(head)}</div>
     ${folded ? `<details class="award__fold">
-      <summary class="award__foldhead">${rest.length ? `ほかのリンク ${rest.length}　/　` : ''}このプログラムについて</summary>
+      <summary class="award__foldhead">${rest.length ? `他のリンク ${rest.length}　/　` : ''}このプログラムについて</summary>
       <div class="award__foldbody">${folded}</div>
     </details>` : ''}
     ${airline ? `<button type="button" class="award__more" data-airline="${esc(prog.airline)}">${esc(airline.name)}の詳細を見る</button>` : ''}
@@ -1568,7 +1568,7 @@ async function init() {
     if (!btn) return;
     const all = [...document.querySelectorAll('#routeResult .destgroup')].every((d) => d.open);
     btn.dataset.open = all ? '1' : '';
-    btn.textContent = all ? 'すべて畳む' : 'すべて開く';
+    btn.textContent = all ? '全て畳む' : '全て開く';
   }, true);
 
   // ---- 詳細パネルを閉じる ----

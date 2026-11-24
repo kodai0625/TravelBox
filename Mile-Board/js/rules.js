@@ -375,7 +375,7 @@ function judge(trip) {
 
   const dirName = { out: oneway ? '' : '往路の', back: '復路の' };
   const over = (n, max, dir, where) =>
-    errors.push(`${dir}${where}の乗り継ぎは${max}回までです（いま${n}回）。`);
+    errors.push(`${dir}${where}の乗り継ぎは${max}回までです（今${n}回）。`);
   if (oc.jp > RULE.maxJapanTransit) over(oc.jp, RULE.maxJapanTransit, dirName.out, '日本国内');
   if (oc.fg > RULE.maxForeignTransit) over(oc.fg, RULE.maxForeignTransit, dirName.out, '海外');
   if (!oneway) {
@@ -446,7 +446,7 @@ function judge(trip) {
     if (fromZone === '1-A') {
       errors.push(`${MB.labels[destC.zone]}へは直行の往復では設定がありません。海外での乗り継ぎを1つ以上入れてください。`);
     } else if (destJapan && jpZone === '1-A') {
-      errors.push(`${MB.labels[fromC.zone]}と日本のあいだは、直行の往復では設定がありません。日本以外での乗り継ぎを1つ以上入れてください。`);
+      errors.push(`${MB.labels[fromC.zone]}と日本の間は、直行の往復では設定がありません。日本以外での乗り継ぎを1つ以上入れてください。`);
     } else {
       errors.push(`${MB.labels[fromC.zone]}発 ${MB.labels[destC.zone]}行きの必要マイル数は、公式のチャートに設定がありません。`);
     }
@@ -463,7 +463,7 @@ function judge(trip) {
       if (m && m.Y > destMiles.Y) farther.push(`${c}（${MB.labels[info.zone]}）`);
     });
     if (farther.length) {
-      errors.push(`${farther.join('・')} は目的地の ${dest} より必要マイル数が多い地域です。目的地はいちばん必要マイル数が多い都市にしてください。`);
+      errors.push(`${farther.join('・')} は目的地の ${dest} より必要マイル数が多い地域です。目的地は一番必要マイル数が多い都市にしてください。`);
     }
 
     /* --- 10b. 乗換地から目的地までが、出発地から目的地までを上回らないか ---
@@ -511,14 +511,14 @@ function judge(trip) {
       notes.push(
         `この旅程の予約が始まるのは ${jstText(booking.opens, true)}（日本時間）です。` +
         (booking.basedOn === 'back'
-          ? `帰りの搭乗日の355日前から、旅程ぜんぶがまとめて開きます。`
+          ? `帰りの搭乗日の355日前から、旅程全部がまとめて開きます。`
           : `帰りの搭乗日を入れると、正しい日が出ます。`));
     } else if (booking.state === 'late') {
       notes.push(
         `第一区間の出発まで96時間を切っています。受付は ${jstText(booking.closes, true)}（日本時間）で終わりです。`);
     } else {
       notes.push(
-        `いま予約できる期間です（${jstText(booking.opens, true)} 〜 ${jstText(booking.closes, true)}／日本時間）。`);
+        `今予約できる期間です（${jstText(booking.opens, true)} 〜 ${jstText(booking.closes, true)}／日本時間）。`);
     }
   }
 
@@ -562,7 +562,7 @@ function judge(trip) {
     errors.push(
       `${plan.trouble.map((t) => t.leg).join('・')} は ${names.join('・')} しか飛んでいません。` +
       `この会社は「その会社だけで組んだ旅程」でしか使えないので、` +
-      `ほかの区間と混ぜることができません。別の乗継地にしてください。`);
+      `他の区間と混ぜることができません。別の乗継地にしてください。`);
     // その会社で組みたいときの道を案内します
     notes.push(
       `${names.join('・')}で組みたいときは、下の「航空会社」で選んでください。` +
@@ -570,7 +570,7 @@ function judge(trip) {
   } else if (plan.kind === 'solo' && !trip.carrier) {
     notes.push(
       `この旅程は ${plan.airlines.map(airlineName).join('・')} だけで組むことになります。` +
-      `この会社はほかの会社と混ぜられないためです。`);
+      `この会社は他の会社と混ぜられないためです。`);
   }
 
   /* ANA運航便だけで組んだ場合との見くらべ */
