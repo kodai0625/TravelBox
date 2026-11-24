@@ -239,7 +239,10 @@ function renderLeg(box, dir) {
     box.appendChild(row('帰りの出発地', start, true));
   }
 
+  /* 国内線特典の乗り継ぎは行き・帰り各1回までなので、空いている2つ目からは出しません */
+  const domOne = isDomesticTrip(trip);
   list.forEach((v, i) => {
+    if (domOne && i > 0 && !v) return;
     box.appendChild(row(`乗継 ${i + 1}`, makePicker({
       key: `${dir}${i}`, value: v, used: usedRoles(`${dir}${i}`),
       only: trip.onlyReachable ? allowedTransits(trip, dir, i, true) : null,
@@ -399,6 +402,7 @@ function renderSuggests(plans) {
       `<span>${p.segCount}区間</span>` +
       `<span>${p.km.toLocaleString()}km${p.detour > 1.6 ? '（遠回り）' : ''}</span>` +
       (p.miles ? `<span>エコノミー ${p.miles.Y.toLocaleString()}／ビジネス ${(p.miles.C || 0).toLocaleString()}</span>` : '') +
+      (p.domMiles ? `<span>ロー ${p.domMiles.L.toLocaleString()}／レギュラー ${p.domMiles.R.toLocaleString()}／ハイ ${p.domMiles.H.toLocaleString()}</span>` : '') +
       `</span>`;
     b.addEventListener('click', () => {
       trip.out = [...p.out, ...Array(RULE.transitSlots - p.out.length).fill('')];
@@ -527,8 +531,16 @@ function refresh() {
   $('onlyReach').checked = trip.onlyReachable !== false;
   const oneway = trip.mode === 'oneway';
   $('backCard').hidden = oneway;
-  $('stopCard').hidden = oneway;
   $('dateBackLine').hidden = oneway;
+  /* 国内線特典（出発地も目的地も日本）のときは、航空会社（1社しばり）と途中降機は使いません */
+  const dom = isDomesticTrip(trip);
+  $('stopCard').hidden = oneway || dom;
+  $('carrierLine').hidden = dom;
+  $('carrierHint').hidden = dom;
+  $('officialLink').href = dom ? DOM_LINKS.terms : 'https://www.ana.co.jp/ja/jp/guide/amc/award/tk/zone/';
+  $('bookHint').innerHTML = dom
+    ? '国内線特典の予約は、<b>区間ごとの搭乗日</b>の355日前の午前9時から、搭乗の前日までです。'
+    : '予約が始まるのは<b>帰りの搭乗日</b>の355日前です。行きだけでは決まりません。';
   // 出発地（いちばん上）
   $('fromPicker').replaceChildren(makePicker({
     key: 'from', value: trip.from, used: usedRoles('from'), only: carrierOnly(),
@@ -542,7 +554,9 @@ function refresh() {
     placeholder: '行きたい都市', onChange: (v) => { trip.dest = v; renderSuggests(null); refresh(); },
   }));
   const d = trip.dest && cityInfo(trip.dest);
-  $('destHint').textContent = d ? `${d.countryName}／${MB.labels[d.zone]}（Zone ${d.zone}）` : '';
+  $('destHint').textContent = !d ? ''
+    : isDomesticTrip(trip) ? `${d.countryName}／ANA国内線特典航空券で組みます（提携航空会社特典とは別の商品です）`
+    : `${d.countryName}／${MB.labels[d.zone]}（Zone ${d.zone}）`;
 
   renderLeg($('legOut'), 'out');
   if (!oneway) {
@@ -570,7 +584,9 @@ function renderVerdict(r) {
   } else if (r.ok) {
     box.classList.add('ok');
     mark.textContent = '○';
-    const zone = r.isJapanOrigin ? `Zone ${r.fromZone}` : `${MB.labels[r.fromZone]}発`;
+    const zone = r.domestic ? '国内線特典'
+      : r.destJapan ? `${MB.labels[r.fromZone]}発 日本行き・Zone ${r.jpZone}`
+      : r.isJapanOrigin ? `Zone ${r.fromZone}` : `${MB.labels[r.fromZone]}発`;
     text.textContent = `組めます（${r.segCount}区間・${zone}）`;
   } else {
     box.classList.add('ng');
@@ -599,6 +615,7 @@ function renderMiles(r) {
      こわれているように見えるためです。中身だけ入れ替えます。 */
   const card = $('milesCard');
   card.hidden = false;
+  if (r.ready && r.domestic) { renderDomMiles(r); return; }
   if (!r.ready || !r.miles) {
     $('milesLead').textContent = '';
     $('milesBox').innerHTML =
@@ -623,7 +640,15 @@ function renderMiles(r) {
     hint.textContent = r.milesNote;
     return;
   }
-  if (r.fromZone === '1-B' && r.milesBase) {
+  if (r.destJapan) {
+    /* 海外発で目的地が日本のとき（2026-11-24 から組めるようにしました） */
+    const base = r.milesBase ? Object.entries(r.miles)
+      .filter(([k]) => r.milesBase[k] != null)
+      .map(([k, v]) => `${names[k]} +${(v - r.milesBase[k]).toLocaleString()}`).join('　') : '';
+    hint.textContent = r.jpZone === '1-B'
+      ? `日本以外で乗り継ぐので、日本（Zone 1-B）の表です。` + (base ? `直行の往復（Zone 1-A）にくらべて ${base} マイル。` : '')
+      : '日本以外で乗り継がない旅程なので、日本（Zone 1-A）の表です。日本以外の乗継地を足すと 1-B になり、必要マイル数が上がります。';
+  } else if (r.fromZone === '1-B' && r.milesBase) {
     const diff = Object.entries(r.miles)
       .filter(([k]) => r.milesBase[k] != null)
       .map(([k, v]) => `${names[k]} +${(v - r.milesBase[k]).toLocaleString()}`)
@@ -646,11 +671,48 @@ function renderMiles(r) {
   }
 }
 
+/* 国内線特典の必要マイル数。シーズンで変わるので、3つ並べます */
+function renderDomMiles(r) {
+  $('milesLead').textContent = 'ANA国内線特典航空券（エコノミーだけ）';
+  const box = $('milesBox'), hint = $('milesHint');
+  if (!r.domMiles) {
+    box.innerHTML = '<div class="mile mile-empty"><span class="mile-cls">路線が決まると、ここに出ます</span></div>';
+    hint.textContent = '';
+    return;
+  }
+  const s = r.domSeasons || {};
+  const oneway = trip.mode === 'oneway';
+  box.innerHTML = ['L', 'R', 'H'].map((k) => {
+    const on = s.out === k || (!oneway && s.back === k);
+    return `<div class="mile${on ? ' mile-on' : ''}"><span class="mile-cls">${DOM_SEASON_NAME[k]}</span>` +
+           `<span class="mile-val"><span class="mile-num">${r.domMiles[k].toLocaleString()}</span>` +
+           `<span class="mile-unit">マイル</span></span></div>`;
+  }).join('');
+  const parts = [];
+  if (r.miles) {
+    parts.push(`この日程なら ${r.miles.Y.toLocaleString()}マイルです（行き：${DOM_SEASON_NAME[s.out]}` +
+               (oneway ? '' : `、帰り：${DOM_SEASON_NAME[s.back]}`) + '）。');
+  } else {
+    parts.push('搭乗日を入れると、その日のシーズンで出します。');
+  }
+  const label = (k) => (k ? domBand(k).label : '');
+  parts.push(`距離の段は 行き ${label(r.domBands.out)}` + (oneway ? '' : `・帰り ${label(r.domBands.back)}`) + '。');
+  parts.push('乗り継ぎは、区間ごとの足し算ではなく組ごとに決まった値です。往復は行きと帰りの足し算で、割引はありません。');
+  hint.textContent = parts.join('');
+}
+
 /* 搭乗日から、その旅程のシーズンを画面に出す */
 function renderSeasonHint(r) {
   const el = $('seasonHint');
   if (!trip.date) {
     el.textContent = '日を入れると、ANA便だけで組んだときのマイル数も出ます。';
+    return;
+  }
+  if (r.ready && r.domestic) {
+    const sn = domSeason(trip.date);
+    const [y, m, d] = trip.date.split('-');
+    el.textContent = sn ? `${Number(y)}年${Number(m)}月${Number(d)}日は ${DOM_SEASON_NAME[sn]} です（ANA国内線特典の暦）。`
+                        : 'この日のシーズンは、ANA公式にまだ出ていません。';
     return;
   }
   const a = r.ready && r.anaOnly;
@@ -669,6 +731,7 @@ function renderAnaBox(r) {
   const box = $('anaBox');
   box.innerHTML = '';
   if (trip.carrier) return;     // 1社で組むときは、ANA便だけの特典とは見くらべません
+  if (r.domestic) return;       // 国内線特典は別の商品なので見くらべません
   const a = r.ready && r.anaOnly;
   if (!a || !r.miles) return;
 
@@ -785,6 +848,7 @@ function renderItinerary(r) {
     b.addEventListener('click', () => {
       seats.from = b.dataset.from;
       seats.to = b.dataset.to;
+      if (b.dataset.award) seats.award = b.dataset.award;
       if (b.dataset.month) seats.month = b.dataset.month;
       seats.countries = {};
       showPage('seats');
@@ -806,19 +870,20 @@ function segSeatHtml(s, i) {
   const isOut = i < outCount;
   const date = isOut ? trip.date : (trip.dateBack || trip.date);
   const month = date ? date.slice(0, 7) : '';
-  const hit = seatLookup(s.from, s.to, date, 'partner');
+  const award = isDomesticTrip(trip) ? 'dom' : 'partner';
+  const hit = seatLookup(s.from, s.to, date, award);
 
   let marks = '<span class="seg-seat-none">未確認</span>';
   if (hit) {
     const age = seatAge(hit.at);
-    marks = seatClasses('partner').map((c) => {
+    marks = seatClasses(award).map((c) => {
       const m = hit.marks[c.key];
       if (!m) return '';
       return `<span class="seg-seat-m m-${m}">${c.short}${SEAT_MARKS[m].sign}</span>`;
     }).join('') + (age ? `<span class="seg-seat-age age-${age.tier}">${age.text}</span>` : '');
   }
   return `<button type="button" class="seg-seat${hit ? ' has' : ''}"` +
-         ` data-from="${s.from}" data-to="${s.to}" data-month="${month}"` +
+         ` data-from="${s.from}" data-to="${s.to}" data-month="${month}" data-award="${award}"` +
          ` title="${date ? date + ' の空席メモ' : '空席メモ'}">` +
          `<span class="seg-seat-lab">空席</span>${marks}</button>`;
 }
@@ -869,7 +934,11 @@ function asText() {
   if (r.booking && !r.booking.invalid) {
     lines.push(`予約できる期間：${jstText(r.booking.opens, true)} 〜 ${jstText(r.booking.closes, true)}（日本時間）`);
   }
-  if (r.miles) {
+  if (r.domestic && r.domMiles) {
+    lines.push(`必要マイル（ANA国内線特典・エコノミー）：ロー ${r.domMiles.L.toLocaleString()}／` +
+               `レギュラー ${r.domMiles.R.toLocaleString()}／ハイ ${r.domMiles.H.toLocaleString()}` +
+               (r.miles ? `（この日程なら ${r.miles.Y.toLocaleString()}）` : ''));
+  } else if (r.miles) {
     lines.push(`必要マイル：` + Object.entries(r.miles)
       .map(([k, v]) => `${{ Y: 'エコノミー', PY: 'プレエコ', C: 'ビジネス', F: 'ファースト' }[k]} ${v.toLocaleString()}`)
       .join(' / ') + `（${r.isJapanOrigin ? 'Zone ' + r.fromZone : MB.labels[r.fromZone] + '発'}）`);

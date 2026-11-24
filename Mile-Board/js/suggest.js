@@ -112,11 +112,9 @@ function transitCandidates(fromZone, destZone, oneway, carrier) {
   const allowed = (zone) => {
     if (okZone.has(zone)) return okZone.get(zone);
     let ok = false;
-    if (zone === '1') ok = true;                       // 日本国内はいつでもよい
-    else if (destMiles) {
-      const m = milesFor(fromZone, zone, oneway);
-      ok = !!m && m.Y <= destMiles.Y;
-    }
+    // 日本発の日本国内はいつでもよい。海外発で日本を乗り継ぐときは、きまりどおり比べます（reach.js と同じ）
+    if (zone === '1' && String(fromZone).startsWith('1')) ok = true;
+    else if (destMiles) ok = zoneAllowedAsTransit(zone, fromZone, destZone, oneway);
     okZone.set(zone, ok);
     return ok;
   };
@@ -200,6 +198,7 @@ function suggestRoutes(trip, count) {
   const oneway = trip.mode === 'oneway';
   const openjaw = trip.mode === 'openjaw';
   if (openjaw) return [];      // オープンジョーは帰りの出発地を自分で決めるので出しません
+  if (isDomesticTrip(trip)) return domSuggest(trip);   // 国内線特典は決められた組を並べるだけ
 
   const maxT = Math.min(2, RULE.transitSlots);   // 海外は片道2都市まで
   const carrier = trip.carrier || '';

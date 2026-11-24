@@ -25,13 +25,30 @@ const countryName = (() => {
 })();
 
 async function loadAll() {
-  const [miles, zones, cities, segments, ana] = await Promise.all([
+  const [miles, zones, cities, segments, ana, dom] = await Promise.all([
     fetchJson(DATA_FILES.miles),
     fetchJson(DATA_FILES.zones),
     fetchJson(DATA_FILES.cities),
     fetchJson(DATA_FILES.segments),
     fetchJson(DATA_FILES.milesAna),
+    fetchJson(DATA_FILES.domestic),
   ]);
+
+  /* ANA国内線特典航空券（js/domestic.js）。
+     ★Mile Board の都市一覧に無い国内の空港（旭川・帯広・女満別・利尻・福島・静岡・北九州・
+       対馬・壱岐・五島福江）は、ここで日本の都市に足します（データは tools/build_domestic.py）。
+       並びは読みがなの順（domestic.json の jpOrder）にそろえ直します。 */
+  MB.dom = domPrepare(dom);
+  {
+    const jp = cities.countries.JP.cities;
+    for (const [name, c] of Object.entries(dom.cities)) {
+      if (c.add && !jp[name]) jp[name] = [...c.iata, c.lat, c.lon];
+    }
+    const sorted = {};
+    for (const n of dom.jpOrder) if (jp[n]) sorted[n] = jp[n];
+    for (const n of Object.keys(jp)) if (!sorted[n]) sorted[n] = jp[n];
+    cities.countries.JP.cities = sorted;
+  }
 
   /* ANA運航便だけで組んだときの表。こちらはシーズンで変わります。 */
   MB.ana = {

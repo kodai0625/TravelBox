@@ -20,10 +20,17 @@
 
 /* その旅程で、乗継地に選んでよいゾーンかどうか。 */
 function zoneAllowedAsTransit(zone, fromZone, destZone, oneway) {
-  if (zone === '1') return true;               // 日本国内はいつでもよい
-  const destMiles = milesFor(fromZone, destZone, oneway);
+  const fromJapan = String(fromZone).startsWith('1');
+  if (zone === '1' && fromJapan) return true;  // 日本発の日本国内の乗り継ぎはいつでもよい
+  /* ★海外発で日本を乗り継ぐ／日本へ行くときは、日本の表（1-A／1-B）で比べます（2026-11-24）。
+       日本で乗り継ぐだけなら 1-A（日本の乗り継ぎは 1-B にしない）、
+       日本以外で乗り継いで日本へ行くなら 1-B です。判定（rules.js）と同じ見方です。
+       以前は海外発でも日本の乗り継ぎを素通しにしていて、
+       判定で×になる「バンコク→東京→ウランバートル」を出していました。 */
+  const jp = zone === '1' ? '1-A' : '1-B';
+  const destMiles = milesFor(fromZone, destZone, oneway, jp);
   if (!destMiles) return true;                 // 目的地が決まっていないときは通す
-  const m = milesFor(fromZone, zone, oneway);
+  const m = milesFor(fromZone, zone, oneway, jp);
   return !!m && m.Y <= destMiles.Y;
 }
 
@@ -45,11 +52,14 @@ function transitZoneOk(zone, fromZone, destZone, oneway) {
      area   … 出発地とも目的地とも別のエリア
    画面で「なぜ出てこないのか」を言うのにも使います。 */
 function transitZoneWhy(zone, fromZone, destZone, oneway) {
-  if (zone === '1') return '';                 // 日本国内はいつでもよい
+  const fromJapan = String(fromZone).startsWith('1');
+  if (zone === '1' && fromJapan) return '';    // 日本発の日本国内の乗り継ぎはいつでもよい
   if (!zoneAllowedAsTransit(zone, fromZone, destZone, oneway)) return 'dearer';
-  const destMiles = milesFor(fromZone, destZone, oneway);
+  const jp = zone === '1' ? '1-A' : '1-B';     // 上の zoneAllowedAsTransit と同じ見方
+  const destMiles = milesFor(fromZone, destZone, oneway, jp);
   if (destMiles && zone !== destZone) {
-    const m = milesFor(zone, destZone, oneway);
+    // 判定と同じく、日本で乗り継ぐときは出発地から見た値をそのまま使います
+    const m = milesFor(zone === '1' ? fromZone : zone, destZone, oneway, jp);
     if (m && m.Y > destMiles.Y) return 'over';
   }
   const fromArea = areaOf(String(fromZone).startsWith('1') ? '1' : fromZone);
@@ -90,6 +100,9 @@ function citiesInUse(trip, except) {
 function allowedTransits(trip, leg, index, keepUsed) {
   const fromC = cityInfo(trip.from), destC = cityInfo(trip.dest);
   if (!fromC || !destC) return null;           // まだ決まっていないので絞りません
+
+  /* 国内線特典は、ANA が決めた組の経由地だけ（js/domestic.js） */
+  if (isDomesticTrip(trip)) return domTransits(trip, leg, index);
 
   const oneway = trip.mode === 'oneway';
   const fromZone = fromC.zone === '1' ? '1-B' : fromC.zone;
@@ -141,6 +154,7 @@ function detourOk(prev, c, next) {
 function transitBlocked(trip, leg, index) {
   const fromC = cityInfo(trip.from), destC = cityInfo(trip.dest);
   if (!fromC || !destC) return [];
+  if (isDomesticTrip(trip)) return [];         // 国内線特典は決められた組だけなので、外した理由は出しません
   const oneway = trip.mode === 'oneway';
   const fromZone = fromC.zone === '1' ? '1-B' : fromC.zone;
   const chain = legChain(trip, leg);
@@ -180,6 +194,34 @@ function reachableWithin(start, hops, carrier, pass) {
     edge = nextEdge;
   }
   seen.delete(start);
+  return seen;
+}
+
+/* reachableWithin と同じですが、日本国内の乗り継ぎを maxJp 回までに数えてたどります。
+   海外発で日本の街へ行くときに使います（2026-11-24）。
+   ★日本国内の乗り継ぎは片道1回まで（公式）。これを見ないと、ホノルル発で
+     「東京→大阪→仙台」と国内で2回乗り継がないと行けない仙台を、行けると出してしまいました。
+   行き着いた街そのものは乗り継ぎに数えません（そこが目的地なので）。 */
+function reachableWithinJp(start, hops, carrier, pass, maxJp) {
+  const seen = new Set();
+  const bestJp = new Map([[start, 0]]);   // その街から先へ進むときに使った国内の乗り継ぎの数（少ないほうを覚える）
+  let edge = [[start, 0]];
+  for (let i = 0; i < hops && edge.length; i++) {
+    const next = [];
+    for (const [c, jp] of edge) {
+      for (const n of neighbours(c, carrier)) {
+        if (n === start) continue;
+        seen.add(n);
+        if (pass && !pass(n)) continue;
+        const jp2 = jp + (isJapan(n) ? 1 : 0);
+        if (jp2 > maxJp) continue;
+        if (bestJp.has(n) && bestJp.get(n) <= jp2) continue;
+        bestJp.set(n, jp2);
+        next.push([n, jp2]);
+      }
+    }
+    edge = next;
+  }
   return seen;
 }
 
@@ -232,10 +274,16 @@ function allowedDestinations(trip, keepUsed) {
       const i = cityInfo(n);
       return !!i && transitZoneOk(i.zone, fromZone, zone, oneway);
     };
+    /* 海外発で日本へ行くときは、日本国内の乗り継ぎを片道1回までに数えます（上の reachableWithinJp） */
+    const jpLimited = zone === '1' && fromC.zone !== '1';
+    const jpLeft = (fixed) => RULE.maxJapanTransit - fixed.filter((c) => isJapan(c)).length;
+    const walk = (start, h, fixed) => (jpLimited
+      ? reachableWithinJp(start, h, carrier, pass, jpLeft(fixed))
+      : reachableWithin(start, h, carrier, pass));
     const r = {
       pass,
-      out: reachableWithin(last, hops, carrier, pass),
-      back: (!oneway && backNext) ? reachableWithin(backNext, backHops, carrier, pass) : null,
+      out: walk(last, hops, outCities),
+      back: (!oneway && backNext) ? walk(backNext, backHops, backFixed) : null,
     };
     byZone.set(zone, r);
     return r;
@@ -301,6 +349,8 @@ function allowedDestinations(trip, keepUsed) {
     if (needForeign && !milesFor('1-A', info.zone, oneway) && !viaForeignOk(c, r)) continue;
     out.add(c);
   }
+  /* 日本発なら、ANA国内線特典航空券で行ける日本の街も足します（js/domestic.js） */
+  for (const c of domDestinations(trip)) if (!used.has(c)) out.add(c);
   return out;
 }
 

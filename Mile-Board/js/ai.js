@@ -82,9 +82,11 @@ function aiWeek(d) {
    ・いちばん先の日 … 今から355日後の日（UTC の日付で数えるとちょうど合います。
      X日 0時(日本) − 355日 + 9時間 ＝ X日 0時(UTC) − 355日 なので）
    ・いちばん手前の日 … 96時間後の日本の日付の、次の日（控えめに見ています） */
-function aiBookableRange(nowMs) {
+function aiBookableRange(nowMs, dom) {
   const now = nowMs || Date.now();
   const last = new Date(now + BOOKING.openDaysBefore * DAY_MS).toISOString().slice(0, 10);
+  /* 国内線特典は搭乗の前日まで予約できます（公式）。なので明日（日本時間）から */
+  if (dom) return { first: aiAddDays(new Date(now + 9 * 3600000).toISOString().slice(0, 10), 1), last };
   const soon = new Date(now + BOOKING.closeHoursBefore * 3600000 + 9 * 3600000)
     .toISOString().slice(0, 10);
   return { first: aiAddDays(soon, 1), last };
@@ -105,20 +107,21 @@ function aiPlan(r) {
   /* オープンジョーの「自分で移動する」ところ */
   const gap = (r && r.segments || []).find((s) => s.gap) || null;
 
+  const dom = !!(r && r.domestic);        // ANA国内線特典（js/domestic.js）
   const start = a.start || trip.date || '';
   const end = a.end || (trip.mode !== 'oneway' && trip.dateBack) || (start ? aiAddDays(start, 4) : '');
   const ok = !!(start && end && start <= end);
   const all = ok ? aiDates(start, end) : [];
-  const range = aiBookableRange();
+  const range = aiBookableRange(0, dom);
   const dates = all.filter((d) => d >= range.first && d <= range.last);
   const notOpen = all.filter((d) => d > range.last);
   const tooSoon = all.filter((d) => d < range.first);
   const tooLong = ok && aiAddDays(start, AI_MAX_DAYS - 1) < end;
 
   return {
-    segs, gap, start, end, ok, all, dates, notOpen, tooSoon, tooLong, range,
-    cls: a.cls, stay: a.stay,
-    carrier: trip.carrier || '',
+    segs, gap, start, end, ok, all, dates, notOpen, tooSoon, tooLong, range, dom,
+    cls: dom ? 'Y' : a.cls, stay: a.stay,      // 国内線特典はエコノミーだけ
+    carrier: dom ? '' : (trip.carrier || ''),
     cells: segs.length * dates.length,
   };
 }
@@ -156,6 +159,7 @@ function aiCarrierText(plan) {
  *  頼む文
  * ---------------------------------------------------------- */
 function aiPromptText(plan) {
+  if (plan.dom) return aiPromptTextDom(plan);
   const cls = AI_CLASSES.find((c) => c.key === plan.cls) || AI_CLASSES[0];
   const L = [];
   L.push('ANA 特典航空券の空席しらべ（Mile Board で作った頼み文）');
@@ -219,7 +223,7 @@ function aiPromptText(plan) {
   L.push('- はじめの数行は下のとおり写し、「調べた時刻」だけ書き入れる（最初に検索した時刻）');
   L.push('- 区間・日付ごとに、表に出た直行便を1便1行で書く（空席がひとつも無い便も、表に出ていれば書く）。便は、運休の日や特典の席が無い日には表に出ないことがある。出なかった便は書かなくてよい：');
   L.push('  区間番号|日付|便名|運航会社のコード|出発時刻|到着時刻|出発空港|到着空港|Y=あり|C=なし|F=なし');
-  L.push('  空席は「あり」「待ち」「なし」の3つで書く。プレミアムエコノミーは書かない');
+  L.push('  空席は「あり」「待ち」「なし」の3つで書く。プレミアムエコノミーは書かない。空港は空港コード（BKK など）で書く。便を並べる順は自由');
   L.push('  運航会社のコードは便名の頭2文字でよい。ただし行の区分が「提携航空会社便」なのに便名が ANA やスターアライアンスの会社のものなら、開閉ボタンを開いて運航会社を確かめ、そのコードを書く');
   L.push('- 直行便が1つも出なかった日：区間番号|日付|直行便なし');
   L.push('- 調べられなかった日：区間番号|日付|未確認（「なし」と書かない）');
@@ -229,6 +233,97 @@ function aiPromptText(plan) {
   L.push('調べた時刻|（ここに YYYY-MM-DD HH:MM）');
   L.push(`クラス|${cls.key}`);
   L.push(`航空会社|${plan.carrier || '指定なし'}`);
+  plan.segs.forEach((s) => L.push(`区間|${s.no}|${s.from}|${s.to}`));
+  L.push('（ここに区間・日付ごとの行）');
+  L.push(AI_BLOCK_END);
+  return L.join('\n');
+}
+
+/* ------------------------------------------------------------
+ *  頼む文（ANA国内線特典）
+ *  ★2026-11-24 に本物の画面で確かめた手順です（名古屋→那覇 2027/3/1・3/2）。
+ *    ・国際線と同じ検索画面。国内の都市を入れると、クラスが「日本国内特典エコノミー」に変わる
+ *    ・片道で検索すると、便ごとに「選択不可」かどうかが出る（クラスは1つだけ）
+ *    ・上に「最低必要マイル数」が出る（Mile Board の表と同じ値だった：レギュラー 9,500）
+ *    ・日付の見出しの横の「往路翌日」で次の日へ送れる
+ *    ・はじめに「予約に必要なマイル数は…」の知らせが出る。「確認」で閉じても予約は進まない
+ * ---------------------------------------------------------- */
+const AI_ANA_URL_DOM = AI_ANA_URL.replace('?', '?boardingClass=CFF5&');
+
+function aiDomCityText(name) {
+  const d = domCity(name), c = cityInfo(name);
+  const code = (d ? d.iata : (c ? c.iata : [])).join('・');
+  return d && d.ana !== name ? `${name}（ANAの画面では「${d.ana}」・${code}）` : `${name}（${code}）`;
+}
+function aiDomName(name) {
+  const d = domCity(name);
+  return d ? d.ana : name;
+}
+
+function aiPromptTextDom(plan) {
+  const L = [];
+  L.push('ANA 国内線特典航空券の空席しらべ（Mile Board で作った頼み文）');
+  L.push('');
+  L.push('■ してほしいこと');
+  L.push('ANA のウェブサイトで、下の区間ごと・日付ごとに、国内線特典航空券の空席を調べてください。');
+  L.push('調べ終わったら、空席のある便だけで組める旅程の案を出し、最後に「Mile Board 用の記録」を書いてください。');
+  L.push('予約・発券・支払いには進まないでください。');
+  L.push('');
+  L.push('■ 守ること');
+  L.push('- ANA のサイトは、利用者がログインしてある Chrome で使う。パスワードや会員番号を求められたら、入れずに止まって、利用者に入れてもらう');
+  L.push('- タブは1つだけ。検索は1回ずつ順番に。同じ検索をくり返さない');
+  L.push('- 「次へ」「予約」の類は押さない。知らせの「確認」と、時間切れの「延長」は押してよい');
+  L.push('- ブラウザの「戻る」は使わない（ANA の画面が「処理しています」のまま止まる）');
+  L.push('- 画面写真より、ページの文字を読むほうが速くて確か。ボタンは場所ではなく文字で探して押す');
+  L.push('');
+  L.push('■ 旅程（予約のきまりは Mile Board で確かめてあるので、判断しなくてよい）');
+  L.push(`形：${MODES[trip.mode].label}（ANA国内線特典航空券）`);
+  plan.segs.forEach((s) => {
+    const stay = aiStayText(s, plan);
+    L.push(`区間${s.no}：${aiDomCityText(s.from)} → ${aiDomCityText(s.to)}` + (stay ? `　${stay}` : ''));
+  });
+  if (plan.gap) L.push(`※${plan.gap.from} から ${plan.gap.to} までは自分で移動する（特典に含まれない）`);
+  L.push(`期間：${plan.start} 〜 ${plan.end}（全区間をこの中で）`);
+  L.push('クラス：エコノミー（国内線特典はエコノミーだけ）');
+  L.push('乗り継ぐときは24時間以内（とまることはできない）。乗り継ぎの余裕は、同じ空港なら1時間、空港が変わるなら（羽田→成田など）3時間はあける');
+  L.push('');
+  L.push('■ 調べかた（ANA の画面に合わせた手順）');
+  L.push(`1. ここを開く：${AI_ANA_URL_DOM}`);
+  L.push('2. 「片道」を選ぶ。「前後3日の空席を比較」は使わない');
+  L.push('3. 出発地・到着地は、上の旅程の「ANAの画面では」の名前（無ければその都市名）で入れて、候補から選ぶ。候補は下矢印キーと Enter で選べる。「〇〇(全て)」があればそれを選ぶ');
+  L.push('4. 出発日を入れる。欄を押すとカレンダーが出るので、「次の3ヶ月」で目当ての月まで送ってから日を押す。クラスは自動で「日本国内特典エコノミー」になる（ならなければそれを選ぶ）');
+  L.push('5. 「検索する」を押す。「予約に必要なマイル数は、フライトの選択が完了した時点で…」の知らせが出たら「確認」で閉じる（押しても予約は進まない）');
+  L.push('6. 一覧の便ごとに、「選択不可」と出ていれば空席なし、出ていなければ空席あり。上の「特典種別選択」の枠に出る「最低必要マイル数」も書き写す（下の帯の「必要マイル数」は選んだ便の値なので使わない）');
+  L.push('7. 次の日付は、日付の見出しの横の「往路翌日」を押す。区間を変えるときは、画面の下の「再検索」で出発地・到着地・日付を入れ直す（「再検索」の日付は最初に検索した日のままのことがあるので、検索する前に日付欄の値を確かめる）');
+  L.push('8. 乗り継ぎのある行は記録しない（空席のあるものは、最後に「ほかの行き方」として一言書いてよい）。期間の日はすべて調べる。途中で省かない');
+  L.push('');
+  L.push(`調べる組み合わせ（${plan.segs.length}区間 × ${plan.dates.length}日 ＝ ${plan.cells}回）：`);
+  plan.segs.forEach((s) => L.push(`- 区間${s.no}：${aiDomName(s.from)} → ${aiDomName(s.to)}`));
+  L.push(`- 日付：${plan.dates.join('、')}`);
+  if (plan.notOpen.length) L.push(`- ${plan.notOpen[0]} 以降は予約がまだ始まっていないので調べない（記録には「未開放」と書く）`);
+  if (plan.tooSoon.length) L.push(`- ${plan.tooSoon[plan.tooSoon.length - 1]} までは予約できないので調べない（記録には「未開放」と書く）`);
+  L.push('');
+  L.push('■ 返事の形');
+  L.push('1. 旅程の案を3つまで（A・B・C）。空席ありの直行便だけを使い、上の滞在と乗り継ぎの余裕を守る。日付・便名・空港・出発到着時刻・それぞれの街での滞在時間と、勧める理由を1〜2文で。');
+  L.push('   組めないときは、どの区間のどの日がネックかを書き、近い代わり（乗り継ぎのある便など）があれば添える');
+  L.push(`2. 最後に「Mile Board 用の記録」を、${AI_BLOCK_START} から ${AI_BLOCK_END} まで、形を変えずに書く（コードブロックに入れてよい）`);
+  L.push('');
+  L.push('Mile Board 用の記録の書き方：');
+  L.push('- はじめの数行は下のとおり写し、「調べた時刻」だけ書き入れる（最初に検索した時刻）');
+  L.push('- 区間・日付ごとに、表に出た直行便を1便1行で書く（選択不可の便も書く）：');
+  L.push('  区間番号|日付|便名|運航会社のコード|出発時刻|到着時刻|出発空港|到着空港|Y=あり');
+  L.push('  選択不可なら Y=なし。空港は空港コード（NGO など）で書く。便を並べる順は自由');
+  L.push('  運航会社は「〇〇運航」と出ていればその会社（ANAウイングス=NH、ソラシドエア=6J、AIRDO=HD、スターフライヤー=7G、IBEXエアラインズ=FW、オリエンタルエアブリッジ=OC）、出ていなければ NH');
+  L.push('- その日の最低必要マイル数：区間番号|日付|最低必要マイル|画面の数字（例：1|2027-03-01|最低必要マイル|9500）');
+  L.push('- 直行便が1つも出なかった日：区間番号|日付|直行便なし');
+  L.push('- 調べられなかった日：区間番号|日付|未確認（「なし」と書かない）');
+  L.push('- 予約が始まっていない日：区間番号|日付|未開放');
+  L.push('');
+  L.push(AI_BLOCK_START);
+  L.push('調べた時刻|（ここに YYYY-MM-DD HH:MM）');
+  L.push('特典|国内線');
+  L.push('クラス|Y');
+  L.push('航空会社|指定なし');
   plan.segs.forEach((s) => L.push(`区間|${s.no}|${s.from}|${s.to}`));
   L.push('（ここに区間・日付ごとの行）');
   L.push(AI_BLOCK_END);
@@ -265,7 +360,7 @@ function parseAiReport(text) {
   let i1 = lines.findIndex((l, k) => k > i0 && /^#\s*END\b/i.test(l));
   if (i1 < 0) i1 = lines.length;
 
-  const rep = { at: 0, cls: '', carrier: null, segs: {}, rows: [], skipped: [] };
+  const rep = { at: 0, cls: '', carrier: null, award: '', segs: {}, rows: [], skipped: [] };
   for (const raw of lines.slice(i0 + 1, i1)) {
     if (!raw || /^（.*）$/.test(raw)) continue;
     const p = raw.split('|').map((x) => x.trim());
@@ -281,6 +376,7 @@ function parseAiReport(text) {
       continue;
     }
     if (p[0] === 'クラス') { rep.cls = p[1].toUpperCase(); continue; }
+    if (p[0] === '特典') { rep.award = /国内/.test(p[1]) ? 'dom' : 'partner'; continue; }
     if (p[0] === '航空会社') { rep.carrier = /^[A-Z0-9]{2}$/.test(p[1]) ? p[1] : ''; continue; }
     if (p[0] === '区間') {
       if (/^\d+$/.test(p[1]) && p[2] && p[3]) rep.segs[Number(p[1])] = { from: p[2], to: p[3] };
@@ -293,6 +389,11 @@ function parseAiReport(text) {
     if (!no || !date) { rep.skipped.push(raw); continue; }
 
     const what = p[2] || '';
+    if (/最低必要マイル/.test(what)) {
+      const n = Number(String(p[3] || '').replace(/[^\d]/g, ''));
+      if (n) rep.rows.push({ no, date, kind: 'miles', miles: n }); else rep.skipped.push(raw);
+      continue;
+    }
     if (/直行便なし|便なし/.test(what)) { rep.rows.push({ no, date, kind: 'none' }); continue; }
     if (/未確認/.test(what)) { rep.rows.push({ no, date, kind: 'unknown' }); continue; }
     if (/未開放/.test(what)) { rep.rows.push({ no, date, kind: 'closed' }); continue; }
@@ -340,11 +441,14 @@ function seatPut(award, from, to, date, cls, mark, at) {
   n.updated = Math.max(n.updated || 0, at);
 }
 
-function importAiReport(rep, planSegs, fallbackCarrier) {
+function importAiReport(rep, planSegs, fallbackCarrier, fallbackDom) {
   const now = nowSec();
   const at = rep.at && rep.at <= now + 600 ? rep.at : now;
+  const award = rep.award || (fallbackDom ? 'dom' : 'partner');
+  const dom = award === 'dom';
   const carrier = rep.carrier === null ? (fallbackCarrier || '') : rep.carrier;
-  const usable = (code) => (carrier ? code === carrier : !MB.partnerOnly.has(code));
+  /* 国内線特典は、ANA便名の便ならどの会社の運航でも使えます（公式）。会社ではしぼりません */
+  const usable = (code) => (dom ? true : carrier ? code === carrier : !MB.partnerOnly.has(code));
 
   /* 区間番号 → 都市。記録の「区間」行を先に見て、Mile Board の都市名でなければ今の旅程から引きます */
   const segOf = (no) => {
@@ -355,8 +459,9 @@ function importAiReport(rep, planSegs, fallbackCarrier) {
   };
 
   const groups = new Map();
-  const res = { cells: 0, counts: { o: 0, t: 0, x: 0 }, unknown: 0, closed: 0,
-                badSeg: 0, excluded: [], skipped: rep.skipped.length, days: new Set(), routes: new Set() };
+  const res = { cells: 0, counts: { o: 0, t: 0, x: 0 }, unknown: 0, closed: 0, award,
+                badSeg: 0, excluded: [], skipped: rep.skipped.length, days: new Set(), routes: new Set(),
+                milesChecked: 0, milesDiff: [] };
 
   for (const row of rep.rows) {
     const seg = segOf(row.no);
@@ -367,17 +472,28 @@ function importAiReport(rep, planSegs, fallbackCarrier) {
   }
 
   for (const g of groups.values()) {
+    /* 国内線：ANA の画面の「最低必要マイル数」と、Mile Board の表（距離の段 × シーズン）を見比べます。
+       ずれていたら、ANA が数字を変えたか、Mile Board のデータが古いということです */
+    const ml = g.rows.find((r) => r.kind === 'miles');
+    if (dom && ml && typeof domDirect === 'function') {
+      const band = domDirect(g.seg.from, g.seg.to), season = domSeason(g.date);
+      if (band && season) {
+        res.milesChecked++;
+        const want = domBand(band).miles[season];
+        if (want !== ml.miles) res.milesDiff.push({ date: g.date, seg: g.seg, ana: ml.miles, mb: want });
+      }
+    }
     const flights = g.rows.filter((r) => r.kind === 'flight');
     const none = g.rows.some((r) => r.kind === 'none');
     if (!flights.length && !none) {
       if (g.rows.some((r) => r.kind === 'closed')) res.closed++;
-      else res.unknown++;
+      else if (!ml) res.unknown++;
       continue;
     }
-    /* 書くクラス：直行便なしなら3つとも、便があるなら記録に出てきたクラスだけ */
-    const classes = none && !flights.length
+    /* 書くクラス：直行便なしなら全部（国内線はエコノミーだけ）、便があるなら記録に出てきたクラスだけ */
+    const classes = (none && !flights.length
       ? AI_CLASSES.map((c) => c.key)
-      : [...new Set(flights.flatMap((f) => Object.keys(f.marks)))];
+      : [...new Set(flights.flatMap((f) => Object.keys(f.marks)))]).filter((k) => !dom || k === 'Y');
     for (const cls of classes) {
       let best = 'x';
       for (const f of flights) {
@@ -389,7 +505,7 @@ function importAiReport(rep, planSegs, fallbackCarrier) {
         const other = flights.find((f) => !usable(f.carrier) && f.marks[cls] === 'o');
         if (other) res.excluded.push({ no: g.no, date: g.date, cls, carrier: other.carrier, seg: g.seg });
       }
-      seatPut('partner', g.seg.from, g.seg.to, g.date, cls, best, at);
+      seatPut(award, g.seg.from, g.seg.to, g.date, cls, best, at);
       res.cells++;
       if (cls === (rep.cls || '')) res.counts[best]++;
     }
@@ -416,6 +532,14 @@ function aiResultText(res) {
   if (res.closed) parts.push(`未開放 ${res.closed}。`);
   if (res.badSeg) parts.push(`区間の分からない行 ${res.badSeg}。`);
   if (res.skipped) parts.push(`読めなかった行 ${res.skipped}。`);
+  if (res.award === 'dom') parts.unshift('（国内線特典）');
+  if (res.milesChecked) {
+    parts.push(res.milesDiff.length
+      ? `<br><b>ANA の画面の最低必要マイル数が、Mile Board の表と違う日がありました</b>：` +
+        res.milesDiff.slice(0, 3).map((d) => `${aiShort(d.date)} ${d.seg.from}→${d.seg.to} ANA ${d.ana.toLocaleString()}／Mile Board ${d.mb.toLocaleString()}`).join('、') +
+        '。ANA が数字を変えたかもしれません。tools/build_domestic.py --fetch で作り直してください。'
+      : `ANA の画面の最低必要マイル数は、Mile Board の表と ${res.milesChecked}日とも同じでした。`);
+  }
   if (res.excluded.length) {
     const ex = res.excluded.slice(0, 3).map((e) =>
       `${aiShort(e.date)} ${e.seg.from}→${e.seg.to}（${airlineName(e.carrier)}）`).join('、');
@@ -441,6 +565,7 @@ function renderAiCard(r) {
   const cs = $('aiCls');
   if (!cs.options.length) AI_CLASSES.forEach((c) => cs.appendChild(new Option(c.label, c.key)));
   cs.value = plan.cls;
+  cs.disabled = plan.dom;                 // 国内線特典はエコノミーだけ
   const ss = $('aiStay');
   if (!ss.options.length) AI_STAYS.forEach((s) => ss.appendChild(new Option(s.label, s.key)));
   ss.value = plan.stay;
@@ -453,12 +578,13 @@ function renderAiCard(r) {
   if (!plan.ok) {
     size.textContent = '探す期間を入れてください。行きと帰りの搭乗日を入れてあれば、それが入ります。';
   } else {
-    /* 2026-11-24 の本物の通し：15回で14分、Max の5時間枠の 11%（頼む文だけを渡した Claude） */
-    const min = Math.max(5, Math.round(plan.cells * 0.75 + 3));
-    const use = Math.max(1, Math.round(plan.cells * 0.7));
+    /* 2026-11-24 の本物の通し（頼む文だけを渡した Claude）：
+         国際線 15回で14分・Max の5時間枠の 11%／国内線 6回で4分・2%（「往路翌日」で日を送れるので軽い） */
+    const min = plan.dom ? Math.max(3, Math.round(plan.cells * 0.5 + 1)) : Math.max(5, Math.round(plan.cells * 0.75 + 3));
+    const use = Math.max(1, Math.round(plan.cells * (plan.dom ? 0.35 : 0.7)));
     size.textContent = `${plan.segs.length}区間 × ${plan.dates.length}日 ＝ ${plan.cells}回の検索です。` +
                        `だいたい${min}分、Claude の使用量は Max の5時間枠の${use}%ほどです` +
-                       '（2026年11月の通しでは15回で14分・11%）。';
+                       (plan.dom ? '（2026年11月の通しでは国内線6回で4分・2%）。' : '（2026年11月の通しでは15回で14分・11%）。');
   }
 
   const warn = $('aiWarn');
@@ -493,7 +619,7 @@ function renderAiGrid(plan) {
       if (plan.notOpen.includes(d) || plan.tooSoon.includes(d)) {
         return '<td class="ai-c ai-closed" title="予約できない日">未</td>';
       }
-      const hit = seatLookup(s.from, s.to, d, 'partner');
+      const hit = seatLookup(s.from, s.to, d, plan.dom ? 'dom' : 'partner');
       const m = hit && hit.marks[cls];
       if (!m) return '<td class="ai-c m-none">·</td>';
       any = true;
@@ -516,7 +642,8 @@ function renderAiGrid(plan) {
     `<p class="ai-grid-title">空席メモにある${clsName}の空き</p>` +
     `<div class="ai-grid-wrap"><table class="ai-grid"><thead><tr><th></th>${head}</tr></thead>` +
     `<tbody>${rows}</tbody></table></div>` +
-    `<p class="hint">○空席あり　△空席待ち（提携の特典では待てません）　−空きなし　·まだ調べていない　未＝予約できない日` +
+    (plan.dom ? `<p class="hint">○空席あり　−空きなし（選択不可）　·まだ調べていない　未＝予約できない日` :
+    `<p class="hint">○空席あり　△空席待ち（提携の特典では待てません）　−空きなし　·まだ調べていない　未＝予約できない日`) +
     (age ? `<br>いちばん新しい記録は ${age.text}です。特典の空席は数時間で変わります。` : '') + '</p>';
 }
 
@@ -573,7 +700,7 @@ function setupAiCard() {
       return;
     }
     const plan = aiPlan(judge(trip));
-    const res = importAiReport(rep, plan.segs, trip.carrier);
+    const res = importAiReport(rep, plan.segs, trip.carrier, plan.dom);
     if (res.cls && AI_CLASSES.some((c) => c.key === res.cls) && res.cls !== plan.cls) {
       trip.ai = Object.assign(aiDefaults(), trip.ai || {}, { cls: res.cls });
     }

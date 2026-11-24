@@ -54,8 +54,19 @@ function airlinesBetween(a, b) {
   return [...found].sort();
 }
 
-/* 必要マイル数を引く。fromZone は日本発なら '1-A' か '1-B'、海外発ならゾーン番号。 */
-function milesFor(fromZone, destZone, oneway) {
+/* 必要マイル数を引く。fromZone は日本発なら '1-A' か '1-B'、海外発ならゾーン番号。
+
+   ★海外発で行き先が日本（ゾーン '1'）のときは、日本の表（1-A／1-B）を引きます。
+     公式のチャートは「日本（Zone 1-A）⇔アジア2（Zone 4）」のように行き来どちら向きにも
+     同じ表で、海外発の日本行きもこれを使います。1-A と 1-B の分け方も日本発と同じです
+     （国際線往復2区間だけ、またはそれに日本国内の乗り継ぎだけを足した旅程が 1-A）。
+     どちらを使うかは jpZone で渡します。渡さなければ 1-B（候補をしぼるときの控えめな見方）。
+     2026-11-24 まで、ここを読み替えておらず、バンコク発 東京行きが
+     「公式のチャートに設定がありません」で×になっていました。 */
+function milesFor(fromZone, destZone, oneway, jpZone) {
+  const jp = jpZone || '1-B';
+  const fromJapan = fromZone === '1' || String(fromZone).startsWith('1-');
+  if (destZone === '1' && !fromJapan) destZone = jp;
   const table = oneway ? MB.milesOneway : MB.miles;
   // 表は「日本⇔欧州」のように片側からしか載っていないことがあるので、
   // 見つからなければ逆からも引きます。
@@ -281,6 +292,11 @@ function judge(trip) {
     return { ok: false, errors, notes, ready: false, mode };
   }
 
+  /* 出発地も目的地も日本なら、ANA国内線特典航空券という別の商品です（js/domestic.js）。
+     ★2026-11-24 まではここで「目的地は出発地と別の国にしてください」と×にしていました。
+       提携航空会社特典航空券としてはそのとおりですが、国内の旅は国内線特典で組めます。 */
+  if (isDomesticTrip(trip)) return judgeDomestic(trip);
+
   /* 旅程ぜんぶの都市。オープンジョーは目的地と帰りの出発地が別なので、
      地上を移動するぶんは区間としてつなぎません。 */
   const outLeg = [from, ...out, dest];
@@ -397,23 +413,23 @@ function judge(trip) {
   }
 
   /* --- 8. どの表を引くか --- */
-  //  日本発だけ Zone 1-A / 1-B に分かれます。
+  //  日本発（と、海外発で目的地が日本のとき）は Zone 1-A / 1-B に分かれます。
   //  海外で乗り継がない旅程が 1-A、海外で乗り継ぐ周遊は 1-B。混ぜて使えません（公式）。
   const foreignTransit = oc.fg + bc.fg;
-  const fromZone = fromC.zone === '1'
-    ? (foreignTransit > 0 ? '1-B' : '1-A')
-    : fromC.zone;
+  const jpZone = foreignTransit > 0 ? '1-B' : '1-A';
+  const fromZone = fromC.zone === '1' ? jpZone : fromC.zone;
   const isJapanOrigin = fromC.zone === '1';
+  const destJapan = !isJapanOrigin && destC.zone === '1';   // 海外発で日本へ
 
   /* --- 9. 必要マイル数 --- */
   //  往路の到着地と復路の出発地でゾーンが違うときは、
   //  それぞれのゾーンの必要マイル数の半分ずつを足します（公式）。
   let miles = null, milesNote = '';
   const half = (m) => Object.fromEntries(Object.entries(m).map(([k, v]) => [k, v / 2]));
-  const destMiles = milesFor(fromZone, destC.zone, oneway);
+  const destMiles = milesFor(fromZone, destC.zone, oneway, jpZone);
 
   if (openjaw && retC.zone !== destC.zone) {
-    const retMiles = milesFor(fromZone, retC.zone, oneway);
+    const retMiles = milesFor(fromZone, retC.zone, oneway, jpZone);
     if (destMiles && retMiles) {
       const a = half(destMiles), b = half(retMiles);
       miles = {};
@@ -429,6 +445,8 @@ function judge(trip) {
   if (!miles) {
     if (fromZone === '1-A') {
       errors.push(`${MB.labels[destC.zone]}へは直行の往復では設定がありません。海外での乗り継ぎを1つ以上入れてください。`);
+    } else if (destJapan && jpZone === '1-A') {
+      errors.push(`${MB.labels[fromC.zone]}と日本のあいだは、直行の往復では設定がありません。日本以外での乗り継ぎを1つ以上入れてください。`);
     } else {
       errors.push(`${MB.labels[fromC.zone]}発 ${MB.labels[destC.zone]}行きの必要マイル数は、公式のチャートに設定がありません。`);
     }
@@ -441,7 +459,7 @@ function judge(trip) {
     [...out, ...back].forEach((c) => {
       const info = cityInfo(c);
       if (!info || info.zone === fromC.zone) return;
-      const m = milesFor(fromZone, info.zone, oneway);
+      const m = milesFor(fromZone, info.zone, oneway, jpZone);
       if (m && m.Y > destMiles.Y) farther.push(`${c}（${MB.labels[info.zone]}）`);
     });
     if (farther.length) {
@@ -458,7 +476,7 @@ function judge(trip) {
       const info = cityInfo(c);
       if (!info || info.zone === destC.zone) return;
       const z = info.zone === '1' ? fromZone : info.zone;   // 日本国内なら出発地と同じ扱い
-      const m = milesFor(z, destC.zone, oneway);
+      const m = milesFor(z, destC.zone, oneway, jpZone);
       if (m && m.Y > destMiles.Y) {
         over2.push(`${c}（${MB.labels[info.zone]}）から ${dest} は ${m.Y.toLocaleString()}マイル`);
       }
@@ -511,7 +529,10 @@ function judge(trip) {
   if (openjaw) {
     notes.push(`${dest} から ${ret} へは、ご自身で移動してください（この区間は特典に含まれません）。`);
   }
-  if (!isJapanOrigin) {
+  if (destJapan) {
+    notes.push(`海外発で目的地が日本の旅程です。必要マイル数は「日本（Zone ${jpZone}）⇔${MB.labels[fromC.zone]}」のチャートで見ています` +
+               `（公式のチャートは行き来どちら向きにも同じ表です。日本以外で乗り継ぐと Zone 1-B になります）。`);
+  } else if (!isJapanOrigin) {
     notes.push(`海外発の旅程です。必要マイル数は「${MB.labels[fromC.zone]}発着」のチャートで見ています。`);
   }
 
@@ -569,8 +590,10 @@ function judge(trip) {
     miles,
     milesNote,
     // 周遊にしたことでいくら増えたか（日本発のときだけ）
-    milesBase: isJapanOrigin && foreignTransit > 0 && !openjaw
-      ? milesFor('1-A', destC.zone, oneway) : null,
+    milesBase: (isJapanOrigin || destJapan) && foreignTransit > 0 && !openjaw
+      ? milesFor(isJapanOrigin ? '1-A' : fromZone, destC.zone, oneway, '1-A') : null,
+    jpZone,
+    destJapan,
     segments,
     segCount,
     booking,

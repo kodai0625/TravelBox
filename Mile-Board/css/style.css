@@ -478,3 +478,6 @@ body {
 .ai-c { min-width: 30px; height: 28px; text-align: center; border-radius: 7px; border: 1px solid;
         font-family: var(--mono); font-size: 13px; }
 .ai-closed { font-family: var(--sans); font-size: 10px; }
+
+/* hidden を付けたら必ず消す（.carrierline などは display を持っているので、そのままでは消えません） */
+.carrierline[hidden], .carrier-hint[hidden] { display: none; }

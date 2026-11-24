@@ -38,6 +38,7 @@ const SEAT_CLASSES = [
 const SEAT_AWARDS = {
   partner: { label: '提携航空会社特典', desc: 'スターアライアンス便・提携各社便' },
   ana:     { label: 'ANA特典',         desc: 'ANA運航便だけ' },
+  dom:     { label: '国内線特典',       desc: 'ANA国内線（エコノミーだけ）' },   // 2026-11-24 から
 };
 
 /* いま画面に出しているメモの条件。 */
@@ -170,6 +171,7 @@ function seatCycle(day, cls) {
 
 /* この特典で使えるクラスだけ返します。 */
 function seatClasses(award) {
+  if (award === 'dom') return SEAT_CLASSES.filter((c) => c.key === 'Y');   // 国内線特典はエコノミーだけ（公式）
   return SEAT_CLASSES.filter((c) => !(c.anaOnly && award !== 'ana'));
 }
 
