@@ -216,3 +216,12 @@ body {
 /* 国内線特典：この日程のシーズン */
 .mile.mile-on { box-shadow: inset 0 0 0 1.5px var(--accent); }
 .mile.mile-on .mile-cls { color: var(--accent); font-weight: 700; }
+
+/* 出発の時間帯（js/ai.js） */
+.ai-c.ai-outside { background: var(--note-bg); border-color: var(--long-bg); border-style: dashed; color: var(--note); font-family: var(--sans); font-size: 11px; }
+.ai-c.ai-untimed { border-style: dotted; }
+.ai-c.ai-sel { box-shadow: 0 0 0 2px var(--accent); }
+.ai-cellinfo { background: var(--panel-2); color: var(--ink-2); }
+.ai-cellinfo b { color: var(--ink); }
+.ai-time-seg { color: var(--ink); }
+.ai-time-warn { color: var(--ng); }

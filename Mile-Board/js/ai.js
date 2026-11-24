@@ -48,6 +48,57 @@ const AI_STAYS = [
   { key: '72', label: '72時間以上とまる',     rule: '到着から次の出発まで72時間以上' },
 ];
 
+/* 出発の時間帯の希望（2026-11-24 から）。区間ごとに選びます。
+   from／to は 0時からの分。from から to まで（両はしを含む）に出発する便を「希望に合う」とします。
+   ★「12時までに出発」に 12:00 発は入れます。ふつうの言い方に合わせました（はじめは入れていなかった）。
+   ★希望は表の見方と頼む文に使うだけです。記録には時間帯の外の便も全部入れてもらうので、
+     あとで希望を変えても、Claude に頼み直さずに表が変わります。 */
+const AI_TIMES = [
+  { key: '',        label: '指定なし' },
+  { key: 'morning', label: '朝（〜9時発）',              from: 0,    to: 540,  rule: '9時までに出発する便' },
+  { key: 'am',      label: '午前（〜12時発）',           from: 0,    to: 720,  rule: '12時までに出発する便' },
+  { key: 'midday',  label: '昼（10〜15時発）',           from: 600,  to: 900,  rule: '10時から15時までに出発する便' },
+  { key: 'pm',      label: '午後（12時〜発）',           from: 720,  to: 1440, rule: '12時以降に出発する便' },
+  { key: 'evening', label: '夕方以降（16時〜発）',       from: 960,  to: 1440, rule: '16時以降に出発する便' },
+  { key: 'night',   label: '夜（18時〜・なるべく遅く）',  from: 1080, to: 1440, rule: '18時以降に出発する便。その中でもなるべく遅い便' },
+  { key: 'custom',  label: '時間を決める…' },
+];
+
+/* その区間の時間帯の希望。無ければ null。自分で決めたものは 'c:6-10'（6時から10時まで）の形で持ちます */
+function aiTimeOf(plan, no) {
+  const v = ((plan && plan.times) || {})[no] || '';
+  const m = /^c:(\d{1,2})-(\d{1,2})$/.exec(v);
+  if (m) {
+    const a = Number(m[1]), b = Number(m[2]);
+    if (!(a < b)) return null;
+    return { key: v, from: a * 60, to: b * 60, label: `${a}〜${b}時発`, rule: `${a}時から${b}時までに出発する便` };
+  }
+  const t = AI_TIMES.find((x) => x.key === v && x.from != null);
+  return t ? { ...t } : null;
+}
+function aiMin(hhmm) {
+  const m = /^(\d{1,2}):(\d{2})/.exec(hhmm || '');
+  return m ? Number(m[1]) * 60 + Number(m[2]) : null;
+}
+
+/* 便ごとの記録（時刻つき）。区間×日ごとに、取り込んだ便をそのまま持ちます。
+   key は 'partner|名古屋>那覇|2027-03-01'。過ぎた日の分は、書くときに消します。
+   ★空席メモ（seats.js）は1日1つの印しか持たないので、時間帯で絞るにはこちらが要ります。 */
+let AI_FLIGHTS = null;
+function aiFlightsKey() { return APP.storageKey + ':flights'; }
+function aiFlights() {
+  if (!AI_FLIGHTS) {
+    try { AI_FLIGHTS = JSON.parse(localStorage.getItem(aiFlightsKey()) || 'null') || {}; } catch (e) { AI_FLIGHTS = {}; }
+  }
+  return AI_FLIGHTS;
+}
+function aiFlightsSave() {
+  const all = aiFlights();
+  const today = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
+  for (const k of Object.keys(all)) if ((k.split('|')[2] || '') < today) delete all[k];
+  try { localStorage.setItem(aiFlightsKey(), JSON.stringify(all)); } catch (e) {}
+}
+
 /* 1回に頼む量の目安。本物の通しで 15マス 14分・5時間枠の11%だった。 */
 const AI_SOFT_CELLS = 40;
 const AI_MAX_DAYS = 31;
@@ -96,7 +147,7 @@ function aiBookableRange(nowMs, dom) {
  *  頼む中身をまとめる
  * ---------------------------------------------------------- */
 function aiDefaults() {
-  return { start: '', end: '', cls: 'C', stay: '24' };
+  return { start: '', end: '', cls: 'C', stay: '24', times: {} };
 }
 
 function aiPlan(r) {
@@ -121,6 +172,7 @@ function aiPlan(r) {
   return {
     segs, gap, start, end, ok, all, dates, notOpen, tooSoon, tooLong, range, dom,
     cls: dom ? 'Y' : a.cls, stay: a.stay,      // 国内線特典はエコノミーだけ
+    times: a.times || {},
     carrier: dom ? '' : (trip.carrier || ''),
     cells: segs.length * dates.length,
   };
@@ -181,7 +233,9 @@ function aiPromptText(plan) {
   L.push(`形：${MODES[trip.mode].label}`);
   plan.segs.forEach((s) => {
     const stay = aiStayText(s, plan);
-    L.push(`区間${s.no}：${aiCityText(s.from)} → ${aiCityText(s.to)}` + (stay ? `　${stay}` : ''));
+    const tw = aiTimeOf(plan, s.no);
+    L.push(`区間${s.no}：${aiCityText(s.from)} → ${aiCityText(s.to)}` + (stay ? `　${stay}` : '') +
+           (tw ? `　出発の時間帯の希望：${tw.rule}` : ''));
   });
   if (plan.gap) {
     L.push(`※${plan.gap.from} から ${plan.gap.to} までは自分で移動する（特典に含まれない）。この間の日数は自由`);
@@ -217,6 +271,9 @@ function aiPromptText(plan) {
   L.push(`1. 旅程の案を3つまで（A・B・C）。${cls.label}が「空席あり」の直行便だけを使い、上の滞在と乗り継ぎの余裕を守る。` +
          '日付・便名・空港・出発到着時刻・それぞれの街での滞在時間と、勧める理由を1〜2文で。');
   L.push('   組めないときは、どの区間のどの日がネックかを書き、近い代わり（ほかのクラス、乗り継ぎのある便、混ぜられない会社の便）があれば添える');
+  if (plan.segs.some((s) => aiTimeOf(plan, s.no))) {
+    L.push('   出発の時間帯の希望がある区間は、その時間帯に出発する空席ありの便で組む。その時間帯に空席が無い日は「時間帯に合う便なし」と書き、いちばん近い時刻の空席ありの便を添える。記録には時間帯の外の便も全部書く');
+  }
   L.push(`2. 最後に「Mile Board 用の記録」を、${AI_BLOCK_START} から ${AI_BLOCK_END} まで、形を変えずに書く（コードブロックに入れてよい）`);
   L.push('');
   L.push('Mile Board 用の記録の書き方：');
@@ -280,7 +337,9 @@ function aiPromptTextDom(plan) {
   L.push(`形：${MODES[trip.mode].label}（ANA国内線特典航空券）`);
   plan.segs.forEach((s) => {
     const stay = aiStayText(s, plan);
-    L.push(`区間${s.no}：${aiDomCityText(s.from)} → ${aiDomCityText(s.to)}` + (stay ? `　${stay}` : ''));
+    const tw = aiTimeOf(plan, s.no);
+    L.push(`区間${s.no}：${aiDomCityText(s.from)} → ${aiDomCityText(s.to)}` + (stay ? `　${stay}` : '') +
+           (tw ? `　出発の時間帯の希望：${tw.rule}` : ''));
   });
   if (plan.gap) L.push(`※${plan.gap.from} から ${plan.gap.to} までは自分で移動する（特典に含まれない）`);
   L.push(`期間：${plan.start} 〜 ${plan.end}（全区間をこの中で）`);
@@ -306,6 +365,9 @@ function aiPromptTextDom(plan) {
   L.push('■ 返事の形');
   L.push('1. 旅程の案を3つまで（A・B・C）。空席ありの直行便だけを使い、上の滞在と乗り継ぎの余裕を守る。日付・便名・空港・出発到着時刻・それぞれの街での滞在時間と、勧める理由を1〜2文で。');
   L.push('   組めないときは、どの区間のどの日がネックかを書き、近い代わり（乗り継ぎのある便など）があれば添える');
+  if (plan.segs.some((s) => aiTimeOf(plan, s.no))) {
+    L.push('   出発の時間帯の希望がある区間は、その時間帯に出発する空席ありの便で組む。その時間帯に空席が無い日は「時間帯に合う便なし」と書き、いちばん近い時刻の空席ありの便を添える。記録には時間帯の外の便も全部書く');
+  }
   L.push(`2. 最後に「Mile Board 用の記録」を、${AI_BLOCK_START} から ${AI_BLOCK_END} まで、形を変えずに書く（コードブロックに入れてよい）`);
   L.push('');
   L.push('Mile Board 用の記録の書き方：');
@@ -509,10 +571,13 @@ function importAiReport(rep, planSegs, fallbackCarrier, fallbackDom) {
       res.cells++;
       if (cls === (rep.cls || '')) res.counts[best]++;
     }
+    aiFlights()[`${award}|${g.seg.from}>${g.seg.to}|${g.date}`] = {
+      at, flights: flights.map((f) => ({ f: f.flight, c: f.carrier, dep: f.dep, arr: f.arr, m: f.marks })),
+    };
     res.days.add(g.date);
     res.routes.add(`${g.seg.from}→${g.seg.to}`);
   }
-  if (res.cells) seatsSave();
+  if (res.cells) { seatsSave(); aiFlightsSave(); }
   res.cls = rep.cls;
   res.at = at;
   return res;
@@ -572,6 +637,7 @@ function renderAiCard(r) {
   $('aiStart').value = plan.start;
   $('aiEnd').value = plan.end;
   $('aiStayLine').hidden = !plan.segs.some((s) => s.stay === '目的地') || trip.mode === 'oneway';
+  renderAiTimes(plan);
 
   // どれくらいの量か
   const size = $('aiSize');
@@ -608,6 +674,50 @@ function renderAiCard(r) {
   renderAiGrid(plan);
 }
 
+/* 表の1マスの中身。時間帯の希望があり、便ごとの記録があれば、希望に合う便だけで印を決めます。
+     mark     … 'o' 'x' など（希望に合う便のうち、いちばん良いもの）
+     timed    … 時間帯で絞って決めた印か
+     outside  … 希望の時間帯の外なら空席ありの便がある
+     flights  … その日の便（時刻・印・時間帯に入るか・旅程に使える会社か）
+   便ごとの記録が無い（前の取り込み・手で付けた印）ときは、空席メモの印をそのまま返します（timed: false）。 */
+function aiCell(plan, s, d) {
+  const award = plan.dom ? 'dom' : 'partner';
+  const hit = seatLookup(s.from, s.to, d, award);
+  const base = hit && hit.marks[plan.cls] ? { mark: hit.marks[plan.cls], at: hit.at } : null;
+  const win = aiTimeOf(plan, s.no);
+  const rec = aiFlights()[`${award}|${s.from}>${s.to}|${d}`];
+  if (!rec) return base ? { ...base, timed: false, outside: false, flights: [] } : null;
+  const usable = (c) => (plan.dom ? true : plan.carrier ? c === plan.carrier : !MB.partnerOnly.has(c));
+  const list = rec.flights.map((f) => {
+    const dm = aiMin(f.dep);
+    return { ...f, mark: (f.m || {})[plan.cls] || '', ok: usable(f.c),
+             inWin: !win || (dm != null && dm >= win.from && dm <= win.to) };
+  }).sort((a, b) => (aiMin(a.dep) ?? 9999) - (aiMin(b.dep) ?? 9999));
+  if (!win) return { ...(base || { mark: 'x', at: rec.at }), timed: false, outside: false, flights: list };
+  let best = 'x';
+  for (const f of list) if (f.ok && f.inWin && f.mark && AI_RANK[f.mark] > AI_RANK[best]) best = f.mark;
+  const outside = best !== 'o' && list.some((f) => f.ok && !f.inWin && f.mark === 'o');
+  return { mark: best, at: rec.at, timed: true, outside, flights: list };
+}
+
+/* マスを押したときに出す、その日の便の一覧 */
+function aiCellText(plan, s, d) {
+  const c = aiCell(plan, s, d);
+  const head = `${aiShort(d)}（${aiWeek(d)}） ${s.from}→${s.to}`;
+  if (!c) return `${head}：まだ調べていません。`;
+  if (!c.flights.length) return `${head}：${c.timed || aiFlights()[`${plan.dom ? 'dom' : 'partner'}|${s.from}>${s.to}|${d}`] ? '直行便がありませんでした。' : '便ごとの記録がありません（時刻が分からない印です）。'}`;
+  const win = aiTimeOf(plan, s.no);
+  const lines = c.flights.map((f) => {
+    const sign = f.mark ? SEAT_MARKS[f.mark].sign : '·';
+    const tags = [];
+    if (win && !f.inWin) tags.push('時間帯の外');
+    if (!f.ok) tags.push('この旅程では使えない会社');
+    const text = `${f.f} ${f.dep}→${f.arr} ${sign}` + (tags.length ? `（${tags.join('・')}）` : '');
+    return (win && f.inWin && f.ok) ? `<b>${text}</b>` : text;
+  });
+  return `${head}${win ? `　希望：${win.label}` : ''}<br>${lines.join('<br>')}`;
+}
+
 /* 区間 × 日付の空席の一覧。空席メモにあるものをそのまま並べます。 */
 function renderAiGrid(plan) {
   const box = $('aiGrid');
@@ -619,14 +729,18 @@ function renderAiGrid(plan) {
       if (plan.notOpen.includes(d) || plan.tooSoon.includes(d)) {
         return '<td class="ai-c ai-closed" title="予約できない日">未</td>';
       }
-      const hit = seatLookup(s.from, s.to, d, plan.dom ? 'dom' : 'partner');
-      const m = hit && hit.marks[cls];
-      if (!m) return '<td class="ai-c m-none">·</td>';
+      const c = aiCell(plan, s, d);
+      const at = `data-no="${s.no}" data-d="${d}"`;
+      if (!c || !c.mark) return `<td class="ai-c m-none" ${at}>·</td>`;
       any = true;
-      newest = Math.max(newest, hit.at || 0);
-      const age = seatAge(hit.at);
-      return `<td class="ai-c m-${m}${age ? ' age-' + age.tier : ''}" title="${SEAT_MARKS[m].name}` +
-             `${age ? '（' + age.text + '）' : ''}">${SEAT_MARKS[m].sign}</td>`;
+      newest = Math.max(newest, c.at || 0);
+      const age = seatAge(c.at);
+      const win = aiTimeOf(plan, s.no);
+      const out = c.timed && c.outside;
+      const cl = ['ai-c', out ? 'ai-outside' : 'm-' + c.mark, age ? 'age-' + age.tier : '',
+                  win && !c.timed ? 'ai-untimed' : ''].filter(Boolean).join(' ');
+      const name = out ? '希望の時間帯の外なら空席あり' : SEAT_MARKS[c.mark].name;
+      return `<td class="${cl}" ${at} title="${name}${age ? '（' + age.text + '）' : ''}">${out ? '外' : SEAT_MARKS[c.mark].sign}</td>`;
     }).join('');
     return `<tr><th class="ai-seg" scope="row"><span class="ai-no">${s.no}</span>${s.from}→<span class="ai-to">${s.to}</span></th>${cells}</tr>`;
   }).join('');
@@ -638,13 +752,78 @@ function renderAiGrid(plan) {
   }).join('');
   const clsName = (AI_CLASSES.find((c) => c.key === cls) || {}).label;
   const age = seatAge(newest);
+  const wins = plan.segs.map((s) => [s, aiTimeOf(plan, s.no)]).filter(([, w]) => w);
   box.innerHTML =
     `<p class="ai-grid-title">空席メモにある${clsName}の空き</p>` +
+    (wins.length ? `<p class="hint ai-wins">時間帯の希望：${wins.map(([s, w]) => `区間${s.no} ${w.label}`).join('　')}` +
+                   '<br>希望の時間帯に出発する、空席のある便があれば ○ です。</p>' : '') +
     `<div class="ai-grid-wrap"><table class="ai-grid"><thead><tr><th></th>${head}</tr></thead>` +
     `<tbody>${rows}</tbody></table></div>` +
     (plan.dom ? `<p class="hint">○空席あり　−空きなし（選択不可）　·まだ調べていない　未＝予約できない日` :
     `<p class="hint">○空席あり　△空席待ち（提携の特典では待てません）　−空きなし　·まだ調べていない　未＝予約できない日`) +
-    (age ? `<br>いちばん新しい記録は ${age.text}です。特典の空席は数時間で変わります。` : '') + '</p>';
+    (wins.length ? '<br>外＝希望の時間帯の外なら空席あり　点線＝便の時刻が分からない印（時間帯は見ていません）' : '') +
+    '<br>マスを押すと、その日の便と時刻が出ます。' +
+    (age ? `<br>いちばん新しい記録は ${age.text}です。特典の空席は数時間で変わります。` : '') + '</p>' +
+    '<p class="ai-cellinfo" id="aiCellInfo" hidden></p>';
+  box.querySelectorAll('td.ai-c[data-no]').forEach((td) => {
+    td.addEventListener('click', () => {
+      const s = plan.segs.find((x) => String(x.no) === td.dataset.no);
+      const info = $('aiCellInfo');
+      info.hidden = false;
+      info.innerHTML = aiCellText(plan, s, td.dataset.d);
+      box.querySelectorAll('td.ai-sel').forEach((x) => x.classList.remove('ai-sel'));
+      td.classList.add('ai-sel');
+    });
+  });
+}
+
+/* 区間ごとの出発の時間帯 */
+function aiSetTime(no, v) {
+  const a = Object.assign(aiDefaults(), trip.ai || {});
+  const times = { ...(a.times || {}) };
+  if (v) times[no] = v; else delete times[no];
+  trip.ai = Object.assign(a, { times });
+  refresh();
+}
+function renderAiTimes(plan) {
+  const box = $('aiTimes');
+  box.innerHTML = '';
+  const hours = (sel, v) => { for (let h = 0; h <= 24; h++) sel.appendChild(new Option(`${h}時`, String(h))); sel.value = String(v); };
+  plan.segs.forEach((s) => {
+    const v = plan.times[s.no] || '';
+    const custom = /^c:/.test(v);
+    const row = document.createElement('div');
+    row.className = 'ai-time';
+    const lab = document.createElement('span');
+    lab.className = 'ai-time-seg';
+    lab.innerHTML = `<span class="ai-no">${s.no}</span>${s.from}→${s.to}`;
+    const sel = document.createElement('select');
+    sel.className = 'sel';
+    sel.setAttribute('aria-label', `区間${s.no}の出発の時間帯`);
+    AI_TIMES.forEach((t) => sel.appendChild(new Option(t.label, t.key)));
+    sel.value = custom ? 'custom' : v;
+    sel.addEventListener('change', () => aiSetTime(s.no, sel.value === 'custom' ? 'c:6-10' : sel.value));
+    row.append(lab, sel);
+    if (custom) {
+      const [, a, b] = /^c:(\d+)-(\d+)$/.exec(v) || [0, 6, 10];
+      const fromSel = document.createElement('select'), toSel = document.createElement('select');
+      fromSel.className = toSel.className = 'sel ai-hour';
+      hours(fromSel, a); hours(toSel, b);
+      const upd = () => aiSetTime(s.no, `c:${fromSel.value}-${toSel.value}`);
+      fromSel.addEventListener('change', upd); toSel.addEventListener('change', upd);
+      const wrap = document.createElement('span');
+      wrap.className = 'ai-hours';
+      wrap.append(fromSel, document.createTextNode('から'), toSel, document.createTextNode('までに出発'));
+      row.appendChild(wrap);
+      if (!(Number(a) < Number(b))) {
+        const w = document.createElement('span');
+        w.className = 'ai-time-warn';
+        w.textContent = '始まりを終わりより前にしてください';
+        row.appendChild(w);
+      }
+    }
+    box.appendChild(row);
+  });
 }
 
 /* 入力とボタン。app.js の起動のところから1回だけ呼びます。 */
