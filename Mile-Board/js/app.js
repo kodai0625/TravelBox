@@ -556,6 +556,7 @@ function refresh() {
   renderMiles(r);
   renderAnaBox(r);
   renderItinerary(r);
+  renderAiCard(r);
   save();
 }
 
@@ -896,6 +897,7 @@ function load() {
     if (trip.onlyReachable === undefined) trip.onlyReachable = true;
     if (trip.dateBack === undefined) trip.dateBack = '';   // 前の版の記録には入っていません
     if (!trip.carrier) trip.carrier = '';                  // 前の版の記録には入っていません
+    trip.ai = Object.assign(aiDefaults(), trip.ai || {}); // 2026-11-24 から（Claude に頼む）
     trip.out = fitSlots(trip.out);              // 枠の数が変わっていることがあります
     trip.back = fitSlots(trip.back);
   } catch (e) {}
@@ -951,10 +953,12 @@ function load() {
     Object.assign(trip, {
       mode: 'roundtrip', from: APP.homeCity, out: emptySlots(), dest: '',
       ret: '', back: emptySlots(), to: APP.homeCity, stopover: '',
-      date: '', dateBack: '', countries: {}, carrier: '',
+      date: '', dateBack: '', countries: {}, carrier: '', ai: aiDefaults(),
     });
     refresh();
   });
+
+  setupAiCard();
 
   $('dateIn').addEventListener('change', () => { trip.date = $('dateIn').value; refresh(); });
   $('dateBack').addEventListener('change', () => { trip.dateBack = $('dateBack').value; refresh(); });

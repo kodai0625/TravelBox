@@ -436,3 +436,45 @@ body {
 
 /* 乗継の候補が絞られた理由 */
 .reach-why { font-size: 11px; line-height: 1.6; margin: 3px 0 6px; }
+
+/* ===== Claude に空席を探してもらう（js/ai.js） ===== */
+.ai-lead { margin-top: 0; margin-bottom: 4px; }
+.ai-steps { margin: 12px 0 0 1.4em; padding: 0; font-size: 12.5px; line-height: 1.7; display: grid; gap: 3px; }
+.ai-pre {
+  margin-top: 10px;
+  max-height: 320px;
+  overflow: auto;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.ai-sub { font-size: 13px; font-weight: 700; margin: 18px 0 8px; }
+.ai-paste {
+  width: 100%;
+  min-height: 96px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.5;
+  resize: vertical;
+}
+.ai-grid-title { font-size: 12.5px; font-weight: 700; margin-top: 14px; }
+.ai-grid-wrap { overflow-x: auto; margin-top: 6px; -webkit-overflow-scrolling: touch; }
+.ai-grid { border-collapse: separate; border-spacing: 3px; font-size: 12px; }
+.ai-grid th { font-weight: 600; white-space: nowrap; }
+.ai-d { font-size: 10.5px; text-align: center; padding: 0 2px; line-height: 1.3; }
+.ai-d span { display: block; font-size: 9.5px; }
+.ai-grid th.ai-seg { text-align: left; font-size: 11px; line-height: 1.35; padding-right: 6px; position: sticky; left: 0; }
+.ai-to { display: block; padding-left: 21px; }
+.ai-no { display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 5px;
+         font-size: 10px; font-weight: 800; margin-right: 5px; font-family: var(--mono); }
+.ai-c { min-width: 30px; height: 28px; text-align: center; border-radius: 7px; border: 1px solid;
+        font-family: var(--mono); font-size: 13px; }
+.ai-closed { font-family: var(--sans); font-size: 10px; }

@@ -30,9 +30,9 @@
 <!-- ★ ?v= は「読み込み直させるための版番号」です。
      css か js を直したら、ここの数字をすべて同じ値に1つ上げてください。
      上げないとブラウザが古いファイルを使い続け、直したはずの画面が変わりません。 -->
-<link rel="stylesheet" href="css/travel.css?v=20261118a">
-<link rel="stylesheet" href="css/style.css?v=20261118a">
-<link rel="stylesheet" href="css/design.css?v=20261118a">
+<link rel="stylesheet" href="css/travel.css?v=20261124a">
+<link rel="stylesheet" href="css/style.css?v=20261124a">
+<link rel="stylesheet" href="css/design.css?v=20261124a">
 </head>
 <body class="paper">
 
@@ -218,6 +218,65 @@
     <p class="hint" id="segHint"></p>
   </section>
 
+  <!-- ===== Claude に空席を探してもらう（2026-11-24） =====
+       判定が「組めます」のときだけ出ます。中身は js/ai.js。
+       ★Mile Board が ANA につなぐわけではありません。頼む文を作り、返事を取り込むだけです。 -->
+  <section class="card" id="aiCard" hidden>
+    <h2 class="card-title"><span class="step">8</span>Claude に空席を探してもらう</h2>
+    <p class="hint ai-lead">
+      この旅程の区間を、日ごとに ANA のサイトで調べてもらう文を作ります。
+      Chrome の Claude（拡張機能）に貼ると、Claude が ANA の画面を動かして調べ、
+      空席のある便だけで組める案と、空席メモに取り込む記録を返します。
+    </p>
+
+    <div class="dateline">
+      <label class="row-label" for="aiStart">いつから</label>
+      <input type="date" id="aiStart" class="sel">
+    </div>
+    <div class="dateline">
+      <label class="row-label" for="aiEnd">いつまで</label>
+      <input type="date" id="aiEnd" class="sel">
+    </div>
+    <div class="dateline">
+      <label class="row-label" for="aiCls">クラス</label>
+      <select id="aiCls" class="sel"></select>
+    </div>
+    <div class="dateline" id="aiStayLine">
+      <label class="row-label" for="aiStay">目的地では</label>
+      <select id="aiStay" class="sel"></select>
+    </div>
+    <p class="hint">全区間をこの期間の中で組みます。日にちに幅を持たせるほど、空いている便に合わせやすくなります。</p>
+    <p class="hint" id="aiSize"></p>
+    <ul class="msg-list" id="aiWarn"></ul>
+
+    <ol class="ai-steps">
+      <li>Chrome で ANA のサイトを開き、<b>自分でログイン</b>しておく</li>
+      <li>「頼む文をコピー」を押し、Chrome の Claude に貼って送る</li>
+      <li>途中でパスワードを聞かれたら、<b>自分で入れる</b>（Claude には入れさせません）</li>
+      <li>終わったら Claude の返事をまるごとコピーし、下に貼って取り込む</li>
+    </ol>
+    <div class="actions">
+      <button type="button" class="btn" id="aiCopy">頼む文をコピー</button>
+      <button type="button" class="btn btn-quiet" id="aiShow">中身を見る</button>
+    </div>
+    <pre class="ai-pre" id="aiPre" hidden></pre>
+
+    <h3 class="ai-sub">Claude の返事を取り込む</h3>
+    <textarea id="aiPaste" class="ai-paste" rows="5"
+              placeholder="Claude の返事を、そのまま全部貼ってください（最後の #MILEBOARD 〜 #END を読みます）"></textarea>
+    <div class="actions">
+      <button type="button" class="btn" id="aiImport">空席メモに取り込む</button>
+    </div>
+    <p class="hint" id="aiResult"></p>
+    <div id="aiGrid"></div>
+
+    <p class="hint">
+      ANA のサイトを動かすのは Claude です。自分で頼んだときに1回ずつ使い、
+      くり返し見張らせる使い方はしないでください。AI の報告はまちがうことがあります。
+      <b>予約の前に、必ず ANA の画面で確かめてください。</b>
+    </p>
+  </section>
+
 </div><!-- /page-trip -->
 
 <!-- ============================================================
@@ -310,14 +369,15 @@
 
 <div class="loading" id="loading">読み込んでいます…</div>
 
-<script src="js/update.js?v=20261118a"></script>
-<script src="js/config.js?v=20261118a"></script>
-<script src="js/rules.js?v=20261118a"></script>
-<script src="js/diagram.js?v=20261118a"></script>
-<script src="js/reach.js?v=20261118a"></script>
-<script src="js/suggest.js?v=20261118a"></script>
-<script src="js/data.js?v=20261118a"></script>
-<script src="js/seats.js?v=20261118a"></script>
-<script src="js/app.js?v=20261118a"></script>
+<script src="js/update.js?v=20261124a"></script>
+<script src="js/config.js?v=20261124a"></script>
+<script src="js/rules.js?v=20261124a"></script>
+<script src="js/diagram.js?v=20261124a"></script>
+<script src="js/reach.js?v=20261124a"></script>
+<script src="js/suggest.js?v=20261124a"></script>
+<script src="js/data.js?v=20261124a"></script>
+<script src="js/seats.js?v=20261124a"></script>
+<script src="js/ai.js?v=20261124a"></script>
+<script src="js/app.js?v=20261124a"></script>
 </body>
 </html>

@@ -196,3 +196,19 @@ body {
 .carrierline.on .sel { color: var(--partner); border-color: var(--partner); }
 
 .reach-why { color: var(--ink-2); }
+
+/* Claude に空席を探してもらう */
+.ai-pre, .ai-paste { background: var(--field); border-color: var(--line); color: var(--ink); }
+.ai-steps { color: var(--ink-2); }
+.ai-steps b { color: var(--ink); }
+.ai-d span { color: var(--ink-3); }
+.ai-d { color: var(--ink-2); }
+.ai-d.w0 { color: var(--ng); }
+.ai-d.w6 { color: var(--star); }
+.ai-seg { color: var(--ink); background: var(--panel); }
+.ai-no { background: var(--accent-bg); color: var(--accent); }
+.ai-c { background: var(--field); border-color: var(--line-soft); color: var(--ink-3); }
+.ai-c.m-oo, .ai-c.m-o { background: var(--ok-bg); border-color: var(--ok-line); color: var(--ok); font-weight: 700; }
+.ai-c.m-t { background: var(--note-bg); border-color: var(--long-bg); color: var(--note); }
+.ai-c.m-x { background: var(--panel-2); border-color: var(--line-soft); color: var(--ink-3); }
+.ai-closed { background: none; border-style: dashed; color: var(--ink-3); }
